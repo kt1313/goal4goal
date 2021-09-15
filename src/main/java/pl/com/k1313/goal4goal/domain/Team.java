@@ -15,10 +15,11 @@ public class Team {
     @Value("${my.team.name:NoName Club}")
     private String name;
 
-    public Team(){}
-
     @Autowired
     Player player;
+
+
+    public Team (Player player){this.player=player;}
 
 @PostConstruct
     public void create(){
@@ -30,10 +31,15 @@ public class Team {
     }
 
 
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Zespol nazywa sie " +
-                 this.name +
+                this.name +
                 ". " + "Gra w nim zawodnik: "+player;
     }
 }

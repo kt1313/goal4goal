@@ -1,6 +1,7 @@
 package pl.com.k1313.goal4goal.domain;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,6 @@ public class Player {
 
     private int age=22;
 
-    private String club="Odra Malczyce";
 //    private PlayerTask playerTask;
 //    private int stamina;
 //    private int goalkeeping;
@@ -22,6 +22,10 @@ public class Player {
 //    private int pace;
 //    private int shooting;
 //    private int tactics;
+//    private int personality;
+
+    private PlayerTask playerTask;
+
 
 
 //    public Player(String firstName, int age, PlayerTask playerTask) {
@@ -39,13 +43,18 @@ public class Player {
 //        this.age = age;
 //    }
 
-//    public void setPlayerTask(PlayerTask playerTask) {
-//        this.playerTask = playerTask;
-//    }
+//    @Autowired
+//    Team team;
+
+    @Autowired
+    public void setPlayerTask(PlayerTask playerTask) {
+        System.out.println("Ustawiam zadanie dla zawodnika. ");
+        this.playerTask = playerTask;
+    }
 
     @Override
     public String toString() {
         return "Zawodnik o imieniu " + firstName
-                + "("+ age+")" + " z klubu " +club +". Zadanie do wykonania: "  ;
+                + "("+ age+")" + " z klubu "  +". Zadanie do wykonania: " + playerTask ;
     }
 }
