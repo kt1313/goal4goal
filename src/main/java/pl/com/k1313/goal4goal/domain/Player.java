@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class Player {
 
-    private String firstName="Zenon";
+    private String firstName;
 
-    private int age=22;
+    private int age;
 
 //    private PlayerTask playerTask;
 //    private int stamina;
@@ -38,15 +38,15 @@ public class Player {
     }
 
 
-//    public Player(String firstName, int age) {
-//        this.firstName = firstName;
-//        this.age = age;
-//    }
+    public Player(String firstName, int age) {
+        this.firstName = firstName;
+        this.age = age;
+    }
 
 //    @Autowired
 //    Team team;
 
-    @Autowired
+//    @Autowired
     public void setPlayerTask(PlayerTask playerTask) {
         System.out.println("Ustawiam zadanie dla zawodnika. ");
         this.playerTask = playerTask;

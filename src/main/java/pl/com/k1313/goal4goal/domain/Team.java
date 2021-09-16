@@ -8,16 +8,16 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component
-@PropertySource("classpath:team.properties")
+//@Component
+//@PropertySource("classpath:team.properties")
 public class Team {
 
-    @Value("${my.team.name:NoName Club}")
+//    @Value("${my.team.name:NoName Club}")
     private String name;
 
     Player player;
 
-    @Autowired
+//    @Autowired
     public Team(Player player) {
         this.player = player;
     }
@@ -28,12 +28,12 @@ public class Team {
         this.name = name;
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void create() {
         System.out.println("Powstal klub: " + name);
     }
 
-    @PreDestroy
+//    @PreDestroy
     public void destroy() {
         System.out.println("Zaraz zniszczymy klub: " + name);
     }
@@ -41,6 +41,10 @@ public class Team {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
