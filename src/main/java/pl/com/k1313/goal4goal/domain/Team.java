@@ -15,21 +15,28 @@ public class Team {
     @Value("${my.team.name:NoName Club}")
     private String name;
 
-    @Autowired
     Player player;
 
-
-    public Team (Player player){this.player=player;}
-
-@PostConstruct
-    public void create(){
-        System.out.println("Powstal klub: "+ name);
+    @Autowired
+    public Team(Player player) {
+        this.player = player;
     }
+
+
+    Team(Player player, String name) {
+        this.player = player;
+        this.name = name;
+    }
+
+    @PostConstruct
+    public void create() {
+        System.out.println("Powstal klub: " + name);
+    }
+
     @PreDestroy
-    public void destroy(){
-        System.out.println("Zaraz zniszczymy klub: "+ name);
+    public void destroy() {
+        System.out.println("Zaraz zniszczymy klub: " + name);
     }
-
 
 
     public String getName() {
@@ -40,6 +47,8 @@ public class Team {
     public String toString() {
         return "Zespol nazywa sie " +
                 this.name +
-                ". " + "Gra w nim zawodnik: "+player;
+                ". " + "Gra w nim zawodnik: " + player;
     }
+
+
 }

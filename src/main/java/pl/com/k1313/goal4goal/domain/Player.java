@@ -55,6 +55,6 @@ public class Player {
     @Override
     public String toString() {
         return "Zawodnik o imieniu " + firstName
-                + "("+ age+")" + " z klubu "  +". Zadanie do wykonania: " + playerTask ;
+                + "("+ age+")"   +". Zadanie do wykonania: " + playerTask ;
     }
 }

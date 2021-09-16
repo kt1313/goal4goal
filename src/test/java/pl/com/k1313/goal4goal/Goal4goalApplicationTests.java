@@ -23,7 +23,11 @@ class Goal4goalApplicationTests {
 
 	@Test
 	public void testTeam(){
-		String except = "Zespol nazywa sie Odra Malczyce. Gra w nim zawodnik: Zawodnik o imieniu Zenon(22) z klubu Odra Malczyce. Zadanie do wykonania:";
+		String except =
+				"Zespol nazywa sie Odra Malczyce. " +
+						"Gra w nim zawodnik: " +
+						"Zawodnik o imieniu Zenon(22). " +
+						"Zadanie do wykonania: Biegaj jak kon.";
 		assertEquals(except, team.toString());
 	}
 
