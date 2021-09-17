@@ -11,9 +11,9 @@
 
     <import resource="classpath:config/team-config.xml"/>
 
-    <bean id="playerTask" class="pl.com.k1313.goal4goal.domain.PlayerTask"/>
+    <bean id="playerTask" class="pl.com.k1313.goal4goal.domain.PlayerTask" scope="prototype"/>
 
-    <bean id="player1"
+    <bean id="player1" primary="true"
           class="pl.com.k1313.goal4goal.domain.Player"
           scope="prototype">
         <constructor-arg index="0" value="Zenon"/>

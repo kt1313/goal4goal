@@ -5,13 +5,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--    <context:component-scan base-package="pl.com.k1313"/>-->
+    <!--    <context:component-scan base-package="pl.com.k1313"/>-->
     <context:property-placeholder location="classpath:team.properties"/>
 
 
     <bean id="klub" class="pl.com.k1313.goal4goal.domain.Team" init-method="create" destroy-method="destroy">
-    <constructor-arg index="0" ref="player"/>
+    <constructor-arg index="0" ref="player1"/>
     <property name="name" value="${my.team.name:NoName Club}"/>
+    </bean>
+    <bean id="mecz" class="pl.com.k1313.goal4goal.domain.Game" >
+        <property name="player" ref="player2"/>
 
-</bean>
+    </bean>
 </beans>
