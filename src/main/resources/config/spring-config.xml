@@ -2,8 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
     <context:component-scan base-package="pl.com.k1313"/>
     <!--<context:property-placeholder location="classpath:playerRepository.properties"/>-->
@@ -29,10 +30,10 @@
         <property name="playerTask" ref="playerTask"/>
     </bean>
 
-    <!--    <bean id="klub" class="pl.com.k1313.goal4goal.domain.Team" init-method="create" destroy-method="destroy">-->
-    <!--<constructor-arg index="0" ref="player"/>-->
-    <!--<property name="name" value="${my.team.name:NoName Club}"/>-->
+  <task:scheduled id="myScheduler" pool-size="10"/>
 
-    <!--    </bean>-->
+          <task:scheduled-tasks>
+              <task:scheduled ref="playerTaskRepository" method="createRandomPlayerTask" fixed-rate="2000"/>
+          </task:scheduled-tasks>
 
 </beans>

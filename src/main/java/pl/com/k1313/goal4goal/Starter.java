@@ -24,9 +24,19 @@ public class Starter implements CommandLineRunner {
         System.out.println(playerRepository);
         System.out.println(playerTaskRepository);
 
+
+        playerTaskRepository.createRandomPlayerTask();
+        System.out.println(playerTaskRepository);
+        playerTaskRepository.createRandomPlayerTask();
+        System.out.println(playerTaskRepository);
+        playerTaskRepository.createRandomPlayerTask();
+        System.out.println(playerTaskRepository);
+
+
         playerTaskService.assignRandomTask("Zenon");
         playerTaskService.assignRandomTask("Sebix");
-        System.out.println(playerRepository);
+
+
 
 
 
