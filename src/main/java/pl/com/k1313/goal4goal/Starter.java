@@ -3,9 +3,10 @@ package pl.com.k1313.goal4goal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import pl.com.k1313.goal4goal.domain.repository.InMemoryRepository;
 import pl.com.k1313.goal4goal.domain.repository.PlayerRepository;
 import pl.com.k1313.goal4goal.domain.repository.PlayerTaskRepository;
-import pl.com.k1313.goal4goal.services.PlayerTastService;
+import pl.com.k1313.goal4goal.services.PlayerTaskService;
 
 @Component
 public class Starter implements CommandLineRunner {
@@ -16,27 +17,14 @@ public class Starter implements CommandLineRunner {
     PlayerTaskRepository playerTaskRepository;
 
     @Autowired
-    PlayerTastService playerTaskService;
+    PlayerTaskService playerTaskService;
 
     @Override
     public void run(String... args) throws Exception {
 
+        playerTaskRepository.createRandomPlayerTask();
+        playerTaskRepository.createRandomPlayerTask();
         System.out.println(playerRepository);
-        System.out.println(playerTaskRepository);
-
-
-        playerTaskRepository.createRandomPlayerTask();
-        System.out.println(playerTaskRepository);
-        playerTaskRepository.createRandomPlayerTask();
-        System.out.println(playerTaskRepository);
-        playerTaskRepository.createRandomPlayerTask();
-        System.out.println(playerTaskRepository);
-
-
-        playerTaskService.assignRandomTask("Zenon");
-        playerTaskService.assignRandomTask("Sebix");
-
-
 
 
 

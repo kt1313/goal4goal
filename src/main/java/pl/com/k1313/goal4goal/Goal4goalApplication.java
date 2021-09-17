@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 //@ImportResource("classpath:config/spring-config.xml")
-@PropertySource("classpath:playerRepository.properties")
+//@PropertySource("classpath:playerRepository.properties")
 @EnableScheduling
 public class Goal4goalApplication {
 

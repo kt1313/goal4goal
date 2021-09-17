@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans  xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -9,17 +9,7 @@
     <context:property-placeholder location="classpath:playerRepository.properties"/>
 
 
-    <bean id="klub" class="pl.com.k1313.goal4goal.domain.repository.PlayerRepository" init-method="create" destroy-method="destroy">
-    <constructor-arg index="0" ref="player1"/>
-    <property name="name" value="${my.team.name:NoName Club}"/>
+    <bean id="playerRepository" class="pl.com.k1313.goal4goal.domain.repository.InMemoryRepository" init-method="create" >
     </bean>
-    <bean id="mecz" class="pl.com.k1313.goal4goal.domain.Game" >
-        <property name="players" >
-            <list>
-                <ref bean="player1"/>
-                <ref bean="player2"/>
-            </list>
-        </property>
 
-    </bean>
 </beans>

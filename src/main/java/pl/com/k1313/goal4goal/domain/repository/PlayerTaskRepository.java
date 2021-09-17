@@ -34,7 +34,7 @@ public class PlayerTaskRepository {
 
 
     }
-@Scheduled(fixedDelayString = "${playerTaskCreationDelay")
+@Scheduled(fixedDelayString = "${playerTaskCreationDelay}")
     public void createRandomPlayerTask() {
         List<String> descriptions = new ArrayList<>();
         descriptions.add("Biegaj jak kon.");

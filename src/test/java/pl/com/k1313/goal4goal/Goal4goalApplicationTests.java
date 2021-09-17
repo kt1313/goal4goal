@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.com.k1313.goal4goal.domain.Player;
-import pl.com.k1313.goal4goal.domain.repository.PlayerRepository;
+import pl.com.k1313.goal4goal.domain.repository.InMemoryRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Goal4goalApplicationTests {
 
 	@Autowired
-    PlayerRepository playerRepository;
+    InMemoryRepository inMemoryRepository;
 
 	@Autowired
 	Player player;
@@ -28,7 +28,7 @@ class Goal4goalApplicationTests {
 						"Gra w nim zawodnik: " +
 						"Zawodnik o imieniu Zenon(22). " +
 						"Zadanie do wykonania: Biegaj jak kon.";
-		assertEquals(except, playerRepository.toString());
+		assertEquals(except, inMemoryRepository.toString());
 	}
 
 }
