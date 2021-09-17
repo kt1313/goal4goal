@@ -6,7 +6,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="pl.com.k1313"/>
-    <!--<context:property-placeholder location="classpath:team.properties"/>-->
+    <!--<context:property-placeholder location="classpath:playerRepository.properties"/>-->
 
 
     <import resource="classpath:config/team-config.xml"/>

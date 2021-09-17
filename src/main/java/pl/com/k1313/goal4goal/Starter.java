@@ -3,23 +3,33 @@ package pl.com.k1313.goal4goal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import pl.com.k1313.goal4goal.domain.Game;
-import pl.com.k1313.goal4goal.domain.Team;
+import pl.com.k1313.goal4goal.domain.repository.PlayerRepository;
+import pl.com.k1313.goal4goal.domain.repository.PlayerTaskRepository;
+import pl.com.k1313.goal4goal.services.PlayerTastService;
 
 @Component
 public class Starter implements CommandLineRunner {
     @Autowired
-    Team team;
+    PlayerRepository playerRepository;
 
     @Autowired
-    Game game;
+    PlayerTaskRepository playerTaskRepository;
+
+    @Autowired
+    PlayerTastService playerTaskService;
 
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println(team);
-        game.playGame();
-        System.out.println(game);
+        System.out.println(playerRepository);
+        System.out.println(playerTaskRepository);
+
+        playerTaskService.assignRandomTask("Zenon");
+        playerTaskService.assignRandomTask("Sebix");
+        System.out.println(playerRepository);
+
+
+
 
 ////Wstrzykiwanie zaleznosci przez konstruktor
 //        PlayerTask runLikeHell=new PlayerTask("Biegaj jak kon.");

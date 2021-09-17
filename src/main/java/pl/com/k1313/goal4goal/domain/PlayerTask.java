@@ -4,13 +4,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope("prototype")
 public class PlayerTask {
 
     private String description;
 
-    public PlayerTask() {
+    public PlayerTask(String description) {
         this.description="Biegaj jak kon." ;
     }
 

@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 @Component
 public class Game {
 
-    @Autowired
+//    @Autowired
 //    @Qualifier(value = "player2")
-    List<Player> players;
+//    List<Player> players;
 
     public Game() {
     }
@@ -24,13 +24,12 @@ public class Game {
 
     }
 
-    public void setPlayer(List<Player> players) {
-        this.players = players;
-    }
+//    public void setPlayer(List<Player> players) {
+//        this.players = players;
+//    }
 
     @Override
     public String toString() {
-        return "W meczu zagrali: " + players.stream().map(Objects::toString).collect(Collectors.joining(","));
-    }
+        return "W meczu zagrali: ";}
 }
 

@@ -6,10 +6,10 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--    <context:component-scan base-package="pl.com.k1313"/>-->
-    <context:property-placeholder location="classpath:team.properties"/>
+    <context:property-placeholder location="classpath:playerRepository.properties"/>
 
 
-    <bean id="klub" class="pl.com.k1313.goal4goal.domain.Team" init-method="create" destroy-method="destroy">
+    <bean id="klub" class="pl.com.k1313.goal4goal.domain.repository.PlayerRepository" init-method="create" destroy-method="destroy">
     <constructor-arg index="0" ref="player1"/>
     <property name="name" value="${my.team.name:NoName Club}"/>
     </bean>

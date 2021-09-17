@@ -52,7 +52,6 @@ public class Player {
     //    @Autowired
 //    Team team;
 
-    @Autowired
     public void setPlayerTask(PlayerTask playerTask) {
         System.out.println("Ustawiam zadanie dla zawodnika. ");
         this.playerTask = playerTask;
