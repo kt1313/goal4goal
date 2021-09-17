@@ -14,7 +14,12 @@
     <property name="name" value="${my.team.name:NoName Club}"/>
     </bean>
     <bean id="mecz" class="pl.com.k1313.goal4goal.domain.Game" >
-        <property name="player" ref="player2"/>
+        <property name="players" >
+            <list>
+                <ref bean="player1"/>
+                <ref bean="player2"/>
+            </list>
+        </property>
 
     </bean>
 </beans>
