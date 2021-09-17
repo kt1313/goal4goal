@@ -3,10 +3,12 @@ package pl.com.k1313.goal4goal.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
+//@Scope"prototype"
 public class Player {
 
     private String firstName;
@@ -35,18 +37,22 @@ public class Player {
 //    }
 
     public Player() {
+        this.firstName = "Zenon";
+        this.age = 22;
     }
 
+    public int getAge() {
+        return age;
+    }
 
-    public Player(String firstName, int age) {
-        this.firstName = firstName;
+    public void setAge(int age) {
         this.age = age;
     }
 
-//    @Autowired
+    //    @Autowired
 //    Team team;
 
-//    @Autowired
+    @Autowired
     public void setPlayerTask(PlayerTask playerTask) {
         System.out.println("Ustawiam zadanie dla zawodnika. ");
         this.playerTask = playerTask;

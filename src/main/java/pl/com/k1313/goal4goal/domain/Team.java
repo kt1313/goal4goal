@@ -8,16 +8,16 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-//@Component
+@Component
 //@PropertySource("classpath:team.properties")
 public class Team {
 
-//    @Value("${my.team.name:NoName Club}")
+    @Value("${my.team.name:NoName Club}")
     private String name;
 
     Player player;
 
-//    @Autowired
+    @Autowired
     public Team(Player player) {
         this.player = player;
     }

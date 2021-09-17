@@ -2,7 +2,7 @@ package pl.com.k1313.goal4goal.domain;
 
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class PlayerTask {
 
     private String description;
