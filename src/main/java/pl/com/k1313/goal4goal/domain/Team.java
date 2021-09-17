@@ -1,6 +1,7 @@
 package pl.com.k1313.goal4goal.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ public class Team {
     Player player;
 
     @Autowired
-    public Team(Player player) {
+    public Team(@Qualifier(value="player1") Player player) {
         this.player = player;
     }
 

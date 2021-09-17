@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 //@Scope"prototype"
 public class Player {
 
@@ -30,11 +30,11 @@ public class Player {
 
 
 
-//    public Player(String firstName, int age, PlayerTask playerTask) {
-//        this.firstName = firstName;
-//        this.age = age;
-//        this.playerTask=playerTask;
-//    }
+    public Player(String firstName, int age) {
+        this.firstName = firstName;
+        this.age = age;
+        this.playerTask=playerTask;
+    }
 
     public Player() {
         this.firstName = "Zenon";

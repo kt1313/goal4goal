@@ -6,23 +6,33 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="pl.com.k1313"/>
-<!--<context:property-placeholder location="classpath:team.properties"/>-->
+    <!--<context:property-placeholder location="classpath:team.properties"/>-->
 
 
     <import resource="classpath:config/team-config.xml"/>
 
     <bean id="playerTask" class="pl.com.k1313.goal4goal.domain.PlayerTask"/>
 
-    <bean id="player" class="pl.com.k1313.goal4goal.domain.Player">
+    <bean id="player1"
+          class="pl.com.k1313.goal4goal.domain.Player"
+          scope="prototype">
         <constructor-arg index="0" value="Zenon"/>
         <constructor-arg index="1" value="29"/>
         <property name="playerTask" ref="playerTask"/>
     </bean>
 
-<!--    <bean id="klub" class="pl.com.k1313.goal4goal.domain.Team" init-method="create" destroy-method="destroy">-->
-<!--<constructor-arg index="0" ref="player"/>-->
-<!--<property name="name" value="${my.team.name:NoName Club}"/>-->
+    <bean id="player2"
+          class="pl.com.k1313.goal4goal.domain.Player"
+          scope="prototype">
+        <constructor-arg index="0" value="Sebix"/>
+        <constructor-arg index="1" value="24"/>
+        <property name="playerTask" ref="playerTask"/>
+    </bean>
 
-<!--    </bean>-->
+    <!--    <bean id="klub" class="pl.com.k1313.goal4goal.domain.Team" init-method="create" destroy-method="destroy">-->
+    <!--<constructor-arg index="0" ref="player"/>-->
+    <!--<property name="name" value="${my.team.name:NoName Club}"/>-->
+
+    <!--    </bean>-->
 
 </beans>
