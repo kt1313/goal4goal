@@ -10,10 +10,12 @@
 
 </head>
 <body>
-<h1>Zawodnicy w klubie: </h1>
-<table>
+<div class="container">
+    <h3>Zawodnicy w klubie: </h3>
+<table class="table">
     <thead>
-    <tr><td>Imie zawodnika</td><td>Wiek zawodnika</td></tr>
+    <tr><td>Imie zawodnika</td>
+        <td>Wiek zawodnika</td></tr>
     </thead>
 <tbody th:each="player : ${players}">
 <tr>
@@ -23,5 +25,6 @@
 </tr>
 </tbody>
 </table>
+</div>
 </body>
 </html>
