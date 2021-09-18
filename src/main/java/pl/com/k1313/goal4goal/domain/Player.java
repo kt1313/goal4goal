@@ -57,6 +57,14 @@ public class Player {
         this.playerTask = playerTask;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     @Override
     public String toString() {
         return "Zawodnik o imieniu " + firstName

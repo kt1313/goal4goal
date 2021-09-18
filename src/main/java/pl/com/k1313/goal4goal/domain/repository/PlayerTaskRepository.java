@@ -43,7 +43,7 @@ public class PlayerTaskRepository {
         descriptions.add("I pod gorke az uda sie rozpekna.");
 
     String description = descriptions.get(rand.nextInt(descriptions.size()));
-    System.out.println("Utworzylem zadanie o opisie: " + description);
+//    System.out.println("Utworzylem zadanie o opisie: " + description);
     createPlayerTask(description);
 
     }
