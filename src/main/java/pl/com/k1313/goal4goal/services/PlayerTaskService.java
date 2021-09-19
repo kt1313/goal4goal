@@ -26,7 +26,7 @@ public class PlayerTaskService {
     public void assignRandomTask(String playerName) throws ExecutionControl.NotImplementedException {
         List<PlayerTask> allTasks = playerTaskRepository.getAllPlayerTasks();
         PlayerTask randomTask = allTasks.get(rand.nextInt(allTasks.size()));
-        playerRepository.getPlayer(playerName).setPlayerTask(randomTask);
+        playerRepository.getPlayer(playerName).ifPresent(player ->player.setPlayerTask(randomTask));
         playerTaskRepository.removePlayerTask(randomTask);
 
     }

@@ -24,4 +24,7 @@ public class PlayerService {
 playerRepository.hirePlayer(player);
     }
 
+    public Player getPlayer(Integer id) throws ExecutionControl.NotImplementedException {
+        return playerRepository.getPlayerById(id);
+    }
 }

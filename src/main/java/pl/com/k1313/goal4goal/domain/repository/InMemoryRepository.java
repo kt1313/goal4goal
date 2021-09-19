@@ -1,5 +1,6 @@
 package pl.com.k1313.goal4goal.domain.repository;
 
+import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,22 +11,30 @@ import pl.com.k1313.goal4goal.domain.Player;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 //@Repository
 public class InMemoryRepository implements PlayerRepository {
 
-    Map<String, Player> players = new HashMap<>();
+    Map<Integer, Player> players = new HashMap<>();
 
     public InMemoryRepository() {
     }
 
     @Override
     public void hirePlayer(String name, int age) {
-        players.put(name, new Player(name, age));
+        Player newPlayer = new Player(name, age);
+        newPlayer.setId(getNewId());
+        players.put(newPlayer.getId(), newPlayer);
+    }
+
+    private int getNewId() {
+        if (players.isEmpty()) {
+            return 0;
+        } else {
+            Integer integer = players.keySet().stream().max(Integer::max).get();
+            return integer + 1;
+        }
     }
 
     @Override
@@ -34,17 +43,18 @@ public class InMemoryRepository implements PlayerRepository {
     }
 
     @Override
-    public Player getPlayer(String name) {
-        return players.get(name);
+    public Optional<Player> getPlayer(String name) {
+        Optional<Player> playerByName = players.values().stream().filter(player -> player.getFirstName().equals(name)).findAny();
+        return playerByName;
     }
 
     @Override
-    public void firePlayer(String name) {
-        players.remove(name);
+    public void firePlayer(Integer id) {
+        players.remove(id);
     }
 
-        @Override
-        @PostConstruct
+    @Override
+    @PostConstruct
     public void create() {
         hirePlayer("Zenon", 22);
         hirePlayer("Sebix", 24);
@@ -52,7 +62,13 @@ public class InMemoryRepository implements PlayerRepository {
 
     @Override
     public void hirePlayer(Player player) {
-        players.put(player.getFirstName(), player);
+        player.setId(getNewId());
+        players.put(player.getId(), player);
+    }
+
+    @Override
+    public Player getPlayerById(Integer id) throws ExecutionControl.NotImplementedException {
+        return players.get(id);
     }
 
     @Override

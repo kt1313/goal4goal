@@ -5,18 +5,20 @@ import pl.com.k1313.goal4goal.domain.Player;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
+import java.util.Optional;
 
 public interface PlayerRepository {
     void hirePlayer(String name, int age);
 
     Collection<Player> getAllPlayers() throws ExecutionControl.NotImplementedException;
 
-    Player getPlayer(String name) throws ExecutionControl.NotImplementedException;
+    Optional<Player> getPlayer(String name) throws ExecutionControl.NotImplementedException;
 
-    void firePlayer(String name) throws ExecutionControl.NotImplementedException;
+    void firePlayer(Integer id) throws ExecutionControl.NotImplementedException;
 
     void create();
 
     void hirePlayer(Player player) throws ExecutionControl.NotImplementedException;
 
+    Player getPlayerById(Integer id) throws ExecutionControl.NotImplementedException;
 }

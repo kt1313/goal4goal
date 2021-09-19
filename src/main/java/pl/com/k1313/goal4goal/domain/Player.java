@@ -11,11 +11,10 @@ import org.springframework.stereotype.Component;
 //@Scope"prototype"
 public class Player {
 
+    private int id;
     private String firstName;
-
     private int age;
-
-//    private int goalkeeping;
+    private int goalkeeping;
 //    private int stamina;
 
 //    private int passing;
@@ -33,6 +32,7 @@ public class Player {
     public Player(String firstName, int age) {
         this.firstName = firstName;
         this.age = age;
+        this.goalkeeping=1;
         this.playerTask=playerTask;
     }
 
@@ -69,6 +69,22 @@ public class Player {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getGoalkeeping() {
+        return goalkeeping;
+    }
+
+    public void setGoalkeeping(int goalkeeping) {
+        this.goalkeeping = goalkeeping;
     }
 
     @Override

@@ -21,20 +21,29 @@ public class PlayerController {
     PlayerService playerService;
 
     @RequestMapping("/players")
-    public String getPlayer(Model model) throws ExecutionControl.NotImplementedException {
+    public String getPlayers(Model model) throws ExecutionControl.NotImplementedException {
         List<Player> allPlayers = playerService.getAllPlayers();
         model.addAttribute("players", allPlayers);
         return "players";
     }
+
+    @RequestMapping("/player")
+    public String getPlayer(@RequestParam("id") Integer id, Model model) throws ExecutionControl.NotImplementedException {
+        Player player = playerService.getPlayer(id);
+        model.addAttribute("player", player);
+        return "player";
+    }
+
 
     @RequestMapping("/newplayer")
     public String hirePlayer(Model model) {
         model.addAttribute("player", new Player());
         return "playerform";
     }
-    @RequestMapping(value="/players", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/players", method = RequestMethod.POST)
     public String savePlayer(Player player) throws ExecutionControl.NotImplementedException {
-     playerService.savePlayer(player);
-      return "redirect:/players";
+        playerService.savePlayer(player);
+        return "redirect:/players";
     }
 }
