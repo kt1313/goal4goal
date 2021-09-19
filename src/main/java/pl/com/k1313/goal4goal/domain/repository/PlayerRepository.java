@@ -16,4 +16,7 @@ public interface PlayerRepository {
     void firePlayer(String name) throws ExecutionControl.NotImplementedException;
 
     void create();
+
+    void hirePlayer(Player player) throws ExecutionControl.NotImplementedException;
+
 }

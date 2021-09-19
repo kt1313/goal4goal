@@ -15,16 +15,25 @@
 <table class="table">
     <thead>
     <tr><td>Imie zawodnika</td>
-        <td>Wiek zawodnika</td></tr>
+        <td>Wiek zawodnika</td>
+        <td>Pierwsza cecha</td>
+        <td>Druga cecha</td>
+    </tr>
     </thead>
 <tbody th:each="player : ${players}">
 <tr>
     <td th:text="${player.firstName}"></td>
     <td th:text="${player.age}"></td>
+    <td th:text="${player.firstName}"></td>
+    <td th:text="${player.age}"></td>
+
 
 </tr>
 </tbody>
 </table>
+    <div class="row">
+        <a href="/newplayer">Pozyskaj nowego pilkarza</a>
+    </div>
 </div>
 </body>
 </html>

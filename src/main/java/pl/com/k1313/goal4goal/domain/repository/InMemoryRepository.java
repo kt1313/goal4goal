@@ -51,6 +51,11 @@ public class InMemoryRepository implements PlayerRepository {
     }
 
     @Override
+    public void hirePlayer(Player player) {
+        players.put(player.getFirstName(), player);
+    }
+
+    @Override
     public String toString() {
         return "PlayerRepository {" +
                 "players=" + players +

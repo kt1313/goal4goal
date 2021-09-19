@@ -15,9 +15,9 @@ public class Player {
 
     private int age;
 
-//    private PlayerTask playerTask;
-//    private int stamina;
 //    private int goalkeeping;
+//    private int stamina;
+
 //    private int passing;
 //    private int dribbling;
 //    private int tackling;
@@ -37,9 +37,15 @@ public class Player {
     }
 
     public Player() {
-        this.firstName = "Zenon";
-        this.age = 22;
+
     }
+
+//    public Player(String firstName, int age, int goalkeeping, int stamina) {
+//        this.firstName = firstName;
+//        this.age = age;
+//        this.goalkeeping = goalkeeping;
+//        this.stamina = stamina;
+//    }
 
     public int getAge() {
         return age;

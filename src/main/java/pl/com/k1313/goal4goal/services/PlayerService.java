@@ -19,4 +19,9 @@ public class PlayerService {
     public List<Player> getAllPlayers() throws ExecutionControl.NotImplementedException {
         return new ArrayList<>(playerRepository.getAllPlayers());
     }
+
+    public void savePlayer(Player player) throws ExecutionControl.NotImplementedException {
+playerRepository.hirePlayer(player);
+    }
+
 }

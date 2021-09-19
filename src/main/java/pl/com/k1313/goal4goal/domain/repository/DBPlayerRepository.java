@@ -47,5 +47,12 @@ throw new ExecutionControl.NotImplementedException("not implemented");
 
     }
 
+    @Override
+    public void hirePlayer(Player player) throws ExecutionControl.NotImplementedException {
+        System.out.println("Uzywam DB");
+        throw new ExecutionControl.NotImplementedException("not implemented");
+
+    }
+
 
 }
