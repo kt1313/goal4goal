@@ -28,12 +28,21 @@ public class InMemoryRepository implements PlayerRepository {
         players.put(newPlayer.getId(), newPlayer);
     }
 
+    @Override
+    public void hirePlayer(Player player) {
+        player.setId(getNewId());
+        players.put(player.getId(), player);
+    }
+
     private int getNewId() {
         if (players.isEmpty()) {
             return 0;
         } else {
-            Integer integer = players.keySet().stream().max(Integer::max).get();
-            return integer + 1;
+//            Integer integer = players.keySet().stream().max(Integer::max).get();
+//            integer=integer+1;
+//            return integer;
+            Integer integer=players.size();
+            return integer;
         }
     }
 
@@ -60,11 +69,7 @@ public class InMemoryRepository implements PlayerRepository {
         hirePlayer("Sebix", 24);
     }
 
-    @Override
-    public void hirePlayer(Player player) {
-        player.setId(getNewId());
-        players.put(player.getId(), player);
-    }
+
 
     @Override
     public Player getPlayerById(Integer id) throws ExecutionControl.NotImplementedException {

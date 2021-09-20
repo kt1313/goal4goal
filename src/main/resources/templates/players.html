@@ -17,19 +17,16 @@
     <tr>
         <td>Imie zawodnika</td>
         <td>Wiek zawodnika</td>
-        <td>Bramkarz</td>
-
-        <td></td>
-        <td>Druga cecha</td>
+<!--        <td>Bramkarz</td>-->
+<!--        <td>Druga cecha</td>-->
     </tr>
     </thead>
 <tbody th:each="player : ${players}">
 <tr>
     <td th:text="${player.firstName}"></td>
     <td th:text="${player.age}"></td>
-    <td th:text="${player.goalkeeping}"></td>
+<!--    <td th:text="${player.goalkeeping}"></td>-->
     <td ><a th:href="${'/player?id='+player.id}">Szczegoly</a></td>
-    <td th:text="${player.age}"></td>
 
 
 </tr>

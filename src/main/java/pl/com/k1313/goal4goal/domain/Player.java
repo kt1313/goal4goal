@@ -40,13 +40,6 @@ public class Player {
 
     }
 
-//    public Player(String firstName, int age, int goalkeeping, int stamina) {
-//        this.firstName = firstName;
-//        this.age = age;
-//        this.goalkeeping = goalkeeping;
-//        this.stamina = stamina;
-//    }
-
     public int getAge() {
         return age;
     }
@@ -54,9 +47,6 @@ public class Player {
     public void setAge(int age) {
         this.age = age;
     }
-
-    //    @Autowired
-//    Team team;
 
     public void setPlayerTask(PlayerTask playerTask) {
         System.out.println("Ustawiam zadanie dla zawodnika. ");
