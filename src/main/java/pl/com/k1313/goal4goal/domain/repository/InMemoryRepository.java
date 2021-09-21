@@ -65,8 +65,8 @@ public class InMemoryRepository implements PlayerRepository {
     @Override
     @PostConstruct
     public void create() {
-        hirePlayer("Zenon", 22);
-        hirePlayer("Sebix", 24);
+        hirePlayer("Zenon Lewandowski", 22);
+        hirePlayer("Sebix Mueller", 24);
     }
 
 

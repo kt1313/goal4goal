@@ -13,15 +13,15 @@
 <div class="container">
     <form class="form-horizontal" th:object="${player}" th:action="@{/players}" th:method="post">
         <div class="form-group">
-        <label class="control-label">Imie: </label>
+        <label class="control-label">NAME: </label>
         <input type="text" class="form-control" th:field="*{firstName}"/>
         </div>
         <div class="form-group">
-        <label class="control-label">Wiek: </label>
+        <label class="control-label">AGE: </label>
         <input type="number" class="form-control" th:field="*{age}"/>
         </div>
         <div class="row">
-            <button type="submit" class="btn btn-default">Utworz rycerza</button>
+            <button type="submit" class="btn btn-default">CONFIRM</button>
         </div>
     </form>
 </div>

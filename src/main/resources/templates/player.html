@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hire New Player</title>
+    <title> Player's Details</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
@@ -11,16 +11,76 @@
 </head>
 <body>
 <div class="container">
-    <p th:text="${player.firstName}"></p>
-    <p th:text="${player.age}"></p>
-    <p th:text="${player.goalkeeping}"></p>
-    <p th:text="${2}"></p>
-<!--    <p th:text="${player.passing}"></p>-->
-<!--    <p th:text="${player.tackling}"></p>-->
-<!--    <p th:text="${player.playmaking}"></p>-->
-<!--    <p th:text="${player.shooting}"></p>-->
-<!--    <p th:text="${player.pace}"></p>-->
+    <div>
+        <p></p>
+        <p>PLAYER'S DETAILS: </p>
+        <p class="playerName" th:text="${player.firstName}" th:align="center"></p>
+        <table class="table">
+            <tr>
+                <td></td>
+                <td th:align="right">AGE:</td>
+                <td th:text="${player.age}"></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="playerAttsContainer">
+            <table class="table">
+                <tr>
+                    <td>Goalkeeping</td>
+                    <td><p th:text="${player.goalkeeping}"></p></td>
+                    <td th:colspan="4"></td>
+                    <td>Stamina</td>
+                    <td><p th:text="222"></p></td>
+                    <td th:colspan="4"></td>
 
+                </tr>
+                <tr>
+                    <td>Pace</td>
+                    <td><p th:text="333"></p></td>
+                    <td th:colspan="4"></td>
+                    <td>Tackling</td>
+                    <td><p th:text="444"></p></td>
+                    <td th:colspan="4"></td>
+                </tr>
+                <tr>
+                    <td>Passing</td>
+                    <td><p th:text="555"></p></td>
+                    <td th:colspan="4"></td>
+                    <td>Shooting</td>
+                    <td><p th:text="666"></p></td>
+                    <td th:colspan="4"></td>
+                </tr>
+                <tr>
+                    <td>Playmaking</td>
+                    <td><p th:text="777"></p></td>
+                    <td th:colspan="4"></td>
+                    <td>Dribbling</td>
+                    <td><p th:text="888"></p></td>
+                    <td th:colspan="4"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <p></p>
+        <table class="table">
+            <thead> PLAYER'S STATS:</thead>
+            <p></p>
+            <tr>
+                <td>GAMES:</td>
+                <td><p th:text="001"></p></td>
+                <td th:colspan="4"></td>
+                <td>AV. RATING</td>
+                <td><p th:text="08.1"></p></td>
+                <td th:colspan="4"></td>
+            </tr>
+        </table>
+        <p></p>
+        <a align="right" href="/players">BACK</a>
+
+    </div>
 
 </div>
 

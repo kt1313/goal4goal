@@ -11,21 +11,18 @@
 </head>
 <body>
 <div class="container">
-    <h3>Zawodnicy w klubie: </h3>
+    <h3>PLAYERS IN CLUB: </h3>
 <table class="table">
     <thead>
     <tr>
-        <td>Imie zawodnika</td>
-        <td>Wiek zawodnika</td>
-<!--        <td>Bramkarz</td>-->
-<!--        <td>Druga cecha</td>-->
+        <td>PLAYER'S NAME</td>
+        <td>PLAYER'S AGE</td>
     </tr>
     </thead>
 <tbody th:each="player : ${players}">
 <tr>
     <td th:text="${player.firstName}"></td>
     <td th:text="${player.age}"></td>
-<!--    <td th:text="${player.goalkeeping}"></td>-->
     <td ><a th:href="${'/player?id='+player.id}">Szczegoly</a></td>
 
 
@@ -33,7 +30,7 @@
 </tbody>
 </table>
     <div class="row">
-        <a href="/newplayer">Pozyskaj nowego pilkarza</a>
+        <a href="/newplayer">HIRE NEW PLAYER</a>
     </div>
 </div>
 </body>
