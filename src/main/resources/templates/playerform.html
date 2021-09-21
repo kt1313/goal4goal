@@ -11,6 +11,9 @@
 </head>
 <body>
 <div class="container">
+    Actual time: <span th:text="${timeComponent.time}"/>
+    User's experience points: <span th:text="${userInformation.experiencePoints}"/>
+
     <form class="form-horizontal" th:object="${player}" th:action="@{/players}" th:method="post">
         <div class="form-group">
         <label class="control-label">NAME: </label>
