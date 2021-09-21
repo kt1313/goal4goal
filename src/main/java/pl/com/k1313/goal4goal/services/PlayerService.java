@@ -27,4 +27,8 @@ playerRepository.hirePlayer(player);
     public Player getPlayer(Integer id) throws ExecutionControl.NotImplementedException {
         return playerRepository.getPlayerById(id);
     }
+
+    public void firePlayer(Integer playerId) throws ExecutionControl.NotImplementedException {
+        playerRepository.firePlayer(playerId);
+    }
 }

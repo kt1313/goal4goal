@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-    <h3>PLAYERS IN CLUB: </h3>
+    <h4>PLAYERS IN CLUB: </h4>
 <table class="table">
     <thead>
     <tr>
@@ -23,7 +23,8 @@
 <tr>
     <td th:text="${player.firstName}"></td>
     <td th:text="${player.age}"></td>
-    <td ><a th:href="${'/player?id='+player.id}">Szczegoly</a></td>
+    <td ><a th:href="${'/player?id='+player.id}">Details</a></td>
+    <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>
 
 
 </tr>
