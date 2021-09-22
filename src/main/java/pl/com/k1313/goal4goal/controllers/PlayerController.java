@@ -5,6 +5,8 @@ import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,10 +63,17 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "/players", method = RequestMethod.POST)
-    public String savePlayer(Player player) throws ExecutionControl.NotImplementedException {
+    public String savePlayer(@Validated Player player, BindingResult bindingResult) throws ExecutionControl.NotImplementedException {
+        if(bindingResult.hasErrors()){
+            System.out.println("there were errors");
+            bindingResult.getAllErrors().forEach(error->{
+                System.out.println(error.getObjectName()+error.getDefaultMessage());
+            });
+            return "redirect:/newplayer";
+        }else{
         playerService.savePlayer(player);
         return "redirect:/players";
-    }
+    }}
 
 //    //drugi sposob , by dostac "id"
     @RequestMapping(value="/player/delete/{id}")
