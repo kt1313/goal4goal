@@ -2,8 +2,6 @@ package pl.com.k1313.goal4goal.domain.repository;
 
 import jdk.jshell.spi.ExecutionControl;
 import pl.com.k1313.goal4goal.domain.Player;
-
-import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.Optional;
 

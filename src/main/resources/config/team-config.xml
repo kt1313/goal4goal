@@ -9,7 +9,7 @@
     <context:property-placeholder location="classpath:playerRepository.properties"/>
 
 
-    <bean id="playerRepository" class="pl.com.k1313.goal4goal.domain.repository.InMemoryRepository" init-method="create" >
+    <bean id="playerRepository" class="pl.com.k1313.goal4goal.domain.repository.InMemoryPlayerRepository" init-method="create" >
     </bean>
 
 </beans>

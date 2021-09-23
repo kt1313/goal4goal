@@ -13,11 +13,11 @@ public class Player {
 
     private int id;
     @NonNull
-    @Size(min=2, max=20, message="imie musi zawierac pomiedzy 2 a 20 znakow")
+//    @Size(min=2, max=20, message="imie musi zawierac pomiedzy 2 a 20 znakow")
     private String firstName;
     @NonNull
-    @Min(17)
-    @Max(35)
+//    @Min(17)
+//    @Max(35)
     private int age;
     private int goalkeeping;
 //    private int stamina;

@@ -3,7 +3,6 @@ package pl.com.k1313.goal4goal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import pl.com.k1313.goal4goal.domain.repository.InMemoryRepository;
 import pl.com.k1313.goal4goal.domain.repository.PlayerRepository;
 import pl.com.k1313.goal4goal.domain.repository.PlayerTaskRepository;
 import pl.com.k1313.goal4goal.services.PlayerTaskService;

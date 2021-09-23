@@ -12,9 +12,6 @@ import java.util.stream.Collectors;
 @Component
 public class Game {
 
-//    @Autowired
-//    @Qualifier(value = "player2")
-//    List<Player> players;
 
     public Game() {
     }
@@ -24,9 +21,6 @@ public class Game {
 
     }
 
-//    public void setPlayer(List<Player> players) {
-//        this.players = players;
-//    }
 
     @Override
     public String toString() {

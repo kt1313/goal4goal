@@ -14,11 +14,11 @@ import javax.annotation.PreDestroy;
 import java.util.*;
 
 //@Repository
-public class InMemoryRepository implements PlayerRepository {
+public class InMemoryPlayerRepository implements PlayerRepository {
 
     Map<Integer, Player> players = new HashMap<>();
 
-    public InMemoryRepository() {
+    public InMemoryPlayerRepository() {
     }
 
     @Override
@@ -38,11 +38,10 @@ public class InMemoryRepository implements PlayerRepository {
         if (players.isEmpty()) {
             return 0;
         } else {
-//            Integer integer = players.keySet().stream().max(Integer::max).get();
-//            integer=integer+1;
-//            return integer;
-            Integer integer=players.size();
+            Integer integer = players.keySet().stream().max((o1, o2) -> o1.compareTo(o2)).get();
+            integer=integer+1;
             return integer;
+//            Integer integer=players.size(); - nie dziala, bo gdy usuwamy wczesniejszego to rozmiar nie pasuje do Id
         }
     }
 
