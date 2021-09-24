@@ -1,19 +1,25 @@
 package pl.com.k1313.goal4goal.domain.repository;
 
 import jdk.jshell.spi.ExecutionControl;
+import org.springframework.stereotype.Repository;
 import pl.com.k1313.goal4goal.domain.Player;
+import pl.com.k1313.goal4goal.domain.Team;
 
 import java.util.Collection;
+import java.util.Map;
 
 public interface TeamRepository {
 
-    void setUpGameSquad() throws ExecutionControl.NotImplementedException;
+
+    Map<Integer,Player> setUpGameSquad() throws ExecutionControl.NotImplementedException;
+
+    Team getTeamName() throws ExecutionControl.NotImplementedException;
 
 
 
     Collection<Player> getAllGamePlayers();
 
-    Integer getTotalDefence() throws ExecutionControl.NotImplementedException;
+    public Integer getTotalDefence() throws ExecutionControl.NotImplementedException;
 
 
     Integer getTeamPlaymaking() throws ExecutionControl.NotImplementedException;
@@ -29,6 +35,5 @@ public interface TeamRepository {
 
 
     Integer getTeamTactics() throws ExecutionControl.NotImplementedException;
-
 
 }

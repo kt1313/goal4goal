@@ -5,10 +5,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.com.k1313.goal4goal.domain.repository.PlayerRepository;
 import pl.com.k1313.goal4goal.domain.repository.PlayerTaskRepository;
+import pl.com.k1313.goal4goal.domain.repository.TeamRepository;
 import pl.com.k1313.goal4goal.services.PlayerTaskService;
 
 @Component
 public class Starter implements CommandLineRunner {
+
+    @Autowired
+    TeamRepository teamRepository;
+
     @Autowired
     PlayerRepository playerRepository;
 
@@ -23,6 +28,7 @@ public class Starter implements CommandLineRunner {
 
         playerTaskRepository.createRandomPlayerTask();
         playerTaskRepository.createRandomPlayerTask();
+        teamRepository.getTotalDefence();
 //        System.out.println(playerRepository);
 
 

@@ -1,13 +1,7 @@
 package pl.com.k1313.goal4goal.domain;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.lang.NonNull;
-
-import org.springframework.scheduling.config.Task;
-import org.springframework.stereotype.Component;
 
 public class Player {
 
@@ -20,11 +14,12 @@ public class Player {
 //    @Max(35)
     private int age;
     private int goalkeeping;
+    private int defending=444;
+
 //    private int stamina;
 
 //    private int passing;
 //    private int dribbling;
-//    private int tackling;
 //    private int pace;
 //    private int shooting;
 //    private int tactics;
@@ -80,6 +75,14 @@ public class Player {
 
     public void setGoalkeeping(int goalkeeping) {
         this.goalkeeping = goalkeeping;
+    }
+
+    public int getDefending() {
+        return defending;
+    }
+
+    public void setDefending(int defending) {
+        this.defending = defending;
     }
 
     @Override

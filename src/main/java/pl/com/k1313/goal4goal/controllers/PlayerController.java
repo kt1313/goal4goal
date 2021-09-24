@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.com.k1313.goal4goal.components.TimeComponent;
 import pl.com.k1313.goal4goal.domain.Player;
 import pl.com.k1313.goal4goal.domain.UserInformation;
-import pl.com.k1313.goal4goal.domain.repository.PlayerRepository;
 import pl.com.k1313.goal4goal.services.PlayerService;
 
-import javax.websocket.server.PathParam;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -71,7 +68,7 @@ public class PlayerController {
             });
             return "redirect:/newplayer";
         }else{
-        playerService.savePlayer(player);
+        playerService.hirePlayer(player);
         return "redirect:/players";
     }}
 

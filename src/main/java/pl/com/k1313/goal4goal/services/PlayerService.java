@@ -20,7 +20,7 @@ public class PlayerService {
         return new ArrayList<>(playerRepository.getAllPlayers());
     }
 
-    public void savePlayer(Player player) throws ExecutionControl.NotImplementedException {
+    public void hirePlayer(Player player) throws ExecutionControl.NotImplementedException {
 playerRepository.hirePlayer(player);
     }
 

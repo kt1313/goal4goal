@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface PlayerRepository {
+
     void hirePlayer(String name, int age);
 
     Collection<Player> getAllPlayers() throws ExecutionControl.NotImplementedException;
