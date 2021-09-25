@@ -13,8 +13,9 @@ public interface TeamRepository {
 
     Map<Integer,Player> setUpFirstSquad() throws ExecutionControl.NotImplementedException;
 
-    Team getTeamName() throws ExecutionControl.NotImplementedException;
+    String getTeamName() throws ExecutionControl.NotImplementedException;
 
+    String getManagerName() throws ExecutionControl.NotImplementedException;
 
 
     Collection<Player> getAllGamePlayers();
@@ -35,5 +36,7 @@ public interface TeamRepository {
 
 
     Integer getTeamTactics() throws ExecutionControl.NotImplementedException;
+
+
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.com.k1313.goal4goal.domain.Player;
+import pl.com.k1313.goal4goal.domain.Team;
 import pl.com.k1313.goal4goal.services.PlayerService;
 import pl.com.k1313.goal4goal.services.TeamService;
 
@@ -22,11 +23,15 @@ public class TeamController {
     @Autowired
     TeamService teamService;
 
+    @Autowired
+    Team team;
+
     @RequestMapping("/team")
     public String getPlayers(Model model) throws ExecutionControl.NotImplementedException {
-        List<Player> allPlayers = teamService.getAllPlayers();
-        model.addAttribute("team", allPlayers);
-
+       String teamName=teamService.getTeamName();
+       String managerName=teamService.getManagerName();
+        model.addAttribute("teamName",  teamName);
+        model.addAttribute("teamManager",managerName);
         return "team";
     }
 

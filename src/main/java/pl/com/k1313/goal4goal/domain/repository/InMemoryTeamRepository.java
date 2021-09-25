@@ -28,9 +28,14 @@ public class InMemoryTeamRepository implements TeamRepository {
     }
 
     @Override
-    public Team getTeamName() throws ExecutionControl.NotImplementedException {
+    public String getTeamName() throws ExecutionControl.NotImplementedException {
 
-        return null;
+        return getTeamName();
+    }
+
+    @Override
+    public String getManagerName() throws ExecutionControl.NotImplementedException {
+        return getManagerName();
     }
 
     @Override

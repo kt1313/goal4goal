@@ -23,6 +23,12 @@ public class TeamService {
     public List<Player> getAllPlayers() throws ExecutionControl.NotImplementedException {
         return new ArrayList<>(playerRepository.getAllPlayers());
     }
+    public String getTeamName() throws ExecutionControl.NotImplementedException {
+        return teamRepository.getTeamName();
+    }
 
 
+    public String getManagerName() throws ExecutionControl.NotImplementedException {
+        return teamRepository.getManagerName();
+    }
 }

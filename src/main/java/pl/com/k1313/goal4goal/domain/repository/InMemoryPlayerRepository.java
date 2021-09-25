@@ -55,6 +55,10 @@ public class InMemoryPlayerRepository implements PlayerRepository {
         Optional<Player> playerByName = players.values().stream().filter(player -> player.getFirstName().equals(name)).findAny();
         return playerByName;
     }
+    @Override
+    public Player getPlayerById(Integer id) throws ExecutionControl.NotImplementedException {
+        return players.get(id);
+    }
 
     @Override
     public void firePlayer(Integer id) {
@@ -70,10 +74,7 @@ public class InMemoryPlayerRepository implements PlayerRepository {
 
 
 
-    @Override
-    public Player getPlayerById(Integer id) throws ExecutionControl.NotImplementedException {
-        return players.get(id);
-    }
+
 
     @Override
     public String toString() {
