@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Team Main Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+<div class="container">
+  <p th:align="center">FOOTBALL CLUB</p>
+    <p th:text="${team.teamName}"></p>
+
+
+<!--    <table class="table">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <td>PLAYER'S NAME</td>-->
+<!--            <td>PLAYER'S AGE</td>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody th:each="player : ${players}">-->
+<!--        <tr>-->
+<!--            <td th:text="${player.firstName}"></td>-->
+<!--            <td th:text="${player.age}"></td>-->
+<!--            <td ><a th:href="${'/player?id='+player.id}">Details</a></td>-->
+<!--            <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>-->
+
+
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+
+
+
+
+</div>
+</body>
+</html>

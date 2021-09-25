@@ -1,14 +1,11 @@
 package pl.com.k1313.goal4goal.domain.repository;
 
 import jdk.jshell.spi.ExecutionControl;
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.com.k1313.goal4goal.domain.Player;
 import pl.com.k1313.goal4goal.domain.Team;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -20,11 +17,10 @@ public class InMemoryTeamRepository implements TeamRepository {
 
 
     // dla potrzeb cwiczen firstSquad = allPlayers
-    public void createExerciseSquad() throws ExecutionControl.NotImplementedException {
-    }
-
+    //z czasem trzeba przy wybranych Playerach zrobic checkboxy zmieniajace flage, a ta
+    //metoda odczytywalaby tylko ich do ustalania firstSquadu
     @Override
-    public Map<Integer, Player> setUpGameSquad() throws ExecutionControl.NotImplementedException {
+    public Map<Integer, Player> setUpFirstSquad() throws ExecutionControl.NotImplementedException {
         Map<Integer, Player> firstSquad = playerRepository.getAllPlayers()
                 .stream().parallel()
                 .collect(Collectors.toMap(Player::getId, Function.identity()));
@@ -33,9 +29,7 @@ public class InMemoryTeamRepository implements TeamRepository {
 
     @Override
     public Team getTeamName() throws ExecutionControl.NotImplementedException {
-        //trzeba przy wybranych Playerach zrobic checkboxy zmieniajace flage, a ta
-        //metoda odczytywala by tylko ich
-//        return forGamePlayers;
+
         return null;
     }
 
@@ -46,15 +40,23 @@ public class InMemoryTeamRepository implements TeamRepository {
 
 
     //ma z utworzonej "11" pobrac sume defendingu wszystkich, nie tylko obroncow
+    //TO TRZEBA ZROBIC JAKO METODE WSPOLNA a jako parametr podawac ceche
+    // np. getTotalDefence (String getDefending) -> i wtedy player.getDefending
     @Override
     public Integer getTotalDefence() throws ExecutionControl.NotImplementedException {
-     int totalDefence=setUpGameSquad().values().stream().mapToInt(player ->player.getDefending()).sum();
-        System.out.println("calkowita obrona wynosi: "+totalDefence);
+        String x= "getDefending";
+        int totalDefence = setUpFirstSquad().values()
+                .stream().mapToInt(Player::getDefending).sum();
+        System.out.println("calkowita obrona wynosi: " + totalDefence);
         return totalDefence;
     }
 
     @Override
     public Integer getTeamPlaymaking() throws ExecutionControl.NotImplementedException {
+//        public Integer getTotalDefence() throws ExecutionControl.NotImplementedException {
+//            int totalDefence=setUpGameSquad().values().stream().mapToInt(player ->player.getDefending()).sum();
+//            System.out.println("calkowita obrona wynosi: "+totalDefence);
+//            return totalDefence;
         return null;
     }
 
