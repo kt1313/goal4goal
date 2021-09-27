@@ -3,6 +3,7 @@ package pl.com.k1313.goal4goal.domain.repository;
 import jdk.jshell.spi.ExecutionControl;
 import org.springframework.stereotype.Repository;
 import pl.com.k1313.goal4goal.domain.Player;
+import pl.com.k1313.goal4goal.domain.Tactics;
 import pl.com.k1313.goal4goal.domain.Team;
 
 import java.util.Collection;
@@ -17,6 +18,7 @@ public interface TeamRepository {
 
     String getManagerName() throws ExecutionControl.NotImplementedException;
 
+    Collection<Tactics> getAllTactics() throws ExecutionControl.NotImplementedException;
 
     Collection<Player> getAllGamePlayers();
 

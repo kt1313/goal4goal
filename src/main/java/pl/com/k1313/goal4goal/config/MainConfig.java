@@ -7,6 +7,12 @@ import pl.com.k1313.goal4goal.domain.repository.*;
 @Configuration
 public class MainConfig {
 
+    @Bean(name = "InMemoryTacticsrepository")
+    @Profile("dev")
+    public TacticsRepository createInMemoryTacticsRepo() {
+        TacticsRepository repo = new InMemoryTacticsRepository();
+        return repo;
+    }
     @Bean(name = "InMemoryTeamrepository")
     @Profile("dev")
     public TeamRepository createInMemoryTeamRepo() {

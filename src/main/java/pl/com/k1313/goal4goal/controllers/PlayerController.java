@@ -36,7 +36,6 @@ public class PlayerController {
         model.addAttribute("players", allPlayers);
         model.addAttribute("timeComponent", timeComponent);
         model.addAttribute("userInformation", userInformation);
-
         return "players";
     }
 

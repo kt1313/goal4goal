@@ -17,7 +17,6 @@ public class Player {
     private int defending=444;
 
 //    private int stamina;
-
 //    private int passing;
 //    private int dribbling;
 //    private int pace;

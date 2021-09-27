@@ -3,14 +3,18 @@ package pl.com.k1313.goal4goal.domain.repository;
 import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.com.k1313.goal4goal.domain.Player;
+import pl.com.k1313.goal4goal.domain.Tactics;
 import pl.com.k1313.goal4goal.domain.Team;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class InMemoryTeamRepository implements TeamRepository {
+
+    Map<Integer, Tactics> tactics = new HashMap<>();
 
     @Autowired
     PlayerRepository playerRepository;
@@ -29,7 +33,6 @@ public class InMemoryTeamRepository implements TeamRepository {
 
     @Override
     public String getTeamName() throws ExecutionControl.NotImplementedException {
-
         return getTeamName();
     }
 
@@ -39,10 +42,19 @@ public class InMemoryTeamRepository implements TeamRepository {
     }
 
     @Override
+    public Collection<Tactics> getAllTactics() throws ExecutionControl.NotImplementedException {
+        return tactics.values();
+    }
+
+    @Override
     public Collection<Player> getAllGamePlayers() {
         return null;
     }
 
+//    @Override
+//    public Collection<Tactics> getAllTactics() {
+//        return tactics.values();
+//    }
 
     //ma z utworzonej "11" pobrac sume defendingu wszystkich, nie tylko obroncow
     //TO TRZEBA ZROBIC JAKO METODE WSPOLNA a jako parametr podawac ceche

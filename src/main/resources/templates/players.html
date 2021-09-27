@@ -13,30 +13,46 @@
 <div class="container">
     Time: <span th:text="${timeComponent.time}"/>
     User's experience points: <span th:text="${userInformation.experiencePoints}"/>
-<p></p>
+    <p></p>
     <h4>PLAYERS IN CLUB: </h4>
     <p></p>
-<table class="table">
-    <thead>
-    <tr>
-        <td>PLAYER'S NAME</td>
-        <td>PLAYER'S AGE</td>
-    </tr>
-    </thead>
-<tbody th:each="player : ${players}">
-<tr>
-    <td th:text="${player.firstName}"></td>
-    <td th:text="${player.age}"></td>
-    <td ><a th:href="${'/player?id='+player.id}">Details</a></td>
-    <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>PLAYER'S NAME</td>
+            <td>PLAYER'S AGE</td>
+        </tr>
+        </thead>
+        <tbody th:each="player : ${players}">
+        <tr>
+            <td th:text="${player.firstName}"></td>
+            <td th:text="${player.age}"></td>
+            <td><a th:href="${'/player?id='+player.id}">Details</a></td>
+            <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>
 
 
-</tr>
-</tbody>
-</table>
-    <div class="row">
-        <a href="/newplayer">HIRE NEW PLAYER</a>
-    </div>
+        </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <tr>
+            <td>
+                <div class="row">
+                    <a href="/newplayer">HIRE NEW PLAYER</a>
+                </div>
+            </td>
+            <td>
+                <div class="row">
+                    <a href="/team">TEAM PAGE</a>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+
 </div>
+<!--&lt;!&ndash;        button to go to "PLAYERS" page&ndash;&gt;-->
+<!--<p></p>-->
+<!--<a align="right" href="/players">BACK</a>-->
 </body>
 </html>

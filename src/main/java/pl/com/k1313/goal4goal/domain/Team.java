@@ -1,7 +1,6 @@
 package pl.com.k1313.goal4goal.domain;
 
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.Map;
 
@@ -9,22 +8,13 @@ import java.util.Map;
 public class Team {
 
     private String teamName="Odra Malczyce";
-
     private String managerName="Klmx1313";
-
     private int assets=1000000;
-
     //tu bedzie lista uzywanych taktyk i ich poziom
-    private Map<String, Integer> tacticsUsed;
 
+    public Team() {
+   }
 
-    public Map<String, Integer> getTacticsUsed() {
-        return tacticsUsed;
-    }
-
-    public void setTacticsUsed(Map<String, Integer> tacticsUsed) {
-        this.tacticsUsed = tacticsUsed;
-    }
 
     public String getTeamName() {
         return teamName;
