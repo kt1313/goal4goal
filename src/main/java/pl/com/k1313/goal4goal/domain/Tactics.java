@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Tactics {
 
+    private int tacticsId;
     private String tacticsName;
     private Integer tacticsLevel;
     private List<String> tacticsNamesList=new ArrayList<>(
@@ -15,8 +16,13 @@ public class Tactics {
     }
 
 
+    public int getTacticsId() {
+        return tacticsId;
+    }
 
-
+    public void setTacticsId(int tacticsId) {
+        this.tacticsId = tacticsId;
+    }
 
     public List<String> getTacticsNamesList() { return tacticsNamesList;}
 

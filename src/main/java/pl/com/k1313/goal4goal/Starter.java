@@ -26,8 +26,8 @@ public class Starter implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        playerTaskRepository.createRandomPlayerTask();
-        playerTaskRepository.createRandomPlayerTask();
+//        playerTaskRepository.createRandomPlayerTask();
+//        playerTaskRepository.createRandomPlayerTask();
         teamRepository.getTotalDefence();
 //        System.out.println(playerRepository);
 

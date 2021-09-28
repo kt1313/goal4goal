@@ -10,4 +10,8 @@ public interface TacticsRepository {
 
     Collection<Tactics> getAllTactics() throws ExecutionControl.NotImplementedException;
 
+    void createTactics();
+    void setTacticsname(String tacticsName);
+    void setTactics(Tactics tactics);
+
 }
