@@ -29,9 +29,9 @@ public class InMemoryTacticsRepository implements TacticsRepository {
     @Override
     @PostConstruct
     public void createTactics() {
-        setTacticsname("Counter-Attack");
-        setTacticsname("Pressing");
-        setTacticsname("Long ball");
+        setTactics(new Tactics("Counter-Attack", 1));
+        setTactics(new Tactics("Pressing", 1));
+        setTactics(new Tactics("Long Ball", 1));
 
     }
 

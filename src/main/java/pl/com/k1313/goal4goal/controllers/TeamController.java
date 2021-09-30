@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.com.k1313.goal4goal.domain.Player;
 import pl.com.k1313.goal4goal.domain.Tactics;
 import pl.com.k1313.goal4goal.domain.Team;
+import pl.com.k1313.goal4goal.domain.UserInformation;
 import pl.com.k1313.goal4goal.services.PlayerService;
 import pl.com.k1313.goal4goal.services.TacticsService;
 import pl.com.k1313.goal4goal.services.TeamService;
@@ -31,14 +32,15 @@ public class TeamController {
     @Autowired
     TacticsService tacticsService;
 
+    @Autowired
+    UserInformation userInformation;
+
     @RequestMapping("/team")
     public String getPlayers(Model model) throws ExecutionControl.NotImplementedException {
         List<Tactics> allTactics = tacticsService.getAllTactics();
-//        String teamName = teamService.getTeamName();
-//        String managerName = teamService.getManagerName();
         model.addAttribute("tactics", allTactics);
-//        model.addAttribute("teamName", teamName);
-//        model.addAttribute("teamManager", managerName);
+        model.addAttribute("userInformation", userInformation);
+        model.addAttribute("team", team);
         return "team";
     }
 

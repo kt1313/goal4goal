@@ -10,7 +10,17 @@ import org.springframework.stereotype.Component;
 
 public class UserInformation {
 
+    private String userNickname="k1313";
+
     private int experiencePoints=0;
+
+    public String getUserNickname() {
+        return userNickname;
+    }
+
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
+    }
 
     public int getExperiencePoints() {
         return experiencePoints;

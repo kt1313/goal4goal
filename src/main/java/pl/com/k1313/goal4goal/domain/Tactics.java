@@ -15,6 +15,10 @@ public class Tactics {
     public Tactics() {
     }
 
+    public Tactics(String tacticsName, Integer tacticsLevel) {
+        this.tacticsName = tacticsName;
+        this.tacticsLevel = tacticsLevel;
+    }
 
     public int getTacticsId() {
         return tacticsId;

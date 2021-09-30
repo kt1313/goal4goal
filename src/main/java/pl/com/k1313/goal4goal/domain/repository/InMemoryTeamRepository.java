@@ -61,7 +61,7 @@ public class InMemoryTeamRepository implements TeamRepository {
     // np. getTotalDefence (String getDefending) -> i wtedy player.getDefending
     @Override
     public Integer getTotalDefence() throws ExecutionControl.NotImplementedException {
-        String x= "getDefending";
+        String x = "getDefending";
         int totalDefence = setUpFirstSquad().values()
                 .stream().mapToInt(Player::getDefending).sum();
         System.out.println("calkowita obrona wynosi: " + totalDefence);
@@ -96,62 +96,4 @@ public class InMemoryTeamRepository implements TeamRepository {
     public Integer getTeamTactics() throws ExecutionControl.NotImplementedException {
         return null;
     }
-
-////    ------------------------
-//public InMemoryTeamRepository() {
-//}
-//
-//    Map<Integer, Player> forGamePlayers = new HashMap<>();
-//
-//    @Override
-//    public void setUpGameSquad() throws ExecutionControl.NotImplementedException {
-//        //trzeba przy wybranych Playerach zrobic checkboxy zmieniajace flage, a ta
-//        //metoda odczytywala by tylko ich
-////        return forGamePlayers;
-//
-//    }
-//
-//    @Override
-//    public Team getTeamname() throws ExecutionControl.NotImplementedException {
-//        return null;
-//    }
-//
-//    @Override
-//    public Collection<Player> getAllGamePlayers() {
-//        return forGamePlayers.values();
-//    }
-//
-//    @Override
-//    public Integer getTotalDefence() throws ExecutionControl.NotImplementedException {
-////         forGamePlayers.keySet().stream().forEach(player ->player.getDefending().sum());
-//        return null;
-//    }
-//
-//    @Override
-//    public Integer getTeamPlaymaking() throws ExecutionControl.NotImplementedException {
-//        return null;
-//    }
-//
-//    @Override
-//    public Integer getTeamAttacking() throws ExecutionControl.NotImplementedException {
-//        return null;
-//    }
-//
-//    @Override
-//    public Integer getTeamCounterAttacking() throws ExecutionControl.NotImplementedException {
-//        return null;
-//    }
-//
-//    @Override
-//    public Integer getTeamSelfConfidence() throws ExecutionControl.NotImplementedException {
-//        return null;
-//    }
-//
-//    @Override
-//    public Integer getTeamTactics() throws ExecutionControl.NotImplementedException {
-//        return null;
-//    }
-//
-//
-//
 }

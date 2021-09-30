@@ -13,44 +13,106 @@
 <div class="container">
     <div>
         <p th:align="center">FOOTBALL CLUB</p>
-        <!--        <h4 th:text="${team.teamName}"></h4>-->
+        <h3 th:align="center" th:text="${team.teamName}"></h3>
         <p></p>
     </div>
     <div>
         <p></p>
         <p th:align="center">MANAGER'S NAME</p>
-        <!--        <h4 th:text="${team.managerName}"></h4>-->
+        <h3 th:align="center" th:text="${userInformation.userNickname}"></h3>
     </div>
     <div>
-        <!--       tu bedzie tabela z taktykami-->
+        <p></p>
+        <p th:align="center">LEAGUE TABLE</p>
+        <!--        <h4 th:text="${team.managerName}"></h4>-->
         <table class="table">
-            <thead th:align="center">TACTICS USED</thead>
+            <thead>
+            <td>Pos.</td>
+            <td th:cols="3">Team</td>
+            <td>Matches</td>
+            <td>Points</td>
+            <td>Goals Diff</td>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+            </thead>
+        </table>
+    </div>
+    <div>
+        <!--        tabela z taktykami-->
+        <table class="table">
+            <p th:align="center">TACTICS USED</p>
+            <thead>
+            <tr>
+                <td>TACTICS NAME</td>
+                <td>TACTICS LEVEL</td>
+            </tr>
+            </thead>
             <tbody th:each="tact: ${tactics}">
             <tr>
                 <td th:text="${tact.getTacticsName}"></td>
                 <td th:text="${tact.getTacticsLevel}"></td>
-                <td><a th:href="${'/tactics?id='+tact.tacticsName}">Practic Tactics</a></td>
+                <td><a th:href="${'/tactics?id='+tact.tacticsName}">Upgrade Tactics</a></td>
 
             </tr>
             </tbody>
         </table>
     </div>
-    <div>
-        <table>
-            <tr>
-                <!--        tu bedzie guzik powrotu lub przejscia do innych stron-->
-                <!--        button to go to "PLAYERS" page-->
-                <td>
-                    <a href="/players">PLAYERS</a>
-                </td>
-                <td>
-                    <!--button zatwierdzenia taktyki, bez wychodzenia ze strony-->
 
-                    <a th:align="center" href="/team">SET TACTICS AS DEFAULT</a>
-                </td>
-            </tr>
-        </table>
-    </div>
+    <table class="table">
+        <tr>
+            <!--        tu bedzie guzik powrotu lub przejscia do innych stron-->
+            <!--        button to go to "PLAYERS" page-->
+            <td>
+                <div class="row">
+                    <a href="/players">PLAYERS</a>
+                </div>
+            </td>
+
+            <!--button zatwierdzenia taktyki, bez wychodzenia ze strony-->
+            <td>
+                <div class="row">
+                    <a href="/team">SET TACTICS AS DEFAULT</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+
 </div>
 </body>
 </html>
