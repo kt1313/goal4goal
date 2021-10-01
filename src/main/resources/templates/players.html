@@ -23,13 +23,46 @@
         <thead>
         <tr>
             <td>PLAYER'S NAME</td>
-            <td>PLAYER'S AGE</td>
+            <td>SET POSITION</td>
+            <td>SET TO FIRST SQUAD</td>
         </tr>
         </thead>
         <tbody th:each="player : ${players}">
         <tr>
             <td th:text="${player.firstName}"></td>
-            <td th:text="${player.age}"></td>
+<!--            rozwijane menu-->
+            <td>
+                <form action="/action_page.php">
+                    <label for="position">Position:</label>
+                    <select name="position" id="position">
+                        <option value="goalkeeper">GK</option>
+                        <optgroup label="Defence">
+                            <option value="rightWingBack">RWB</option>
+                            <option value="centralDefendor">CD</option>
+                            <option value="leftWingBack">LWB</option>
+                        </optgroup>
+                        <optgroup label="Midfield">
+                            <option value="rightWing">RW</option>
+                            <option value="centralMidfieldBack">CMDB</option>
+                            <option value="centralMidfieldOffense">CMDO</option>
+                            <option value="leftWing">LW</option>
+                        </optgroup>
+                        <optgroup label="Attack">
+                            <option value="rightAttack">RA</option>
+                            <option value="centralAttack">CA</option>
+                            <option value="leftAttack">LA</option>
+                        </optgroup>
+
+                    </select>
+<!--                    <br><br>-->
+<!--                    <input type="submit" value="Submit">-->
+                </form>
+            </td>
+            <td>
+<!--                <label>-->
+                    <input type="checkbox" name="firstSquad[]" value="true" >
+<!--                </label>-->
+            </td>
             <td><a th:href="${'/player?id='+player.id}">Details</a></td>
             <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>
 
