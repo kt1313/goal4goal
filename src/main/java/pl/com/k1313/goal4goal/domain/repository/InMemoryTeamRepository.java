@@ -15,14 +15,33 @@ import java.util.stream.Collectors;
 public class InMemoryTeamRepository implements TeamRepository {
 
     Map<Integer, Tactics> tactics = new HashMap<>();
+    Map<Integer, Player> firstSquad=new HashMap<>();
 
     @Autowired
     PlayerRepository playerRepository;
 
+    @Autowired
+    Team team;
 
+    private int getNewId() {
+        if (firstSquad.isEmpty()) {
+            return 0;
+        } else {
+            Integer integer = firstSquad.keySet().stream().max((o1, o2) -> o1.compareTo(o2)).get();
+            integer=integer+1;
+            return integer;
+        }
+    }
+
+    //dostaje po kliknieciu z checkboxa (template teams) info,
+// ze nalezy dodac (usunac) tego zawodnika do pierwszego skladu
     @Override
-    public void addToFirstSquad() throws ExecutionControl.NotImplementedException {
-
+    public void addToFirstSquad(Integer id) throws ExecutionControl.NotImplementedException {
+        Player firstSquadPlayer = new Player();
+        firstSquadPlayer = playerRepository.getPlayerById(id);
+        Integer firstSquadId;
+        firstSquadId=getNewId();
+        firstSquad.put(firstSquadId,firstSquadPlayer);
     }
 
     // dla potrzeb cwiczen firstSquad = allPlayers

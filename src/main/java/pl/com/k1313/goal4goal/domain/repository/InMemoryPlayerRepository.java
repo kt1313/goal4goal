@@ -55,6 +55,7 @@ public class InMemoryPlayerRepository implements PlayerRepository {
         Optional<Player> playerByName = players.values().stream().filter(player -> player.getFirstName().equals(name)).findAny();
         return playerByName;
     }
+
     @Override
     public Player getPlayerById(Integer id) throws ExecutionControl.NotImplementedException {
         return players.get(id);
@@ -71,9 +72,6 @@ public class InMemoryPlayerRepository implements PlayerRepository {
         hirePlayer("Zenon Lewangoalski", 22);
         hirePlayer("Thomassist Mueller", 24);
     }
-
-
-
 
 
     @Override

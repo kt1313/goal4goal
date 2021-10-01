@@ -11,7 +11,7 @@ import java.util.Map;
 
 public interface TeamRepository {
 
-    void addToFirstSquad() throws ExecutionControl.NotImplementedException;
+    void addToFirstSquad(Integer id) throws ExecutionControl.NotImplementedException;
 
     Map<Integer, Player> setUpFirstSquad() throws ExecutionControl.NotImplementedException;
 

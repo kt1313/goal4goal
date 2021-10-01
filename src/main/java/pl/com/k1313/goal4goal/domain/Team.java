@@ -1,6 +1,8 @@
 package pl.com.k1313.goal4goal.domain;
 
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,9 +14,9 @@ public class Team {
     private int assets=1000000;
     //tu bedzie lista uzywanych taktyk i ich poziom
 
+
     public Team() {
    }
-
 
     public String getTeamName() {
         return teamName;

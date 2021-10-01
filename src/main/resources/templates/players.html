@@ -57,14 +57,15 @@
                 </form>
             </td>
             <td>
-                <input type="checkbox" name="firstSquad[]" value="true" th:onclick="addToFirstSquad">
+                <input type="checkbox" name="firstSquad" value="true"
+                       th:onclick="InMemoryTeamRepository.addToFirstSquad()">
             </td>
             <td><a th:href="${'/player?id='+player.id}">Details</a></td>
             <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>
         </tr>
         </tbody>
     </table>
-    <input th:type="submit" value="CONFIRM SQUAD" >
+<!--    <input th:type="submit" value="CONFIRM SQUAD" >-->
     <br><br>
     <div>
         <table class="table">
