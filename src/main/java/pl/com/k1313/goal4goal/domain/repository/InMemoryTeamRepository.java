@@ -20,6 +20,11 @@ public class InMemoryTeamRepository implements TeamRepository {
     PlayerRepository playerRepository;
 
 
+    @Override
+    public void addToFirstSquad() throws ExecutionControl.NotImplementedException {
+
+    }
+
     // dla potrzeb cwiczen firstSquad = allPlayers
     //z czasem trzeba przy wybranych Playerach zrobic checkboxy zmieniajace flage, a ta
     //metoda odczytywalaby tylko ich do ustalania firstSquadu
@@ -30,6 +35,7 @@ public class InMemoryTeamRepository implements TeamRepository {
                 .collect(Collectors.toMap(Player::getId, Function.identity()));
         return firstSquad;
     }
+
 
     @Override
     public String getTeamName() throws ExecutionControl.NotImplementedException {

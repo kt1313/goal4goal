@@ -11,8 +11,9 @@ import java.util.Map;
 
 public interface TeamRepository {
 
+    void addToFirstSquad() throws ExecutionControl.NotImplementedException;
 
-    Map<Integer,Player> setUpFirstSquad() throws ExecutionControl.NotImplementedException;
+    Map<Integer, Player> setUpFirstSquad() throws ExecutionControl.NotImplementedException;
 
     String getTeamName() throws ExecutionControl.NotImplementedException;
 
@@ -38,7 +39,6 @@ public interface TeamRepository {
 
 
     Integer getTeamTactics() throws ExecutionControl.NotImplementedException;
-
 
 
 }

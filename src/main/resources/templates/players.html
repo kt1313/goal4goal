@@ -13,27 +13,27 @@
 <div class="container">
     Time: <span th:text="${timeComponent.time}"/>
     User's experience points: <span th:text="${userInformation.experiencePoints}"/>
-    <div> - </div>
-    <div> - </div>
-    <div> - </div>
+    <div> -</div>
+    <div> -</div>
+    <div> -</div>
     <h4>PLAYERS IN CLUB: </h4>
-    <div> . </div>
-    <div> . </div>
+    <div> .</div>
+    <div> .</div>
     <table class="table">
         <thead>
         <tr>
             <td>PLAYER'S NAME</td>
-            <td>SET POSITION</td>
-            <td>SET TO FIRST SQUAD</td>
+            <td>POSITION</td>
+            <td>FIRST SQUAD</td>
         </tr>
         </thead>
         <tbody th:each="player : ${players}">
         <tr>
             <td th:text="${player.firstName}"></td>
-<!--            rozwijane menu-->
+            <!--            rozwijane menu wyboru pozycji-->
             <td>
-                <form action="/action_page.php">
-                    <label for="position">Position:</label>
+                <form action="/team">
+                    <!--                    <label for="position">Position:</label>-->
                     <select name="position" id="position">
                         <option value="goalkeeper">GK</option>
                         <optgroup label="Defence">
@@ -54,41 +54,34 @@
                         </optgroup>
 
                     </select>
-<!--                    <br><br>-->
-<!--                    <input type="submit" value="Submit">-->
                 </form>
             </td>
             <td>
-<!--                <label>-->
-                    <input type="checkbox" name="firstSquad[]" value="true" >
-<!--                </label>-->
+                <input type="checkbox" name="firstSquad[]" value="true" th:onclick="addToFirstSquad">
             </td>
             <td><a th:href="${'/player?id='+player.id}">Details</a></td>
             <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>
-
-
         </tr>
         </tbody>
     </table>
-    <table class="table">
-        <tr>
-            <td>
-                <div class="row">
-                    <a href="/newplayer">HIRE NEW PLAYER</a>
-                </div>
-            </td>
-            <td>
-                <div class="row">
-                    <a href="/team">TEAM PAGE</a>
-                </div>
-            </td>
-        </tr>
-
-    </table>
-
+    <input th:type="submit" value="CONFIRM SQUAD" >
+    <br><br>
+    <div>
+        <table class="table">
+            <tr>
+                <td>
+                    <div class="row">
+                        <a href="/newplayer">HIRE NEW PLAYER</a>
+                    </div>
+                </td>
+                <td>
+                    <div class="row">
+                        <a href="/team">TEAM PAGE</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
-<!--&lt;!&ndash;        button to go to "PLAYERS" page&ndash;&gt;-->
-<!--<p></p>-->
-<!--<a align="right" href="/players">BACK</a>-->
 </body>
 </html>
