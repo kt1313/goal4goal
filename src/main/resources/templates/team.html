@@ -22,7 +22,7 @@
         <h3 th:align="center" th:text="${userInformation.userNickname}"></h3>
     </div>
     <div>
-        <p></p>
+        <br>
         <p th:align="center">LEAGUE TABLE</p>
         <!--        <h4 th:text="${team.managerName}"></h4>-->
         <table class="table">
@@ -36,10 +36,10 @@
             <tbody>
             <tr>
                 <td>1</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td th:text="${team.teamName}"></td>
+                <td>3</td>
+                <td>9</td>
+                <td>12:3</td>
             </tr>
             <tr>
                 <td>2</td>
@@ -70,7 +70,23 @@
                 <td></td>
             </tr>
             </tbody>
+        </table>
+    </div>
+    <div>
+        <p th:align="center">NEXT FIXTURES</p>
+<!--        <div> Date: <span th:text="${timeComponent.date}"/>-->
+<!--        </div>-->
+<!--        <br>-->
+        <table class="table">
+            <thead>
+            <td>Date</td><td>Place</td><td>Oponent</td>
             </thead>
+            <tr>
+                <td  th:text="${timeComponent.date}"></td><td>H</td><td>Man Utd</td>
+            </tr>
+            <tr>
+                <td  th:text="${timeComponent.date}"></td><td>A</td><td>WHU</td>
+            </tr>
         </table>
     </div>
     <div>

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Component
@@ -12,6 +13,16 @@ import java.time.LocalDateTime;
 public class TimeComponent {
 
     private LocalDateTime time= LocalDateTime.now();
+
+private LocalDate date= LocalDate.now();
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     public LocalDateTime getTime() {
         return time;

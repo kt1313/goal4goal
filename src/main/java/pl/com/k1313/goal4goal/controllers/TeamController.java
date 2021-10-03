@@ -7,6 +7,7 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.com.k1313.goal4goal.components.TimeComponent;
 import pl.com.k1313.goal4goal.domain.Player;
 import pl.com.k1313.goal4goal.domain.Tactics;
 import pl.com.k1313.goal4goal.domain.Team;
@@ -34,6 +35,8 @@ public class TeamController {
 
     @Autowired
     UserInformation userInformation;
+    @Autowired
+    TimeComponent timeComponent;
 
     @RequestMapping("/team")
     public String getPlayers(Model model) throws ExecutionControl.NotImplementedException {
@@ -41,6 +44,7 @@ public class TeamController {
         model.addAttribute("tactics", allTactics);
         model.addAttribute("userInformation", userInformation);
         model.addAttribute("team", team);
+        model.addAttribute("timeComponent", timeComponent);
         return "team";
     }
 
