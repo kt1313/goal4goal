@@ -7,6 +7,8 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.com.k1313.goal4goal.components.TimeComponent;
 import pl.com.k1313.goal4goal.domain.Player;
 import pl.com.k1313.goal4goal.domain.Tactics;
@@ -48,5 +50,15 @@ public class TeamController {
         return "team";
     }
 
+    //proba odebrania wartości z checkboxa:
+    @RequestMapping(value = "/players", method = RequestMethod.POST)
+    public void editCustomer(@RequestParam(value = "firstSquadChoice", required = false) String checkboxValue) {
+        if (checkboxValue != null) {
+            System.out.println("checkbox is checked");
+        } else {
+            System.out.println("checkbox is not checked");
+        }
+    }
+}
 
 }
