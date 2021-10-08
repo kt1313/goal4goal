@@ -12,6 +12,7 @@ import pl.com.k1313.goal4goal.domain.Player;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.*;
+import java.util.stream.Collectors;
 
 //@Repository
 public class InMemoryPlayerRepository implements PlayerRepository {
@@ -48,6 +49,13 @@ public class InMemoryPlayerRepository implements PlayerRepository {
     @Override
     public Collection<Player> getAllPlayers() {
         return players.values();
+    }
+
+    @Override
+    public Collection<Player> getFirstSquad() throws ExecutionControl.NotImplementedException {
+
+        return players.values().stream().filter(player -> player.isFirstSquadPlayer()).collect(Collectors.toList());
+
     }
 
     @Override

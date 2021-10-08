@@ -31,4 +31,8 @@ public class PlayerService {
     public void firePlayer(Integer playerId) throws ExecutionControl.NotImplementedException {
         playerRepository.firePlayer(playerId);
     }
+
+    public List<Player> getFirstSquad() throws ExecutionControl.NotImplementedException {
+        return new ArrayList<>(playerRepository.getFirstSquad());
+    }
 }

@@ -11,6 +11,8 @@ public interface PlayerRepository {
 
     Collection<Player> getAllPlayers() throws ExecutionControl.NotImplementedException;
 
+    Collection<Player> getFirstSquad()throws ExecutionControl.NotImplementedException;;
+
     Optional<Player> getPlayer(String name) throws ExecutionControl.NotImplementedException;
 
     void firePlayer(Integer id) throws ExecutionControl.NotImplementedException;
@@ -20,4 +22,5 @@ public interface PlayerRepository {
     void hirePlayer(Player player) throws ExecutionControl.NotImplementedException;
 
     Player getPlayerById(Integer id) throws ExecutionControl.NotImplementedException;
+
 }

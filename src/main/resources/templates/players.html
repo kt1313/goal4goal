@@ -16,6 +16,7 @@
  <br><br><br>
     <h4>PLAYERS IN CLUB: </h4>
  <br><br>
+    <form action="/firstSquad">
     <table class="table">
         <thead>
         <tr>
@@ -27,21 +28,16 @@
         <tbody th:each="player : ${players}">
         <tr>
             <td th:text="${player.firstName}"></td>
-            <td th:text="${player.firstSquadPlayer}"></td>
-<!--            <td th:text="${player.position}"></td>-->
            <td>
-               <div class="container">
 
-                <div class="row">
-                    <div class="col-md-4 mt-5">
+                    <div class="col-md-5 ">
                         <form method="post" th:object="${players}">
 
                             <div class="form-group">
-<!--                                <label for="player">Choose player position</label>-->
-                                <select class="form-control selectpicker"  id="player">
+                                <select class="form-control selectpicker"  th:value="${player.position}" id="playerPosition" name="playerPosition">
 <!--                                    we wzorze było z th:field, tak jak ponizej-->
 <!--                                    <select class="form-control selectpicker" th:field="*{player.playerPosition}" id="player">-->
-
+                                    <option value="">Not selected</option>
                                     <option th:each="player : ${T(pl.com.k1313.goal4goal.domain.Position).values()}"
                                             th:value="${player}"
                                             th:text="${player}">player
@@ -51,48 +47,16 @@
                             </div>
 
                         </form>
-                    </div>
                 </div>
-
-            </div>
-               </td>
-
-            <td>
-                <form action="/team">
-                    <!--                    <label for="position">Position:</label>-->
-                    <select name="position" id="position">
-                        <option value="goalkeeper">GK</option>
-                        <optgroup label="Defence">
-                            <option value="rightWingBack">RWB</option>
-                            <option value="centralDefendor">CD</option>
-                            <option value="leftWingBack">LWB</option>
-                        </optgroup>
-                        <optgroup label="Midfield">
-                            <option value="rightWing">RW</option>
-                            <option value="centralMidfieldBack">CMDB</option>
-                            <option value="centralMidfieldOffense">CMDO</option>
-                            <option value="leftWing">LW</option>
-                        </optgroup>
-                        <optgroup label="Attack">
-                            <option value="rightAttack">RA</option>
-                            <option value="centralAttack">CA</option>
-                            <option value="leftAttack">LA</option>
-                        </optgroup>
-
-                    </select>
-                </form>
             </td>
-            <td>
-                <input type="checkbox" name="firstSquad"  id="firstSquadChoice"
-                       th:onclick="InMemoryTeamRepository.addToFirstSquad()">
-            </td>
+            <td th:text="${player.firstSquadPlayer}"></td>
             <td><a th:href="${'/player?id='+player.id}">Details</a></td>
             <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>
         </tr>
         </tbody>
     </table>
-<!--    <input th:type="submit" value="CONFIRM SQUAD" >-->
-    <button class="btn btn-primary" type="submit">CONFIRM SQUAD</button>
+    <button class="btn btn-primary" type="submit">CONFIRM FIRST 11</button>
+    </form>
 
     <br><br>
     <div>

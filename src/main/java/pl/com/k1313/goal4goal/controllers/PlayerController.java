@@ -75,20 +75,12 @@ public class PlayerController {
         return "redirect:/players";
     }
 
-//    //listuje pozycje dla zawodnika do wyboru
-//    @Controller
-//    @RequestMapping({ "/", "/index" })
-//    @RequestMapping({"/players"})
-//    @GetMapping
-//    public String main(Model model){
-//        model.addAttribute("player", new Player());
-//        return "firstSquad";
-//    }
-//    public class IndexController {
-//
-//        @GetMapping
-//    public String main(Model model) {
-//        model.addAttribute("player", new Player());
-//        return "index";
-//    }
+    @RequestMapping(value = "/firstSquad")
+    public String getFirstSquad(Model model) throws ExecutionControl.NotImplementedException {
+        List<Player> allPlayers = playerService.getFirstSquad();
+        model.addAttribute("players", allPlayers);
+        model.addAttribute("timeComponent", timeComponent);
+        model.addAttribute("userInformation", userInformation);
+        return "players";
+    }
 }
