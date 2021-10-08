@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class TimeComponent {
 
-    private LocalDateTime time= LocalDateTime.now();
+    private LocalDateTime time = LocalDateTime.now();
 
-private LocalDate date= LocalDate.now();
+    private LocalDate date = LocalDate.now();
 
     public LocalDate getDate() {
         return date;

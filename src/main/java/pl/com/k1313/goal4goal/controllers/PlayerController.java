@@ -7,10 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.com.k1313.goal4goal.components.TimeComponent;
 import pl.com.k1313.goal4goal.domain.Player;
 import pl.com.k1313.goal4goal.domain.UserInformation;
@@ -67,14 +64,31 @@ public class PlayerController {
             });
             return "redirect:/newplayer";
         }else{
-        playerService.hirePlayer(player);
-        return "redirect:/players";
-    }}
+            playerService.hirePlayer(player);
+            return "redirect:/players";
+        }}
 
-//    //drugi sposob , by dostac "id"
+    //    //drugi sposob , by dostac "id"
     @RequestMapping(value="/player/delete/{id}")
     public String firePlayer(@PathVariable("id") Integer id) throws ExecutionControl.NotImplementedException {
         playerService.firePlayer(id);
         return "redirect:/players";
     }
+
+//    //listuje pozycje dla zawodnika do wyboru
+//    @Controller
+//    @RequestMapping({ "/", "/index" })
+//    @RequestMapping({"/players"})
+//    @GetMapping
+//    public String main(Model model){
+//        model.addAttribute("player", new Player());
+//        return "firstSquad";
+//    }
+//    public class IndexController {
+//
+//        @GetMapping
+//    public String main(Model model) {
+//        model.addAttribute("player", new Player());
+//        return "index";
+//    }
 }

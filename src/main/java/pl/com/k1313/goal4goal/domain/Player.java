@@ -3,18 +3,23 @@ package pl.com.k1313.goal4goal.domain;
 
 import org.springframework.lang.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 
     private int id;
     @NonNull
 //    @Size(min=2, max=20, message="imie musi zawierac pomiedzy 2 a 20 znakow")
     private String firstName;
+    private Position position;
+    private boolean firstSquadPlayer;
     @NonNull
 //    @Min(17)
 //    @Max(35)
     private int age;
     private int goalkeeping;
-    private int defending=444;
+    private int defending = 444;
 
 //    private int stamina;
 //    private int passing;
@@ -24,19 +29,31 @@ public class Player {
 //    private int tactics;
 //    private int personality;
 
+
     private PlayerTask playerTask;
 
-
-
-    public Player(String firstName, int age) {
+    public Player(@NonNull String firstName, int age) {
         this.firstName = firstName;
         this.age = age;
-        this.goalkeeping=1;
-        this.playerTask=playerTask;
     }
 
     public Player() {
+    }
 
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public boolean isFirstSquadPlayer() {
+        return firstSquadPlayer;
+    }
+
+    public void setFirstSquadPlayer(boolean firstSquadPlayer) {
+        this.firstSquadPlayer = firstSquadPlayer;
     }
 
     public int getAge() {
@@ -87,6 +104,6 @@ public class Player {
     @Override
     public String toString() {
         return "Zawodnik o imieniu " + firstName
-                + "("+ age+")"   +". Zadanie do wykonania: " + playerTask ;
+                + "(" + age + ")" + ". Zadanie do wykonania: " + playerTask;
     }
 }

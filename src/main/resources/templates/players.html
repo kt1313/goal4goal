@@ -11,8 +11,8 @@
 </head>
 <body>
 <div class="container">
-    Time: <span th:text="${timeComponent.time}"/>
-    User's experience points: <span th:text="${userInformation.experiencePoints}"/>
+<!--    Time: <span th:text="${timeComponent.time}"/>-->
+<!--    User's experience points: <span th:text="${userInformation.experiencePoints}"/>-->
  <br><br><br>
     <h4>PLAYERS IN CLUB: </h4>
  <br><br>
@@ -27,7 +27,37 @@
         <tbody th:each="player : ${players}">
         <tr>
             <td th:text="${player.firstName}"></td>
-            <!--            rozwijane menu wyboru pozycji-->
+            <td th:text="${player.firstSquadPlayer}"></td>
+<!--            <td th:text="${player.position}"></td>-->
+            //-------------------------------------------------
+           <td>
+               <div class="container">
+
+                <div class="row">
+                    <div class="col-md-4 mt-5">
+                        <form method="post" th:object="${players}">
+
+                            <div class="form-group">
+                                <label for="player">Choose player position</label>
+                                <select class="form-control selectpicker" th:field="*{players}" id="player">
+                                    <option value="">Nothing selected</option>
+                                    <option th:each="player : ${T(pl.com.k1313.goal4goal.domain.Position).values()}"
+                                            th:value="${player}"
+                                            th:text="${player}">player
+                                    </option>
+
+                                </select>
+                            </div>
+
+                            <button class="btn btn-primary" type="submit">Submit form</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+               </td>
+//-------------------------------------------------------------------------------
+
             <td>
                 <form action="/team">
                     <!--                    <label for="position">Position:</label>-->
@@ -70,6 +100,11 @@
                 <td>
                     <div class="row">
                         <a href="/newplayer">HIRE NEW PLAYER</a>
+                    </div>
+                </td>
+                <td>
+                    <div class="row">
+                        <a href="/firstsquad">FIRST SQUAD</a>
                     </div>
                 </td>
                 <td>

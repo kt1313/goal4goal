@@ -50,15 +50,6 @@ public class TeamController {
         return "team";
     }
 
-    //proba odebrania wartości z checkboxa:
-    @RequestMapping(value = "/players", method = RequestMethod.POST)
-    public void editCustomer(@RequestParam(value = "firstSquadChoice", required = false) String checkboxValue) {
-        if (checkboxValue != null) {
-            System.out.println("checkbox is checked");
-        } else {
-            System.out.println("checkbox is not checked");
-        }
-    }
-}
 
 }
+

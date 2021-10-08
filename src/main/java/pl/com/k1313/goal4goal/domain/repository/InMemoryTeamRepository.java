@@ -89,7 +89,7 @@ public class InMemoryTeamRepository implements TeamRepository {
         String x = "getDefending";
         int totalDefence = setUpFirstSquad().values()
                 .stream().mapToInt(Player::getDefending).sum();
-        System.out.println("calkowita obrona wynosi: " + totalDefence);
+        System.out.println("calkowita obrona zespołu wynosi: " + totalDefence);
         return totalDefence;
     }
 
