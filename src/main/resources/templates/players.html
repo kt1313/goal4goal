@@ -29,7 +29,6 @@
             <td th:text="${player.firstName}"></td>
             <td th:text="${player.firstSquadPlayer}"></td>
 <!--            <td th:text="${player.position}"></td>-->
-            //-------------------------------------------------
            <td>
                <div class="container">
 
@@ -38,9 +37,11 @@
                         <form method="post" th:object="${players}">
 
                             <div class="form-group">
-                                <label for="player">Choose player position</label>
-                                <select class="form-control selectpicker" th:field="*{players}" id="player">
-                                    <option value="">Nothing selected</option>
+<!--                                <label for="player">Choose player position</label>-->
+                                <select class="form-control selectpicker"  id="player">
+<!--                                    we wzorze było z th:field, tak jak ponizej-->
+<!--                                    <select class="form-control selectpicker" th:field="*{player.playerPosition}" id="player">-->
+
                                     <option th:each="player : ${T(pl.com.k1313.goal4goal.domain.Position).values()}"
                                             th:value="${player}"
                                             th:text="${player}">player
@@ -49,14 +50,12 @@
                                 </select>
                             </div>
 
-                            <button class="btn btn-primary" type="submit">Submit form</button>
                         </form>
                     </div>
                 </div>
 
             </div>
                </td>
-//-------------------------------------------------------------------------------
 
             <td>
                 <form action="/team">
@@ -93,6 +92,8 @@
         </tbody>
     </table>
 <!--    <input th:type="submit" value="CONFIRM SQUAD" >-->
+    <button class="btn btn-primary" type="submit">CONFIRM SQUAD</button>
+
     <br><br>
     <div>
         <table class="table">
