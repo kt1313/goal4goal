@@ -75,12 +75,14 @@ public class PlayerController {
         return "redirect:/players";
     }
 
-    @RequestMapping(value = "/firstSquad")
+    @RequestMapping(value = "/firstsquad")
     public String getFirstSquad(Model model) throws ExecutionControl.NotImplementedException {
-        List<Player> allPlayers = playerService.getFirstSquad();
-        model.addAttribute("players", allPlayers);
+        List<Player> firstSquadPlayers = playerService.getFirstSquad();
+        List<Player> players = playerService.getAllPlayers();
+        model.addAttribute("players", players);
+        model.addAttribute("firstsquadplayers", firstSquadPlayers);
         model.addAttribute("timeComponent", timeComponent);
         model.addAttribute("userInformation", userInformation);
-        return "players";
+        return "firstsquad";
     }
 }

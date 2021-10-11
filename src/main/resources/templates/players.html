@@ -16,7 +16,7 @@
  <br><br><br>
     <h4>PLAYERS IN CLUB: </h4>
  <br><br>
-    <form action="/firstSquad">
+    <form action="/firstsquad">
     <table class="table">
         <thead>
         <tr>
@@ -29,27 +29,28 @@
         <tr>
             <td th:text="${player.firstName}"></td>
            <td>
-
                     <div class="col-md-5 ">
                         <form method="post" th:object="${players}">
-
                             <div class="form-group">
-                                <select class="form-control selectpicker"  th:value="${player.position}" id="playerPosition" name="playerPosition">
+                                <select class="form-control selectpicker"  th:value="${player.position}"
+                                        id="playerPosition" name="playerPosition" required autofocus>
 <!--                                    we wzorze było z th:field, tak jak ponizej-->
-<!--                                    <select class="form-control selectpicker" th:field="*{player.playerPosition}" id="player">-->
+<!--                                    <select class="form-control selectpicker" th:field="*{player.
+                                        playerPosition}" id="player">-->
                                     <option value="">Not selected</option>
                                     <option th:each="player : ${T(pl.com.k1313.goal4goal.domain.Position).values()}"
                                             th:value="${player}"
                                             th:text="${player}">player
                                     </option>
-
                                 </select>
                             </div>
-
                         </form>
                 </div>
             </td>
-            <td th:text="${player.firstSquadPlayer}"></td>
+            <td >
+                <input type="checkbox" th:value="${player.firstSquadPlayer}" id="firstSquadPlayer"
+                       name="firstSquadPlayer" >
+            </td>
             <td><a th:href="${'/player?id='+player.id}">Details</a></td>
             <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>
         </tr>

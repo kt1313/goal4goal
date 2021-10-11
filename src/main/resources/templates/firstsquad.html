@@ -12,29 +12,57 @@
 <body>
 <div class="container">
 
-    TUTAJ BEDZIE PIERWSZA 11
-<!--    Actual time: <span th:text="${timeComponent.time}"/>-->
-<!--    User's experience points: <span th:text="${userInformation.experiencePoints}"/>-->
+    <h4 align="center" th>FIRST SQUAD: </h4>
+    <div>
+        <br>
+        <p th:align="center">FIRST SQUAD</p>
+        <table class="table">
+            <thead>
+            <td>LEFT </td>
+            <td th:cols="3">LEFT_TO_CENTER</td>
+            <td>CENTER</td>
+            <td>RIGHT_TO_CENTER</td>
+            <td>RIGHT</td>
+            </thead>
+            <tbody>
+            <tr>
+                <td> 1</td>
+                <td >2</td>
+                <td> </td>
+            <tbody th:each="player : ${firstsquadplayers}">
+            <tr>
+                <td th:text="${player.firstName}"></td>
+<!--                <td th:text="player.firs"></td>-->
+                <td>
 
-<!--    <form class="form-horizontal" th:object="${player}" th:action="@{/players}" th:method="post">-->
-<!--        <div class="form-group">-->
-<!--            <label class="control-label">NAME: </label>-->
-<!--            <input type="text" class="form-control" th:field="*{firstName}"/>-->
-<!--            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"/>-->
+                    <div class="col-md-5 ">
+                        <form method="post" th:object="${players}">
 
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label class="control-label">AGE: </label>-->
-<!--            <input type="number" class="form-control" th:field="*{age}"/>-->
-<!--            <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"/>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <button type="submit" class="btn btn-default">CONFIRM</button>-->
-<!--        </div>-->
-<!--    </form>-->
-<!--</div>-->
+                            <div class="form-group">
+                                <select class="form-control selectpicker"  th:value="${player.position}"
+                                        id="playerPosition" name="playerPosition" required autofocus>
+                                    <!--                                    we wzorze było z th:field, tak jak ponizej-->
+                                    <!--                                    <select class="form-control selectpicker" th:field="*{player.playerPosition}" id="player">-->
+                                    <option value="">Not selected</option>
+                                    <option th:each="player : ${T(pl.com.k1313.goal4goal.domain.Position).values()}"
+                                            th:value="${player}"
+                                            th:text="${player}">player
+                                    </option>
 
-<!--</form>-->
+                                </select>
+                            </div>
+
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <td>4</td>
+                <td>5</td>
+            </tr>
+            </td>
+        </table>
+</div>
 </div>
 </body>
 </html>

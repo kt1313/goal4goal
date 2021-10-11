@@ -16,8 +16,8 @@ public enum Position {
     CMA,
     CMD,
     LW,
-    RA,
-    CA,
-    LA
+    RF,
+    ST,
+    LF
 
 }

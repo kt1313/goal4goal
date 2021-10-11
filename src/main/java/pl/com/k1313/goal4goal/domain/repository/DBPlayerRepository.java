@@ -28,6 +28,11 @@ public class DBPlayerRepository implements PlayerRepository {
     }
 
     @Override
+    public Collection<Player> getFirstSquad() throws ExecutionControl.NotImplementedException {
+        return null;
+    }
+
+    @Override
     public Optional<Player> getPlayer(String name) throws ExecutionControl.NotImplementedException {
         System.out.println("Uzywam DB");
         throw new ExecutionControl.NotImplementedException("not implemented");
