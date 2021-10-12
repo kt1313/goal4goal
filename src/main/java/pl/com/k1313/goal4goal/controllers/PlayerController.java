@@ -75,7 +75,7 @@ public class PlayerController {
         return "redirect:/players";
     }
 
-    @RequestMapping(value = "/firstsquad")
+    @RequestMapping(value = "/firstsquad", method = RequestMethod.POST)
     public String getFirstSquad(Model model) throws ExecutionControl.NotImplementedException {
         List<Player> firstSquadPlayers = playerService.getFirstSquad();
         List<Player> players = playerService.getAllPlayers();

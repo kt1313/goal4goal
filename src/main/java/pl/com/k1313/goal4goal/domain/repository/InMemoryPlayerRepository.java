@@ -40,7 +40,7 @@ public class InMemoryPlayerRepository implements PlayerRepository {
             return 0;
         } else {
             Integer integer = players.keySet().stream().max((o1, o2) -> o1.compareTo(o2)).get();
-            integer=integer+1;
+            integer = integer + 1;
             return integer;
 //            Integer integer=players.size(); - nie dziala, bo gdy usuwamy wczesniejszego to rozmiar nie pasuje do Id
         }
@@ -55,17 +55,19 @@ public class InMemoryPlayerRepository implements PlayerRepository {
     @Override
     public Collection<Player> getFirstSquad() throws ExecutionControl.NotImplementedException {
 
-        List<Player>firstSquad= players.values().stream().filter(player -> player
+        List<Player> firstSquad = players.values().stream().filter(player -> player
                 .isFirstSquadPlayer())
                 .collect(Collectors.toList());
-        System.out.println("Zawodnicy z 11: "+firstSquad);
+        System.out.println("Zawodnicy z 11: " + firstSquad);
         return firstSquad;
 
     }
 
     @Override
     public Optional<Player> getPlayer(String name) {
-        Optional<Player> playerByName = players.values().stream().filter(player -> player.getFirstName().equals(name)).findAny();
+        Optional<Player> playerByName = players.values()
+                .stream()
+                .filter(player -> player.getFirstName().equals(name)).findAny();
         return playerByName;
     }
 

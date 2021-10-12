@@ -32,29 +32,7 @@
             <tbody th:each="player : ${firstsquadplayers}">
             <tr>
                 <td th:text="${player.firstName}"></td>
-<!--                <td th:text="player.firs"></td>-->
-                <td>
-
-                    <div class="col-md-5 ">
-                        <form method="post" th:object="${players}">
-
-                            <div class="form-group">
-                                <select class="form-control selectpicker"  th:value="${player.position}"
-                                        id="playerPosition" name="playerPosition" required autofocus>
-                                    <!--                                    we wzorze było z th:field, tak jak ponizej-->
-                                    <!--                                    <select class="form-control selectpicker" th:field="*{player.playerPosition}" id="player">-->
-                                    <option value="">Not selected</option>
-                                    <option th:each="player : ${T(pl.com.k1313.goal4goal.domain.Position).values()}"
-                                            th:value="${player}"
-                                            th:text="${player}">player
-                                    </option>
-
-                                </select>
-                            </div>
-
-                        </form>
-                    </div>
-                </td>
+                <td th:text="${player.getPosition()}"></td>
             </tr>
             </tbody>
             <td>4</td>
