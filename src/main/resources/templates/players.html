@@ -26,6 +26,7 @@
             </tr>
             </thead>
             <tbody th:each="player : ${players}">
+            <tr>
 <!--            <tr>-->
 <!--                <td th:text="${player.firstName}"></td>-->
 <!--                <td>-->
@@ -58,15 +59,15 @@
     <td th:text="${player.firstName}"/>
     <td>Bardzo fajny plejer</td>
     <td>
-        <form method="POST" th:action="@{/firstsquadchoice.html}">
+        <form method="POST" th:action="@{/players/callfor11}">
             <input type="hidden" name="roomId" id="roomId" th:value="${player.id}" />
-<!--            <input type="hidden" name="fromDate" id="fromDate" th:value="${fromDate}" />-->
-<!--            <input type="hidden" name="toDate" id="toDate" th:value="${toDate}" />-->
             <button type="submit" class="btn btn-primary">
                 Call Up To 11
             </button>
+
         </form>
     </td>
+            </tr>
             </tbody>
         </table>
 

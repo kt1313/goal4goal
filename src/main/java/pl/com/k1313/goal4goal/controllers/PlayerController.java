@@ -85,14 +85,13 @@ public class PlayerController {
 //        model.addAttribute("userInformation", userInformation);
 //        return "firstsquad";
 //    }
-@RequestMapping("/firstsquadchoice")
-//przedstawiony 1 sposob , by dostac "id", a ponizej drugi sposob
-public String getFirst11Player(@RequestParam("id") Integer id, Model model) throws ExecutionControl.NotImplementedException {
+
+    //obsluga Submita do zmiany statusu firstSquad
+@RequestMapping("/players/callfor11")
+public String setPlayerFor11(@RequestParam("id") Integer id, Model model) throws ExecutionControl.NotImplementedException {
     Player player = playerService.getPlayer(id);
     playerService.setPlayerFor11(id);
     model.addAttribute("player", player);
-    model.addAttribute("timeComponent", timeComponent);
-    model.addAttribute("userInformation", userInformation);
-    return "player";
+    return "players";
 }
 }
