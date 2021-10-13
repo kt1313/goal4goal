@@ -11,53 +11,66 @@
 </head>
 <body>
 <div class="container">
-<!--    Time: <span th:text="${timeComponent.time}"/>-->
-<!--    User's experience points: <span th:text="${userInformation.experiencePoints}"/>-->
- <br><br><br>
+    <!--    Time: <span th:text="${timeComponent.time}"/>-->
+    <!--    User's experience points: <span th:text="${userInformation.experiencePoints}"/>-->
+    <br><br><br>
     <h4>PLAYERS IN CLUB: </h4>
- <br><br>
+    <br><br>
     <form action="/firstsquad" method="post">
-    <table class="table">
-        <thead>
-        <tr>
-            <td>PLAYER'S NAME</td>
-            <td>POSITION</td>
-            <td>FIRST SQUAD</td>
-        </tr>
-        </thead>
-        <tbody th:each="player : ${players}">
-        <tr>
-            <td th:text="${player.firstName}"></td>
-           <td>
-                    <div class="col-md-5 ">
-                        <form method="post" th:object="${players}">
-                            <div class="form-group">
-                                <select class="form-control selectpicker"  th:value="${player.position}"
-                                        id="playerPosition" name="playerPosition" required autofocus>
-<!--                                    we wzorze było z th:field, tak jak ponizej-->
-<!--                                    <select class="form-control selectpicker" th:field="*{player.
-                                        playerPosition}" id="player">-->
-                                    <option value="">Not selected</option>
-                                    <option th:each="player : ${T(pl.com.k1313.goal4goal.domain.Position).values()}"
-                                            th:value="${player}"
-                                            th:text="${player}">player
+        <table class="table">
+            <thead>
+            <tr>
+                <td>PLAYER'S NAME</td>
+                <td>POSITION</td>
+                <td>FIRST SQUAD</td>
+            </tr>
+            </thead>
+            <tbody th:each="player : ${players}">
+<!--            <tr>-->
+<!--                <td th:text="${player.firstName}"></td>-->
+<!--                <td>-->
+<!--                    <div class="col-md-5 ">-->
+<!--                        <form method="post" th:object="${players}">-->
+<!--                            <div class="form-group">-->
+<!--                                <select class="form-control selectpicker" th:value="${player.position}"-->
+<!--                                        id="playerPosition" name="playerPosition" required autofocus>-->
+<!--                                    &lt;!&ndash;                                    we wzorze było z th:field, tak jak ponizej&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    <select class="form-control selectpicker" th:field="*{player.-->
+<!--                                                                            playerPosition}" id="player">&ndash;&gt;-->
+<!--                                    <option value="">Not selected</option>-->
+<!--                                    <option th:each="player : ${T(pl.com.k1313.goal4goal.domain.Position).values()}"-->
+<!--                                            th:value="${player}"-->
+<!--                                            th:text="${player}">player-->
 
-                                    </option>
-                                </select>
-                            </div>
-                        </form>
-                </div>
-            </td>
-            <td >
-                <input type="checkbox" th:value="${player.firstSquadPlayer}" id="firstSquadPlayer"
-                       name="firstSquadPlayer" >
-            </td>
-            <td><a th:href="${'/player?id='+player.id}">Details</a></td>
-            <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>
-        </tr>
-        </tbody>
-    </table>
-    <button class="btn btn-primary" type="submit">CONFIRM FIRST 11</button>
+<!--                                    </option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <input type="checkbox" th:value="${player.firstSquadPlayer}" id="firstSquadPlayer"-->
+<!--                           name="firstSquadPlayer" >-->
+<!--                </td>-->
+<!--                <td><a th:href="${'/player?id='+player.id}">Details</a></td>-->
+<!--                <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>-->
+<!--            </tr>-->
+    <td th:text="${player.firstName}"/>
+    <td>Bardzo fajny plejer</td>
+    <td>
+        <form method="POST" th:action="@{/firstsquadchoice.html}">
+            <input type="hidden" name="roomId" id="roomId" th:value="${player.id}" />
+<!--            <input type="hidden" name="fromDate" id="fromDate" th:value="${fromDate}" />-->
+<!--            <input type="hidden" name="toDate" id="toDate" th:value="${toDate}" />-->
+            <button type="submit" class="btn btn-primary">
+                Call Up To 11
+            </button>
+        </form>
+    </td>
+            </tbody>
+        </table>
+
+        <button class="btn btn-primary" type="submit">CONFIRM FIRST 11</button>
     </form>
 
     <br><br>

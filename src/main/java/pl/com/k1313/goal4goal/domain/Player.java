@@ -104,6 +104,6 @@ public class Player {
     @Override
     public String toString() {
         return "Zawodnik o imieniu " + firstName
-                + "(" + age + ")" + ". Zadanie do wykonania: " + playerTask;
+                + "(" + age + ")" + ". Pierwsza 11: "+isFirstSquadPlayer();
     }
 }

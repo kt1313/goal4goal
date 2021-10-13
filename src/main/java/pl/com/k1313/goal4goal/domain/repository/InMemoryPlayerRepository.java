@@ -39,7 +39,8 @@ public class InMemoryPlayerRepository implements PlayerRepository {
         if (players.isEmpty()) {
             return 0;
         } else {
-            Integer integer = players.keySet().stream().max((o1, o2) -> o1.compareTo(o2)).get();
+            Integer integer = players.keySet()
+                    .stream().max((o1, o2) -> o1.compareTo(o2)).get();
             integer = integer + 1;
             return integer;
 //            Integer integer=players.size(); - nie dziala, bo gdy usuwamy wczesniejszego to rozmiar nie pasuje do Id
@@ -74,6 +75,15 @@ public class InMemoryPlayerRepository implements PlayerRepository {
     @Override
     public Player getPlayerById(Integer id) throws ExecutionControl.NotImplementedException {
         return players.get(id);
+    }
+//przycisk Submit call for 11 zmienia flage player.firstSquadPlayer na true
+    @Override
+    public void callPlayerTo11(Integer playerId) throws ExecutionControl.NotImplementedException {
+        Optional<Player>  playerCalledFor11= players.values()
+                .stream()
+                .filter(player -> player.getId()==playerId).findAny();
+        playerCalledFor11.get().setFirstSquadPlayer(true);
+
     }
 
     @Override

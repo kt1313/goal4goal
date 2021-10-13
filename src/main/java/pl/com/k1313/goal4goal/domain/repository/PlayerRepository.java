@@ -23,4 +23,5 @@ public interface PlayerRepository {
 
     Player getPlayerById(Integer id) throws ExecutionControl.NotImplementedException;
 
+    void callPlayerTo11(Integer playerId)throws ExecutionControl.NotImplementedException;
 }

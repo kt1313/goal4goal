@@ -65,5 +65,10 @@ public class DBPlayerRepository implements PlayerRepository {
         throw new ExecutionControl.NotImplementedException("not implemented");
     }
 
+    @Override
+    public void callPlayerTo11(Integer playerId) throws ExecutionControl.NotImplementedException {
+
+    }
+
 
 }

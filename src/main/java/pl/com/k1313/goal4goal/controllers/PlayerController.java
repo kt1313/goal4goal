@@ -75,14 +75,24 @@ public class PlayerController {
         return "redirect:/players";
     }
 
-    @RequestMapping(value = "/firstsquad", method = RequestMethod.POST)
-    public String getFirstSquad(Model model) throws ExecutionControl.NotImplementedException {
-        List<Player> firstSquadPlayers = playerService.getFirstSquad();
-        List<Player> players = playerService.getAllPlayers();
-        model.addAttribute("players", players);
-        model.addAttribute("firstsquadplayers", firstSquadPlayers);
-        model.addAttribute("timeComponent", timeComponent);
-        model.addAttribute("userInformation", userInformation);
-        return "firstsquad";
-    }
+//    @RequestMapping(value = "/firstsquadchoice", method = RequestMethod.POST)
+//    public String getFirstSquad(Model model) throws ExecutionControl.NotImplementedException {
+//        List<Player> firstSquadPlayers = playerService.getFirstSquad();
+//        List<Player> players = playerService.getAllPlayers();
+//        model.addAttribute("players", players);
+//        model.addAttribute("firstsquadplayers", firstSquadPlayers)
+//        model.addAttribute("timeComponent", timeComponent);
+//        model.addAttribute("userInformation", userInformation);
+//        return "firstsquad";
+//    }
+@RequestMapping("/firstsquadchoice")
+//przedstawiony 1 sposob , by dostac "id", a ponizej drugi sposob
+public String getFirst11Player(@RequestParam("id") Integer id, Model model) throws ExecutionControl.NotImplementedException {
+    Player player = playerService.getPlayer(id);
+    playerService.setPlayerFor11(id);
+    model.addAttribute("player", player);
+    model.addAttribute("timeComponent", timeComponent);
+    model.addAttribute("userInformation", userInformation);
+    return "player";
+}
 }
