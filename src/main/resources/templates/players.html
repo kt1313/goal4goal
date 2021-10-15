@@ -26,47 +26,51 @@
             </tr>
             </thead>
             <tbody th:each="player : ${players}">
+
+<!--TUTAJ UZYWA CHECKBOXA A DOLNY SUBMIT MA POWOLAC WSZYSTKICH ZAZNACZONYCH            -->
             <tr>
-<!--            <tr>-->
-<!--                <td th:text="${player.firstName}"></td>-->
-<!--                <td>-->
-<!--                    <div class="col-md-5 ">-->
-<!--                        <form method="post" th:object="${players}">-->
-<!--                            <div class="form-group">-->
-<!--                                <select class="form-control selectpicker" th:value="${player.position}"-->
-<!--                                        id="playerPosition" name="playerPosition" required autofocus>-->
-<!--                                    &lt;!&ndash;                                    we wzorze było z th:field, tak jak ponizej&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                                    <select class="form-control selectpicker" th:field="*{player.-->
-<!--                                                                            playerPosition}" id="player">&ndash;&gt;-->
-<!--                                    <option value="">Not selected</option>-->
-<!--                                    <option th:each="player : ${T(pl.com.k1313.goal4goal.domain.Position).values()}"-->
-<!--                                            th:value="${player}"-->
-<!--                                            th:text="${player}">player-->
+                <td th:text="${player.firstName}"></td>
+                <td>
+                    <div class="col-md-5 ">
+                        <form method="post" th:object="${players}">
+                            <div class="form-group">
+                                <select class="form-control selectpicker" th:value="${player.position}"
+                                        id="playerPosition" name="playerPosition" required autofocus>
+                                    <!--                                    we wzorze było z th:field, tak jak ponizej-->
+                                    <!--                                    <select class="form-control selectpicker" th:field="*{player.
+                                                                            playerPosition}" id="player">-->
+                                    <option value="">Not selected</option>
+                                    <option th:each="player : ${T(pl.com.k1313.goal4goal.domain.Position).values()}"
+                                            th:value="${player}"
+                                            th:text="${player}">player
 
-<!--                                    </option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" th:value="${player.firstSquadPlayer}" id="firstSquadPlayer"-->
-<!--                           name="firstSquadPlayer" >-->
-<!--                </td>-->
-<!--                <td><a th:href="${'/player?id='+player.id}">Details</a></td>-->
-<!--                <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>-->
-<!--            </tr>-->
-    <td th:text="${player.firstName}"/>
-    <td>tu bedzie Select z wyborem pozycji</td>
-    <td>
-        <form method="POST" th:action="/firstsquadchoice">
-            <input type="hidden" name="playerid" id="playerid" th:value="${player.id}" />
-            <button type="submit" class="btn btn-primary">
-                Call Up To 11
-            </button>
+                                    </option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </td>
+                <td>
+                    <input type="checkbox" th:value="${player.firstSquadPlayer}" id="firstSquadPlayer"
+                           name="firstSquadPlayer" >
+                </td>
+                <td><a th:href="${'/player?id='+player.id}">Details</a></td>
+                <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>
+                            </tr>
 
-        </form>
-    </td>
+
+<!--                TUTAJ NIE UZYWA CHECKBOXA A BUTTON DO ZATWIERDZANIA POJEDYNCZO PILKARZY-->
+<!--    <td th:text="${player.firstName}"/>-->
+<!--    <td>tu bedzie Select z wyborem pozycji</td>-->
+<!--    <td>-->
+<!--        <form method="POST" th:action="@{/players/callfor11}">-->
+<!--&lt;!&ndash;            <input type="hidden" name="playerid" id="playerid" th:value="${player.id}" />&ndash;&gt;-->
+<!--            <button type="submit" class="btn btn-primary">-->
+<!--                Call Up To 11-->
+<!--            </button>-->
+
+<!--        </form>-->
+<!--    </td>-->
             </tr>
             </tbody>
         </table>
