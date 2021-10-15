@@ -76,14 +76,16 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "/firstsquadchoice", method = RequestMethod.POST)
-    public String getFirstSquad(Model model) throws ExecutionControl.NotImplementedException {
-        List<Player> firstSquadPlayers = playerService.getFirstSquad();
-        List<Player> players = playerService.getAllPlayers();
-        model.addAttribute("players", players);
-        model.addAttribute("firstsquadplayers", firstSquadPlayers);
-        model.addAttribute("timeComponent", timeComponent);
-        model.addAttribute("userInformation", userInformation);
-        return "firstsquad";
+//    public String getFirstSquad(Model model) throws ExecutionControl.NotImplementedException {
+      public String getFirstSquad(@RequestParam String firstSquadPlayer) throws ExecutionControl.NotImplementedException {
+        boolean firstSquadPlayerBoolean=Boolean.parseBoolean(firstSquadPlayer);
+        List<Player> firstSquadPlayers = playerService.getFirstSquad( firstSquadPlayerBoolean);
+//        List<Player> players = playerService.getAllPlayers();
+//        model.addAttribute("players", players);
+//        model.addAttribute("firstsquadplayers", firstSquadPlayers);
+//        model.addAttribute("timeComponent", timeComponent);
+//        model.addAttribute("userInformation", userInformation);
+        return "redirect:/players";
     }
 
     //obsluga Submita do zmiany statusu firstSquad
@@ -95,10 +97,11 @@ public class PlayerController {
 //    return "players";
 //}
     //    //drugi sposob , by dostac "id"
-    @RequestMapping(value="/players/callfor11/{id}")
-    public String setPlayerFor11(@PathVariable("id") Integer id) throws ExecutionControl.NotImplementedException {
-        playerService.setPlayerFor11(id);
-        return "redirect:/players";
-    }
+
+//    @RequestMapping(value="/players/callfor11/{id}")
+//    public String setPlayerFor11(@PathVariable("id") Integer id) throws ExecutionControl.NotImplementedException {
+//        playerService.setPlayerFor11(id);
+//        return "redirect:/players";
+//    }
 
 }

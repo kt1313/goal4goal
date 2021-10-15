@@ -16,7 +16,7 @@
     <br><br><br>
     <h4>PLAYERS IN CLUB: </h4>
     <br><br>
-    <form action="/firstsquad" method="post">
+    <form action="/firstsquadchoice" method="post">
         <table class="table">
             <thead>
             <tr>
@@ -57,9 +57,9 @@
 <!--                <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>-->
 <!--            </tr>-->
     <td th:text="${player.firstName}"/>
-    <td>Bardzo fajny plejer</td>
+    <td>tu bedzie Select z wyborem pozycji</td>
     <td>
-        <form method="POST" th:action="@{/players/callfor11}">
+        <form method="POST" th:action="/firstsquadchoice">
             <input type="hidden" name="playerid" id="playerid" th:value="${player.id}" />
             <button type="submit" class="btn btn-primary">
                 Call Up To 11
@@ -96,6 +96,7 @@
             </tr>
         </table>
     </div>
+
 </div>
 </body>
 </html>

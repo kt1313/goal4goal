@@ -32,8 +32,8 @@ public class PlayerService {
         playerRepository.firePlayer(playerId);
     }
 
-    public List<Player> getFirstSquad() throws ExecutionControl.NotImplementedException {
-        return new ArrayList<>(playerRepository.getFirstSquad());
+    public List<Player> getFirstSquad(boolean firstSquadPlayerBoolean) throws ExecutionControl.NotImplementedException {
+        return new ArrayList<>(playerRepository.getFirstSquad( firstSquadPlayerBoolean));
     }
 
     public void setPlayerFor11(Integer playerId) throws ExecutionControl.NotImplementedException{

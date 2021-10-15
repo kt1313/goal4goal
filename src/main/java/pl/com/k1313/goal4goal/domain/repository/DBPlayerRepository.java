@@ -28,7 +28,7 @@ public class DBPlayerRepository implements PlayerRepository {
     }
 
     @Override
-    public Collection<Player> getFirstSquad() throws ExecutionControl.NotImplementedException {
+    public Collection<Player> getFirstSquad(boolean firstSquadPlayerBoolean) throws ExecutionControl.NotImplementedException {
         return null;
     }
 

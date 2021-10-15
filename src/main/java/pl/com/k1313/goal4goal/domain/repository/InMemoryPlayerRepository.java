@@ -54,14 +54,13 @@ public class InMemoryPlayerRepository implements PlayerRepository {
 
     //dla templatki firstSquad tworzy listę zawodnikow z zaznaczonym checkboxem
     @Override
-    public Collection<Player> getFirstSquad() throws ExecutionControl.NotImplementedException {
-
-        List<Player> firstSquad = players.values().stream().filter(player -> player
-                .isFirstSquadPlayer())
+    public Collection<Player> getFirstSquad(boolean firstSquadPlayerBoolean) throws ExecutionControl.NotImplementedException {
+        System.out.println(firstSquadPlayerBoolean);
+        List<Player> firstSquad = players.values()
+                .stream().filter(Player::isFirstSquadPlayer)
                 .collect(Collectors.toList());
         System.out.println("Zawodnicy z 11: " + firstSquad);
         return firstSquad;
-
     }
 
     @Override
