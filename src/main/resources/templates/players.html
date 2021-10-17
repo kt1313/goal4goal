@@ -60,17 +60,17 @@
 
 
 <!--                TUTAJ NIE UZYWA CHECKBOXA A BUTTON DO ZATWIERDZANIA POJEDYNCZO PILKARZY-->
-<!--    <td th:text="${player.firstName}"/>-->
-<!--    <td>tu bedzie Select z wyborem pozycji</td>-->
-<!--    <td>-->
-<!--        <form method="POST" th:action="@{/players/callfor11}">-->
-<!--&lt;!&ndash;            <input type="hidden" name="playerid" id="playerid" th:value="${player.id}" />&ndash;&gt;-->
-<!--            <button type="submit" class="btn btn-primary">-->
-<!--                Call Up To 11-->
-<!--            </button>-->
+    <td th:text="${player.firstName}"/>
+    <td>tu bedzie Select z wyborem pozycji</td>
+    <td>
+        <form method="POST" th:action="@{/callfor11}">
+            <input type="hidden" name="playerid" id="playerid" th:value="${player.id}" />
+            <button type="submit" class="btn btn-primary">
+                Call Up To 11
+            </button>
 
-<!--        </form>-->
-<!--    </td>-->
+        </form>
+    </td>
             </tr>
             </tbody>
         </table>

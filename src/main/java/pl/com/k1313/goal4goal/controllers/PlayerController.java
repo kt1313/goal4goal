@@ -98,10 +98,10 @@ public class PlayerController {
 //}
     //    //drugi sposob , by dostac "id"
 
-//    @RequestMapping(value="/players/callfor11/{id}")
-//    public String setPlayerFor11(@PathVariable("id") Integer id) throws ExecutionControl.NotImplementedException {
-//        playerService.setPlayerFor11(id);
-//        return "redirect:/players";
-//    }
+    @RequestMapping(value="/callfor11")
+    public String setPlayerFor11(@PathVariable("id") Integer id) throws ExecutionControl.NotImplementedException {
+        playerService.setPlayerFor11(id);
+        return "redirect:/players";
+    }
 
 }

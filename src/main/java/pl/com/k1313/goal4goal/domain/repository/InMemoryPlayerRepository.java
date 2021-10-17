@@ -78,6 +78,7 @@ public class InMemoryPlayerRepository implements PlayerRepository {
 //przycisk Submit call for 11 zmienia flage player.firstSquadPlayer na true
     @Override
     public void callPlayerTo11(Integer playerId) throws ExecutionControl.NotImplementedException {
+        System.out.println(playerId);
         Optional<Player>  playerCalledFor11= players.values()
                 .stream()
                 .filter(player -> player.getId()==playerId).findAny();
