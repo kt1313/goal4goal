@@ -14,6 +14,7 @@ public class Goal4goalApplication {
     public static void main(String[] args) {
 
          SpringApplication.run(Goal4goalApplication.class, args);
+        System.out.println();
 
 
     }

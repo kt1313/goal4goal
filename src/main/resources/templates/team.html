@@ -2,14 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Team Main Page</title>
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
 </head>
-<body>
+<body >
+<!--Navbar -->
+<!--    006400-->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+
+    <!--    <nav class="navbar navbar-expand-lg navbar-light bg-light" >-->
+    <a class="navbar-brand" href="#">Goal4Goal - Online Football Manager</a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Main<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/team">Team</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/players">Players</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/schedules">Schedules</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="/tactics">Tactics</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--/.Navbar -->>
 <div class="container">
     <div>
         <p th:align="center">FOOTBALL CLUB</p>
@@ -25,8 +54,9 @@
         <br>
         <p th:align="center">LEAGUE TABLE</p>
         <!--        <h4 th:text="${team.managerName}"></h4>-->
-        <table class="table">
-            <thead>
+        <table class="table  table-bordered table-striped " style="background-color: #e3f2fd; ">
+            <thead class="thead-dark" style="background-color: cadetblue ">
+
             <td>Pos.</td>
             <td th:cols="3">Team</td>
             <td>Matches</td>
@@ -74,34 +104,43 @@
     </div>
     <div>
         <p th:align="center">NEXT FIXTURES</p>
-<!--        <div> Date: <span th:text="${timeComponent.date}"/>-->
-<!--        </div>-->
-<!--        <br>-->
-        <table class="table">
-            <thead>
-            <td>Date</td><td>Place</td><td>Oponent</td>
+        <!--        <div> Date: <span th:text="${timeComponent.date}"/>-->
+        <!--        </div>-->
+        <!--        <br>-->
+        <table class="table  table-bordered table-striped " style="background-color: #e3f2fd; ">
+            <thead class="thead-dark" style="background-color: cadetblue ">
+
+            <td>Date</td>
+            <td>Place</td>
+            <td>Oponent</td>
             </thead>
             <tr>
-                <td  th:text="${timeComponent.date}"></td><td>H</td><td>Man Utd</td>
+                <td th:text="${timeComponent.date}"></td>
+                <td>H</td>
+                <td>Man Utd</td>
             </tr>
             <tr>
-                <td  th:text="${timeComponent.date}+7"></td><td>A</td><td>WHU</td>
+                <td th:text="${timeComponent.date}+7"></td>
+                <td>A</td>
+                <td>WHU</td>
             </tr>
         </table>
     </div>
     <br>
     <div>
         <!--        tabela z taktykami-->
-        <table class="table">
-            <p th:align="center">TACTICS USED</p>
-            <thead>
+        <p th:align="center">TACTICS USED</p>
+        <table class="table  table-bordered table-striped " style="background-color: #e3f2fd; ">
+            <thead class="thead-dark" style="background-color: cadetblue ">
+
             <tr>
                 <td>TACTICS NAME</td>
                 <td>TACTICS LEVEL</td>
+                <td></td>
             </tr>
             </thead>
-            <tbody th:each="tact: ${tactics}">
-            <tr>
+            <tbody th:each="tact: ${tactics}" >
+            <tr >
                 <td th:text="${tact.getTacticsName}"></td>
                 <td th:text="${tact.getTacticsLevel}"></td>
                 <td><a th:href="${'/tactics?id='+tact.tacticsName}">Upgrade Tactics</a></td>
