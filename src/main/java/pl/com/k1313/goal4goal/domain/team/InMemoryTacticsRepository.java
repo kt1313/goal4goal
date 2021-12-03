@@ -1,6 +1,7 @@
-package pl.com.k1313.goal4goal.domain.repository;
+package pl.com.k1313.goal4goal.domain.team;
 
-import pl.com.k1313.goal4goal.domain.Tactics;
+import pl.com.k1313.goal4goal.domain.team.Tactics;
+import pl.com.k1313.goal4goal.domain.team.TacticsRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;

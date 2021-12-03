@@ -1,10 +1,12 @@
-package pl.com.k1313.goal4goal.domain.repository;
+package pl.com.k1313.goal4goal.domain.team;
 
 import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.com.k1313.goal4goal.domain.Player;
-import pl.com.k1313.goal4goal.domain.Tactics;
-import pl.com.k1313.goal4goal.domain.Team;
+import pl.com.k1313.goal4goal.domain.player.Player;
+import pl.com.k1313.goal4goal.domain.team.Tactics;
+import pl.com.k1313.goal4goal.domain.team.Team;
+import pl.com.k1313.goal4goal.domain.player.PlayerRepository;
+import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -48,8 +50,8 @@ public class InMemoryTeamRepository implements TeamRepository {
     //z czasem trzeba przy wybranych Playerach zrobic checkboxy zmieniajace flage, a ta
     //metoda odczytywalaby tylko ich do ustalania firstSquadu
     @Override
-    public Map<Integer, Player> setUpFirstSquad() throws ExecutionControl.NotImplementedException {
-        Map<Integer, Player> firstSquad = playerRepository.getAllPlayers()
+    public Map<Long, Player> setUpFirstSquad() throws ExecutionControl.NotImplementedException {
+        Map<Long, Player> firstSquad = playerRepository.getAllPlayers()
                 .stream().parallel()
                 .collect(Collectors.toMap(Player::getId, Function.identity()));
         return firstSquad;

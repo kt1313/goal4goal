@@ -1,4 +1,4 @@
-package pl.com.k1313.goal4goal.domain;
+package pl.com.k1313.goal4goal.domain.player;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.Scheduled;

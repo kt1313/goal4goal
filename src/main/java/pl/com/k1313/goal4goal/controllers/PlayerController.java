@@ -9,10 +9,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.com.k1313.goal4goal.components.TimeComponent;
-import pl.com.k1313.goal4goal.domain.Player;
+import pl.com.k1313.goal4goal.domain.player.Player;
 import pl.com.k1313.goal4goal.domain.UserInformation;
-import pl.com.k1313.goal4goal.services.PlayerService;
+import pl.com.k1313.goal4goal.domain.player.PlayerService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -75,28 +76,20 @@ public class PlayerController {
         return "redirect:/players";
     }
 
-    @RequestMapping(value = "/firstsquadchoice", method = RequestMethod.POST)
-//    public String getFirstSquad(Model model) throws ExecutionControl.NotImplementedException {
-      public String getFirstSquad(@RequestParam String firstSquadPlayer) throws ExecutionControl.NotImplementedException {
-        boolean firstSquadPlayerBoolean=Boolean.parseBoolean(firstSquadPlayer);
-        List<Player> firstSquadPlayers = playerService.getFirstSquad( firstSquadPlayerBoolean);
-//        List<Player> players = playerService.getAllPlayers();
-//        model.addAttribute("players", players);
-//        model.addAttribute("firstsquadplayers", firstSquadPlayers);
-//        model.addAttribute("timeComponent", timeComponent);
-//        model.addAttribute("userInformation", userInformation);
-        return "redirect:/players";
+    @PostMapping("/firstsquadchoice")
+   public String getFirstSquad(@PathVariable long id,Model model) throws ExecutionControl.NotImplementedException {
+
+        Player player = this.playerService.getPlayerById(id);
+        List<Player> firstSquad = new ArrayList<>();
+        if (player.isFirstSquadPlayer()) {
+            model.addAttribute("players", player);
+            firstSquad.add(player);
+        }
+        System.out.println("--------------first squad-----------------");
+        System.out.println(firstSquad);
+        return "redirect:/firstsquad";
     }
 
-    //obsluga Submita do zmiany statusu firstSquad
-//@RequestMapping("/players/callfor11")
-//public String setPlayerFor11(@RequestParam("id") Integer id, Model model) throws ExecutionControl.NotImplementedException {
-//    Player player = playerService.getPlayer(id);
-//    playerService.setPlayerFor11(id);
-//    model.addAttribute("player", player);
-//    return "players";
-//}
-    //    //drugi sposob , by dostac "id"
 
     @RequestMapping(value="/callfor11")
     public String setPlayerFor11(@PathVariable("id") Integer id) throws ExecutionControl.NotImplementedException {

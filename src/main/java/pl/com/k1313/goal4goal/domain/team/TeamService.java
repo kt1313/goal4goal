@@ -1,17 +1,15 @@
-package pl.com.k1313.goal4goal.services;
+package pl.com.k1313.goal4goal.domain.team;
 
 import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.com.k1313.goal4goal.domain.Player;
-import pl.com.k1313.goal4goal.domain.Tactics;
-import pl.com.k1313.goal4goal.domain.Team;
-import pl.com.k1313.goal4goal.domain.repository.PlayerRepository;
-import pl.com.k1313.goal4goal.domain.repository.TeamRepository;
+import pl.com.k1313.goal4goal.domain.player.Player;
+import pl.com.k1313.goal4goal.domain.team.Tactics;
+import pl.com.k1313.goal4goal.domain.player.PlayerRepository;
+import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class TeamService {

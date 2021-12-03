@@ -12,10 +12,10 @@
 
     <import resource="classpath:config/team-config.xml"/>
 
-    <bean id="playerTask" class="pl.com.k1313.goal4goal.domain.PlayerTask" scope="prototype"/>
+    <bean id="playerTask" class="pl.com.k1313.goal4goal.domain.player.PlayerTask" scope="prototype"/>
 
     <bean id="player1" primary="true"
-          class="pl.com.k1313.goal4goal.domain.Player"
+          class="pl.com.k1313.goal4goal.domain.player.Player"
           scope="prototype">
         <constructor-arg index="0" value="Zenon"/>
         <constructor-arg index="1" value="29"/>
@@ -23,7 +23,7 @@
     </bean>
 
     <bean id="player2"
-          class="pl.com.k1313.goal4goal.domain.Player"
+          class="pl.com.k1313.goal4goal.domain.player.Player"
           scope="prototype">
         <constructor-arg index="0" value="Sebix"/>
         <constructor-arg index="1" value="24"/>

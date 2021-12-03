@@ -2,7 +2,13 @@ package pl.com.k1313.goal4goal.config;
 
 
 import org.springframework.context.annotation.*;
-import pl.com.k1313.goal4goal.domain.repository.*;
+import pl.com.k1313.goal4goal.domain.player.DBPlayerRepository;
+import pl.com.k1313.goal4goal.domain.player.InMemoryPlayerRepository;
+import pl.com.k1313.goal4goal.domain.player.PlayerRepository;
+import pl.com.k1313.goal4goal.domain.team.InMemoryTacticsRepository;
+import pl.com.k1313.goal4goal.domain.team.InMemoryTeamRepository;
+import pl.com.k1313.goal4goal.domain.team.TacticsRepository;
+import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 
 @Configuration
 public class MainConfig {

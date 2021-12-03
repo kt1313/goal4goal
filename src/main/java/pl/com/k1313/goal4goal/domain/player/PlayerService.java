@@ -1,11 +1,10 @@
-package pl.com.k1313.goal4goal.services;
+package pl.com.k1313.goal4goal.domain.player;
 
 import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import pl.com.k1313.goal4goal.domain.Player;
-import pl.com.k1313.goal4goal.domain.repository.PlayerRepository;
+import pl.com.k1313.goal4goal.domain.player.Player;
+import pl.com.k1313.goal4goal.domain.player.PlayerRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,5 +37,9 @@ public class PlayerService {
 
     public void setPlayerFor11(Integer playerId) throws ExecutionControl.NotImplementedException{
         playerRepository.callPlayerTo11(playerId);
+    }
+
+    public Player getPlayerById(long id) throws ExecutionControl.NotImplementedException {
+        return this.playerRepository.getPlayerById(id);
     }
 }

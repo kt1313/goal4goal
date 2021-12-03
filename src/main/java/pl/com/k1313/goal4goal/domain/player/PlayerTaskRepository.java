@@ -1,9 +1,8 @@
-package pl.com.k1313.goal4goal.domain.repository;
+package pl.com.k1313.goal4goal.domain.player;
 
-import jdk.dynalink.linker.LinkerServices;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
-import pl.com.k1313.goal4goal.domain.PlayerTask;
+import pl.com.k1313.goal4goal.domain.player.PlayerTask;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class PlayerTaskRepository {
         descriptions.add("Biegaj jak kon.");
         descriptions.add("Obij scianke pilka po stokroc");
         descriptions.add("Slalom gigant z pilka przy nodze do zdychu.");
-        descriptions.add("I pod gorke az uda sie rozpekna.");
+        descriptions.add("I pod gorke, az uda sie rozpekna.");
 
     String description = descriptions.get(rand.nextInt(descriptions.size()));
 //    System.out.println("Utworzylem zadanie o opisie: " + description);

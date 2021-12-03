@@ -1,4 +1,4 @@
-package pl.com.k1313.goal4goal.domain;
+package pl.com.k1313.goal4goal.domain.game;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

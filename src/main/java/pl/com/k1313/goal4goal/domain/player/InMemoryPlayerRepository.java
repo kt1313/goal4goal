@@ -1,23 +1,15 @@
-package pl.com.k1313.goal4goal.domain.repository;
+package pl.com.k1313.goal4goal.domain.player;
 
 import jdk.jshell.spi.ExecutionControl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import pl.com.k1313.goal4goal.domain.Player;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import java.util.*;
 import java.util.stream.Collectors;
 
 //@Repository
 public class InMemoryPlayerRepository implements PlayerRepository {
 
-    Map<Integer, Player> players = new HashMap<>();
+    Map<Long, Player> players = new HashMap<>();
 
     public InMemoryPlayerRepository() {
     }
@@ -35,14 +27,14 @@ public class InMemoryPlayerRepository implements PlayerRepository {
         players.put(player.getId(), player);
     }
 
-    private int getNewId() {
+    private long getNewId() {
         if (players.isEmpty()) {
             return 0;
         } else {
-            Integer integer = players.keySet()
+            Long longId = players.keySet()
                     .stream().max((o1, o2) -> o1.compareTo(o2)).get();
-            integer = integer + 1;
-            return integer;
+            longId = longId + 1;
+            return longId;
 //            Integer integer=players.size(); - nie dziala, bo gdy usuwamy wczesniejszego to rozmiar nie pasuje do Id
         }
     }
@@ -72,17 +64,17 @@ public class InMemoryPlayerRepository implements PlayerRepository {
     }
 
     @Override
-    public Player getPlayerById(Integer id) throws ExecutionControl.NotImplementedException {
+    public Player getPlayerById(long id) throws ExecutionControl.NotImplementedException {
         return players.get(id);
     }
 //przycisk Submit call for 11 zmienia flage player.firstSquadPlayer na true
-    @Override
-    public void callPlayerTo11(Integer playerId) throws ExecutionControl.NotImplementedException {
+//    @Override
+    public void callPlayerTo11(long playerId) throws ExecutionControl.NotImplementedException {
         System.out.println(playerId);
         Optional<Player>  playerCalledFor11= players.values()
                 .stream()
                 .filter(player -> player.getId()==playerId).findAny();
-        playerCalledFor11.get().setFirstSquadPlayer(true);
+//        playerCalledFor11.get().setFirstSquadPlayer(true);
 
     }
 

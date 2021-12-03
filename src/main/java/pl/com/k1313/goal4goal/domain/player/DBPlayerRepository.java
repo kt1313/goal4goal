@@ -1,7 +1,6 @@
-package pl.com.k1313.goal4goal.domain.repository;
+package pl.com.k1313.goal4goal.domain.player;
 
 import jdk.jshell.spi.ExecutionControl;
-import pl.com.k1313.goal4goal.domain.Player;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
@@ -60,13 +59,13 @@ public class DBPlayerRepository implements PlayerRepository {
     }
 
     @Override
-    public Player getPlayerById(Integer id) throws ExecutionControl.NotImplementedException {
+    public Player getPlayerById(long id) throws ExecutionControl.NotImplementedException {
         System.out.println("Uzywam DB");
         throw new ExecutionControl.NotImplementedException("not implemented");
     }
 
     @Override
-    public void callPlayerTo11(Integer playerId) throws ExecutionControl.NotImplementedException {
+    public void callPlayerTo11(long playerId) throws ExecutionControl.NotImplementedException {
 
     }
 

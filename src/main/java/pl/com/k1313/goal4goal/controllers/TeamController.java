@@ -3,20 +3,16 @@ package pl.com.k1313.goal4goal.controllers;
 
 import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import pl.com.k1313.goal4goal.components.TimeComponent;
-import pl.com.k1313.goal4goal.domain.Player;
-import pl.com.k1313.goal4goal.domain.Tactics;
-import pl.com.k1313.goal4goal.domain.Team;
+import pl.com.k1313.goal4goal.domain.team.Tactics;
+import pl.com.k1313.goal4goal.domain.team.Team;
 import pl.com.k1313.goal4goal.domain.UserInformation;
-import pl.com.k1313.goal4goal.services.PlayerService;
-import pl.com.k1313.goal4goal.services.TacticsService;
-import pl.com.k1313.goal4goal.services.TeamService;
+import pl.com.k1313.goal4goal.domain.player.PlayerService;
+import pl.com.k1313.goal4goal.domain.team.TacticsService;
+import pl.com.k1313.goal4goal.domain.team.TeamService;
 
 import java.util.List;
 

@@ -2,16 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Players List</title>
-    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"> </script>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" >
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 
 </head>
 <body>
 <!--Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: indianred">
     <a class="navbar-brand" href="#">Goal4Goal - Online Football Manager</a>
+    <!--    <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" >-->
 
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
@@ -42,8 +43,8 @@
     <h4>PLAYERS IN CLUB: </h4>
     <br><br>
     <form action="/firstsquadchoice" method="post">
-        <table class="table">
-            <thead>
+        <table class="table  table-bordered table-striped " style="background-color: cornsilk ">
+            <thead class="thead-dark" style="background-color: indianred ">
             <tr>
                 <td>PLAYER'S NAME</td>
                 <td>POSITION</td>
@@ -52,60 +53,49 @@
             </thead>
             <tbody th:each="player : ${players}">
 
-<!--TUTAJ UZYWA CHECKBOXA A DOLNY SUBMIT MA POWOLAC WSZYSTKICH ZAZNACZONYCH            -->
-            <tr>
-                <td th:text="${player.firstName}"></td>
-                <td>
-                    <div class="col-md-5 ">
-                        <form method="post" th:object="${players}">
-                            <div class="form-group">
-                                <select class="form-control selectpicker" th:value="${player.position}"
-                                        id="playerPosition" name="playerPosition" required autofocus>
-                                    <!--                                    we wzorze było z th:field, tak jak ponizej-->
-                                    <!--                                    <select class="form-control selectpicker" th:field="*{player.
-                                                                            playerPosition}" id="player">-->
-                                    <option value="">Not selected</option>
-                                    <option th:each="player : ${T(pl.com.k1313.goal4goal.domain.Position).values()}"
-                                            th:value="${player}"
-                                            th:text="${player}">player
 
-                                    </option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
-                </td>
-                <td>
-                    <input type="checkbox" th:value="${player.firstSquadPlayer}" id="firstSquadPlayer"
-                           name="firstSquadPlayer" >
-                </td>
-                <td><a th:href="${'/player?id='+player.id}">Details</a></td>
-                <td><a th:href="${'/player/delete/'+player.id}">Fire Player</a></td>
-                            </tr>
+            <!--                TUTAJ NIE UZYWA CHECKBOXA A BUTTON DO ZATWIERDZANIA POJEDYNCZO PILKARZY-->
+            <td th:text="${player.firstName}"/>
+            <td>
+                <!--    <label for="chooseposition"> </label>-->
+                <select name="position" class="form-control" id="chooseposition" style="background-color: bisque"
+                        required>
+                    <option value="GK">Goalkeeper</option>
+                    <option value="RWB">Right Wingback</option>
+                    <option value="RCB">Right Centre-back</option>
+                    <option value="CB">Centre back</option>
+                    <option value="LCB">Left Centre-back</option>
+                    <option value="LWB">Left Wing-back</option>
+                    <option value="RW">Right Winger</option>
+                    <option value="CMD">Centre Midfielder Defending</option>
+                    <option value="CM">Centre Midfielder</option>
+                    <option value="CMA">Centre Midfielder Attacking</option>
+                    <option value="LW">Left Winger</option>
+                    <option value="RF">Right Forward</option>
+                    <option value="CF">Centre Forward</option>
+                    <option value="LF">Left Forward</option>
 
+                </select>
+            </td>
 
-<!--                TUTAJ NIE UZYWA CHECKBOXA A BUTTON DO ZATWIERDZANIA POJEDYNCZO PILKARZY-->
-    <td th:text="${player.firstName}"/>
-    <td>tu bedzie Select z wyborem pozycji</td>
-    <td>
-        <form method="POST" th:action="@{/callfor11}">
-            <input type="hidden" name="playerid" id="playerid" th:value="${player.id}" />
-            <button type="submit" class="btn btn-primary">
-                Call Up To 11
-            </button>
+            <td>
+                <select name="position" class="form-control" id="callfor11" style="background-color: bisque" required>
+                    <option value="none">---</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
 
-        </form>
-    </td>
+                </select>
+            </td>
             </tr>
             </tbody>
         </table>
 
-        <button class="btn btn-primary" type="submit">CONFIRM FIRST 11</button>
+        <button class="btn btn-primary" type="submit" style="background-color: indianred">CONFIRM FIRST 11</button>
     </form>
 
     <br><br>
     <div>
-        <table class="table">
+        <table class="table" style="color: black">
             <tr>
                 <td>
                     <div class="row">
@@ -114,12 +104,12 @@
                 </td>
                 <td>
                     <div class="row">
-                        <a href="/firstsquad">FIRST SQUAD</a>
+                        <a href="/firstsquad" style="color: black">FIRST SQUAD</a>
                     </div>
                 </td>
                 <td>
                     <div class="row">
-                        <a href="/team">TEAM PAGE</a>
+                        <a href="/team" style="color: black">TEAM PAGE</a>
                     </div>
                 </td>
             </tr>

@@ -1,8 +1,8 @@
-package pl.com.k1313.goal4goal.services;
+package pl.com.k1313.goal4goal.domain.game;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-//import pl.com.k1313.goal4goal.domain.repository.TeamRepository;
+//import pl.com.k1313.goal4goal.repository.TeamRepository;
 
 @Service
 public class GameService {

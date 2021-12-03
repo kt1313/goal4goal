@@ -1,11 +1,11 @@
-package pl.com.k1313.goal4goal.services;
+package pl.com.k1313.goal4goal.domain.player;
 
 import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.com.k1313.goal4goal.domain.PlayerTask;
-import pl.com.k1313.goal4goal.domain.repository.PlayerRepository;
-import pl.com.k1313.goal4goal.domain.repository.PlayerTaskRepository;
+import pl.com.k1313.goal4goal.domain.player.PlayerTask;
+import pl.com.k1313.goal4goal.domain.player.PlayerRepository;
+import pl.com.k1313.goal4goal.domain.player.PlayerTaskRepository;
 
 import java.util.List;
 import java.util.Random;

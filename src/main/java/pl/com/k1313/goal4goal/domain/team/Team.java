@@ -1,4 +1,4 @@
-package pl.com.k1313.goal4goal.domain;
+package pl.com.k1313.goal4goal.domain.team;
 
 import org.springframework.stereotype.Component;
 

@@ -1,19 +1,16 @@
-package pl.com.k1313.goal4goal.domain;
+package pl.com.k1313.goal4goal.domain.player;
 
 
 import org.springframework.lang.NonNull;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Player {
 
-    private int id;
+    private long id;
     @NonNull
 //    @Size(min=2, max=20, message="imie musi zawierac pomiedzy 2 a 20 znakow")
     private String firstName;
     private Position position;
-    private boolean firstSquadPlayer;
+    private FirstSquad firstSquadPlayer;
     @NonNull
 //    @Min(17)
 //    @Max(35)
@@ -49,12 +46,14 @@ public class Player {
     }
 
     public boolean isFirstSquadPlayer() {
-        return firstSquadPlayer;
+        if (firstSquadPlayer.equals("YES")) {
+            return true;
+        } else return false;
     }
 
-    public void setFirstSquadPlayer(boolean firstSquadPlayer) {
-        this.firstSquadPlayer = firstSquadPlayer;
-    }
+//    public void setFirstSquadPlayer(boolean firstSquadPlayer) {
+//        this.firstSquadPlayer = firstSquadPlayer;
+//    }
 
     public int getAge() {
         return age;
@@ -77,11 +76,11 @@ public class Player {
         this.firstName = firstName;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -104,6 +103,6 @@ public class Player {
     @Override
     public String toString() {
         return "Zawodnik o imieniu " + firstName
-                + "(" + age + ")" + ". Pierwsza 11: "+isFirstSquadPlayer();
+                + "(" + age + ")" + ". Pierwsza 11: " + isFirstSquadPlayer();
     }
 }
