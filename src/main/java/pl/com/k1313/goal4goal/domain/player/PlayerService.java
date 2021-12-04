@@ -55,22 +55,22 @@ public class PlayerService {
 //        import java.util.List;
 //
 //@Service
-//public class GuestService {
+//public class PlayerService {
 //
-//    private GuestRepository repository;
+//    private PlayerRepository repository;
 //
 //    @Autowired
-//    public GuestService(GuestRepository repository) {
+//    public PlayerService(PlayerRepository repository) {
 //        this.repository = repository;
 //    }
 //
-//    public List<Guest> findAllGuests() {
+//    public List<Player> findAllPlayers() {
 //        return this.repository.findAll();
 //    }
 //
-//    public void createNewGuest(GuestCreationDTO guestDTO) {
+//    public void createNewPlayer(PlayerCreationDTO playerDTO) {
 //
-//        Guest newOne=new Guest(guestDTO.getFirstName(), guestDTO.getLastName(), guestDTO.getDateOfBirth(), guestDTO.getGender());
+//        Player newOne=new Player(playerDTO.getFirstName(), guestDTO.getLastName(), guestDTO.getDateOfBirth(), guestDTO.getGender());
 //        this.repository.save(newOne);
 //    }
 //
@@ -79,16 +79,16 @@ public class PlayerService {
 //    }
 //
 //
-//    public Guest getGuestById(long id) {
+//    public Player getPlayerById(long id) {
 //        return this.repository.getById(id);}
 //
-//    public void update(GuestUpdateDTO updatedGuest) {
-//        Guest byId = this.repository.getById(updatedGuest.getId());
+//    public void update(PlayerUpdateDTO updatedGuest) {
+//        Player byId = this.repository.getById(updatedPlayer.getId());
 //        byId.update(
-//                updatedGuest.getFirstName(),
-//                updatedGuest.getLastName(),
-//                updatedGuest.getDateOfBirth(),
-//                updatedGuest.getGender());
+//                updatedPlayer.getFirstName(),
+//                updatedPlayer.getLastName(),
+//                updatedPlayer.getage(),
+//                updatedPlayer.getPosition());
 //        this.repository.save(byId);
 //    }
 //}
