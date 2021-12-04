@@ -3,17 +3,21 @@ package pl.com.k1313.goal4goal.domain.player;
 
 import org.springframework.lang.NonNull;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDate;
+
 public class Player {
 
     private long id;
     @NonNull
-//    @Size(min=2, max=20, message="imie musi zawierac pomiedzy 2 a 20 znakow")
     private String firstName;
     private Position position;
     private FirstSquad firstSquadPlayer;
     @NonNull
-//    @Min(17)
-//    @Max(35)
+
     private int age;
     private int goalkeeping;
     private int defending = 444;
@@ -105,4 +109,51 @@ public class Player {
         return "Zawodnik o imieniu " + firstName
                 + "(" + age + ")" + ". Pierwsza 11: " + isFirstSquadPlayer();
     }
+//
+//    @Data
+//    @Setter(value = AccessLevel.NONE)
+//    @Entity
+//    public class Player {
+//
+//        @Id
+//        @GeneratedValue(strategy = GenerationType.AUTO)
+//        private  long id;
+//
+//
+//        private  String firstName;
+//        private  String lastName;
+//        private int age;
+//    private Position position;
+//
+//
+//        public Guest( String firstName,
+//                      String lastName, int age, Position position
+//                      ) {
+//            this.firstName = firstName;
+//            this.lastName = lastName;
+//            this.birthDate = birthDate;
+//            this.position = position;
+//        }
+//
+//        public Player() {
+//
+//        }
+//
+//        public void update(String firstName,
+//                           String lastName, int age,
+//                           ){
+//            this.firstName = firstName;
+//            this.lastName = lastName;
+//            this.age = age;
+//            this.position = position;
+
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return "Imię: " + firstName +
+//                    ", Nazwisko: " + lastName  +
+//                    ", Wiek: " + age  +", Position: "+position ;
+//        }
+
 }
