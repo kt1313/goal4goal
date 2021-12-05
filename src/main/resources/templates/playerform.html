@@ -1,19 +1,18 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http:/>/www.thymeleaf.org"
+>
 <head>
-    <title>Hire New Player</title>
-    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"> </script>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" >
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>G4G - Hire players</title>
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css">
 
 </head>
 <body>
-<!--Navbar -->
-
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="#">Goal4Goal - Online Football Manager</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Goal4Goal - Manager Panel</a>
 
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
@@ -21,45 +20,64 @@
                 <a class="nav-link" href="/">Main<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/team">Team</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/players">Players</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/schedules">Schedules</a>
+                <a class="nav-link" href="/team">Team</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tactics">Tactics</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                   href="/tactics">Tactics</a>
+                   href="/reservations/create/stepone">Hire player</a>
             </li>
         </ul>
     </div>
 </nav>
-<!--/.Navbar -->>
-<div class="container">
-    Actual time: <span th:text="${timeComponent.time}"/>
-    User's experience points: <span th:text="${userInformation.experiencePoints}"/>
 
-    <form class="form-horizontal" th:object="${player}" th:action="@{/players}" th:method="post">
-        <div class="form-group">
-            <label class="control-label">NAME: </label>
-            <input type="text" class="form-control" th:field="*{firstName}"/>
-            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"/>
-
-        </div>
-        <div class="form-group">
-            <label class="control-label">AGE: </label>
-            <input type="number" class="form-control" th:field="*{age}"/>
-            <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"/>
-        </div>
-        <div class="row">
-            <button type="submit" class="btn btn-default">CONFIRM</button>
-        </div>
-    </form>
+<div class="p-3 text-center bg-light"><h2 class="mb-3">Players List</h2>
 </div>
 
-</form>
+<div class="container">
+
+    <form th:action="@{/players}" method="post">
+        <div class="form-group">
+            <label for="createnewplayerfirstname">First Name:</label>
+            <input type="text" name="firstName" required
+                   class="form-control" id="createnewplayerfirstname"/>
+        </div>
+        <div class="form-group">
+            <label for="createnewplayerlastname">Last Name: </label>
+            <input type="text" name="lastName" required
+                   class="form-control" id="createnewplayerlastname"/>
+        </div>
+        <div class="form-group">
+            <label for="createnewplayerage">Age: </label>
+            <input type="date" name="age" required
+                   class="form-control" id="createnewplayerage"/>
+        </div>
+        <div class="form-group">
+            <label for="createnewplayerposition">Position: </label>
+            <select name="position" class="form-control" id="createnewplayerposition" required>
+                <option value="GK">Goalkeeper</option>
+                <option value="RWB">Right Wingback</option>
+                <option value="RCB">Right Centre-back</option>
+                <option value="CB">Centre back</option>
+                <option value="LCB">Left Centre-back</option>
+                <option value="LWB">Left Wing-back</option>
+                <option value="RW">Right Winger</option>
+                <option value="CMD">Centre Midfielder Defending</option>
+                <option value="CM">Centre Midfielder</option>
+                <option value="CMA">Centre Midfielder Attacking</option>
+                <option value="LW">Left Winger</option>
+                <option value="RF">Right Forward</option>
+                <option value="CF">Centre Forward</option>
+                <option value="LF">Left Forward</option>
+            </select>
+            <input type="submit" class="btn-primary" value="Hire new player" />
+        </div>
+    </form>
 </div>
 </body>
 </html>

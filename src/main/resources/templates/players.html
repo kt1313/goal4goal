@@ -1,18 +1,18 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http:/>/www.thymeleaf.org"
+>
 <head>
-    <title>Players List</title>
-    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>G4G - Players</title>
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"> </script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" >
 
 </head>
 <body>
-<!--Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: indianred">
-    <a class="navbar-brand" href="#">Goal4Goal - Online Football Manager</a>
-    <!--    <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" >-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Goal4Goal - Manager Panel</a>
 
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
@@ -20,102 +20,53 @@
                 <a class="nav-link" href="/">Main<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/team">Team</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/players">Players</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/schedules">Schedules</a>
+                <a class="nav-link" href="/team">Team</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tactics">Tactics</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                   href="/tactics">Tactics</a>
+                   href="/reservations/create/stepone">Hire player</a>
             </li>
         </ul>
     </div>
 </nav>
-<!--/.Navbar -->>
+
+<div class="p-3 text-center bg-light"><h2 class="mb-3">Players List</h2>
+</div>
+
 <div class="container">
-    <!--    Time: <span th:text="${timeComponent.time}"/>-->
-    <!--    User's experience points: <span th:text="${userInformation.experiencePoints}"/>-->
-    <br><br><br>
-    <h4>PLAYERS IN CLUB: </h4>
-    <br><br>
-    <form action="/firstsquadchoice" method="post">
-        <table class="table  table-bordered table-striped " style="background-color: cornsilk ">
-            <thead class="thead-dark" style="background-color: indianred ">
-            <tr>
-                <td>PLAYER'S NAME</td>
-                <td>POSITION</td>
-                <td>FIRST SQUAD</td>
-            </tr>
-            </thead>
-            <tbody th:each="player : ${players}">
-
-
-            <!--                TUTAJ NIE UZYWA CHECKBOXA A BUTTON DO ZATWIERDZANIA POJEDYNCZO PILKARZY-->
+    <a class="nav-link" href="/players/hire">Hire new player</a>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Position</th>
+            <th> </th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="player : ${players}">
             <td th:text="${player.firstName}"/>
+            <td th:text="${player.lastName}"/>
+            <td th:text="${player.age}"/>
+            <td th:text="${player.position}"/>
             <td>
-                <!--    <label for="chooseposition"> </label>-->
-                <select name="position" class="form-control" id="chooseposition" style="background-color: bisque"
-                        required>
-                    <option value="GK">Goalkeeper</option>
-                    <option value="RWB">Right Wingback</option>
-                    <option value="RCB">Right Centre-back</option>
-                    <option value="CB">Centre back</option>
-                    <option value="LCB">Left Centre-back</option>
-                    <option value="LWB">Left Wing-back</option>
-                    <option value="RW">Right Winger</option>
-                    <option value="CMD">Centre Midfielder Defending</option>
-                    <option value="CM">Centre Midfielder</option>
-                    <option value="CMA">Centre Midfielder Attacking</option>
-                    <option value="LW">Left Winger</option>
-                    <option value="RF">Right Forward</option>
-                    <option value="CF">Centre Forward</option>
-                    <option value="LF">Left Forward</option>
-
-                </select>
+                <a th:href="@{/player/delete/{id}(id=${player.id})}">Fire</a>
             </td>
-
             <td>
-                <select name="position" class="form-control" id="callfor11" style="background-color: bisque" required>
-                    <option value="none">---</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-
-                </select>
+                <a th:href="@{/players/edit/{id}(id=${player.id})}">Manage</a>
             </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <button class="btn btn-primary" type="submit" style="background-color: indianred">CONFIRM FIRST 11</button>
-    </form>
-
-    <br><br>
-    <div>
-        <table class="table" style="color: black">
-            <tr>
-                <td>
-                    <div class="row">
-                        <a href="/newplayer">HIRE NEW PLAYER</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="row">
-                        <a href="/firstsquad" style="color: black">FIRST SQUAD</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="row">
-                        <a href="/team" style="color: black">TEAM PAGE</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

@@ -36,15 +36,15 @@ public class TeamController {
     @Autowired
     TimeComponent timeComponent;
 
-    @RequestMapping("/team")
-    public String getPlayers(Model model) throws ExecutionControl.NotImplementedException {
-        List<Tactics> allTactics = tacticsService.getAllTactics();
-        model.addAttribute("tactics", allTactics);
-        model.addAttribute("userInformation", userInformation);
-        model.addAttribute("team", team);
-        model.addAttribute("timeComponent", timeComponent);
-        return "team";
-    }
+//    @RequestMapping("/team")
+//    public String getPlayers(Model model) throws ExecutionControl.NotImplementedException {
+//        List<Tactics> allTactics = tacticsService.getAllTactics();
+//        model.addAttribute("tactics", allTactics);
+//        model.addAttribute("userInformation", userInformation);
+//        model.addAttribute("team", team);
+//        model.addAttribute("timeComponent", timeComponent);
+//        return "team";
+//    }
 
 
 }

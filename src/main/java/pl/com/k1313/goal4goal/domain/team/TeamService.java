@@ -13,27 +13,27 @@ import java.util.List;
 
 @Service
 public class TeamService {
-
-    @Autowired
-    PlayerRepository playerRepository;
-
-    @Autowired
-    TeamRepository teamRepository;
-
-    public List<Player> getAllPlayers() throws ExecutionControl.NotImplementedException {
-        return new ArrayList<>(playerRepository.getAllPlayers());
-    }
-    public List<Tactics> getAllTactics() throws ExecutionControl.NotImplementedException {
-        return new ArrayList<>(teamRepository.getAllTactics());
-    }
-    public String getTeamName() throws ExecutionControl.NotImplementedException {
-        return teamRepository.getTeamName();
-    }
-
-
-    public String getManagerName() throws ExecutionControl.NotImplementedException {
-        return teamRepository.getManagerName();
-    }
+//
+//    @Autowired
+//    PlayerRepository playerRepository;
+//
+//    @Autowired
+//    TeamRepository teamRepository;
+//
+//    public List<Player> getAllPlayers() throws ExecutionControl.NotImplementedException {
+//        return new ArrayList<>(playerRepository.getAllPlayers());
+//    }
+//    public List<Tactics> getAllTactics() throws ExecutionControl.NotImplementedException {
+//        return new ArrayList<>(teamRepository.getAllTactics());
+//    }
+//    public String getTeamName() throws ExecutionControl.NotImplementedException {
+//        return teamRepository.getTeamName();
+//    }
+//
+//
+//    public String getManagerName() throws ExecutionControl.NotImplementedException {
+//        return teamRepository.getManagerName();
+//    }
 
 
 }

@@ -13,12 +13,12 @@ import java.util.List;
 @Service
 public class TacticsService {
 
-    @Autowired
-    TacticsRepository tacticsRepository;
-
-    public List<Tactics> getAllTactics() throws ExecutionControl.NotImplementedException {
-        return new ArrayList<>(tacticsRepository.getAllTactics());
-    }
+//    @Autowired
+//    TacticsRepository tacticsRepository;
+//
+//    public List<Tactics> getAllTactics() throws ExecutionControl.NotImplementedException {
+//        return new ArrayList<>(tacticsRepository.getAllTactics());
+//    }
 
 
 }

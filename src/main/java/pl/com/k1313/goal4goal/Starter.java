@@ -10,9 +10,9 @@ import pl.com.k1313.goal4goal.domain.player.PlayerTaskService;
 
 @Component
 public class Starter implements CommandLineRunner {
-
-    @Autowired
-    TeamRepository teamRepository;
+//
+//    @Autowired
+//    TeamRepository teamRepository;
 
     @Autowired
     PlayerRepository playerRepository;
@@ -28,7 +28,7 @@ public class Starter implements CommandLineRunner {
 
 //        playerTaskRepository.createRandomPlayerTask();
 //        playerTaskRepository.createRandomPlayerTask();
-        teamRepository.getTotalDefence();
+//        teamRepository.getTotalDefence();
 //        System.out.println(playerRepository);
 
 

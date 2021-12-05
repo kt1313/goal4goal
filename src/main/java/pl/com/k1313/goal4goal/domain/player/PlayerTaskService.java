@@ -13,20 +13,20 @@ import java.util.Random;
 @Service
 public class PlayerTaskService {
 
-    @Autowired
-    PlayerTaskRepository playerTaskRepository;
-
-    @Autowired
-    PlayerRepository playerRepository;
-
-    final static Random rand = new Random();
-
-
-    public void assignRandomTask(String playerName) throws ExecutionControl.NotImplementedException {
-        List<PlayerTask> allTasks = playerTaskRepository.getAllPlayerTasks();
-        PlayerTask randomTask = allTasks.get(rand.nextInt(allTasks.size()));
-        playerRepository.getPlayer(playerName).ifPresent(player ->player.setPlayerTask(randomTask));
-        playerTaskRepository.removePlayerTask(randomTask);
-
-    }
+//    @Autowired
+//    PlayerTaskRepository playerTaskRepository;
+//
+//    @Autowired
+//    PlayerRepository playerRepository;
+//
+//    final static Random rand = new Random();
+//
+//
+//    public void assignRandomTask(String playerName) throws ExecutionControl.NotImplementedException {
+//        List<PlayerTask> allTasks = playerTaskRepository.getAllPlayerTasks();
+//        PlayerTask randomTask = allTasks.get(rand.nextInt(allTasks.size()));
+//        playerRepository.getPlayer(playerName).ifPresent(player ->player.setPlayerTask(randomTask));
+//        playerTaskRepository.removePlayerTask(randomTask);
+//
+//    }
 }
