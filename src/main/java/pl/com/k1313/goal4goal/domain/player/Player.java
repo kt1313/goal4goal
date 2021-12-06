@@ -121,49 +121,49 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Data
-    @Setter(value = AccessLevel.NONE)
-    @Entity
-    public class Player {
+@Setter(value = AccessLevel.NONE)
+@Entity
+public class Player {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        private  long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
 
-        private  String firstName;
-        private  String lastName;
+    private String firstName;
+    private String lastName;
     private LocalDate birthDate;
     private Position position;
 
 
-        public Player( String firstName,
-                      String lastName, LocalDate birthDate, Position position
-                      ) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.birthDate = birthDate;
-            this.position = position;
-        }
+    public Player(String firstName,
+                  String lastName, LocalDate birthDate, Position position
+    ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.position = position;
+    }
 
-        public Player() {
+    public Player() {
 
-        }
+    }
 
-        public void update(String firstName,
-                           String lastName, LocalDate birthDate
-                           ){
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.birthDate = birthDate;
-            this.position = position;
+    public void update(String firstName,
+                       String lastName, LocalDate birthDate
+    ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.position = position;
 
-        }
+    }
 
-        @Override
-        public String toString() {
-            return "Imię: " + firstName +
-                    ", Nazwisko: " + lastName  +
-                    ", Urodzony: " + birthDate  +", Position: "+position ;
-        }
+    @Override
+    public String toString() {
+        return "Imię: " + firstName +
+                ", Nazwisko: " + lastName +
+                ", Urodzony: " + birthDate + ", Position: " + position;
+    }
 
 }

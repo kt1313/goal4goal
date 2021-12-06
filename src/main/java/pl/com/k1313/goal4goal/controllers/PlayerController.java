@@ -144,7 +144,7 @@ public class PlayerController {
         System.out.println(playerDTO);
         this.playerService.createNewPlayer(playerDTO);
 
-        return "redirect:/player";
+        return "redirect:/players";
     }
 
     @GetMapping("/delete/{id}")
