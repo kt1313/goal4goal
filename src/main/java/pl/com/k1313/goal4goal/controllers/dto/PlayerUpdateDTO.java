@@ -12,8 +12,9 @@ public class PlayerUpdateDTO {
     private final long id;
     private final String firstName;
     private final String lastName;
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private final LocalDate dateOfBirth;
+    private final LocalDate birthDate;
     private final Position position;
 
 }
