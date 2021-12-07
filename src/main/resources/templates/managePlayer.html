@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http:/>/www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>G4G - Hire players</title>
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Goal4Goal - Manager Panel</a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Main<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/players">Players</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/team">Team</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tactics">Tactics</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="/reservations/create/stepone">Hire player</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="p-3 text-center bg-light"><h2 class="mb-3">Players List</h2>
+</div>
+
+<div class="container">
+
+    <form th:action="@{/players/managePlayer}" method="post">
+        <input type="hidden" name="id" th:value="${player.id}"/>
+
+        <div class="form-group">
+            <label for="createnewplayerfirstname">First Name:</label>
+            <input type="text" name="firstName" th:value="${player.firstName}" required
+                   class="form-control" id="createnewplayerfirstname"/>
+        </div>
+        <div class="form-group">
+            <label for="createnewplayerlastname">Last Name: </label>
+            <input type="text" name="lastName"  th:value="${player.lastName}" required
+                   class="form-control" id="createnewplayerlastname"/>
+        </div>
+        <div class="form-group">
+            <label for="createnewplayerbirthdate">Date of Birth: </label>
+            <input type="date" name="birthDate" th:value="${player.birthDate}" required
+                   class="form-control" id="createnewplayerbirthdate"/>
+        </div>
+        <div class="form-group">
+            <label for="createnewplayerposition">Position: </label>
+            <select name="position" class="form-control" id="createnewplayerposition" th:value="${player.position}" required>
+                <option value="GK">Goalkeeper</option>
+                <option value="RWB">Right Wingback</option>
+                <option value="RCB">Right Centre-back</option>
+                <option value="CB">Centre back</option>
+                <option value="LCB">Left Centre-back</option>
+                <option value="LWB">Left Wing-back</option>
+                <option value="RW">Right Winger</option>
+                <option value="CMD">Centre Midfielder Defending</option>
+                <option value="CM">Centre Midfielder</option>
+                <option value="CMA">Centre Midfielder Attacking</option>
+                <option value="LW">Left Winger</option>
+                <option value="RF">Right Forward</option>
+                <option value="CF">Centre Forward</option>
+                <option value="LF">Left Forward</option>
+            </select>
+            <input type="submit" class="btn-primary" value="Hire new player" />
+        </div>
+    </form>
+</div>
+</body>
+</html>

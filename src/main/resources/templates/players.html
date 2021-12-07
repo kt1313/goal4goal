@@ -59,10 +59,10 @@
             <td th:text="${player.birthDate}"/>
             <td th:text="${player.position}"/>
             <td>
-                <a th:href="@{/player/delete/{id}(id=${player.id})}">Fire</a>
+                <a th:href="@{/players/delete/{id}(id=${player.id})}">Fire</a>
             </td>
             <td>
-                <a th:href="@{/players/edit/{id}(id=${player.id})}">Manage</a>
+                <a th:href="@{/players/managePlayer/{id}(id=${player.id})}">Manage</a>
             </td>
         </tr>
         </tbody>

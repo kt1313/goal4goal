@@ -58,15 +58,15 @@ public class PlayerController {
         return "redirect:/players";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/managePlayer/{id}")
     public String editPlayer(@PathVariable long id, Model model){
         Player player=this.playerService.getPlayerById(id);
         model.addAttribute("player", player);
 
-        return "editPlayer";
+        return "managePlayer";
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/managePlayer")
     public String editPlayer(PlayerUpdateDTO updatedPlayer){
         this.playerService.update(updatedPlayer);
 
