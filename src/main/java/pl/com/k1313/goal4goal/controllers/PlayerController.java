@@ -38,13 +38,13 @@ public class PlayerController {
     }
 
     @GetMapping("/hire")
-    public String createNewPlayer(){
+    public String createNewPlayer() {
         return "playerform";
     }
 
     @PostMapping
     public String handleCreateNewPlayer
-            (PlayerContractingDTO playerDTO){
+            (PlayerContractingDTO playerDTO) {
         System.out.println(playerDTO);
         this.playerService.createNewPlayer(playerDTO);
 
@@ -52,25 +52,42 @@ public class PlayerController {
     }
 
     @GetMapping("/delete/{id}")
-    public String removePlayer(@PathVariable("id") long id){
+    public String removePlayer(@PathVariable("id") long id) {
         this.playerService.removeById(id);
 
         return "redirect:/players";
     }
 
     @GetMapping("/managePlayer/{id}")
-    public String editPlayer(@PathVariable long id, Model model){
-        Player player=this.playerService.getPlayerById(id);
+    public String editPlayer(@PathVariable long id, Model model) {
+        Player player = this.playerService.getPlayerById(id);
         model.addAttribute("player", player);
 
         return "managePlayer";
     }
 
     @PostMapping("/managePlayer")
-    public String editPlayer(PlayerUpdateDTO updatedPlayer){
+    public String editPlayer(PlayerUpdateDTO updatedPlayer) {
         this.playerService.update(updatedPlayer);
 
         return "redirect:/players";
+    }
+
+ //po Submicie ma stworzyc tabele tylko z playersami z niezerowa position
+    @PostMapping("/firstSquad/create")
+    public String firstSquad(Model model) {
+        model.addAttribute("firstsquad",
+                this.playerService.firstSquadPlayers());
+        return "redirect:/firstsquad";
+    }
+
+    // próba wyciagniecia tabeli ze strony firstsquad i znalezienia
+    //komorki o tym samym id co position playera
+    //wtedy ma zmienic puste value z " " na "player.name"
+    @GetMapping("/firstsquad")
+    public String firstSquad() {
+//        this.playerService.update(updatedPlayer);
+        return "redirect:/firstsquad";
     }
 
 }

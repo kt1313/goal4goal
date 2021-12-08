@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>G4G - Players</title>
-    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"> </script>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" >
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css">
 
 </head>
 <body>
@@ -40,33 +40,36 @@
 </div>
 
 <div class="container">
-    <a class="nav-link" href="/players/hire">Hire new player</a>
-    <table class="table table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date of Birth</th>
-            <th>Position</th>
-            <th> </th>
-            <th> </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="player : ${players}">
-            <td th:text="${player.firstName}"/>
-            <td th:text="${player.lastName}"/>
-            <td th:text="${player.birthDate}"/>
-            <td th:text="${player.position}"/>
-            <td>
-                <a th:href="@{/players/delete/{id}(id=${player.id})}">Fire</a>
-            </td>
-            <td>
-                <a th:href="@{/players/managePlayer/{id}(id=${player.id})}">Manage</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <form th:action="@{/firstsquad/create}" method="post">
+        <a class="nav-link" href="/players/hire">Hire new player</a>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Position</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="player : ${players}">
+                <td th:text="${player.firstName}"/>
+                <td th:text="${player.lastName}"/>
+                <td th:text="${player.birthDate}"/>
+                <td th:text="${player.position}"/>
+                <td>
+                    <a th:href="@{/players/delete/{id}(id=${player.id})}">Fire</a>
+                </td>
+                <td>
+                    <a th:href="@{/players/managePlayer/{id}(id=${player.id})}">Manage</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <input type="submit" class="btn-primary" value="Confirm first 11"/>
+    </form>
 </div>
 </body>
 </html>

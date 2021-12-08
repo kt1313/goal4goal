@@ -23,6 +23,7 @@ public class Player {
     private String lastName;
     private LocalDate birthDate;
     private Position position;
+//    private boolean firstSquadPlayer;
 
     public Player(String firstName,
                   String lastName, LocalDate birthDate, Position position
@@ -56,4 +57,7 @@ public class Player {
                 ", Position: " + position;
     }
 
+    public boolean getFirstSquadPlayer(long id) {
+        return this.position.equals(null);
+    }
 }

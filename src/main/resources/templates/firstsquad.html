@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Hire New Player</title>
-    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"> </script>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" >
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 
@@ -44,17 +44,19 @@
         <p th:align="center">FIRST SQUAD</p>
         <table class="table">
             <thead>
-            <td>LEFT </td>
-            <td th:cols="3">LEFT_TO_CENTER</td>
+            <td>LEFT</td>
+            <td>LEFT_TO_CENTER</td>
             <td>CENTER</td>
             <td>RIGHT_TO_CENTER</td>
             <td>RIGHT</td>
             </thead>
             <tbody>
             <tr>
-                <td> 1</td>
-                <td >2</td>
-                <td> </td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td></td>
             <tbody th:each="player : ${firstsquadplayers}">
             <tr>
                 <td th:text="${player.firstName}"></td>
@@ -62,11 +64,11 @@
             </tr>
             </tbody>
             <td>4</td>
-                <td>5</td>
+            <td>5</td>
             </tr>
             </td>
         </table>
-</div>
+    </div>
 </div>
 </body>
 </html>

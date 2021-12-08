@@ -6,6 +6,7 @@ import pl.com.k1313.goal4goal.controllers.dto.PlayerContractingDTO;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerUpdateDTO;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PlayerService {
@@ -44,8 +45,14 @@ public class PlayerService {
                 updatedPlayer.getLastName(),
                 updatedPlayer.getBirthDate(),
                 updatedPlayer.getPosition());
-
         this.repository.save(byId);
+    }
+
+    //szuka playersow, ktorych position ma byc rozne od null i dodaje ich do listy pierwszej 11
+    public List<Player> firstSquadPlayers(long id) {
+        return this.repository.findAll().stream()
+                .filter(player -> player.getFirstSquadPlayer().equals())
+                .collect(Collectors.toList());
     }
 }
 
