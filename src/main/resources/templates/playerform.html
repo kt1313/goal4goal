@@ -78,6 +78,12 @@
             <input type="submit" class="btn-primary" value="Hire new player" />
         </div>
     </form>
+    <div th:if="${not #lists.isEmpty(errors)}">
+        <h3>Błąd przy tworzeniu gościa</h3>
+        <ul>
+            <li th:each="error : ${errors}"><span th:text="${error.defaultMessage}"></span></span></li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>

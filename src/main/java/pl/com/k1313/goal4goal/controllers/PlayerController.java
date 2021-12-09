@@ -5,6 +5,7 @@ import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ import pl.com.k1313.goal4goal.controllers.dto.PlayerUpdateDTO;
 import pl.com.k1313.goal4goal.domain.player.Player;
 import pl.com.k1313.goal4goal.domain.UserInformation;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -44,12 +47,15 @@ public class PlayerController {
 
     @PostMapping
     public String handleCreateNewPlayer
-            (PlayerContractingDTO playerDTO) {
+            (@Valid PlayerContractingDTO playerDTO,
+             BindingResult result, Model model) {
         System.out.println(playerDTO);
+        if (result.hasErrors()){
+            model.addAttribute("errors", result.getAllErrors());
+            return "playerform";
+        }else {
         this.playerService.createNewPlayer(playerDTO);
-        System.out.println("dupadupadupadupadupadupa");
-
-        return "redirect:/players";
+        return "redirect:/players";}
     }
 
     @GetMapping("/delete/{id}")
@@ -63,35 +69,14 @@ public class PlayerController {
     public String editPlayer(@PathVariable long id, Model model) {
         Player player = this.playerService.getPlayerById(id);
         model.addAttribute("player", player);
-
         return "managePlayer";
     }
 
     @PostMapping("/managePlayer")
     public String editPlayer(PlayerUpdateDTO updatedPlayer) {
         this.playerService.update(updatedPlayer);
-
         return "redirect:/players";
     }
 
- //po Submicie CallTo11 dodaje Playera do firstsquad
-//    @PostMapping("/firstsquadcall/{id}")
-//    @PostMapping("/players")
-//
-//    public String firstSquad(@PathVariable long id, Model model) {
-//        Player player = this.playerService.getPlayerById(id);
-//        model.addAttribute("player", player);
-//        this.playerService.addToFirstSquad(id);
-//        return "redirect:/players";
-//    }
-
-//    // próba wyciagniecia tabeli ze strony firstsquad i znalezienia
-//    //komorki o tym samym id co position playera
-//    //wtedy ma zmienic puste value z " " na  "Player,name"
-//    @GetMapping("/firstsquad")
-//    public String firstSquad(@RequestParam("firstsquadtable") String firstsquadtable, Model model, String tableId) {
-////        this.playerService.update(updatedPlayer);
-//        return "redirect:/firstsquad";
-//    }
 
 }
