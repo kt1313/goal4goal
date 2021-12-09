@@ -40,7 +40,7 @@
 </div>
 
 <div class="container">
-    <form th:action="@{/firstsquad/create}" method="post">
+<!--    <form th:action="@{/firstsquad/create}" method="post">-->
         <a class="nav-link" href="/players/hire">Hire new player</a>
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -51,6 +51,7 @@
                 <th>Position</th>
                 <th></th>
                 <th></th>
+                <th>First 11</th>
             </tr>
             </thead>
             <tbody>
@@ -65,10 +66,21 @@
                 <td>
                     <a th:href="@{/players/managePlayer/{id}(id=${player.id})}">Manage</a>
                 </td>
+                <td>
+                    <input type="checkbox" name="playerTo11" id="playerTo11" th:value="${player.id}" >
+<!--                    <form method="POST" th:action="@{/firstsquadcall/{id}(id=${player.id})}">-->
+<!--                    <form method="POST" th:action="@{/players}">-->
+
+<!--                    <input type="hidden" name="playerId" id="playerId"-->
+<!--                               th:value="${player.id}" />-->
+<!--                        <input type="submit" name="submit" value="Call to 11"/>-->
+<!--                    </form>-->
+                </td>
             </tr>
             </tbody>
         </table>
-        <input type="submit" class="btn-primary" value="Confirm first 11"/>
+    <form method="POST" th:action="@{/players}">
+    <input type="submit" class="btn-primary" value="Confirm first 11"/>
     </form>
 </div>
 </body>

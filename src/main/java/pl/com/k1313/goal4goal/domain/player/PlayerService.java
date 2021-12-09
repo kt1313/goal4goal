@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerContractingDTO;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerUpdateDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,7 @@ public class PlayerService {
 
         Player newOne = new Player(playerDTO.getFirstName(), playerDTO.getLastName(), playerDTO.getBirthDate(), playerDTO.getPosition());
         this.repository.save(newOne);
-        System.out.println(repository.findAll());
+//        System.out.println(repository.findAll());
     }
 
     public void removeById(long id) {
@@ -48,11 +49,19 @@ public class PlayerService {
         this.repository.save(byId);
     }
 
-    //szuka playersow, ktorych position ma byc rozne od null i dodaje ich do listy pierwszej 11
-    public List<Player> firstSquadPlayers(long id) {
-        return this.repository.findAll().stream()
-                .filter(player -> player.getFirstSquadPlayer().equals())
-                .collect(Collectors.toList());
+//    //szuka playersow, ktorych position ma byc rozne od null i dodaje ich do listy pierwszej 11
+//    public List<Player> firstSquadPlayers(long id) {
+//        return this.repository.findAll().stream()
+//                .filter(player -> player.getFirstSquadPlayer().equals())
+//                .collect(Collectors.toList());
+//    }
+
+    public void addToFirstSquad(long id) {
+        Player player = this.repository.getById(id);
+//        ale ta lista ma byc w DB
+        List<Player> firstSquad=new ArrayList<>();
+        firstSquad.add(player);
+
     }
 }
 

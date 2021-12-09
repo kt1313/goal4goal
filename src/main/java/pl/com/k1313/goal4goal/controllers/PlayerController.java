@@ -47,6 +47,7 @@ public class PlayerController {
             (PlayerContractingDTO playerDTO) {
         System.out.println(playerDTO);
         this.playerService.createNewPlayer(playerDTO);
+        System.out.println("dupadupadupadupadupadupa");
 
         return "redirect:/players";
     }
@@ -73,21 +74,24 @@ public class PlayerController {
         return "redirect:/players";
     }
 
- //po Submicie ma stworzyc tabele tylko z playersami z niezerowa position
-    @PostMapping("/firstSquad/create")
-    public String firstSquad(Model model) {
-        model.addAttribute("firstsquad",
-                this.playerService.firstSquadPlayers());
-        return "redirect:/firstsquad";
-    }
+ //po Submicie CallTo11 dodaje Playera do firstsquad
+//    @PostMapping("/firstsquadcall/{id}")
+//    @PostMapping("/players")
+//
+//    public String firstSquad(@PathVariable long id, Model model) {
+//        Player player = this.playerService.getPlayerById(id);
+//        model.addAttribute("player", player);
+//        this.playerService.addToFirstSquad(id);
+//        return "redirect:/players";
+//    }
 
-    // próba wyciagniecia tabeli ze strony firstsquad i znalezienia
-    //komorki o tym samym id co position playera
-    //wtedy ma zmienic puste value z " " na "player.name"
-    @GetMapping("/firstsquad")
-    public String firstSquad() {
-//        this.playerService.update(updatedPlayer);
-        return "redirect:/firstsquad";
-    }
+//    // próba wyciagniecia tabeli ze strony firstsquad i znalezienia
+//    //komorki o tym samym id co position playera
+//    //wtedy ma zmienic puste value z " " na  "Player,name"
+//    @GetMapping("/firstsquad")
+//    public String firstSquad(@RequestParam("firstsquadtable") String firstsquadtable, Model model, String tableId) {
+////        this.playerService.update(updatedPlayer);
+//        return "redirect:/firstsquad";
+//    }
 
 }
