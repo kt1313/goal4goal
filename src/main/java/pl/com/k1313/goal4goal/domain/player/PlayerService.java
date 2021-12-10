@@ -25,9 +25,9 @@ public class PlayerService {
 
     public void createNewPlayer(PlayerContractingDTO playerDTO) {
 
-        Player newOne = new Player(playerDTO.getFirstName(), playerDTO.getLastName(), playerDTO.getBirthDate(), playerDTO.getPosition());
+        Player newOne = new Player(playerDTO.getFirstName(), playerDTO.getLastName(),
+                playerDTO.getBirthDate(), playerDTO.getPosition(), playerDTO.isFirstSquadPlayer());
         this.repository.save(newOne);
-//        System.out.println(repository.findAll());
     }
 
     public void removeById(long id) {
@@ -45,7 +45,8 @@ public class PlayerService {
                 updatedPlayer.getFirstName(),
                 updatedPlayer.getLastName(),
                 updatedPlayer.getBirthDate(),
-                updatedPlayer.getPosition());
+                updatedPlayer.getPosition(),
+                updatedPlayer.isFirstSquadPlayer());
         this.repository.save(byId);
     }
 
@@ -59,7 +60,7 @@ public class PlayerService {
     public void addToFirstSquad(long id) {
         Player player = this.repository.getById(id);
 //        ale ta lista ma byc w DB
-        List<Player> firstSquad=new ArrayList<>();
+        List<Player> firstSquad = new ArrayList<>();
         firstSquad.add(player);
 
     }

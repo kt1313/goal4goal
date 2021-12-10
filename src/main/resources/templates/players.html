@@ -49,9 +49,9 @@
                 <th>Last Name</th>
                 <th>Date of Birth</th>
                 <th>Position</th>
-                <th></th>
-                <th></th>
                 <th>First 11</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -61,25 +61,27 @@
                 <td th:text="${player.birthDate}"/>
                 <td th:text="${player.position}"/>
                 <td>
+                    <input type="checkbox" th:name="${player.id}" th:id="${player.id}"
+                           th:checked="${player.firstsSquadPlayer}" />
+                </td>
+                <td>
                     <a th:href="@{/players/delete/{id}(id=${player.id})}">Fire</a>
                 </td>
                 <td>
                     <a th:href="@{/players/managePlayer/{id}(id=${player.id})}">Manage</a>
                 </td>
-                <td>
-                    <input type="checkbox" name="playerTo11" id="playerTo11" th:value="${player.id}" >
-<!--                    <form method="POST" th:action="@{/firstsquadcall/{id}(id=${player.id})}">-->
-<!--                    <form method="POST" th:action="@{/players}">-->
 
+
+                    <!--                    <form method="POST" th:action="@{/firstsquadcall/{id}(id=${player.id})}">-->
+<!--                    <form method="POST" th:action="@{/players}">-->
 <!--                    <input type="hidden" name="playerId" id="playerId"-->
 <!--                               th:value="${player.id}" />-->
 <!--                        <input type="submit" name="submit" value="Call to 11"/>-->
 <!--                    </form>-->
-                </td>
             </tr>
             </tbody>
         </table>
-    <form method="POST" th:action="@{/players}">
+    <form method="POST" th:action="@{/players/firstsquadcall}">
     <input type="submit" class="btn-primary" value="Confirm first 11"/>
     </form>
 </div>

@@ -23,30 +23,33 @@ public class Player {
     private String lastName;
     private LocalDate birthDate;
     private Position position;
-//    private boolean firstSquadPlayer;
-
-    public Player(String firstName,
-                  String lastName, LocalDate birthDate, Position position
-    ) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.position = position;
-    }
+    private boolean firstSquadPlayer;
 
     public Player() {
 
     }
 
-    public void update(String firstName,
-                       String lastName, LocalDate birthDate,
-                       Position position
+    public Player(String firstName,
+                  String lastName, LocalDate birthDate,
+                  Position position, boolean firstSquadPlayer
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.position = position;
+        this.firstSquadPlayer = firstSquadPlayer;
+    }
 
+
+    public void update(String firstName,
+                       String lastName, LocalDate birthDate,
+                       Position position, boolean firstSquadPlayer
+    ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.position = position;
+        this.firstSquadPlayer=firstSquadPlayer;
     }
 
     @Override
@@ -54,10 +57,8 @@ public class Player {
         return "Imię: " + firstName +
                 ", Nazwisko: " + lastName +
                 ", Urodzony: " + birthDate + ", " +
-                ", Position: " + position;
+                ", Position: " + position + ", 11: "
+                + firstSquadPlayer;
     }
 
-    public boolean getFirstSquadPlayer(long id) {
-        return this.position.equals(null);
-    }
 }

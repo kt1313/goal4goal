@@ -16,6 +16,7 @@ public class PlayerUpdateDTO {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private final LocalDate birthDate;
     private final Position position;
+    private final boolean firstSquadPlayer;
 
 }
 

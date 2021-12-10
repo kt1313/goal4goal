@@ -17,6 +17,8 @@ import pl.com.k1313.goal4goal.domain.UserInformation;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -45,17 +47,31 @@ public class PlayerController {
         return "playerform";
     }
 
+    //obsluga powolan do 11
+//    @PostMapping("/firstsquadcall")
+//    public String handleFirstSquad(Model model) {
+//        List<Player> firstSquad = this.playerService
+//                .findAllPlayers().stream()
+//                .filter(Player::isFirstSquadPlayer)
+//                .collect(Collectors.toList());
+//        System.out.println(firstSquad);
+//        //return ma sie zmienic na players/firstsquad
+//        return "redirect:/players";
+//    }
+
+
     @PostMapping
     public String handleCreateNewPlayer
             (@Valid PlayerContractingDTO playerDTO,
              BindingResult result, Model model) {
         System.out.println(playerDTO);
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
             return "playerform";
-        }else {
-        this.playerService.createNewPlayer(playerDTO);
-        return "redirect:/players";}
+        } else {
+            this.playerService.createNewPlayer(playerDTO);
+            return "redirect:/players";
+        }
     }
 
     @GetMapping("/delete/{id}")
