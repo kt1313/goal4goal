@@ -9,14 +9,15 @@ import java.time.LocalDate;
 @Data
 public class PlayerUpdateDTO {
 
-    private final long id;
+    private final Long id;
     private final String firstName;
     private final String lastName;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private final LocalDate birthDate;
     private final Position position;
-    private final boolean firstSquadPlayer;
+//    private final boolean firstSquadPlayer;
+    private String firstSquadPlayer;
 
 }
 

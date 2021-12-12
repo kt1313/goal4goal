@@ -48,16 +48,16 @@ public class PlayerController {
     }
 
     //obsluga powolan do 11
-//    @PostMapping("/firstsquadcall")
-//    public String handleFirstSquad(Model model) {
-//        List<Player> firstSquad = this.playerService
-//                .findAllPlayers().stream()
-//                .filter(Player::isFirstSquadPlayer)
-//                .collect(Collectors.toList());
-//        System.out.println(firstSquad);
-//        //return ma sie zmienic na players/firstsquad
-//        return "redirect:/players";
-//    }
+    @PostMapping("/firstsquadcall")
+    public String handleFirstSquad() {
+        List<Player> firstSquad = this.playerService
+                .findAllPlayers().stream()
+                .filter(player -> player.getFirstSquadPlayer().equals("true"))
+                .collect(Collectors.toList());
+        System.out.println(firstSquad);
+        //return ma sie zmienic na players/firstsquad
+        return "redirect:/players";
+    }
 
 
     @PostMapping
@@ -75,14 +75,14 @@ public class PlayerController {
     }
 
     @GetMapping("/delete/{id}")
-    public String removePlayer(@PathVariable("id") long id) {
+    public String removePlayer(@PathVariable("id") Long id) {
         this.playerService.removeById(id);
 
         return "redirect:/players";
     }
 
     @GetMapping("/managePlayer/{id}")
-    public String editPlayer(@PathVariable long id, Model model) {
+    public String editPlayer(@PathVariable Long id, Model model) {
         Player player = this.playerService.getPlayerById(id);
         model.addAttribute("player", player);
         return "managePlayer";

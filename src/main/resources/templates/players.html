@@ -61,8 +61,8 @@
                 <td th:text="${player.birthDate}"/>
                 <td th:text="${player.position}"/>
                 <td>
-                    <input type="checkbox" th:name="${player.id}" th:id="${player.id}"
-                           th:checked="${player.firstsSquadPlayer}" />
+                    <input type="checkbox" th:name="firstsquadplayer" th:id="firstsquadplayer"
+                           th:value="${player.firstSquadPlayer}" th:checked="true"/>
                 </td>
                 <td>
                     <a th:href="@{/players/delete/{id}(id=${player.id})}">Fire</a>
@@ -82,7 +82,7 @@
             </tbody>
         </table>
     <form method="POST" th:action="@{/players/firstsquadcall}">
-    <input type="submit" class="btn-primary" value="Confirm first 11"/>
+    <input type="submit" class="btn-primary" style="background-color: " value="Confirm first 11"/>
     </form>
 </div>
 </body>
