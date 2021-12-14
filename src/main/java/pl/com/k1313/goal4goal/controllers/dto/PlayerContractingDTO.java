@@ -19,7 +19,7 @@ public class PlayerContractingDTO {
     private final LocalDate birthDate;
     private final Position position;
     //tutaj musimy sparsowac boolean do stringa??
-    private final boolean firstSquadPlayer;
+    private final boolean firstSquadPlayer=false;
 //    private final String firstSquadPlayer;
 
 }
