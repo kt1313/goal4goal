@@ -24,10 +24,11 @@ public class PlayerService {
     }
 
     public void createNewPlayer(PlayerContractingDTO playerDTO) {
-
-        Player newOne = new Player(playerDTO.getFirstName(), playerDTO.getLastName(),
-                playerDTO.getBirthDate(), playerDTO.getPosition()
-                , playerDTO.getFirstSquadPlayer());
+        Player newOne = new Player(playerDTO.getFirstName()
+                , playerDTO.getLastName()
+                , playerDTO.getBirthDate()
+                , playerDTO.getPosition()
+                , playerDTO.isFirstSquadPlayer());
         this.repository.save(newOne);
     }
 
@@ -47,7 +48,7 @@ public class PlayerService {
                 updatedPlayer.getLastName(),
                 updatedPlayer.getBirthDate(),
                 updatedPlayer.getPosition()
-        ,updatedPlayer.getFirstSquadPlayer());
+        ,updatedPlayer.isFirstSquadPlayer());
 //                updatedPlayer.isFirstSquadPlayer());
         this.repository.save(byId);
     }

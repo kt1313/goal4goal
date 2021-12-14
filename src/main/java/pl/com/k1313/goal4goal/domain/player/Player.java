@@ -4,10 +4,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
@@ -23,8 +20,9 @@ public class Player {
     private String lastName;
     private LocalDate birthDate;
     private Position position;
-    private String firstSquadPlayer="false";
-//    private boolean firstSquadPlayer;
+//    private String firstSquadPlayer="false";
+//    @Column
+    private boolean firstSquadPlayer;
 
     public Player() {
 
@@ -33,8 +31,8 @@ public class Player {
     public Player(String firstName,
                   String lastName, LocalDate birthDate,
                   Position position
-            , String firstSquadPlayer
-//            , boolean firstSquadPlayer
+//            , String firstSquadPlayer
+            , boolean firstSquadPlayer
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,8 +46,8 @@ public class Player {
     public void update(String firstName,
                        String lastName, LocalDate birthDate,
                        Position position
-//            , boolean firstSquadPlayer
-            , String squadNr
+            , boolean firstSquadPlayer
+//            , String squadNr
     ) {
         this.firstName = firstName;
         this.lastName = lastName;

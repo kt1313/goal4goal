@@ -75,7 +75,14 @@
                 <option value="CF">Centre Forward</option>
                 <option value="LF">Left Forward</option>
             </select>
-            <input type="submit" class="btn-primary" value="Hire new player" />
+        </div>
+        <div class="form-group">
+            <label for="createnewplayerfirstsquad">First Team Player: </label>
+            <input type="checkbox" name="firstsquad"
+                   class="form-control" id="createnewplayerfirstsquad"/>
+        </div>
+        <div>
+            <input type="submit" class="btn-primary" value="Hire new player"/>
         </div>
     </form>
     <div th:if="${not #lists.isEmpty(errors)}">

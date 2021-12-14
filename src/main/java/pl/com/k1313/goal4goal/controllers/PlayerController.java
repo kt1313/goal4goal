@@ -48,16 +48,16 @@ public class PlayerController {
     }
 
     //obsluga powolan do 11
-    @PostMapping("/firstsquadcall")
-    public String handleFirstSquad() {
-        List<Player> firstSquad = this.playerService
-                .findAllPlayers().stream()
-                .filter(player -> player.getFirstSquadPlayer().equals("true"))
-                .collect(Collectors.toList());
-        System.out.println(firstSquad);
-        //return ma sie zmienic na players/firstsquad
-        return "redirect:/players";
-    }
+//    @PostMapping("/firstsquadcall")
+//    public String handleFirstSquad() {
+//        List<Player> firstSquad = this.playerService
+//                .findAllPlayers().stream()
+//                .filter(player -> player.isFirstSquadPlayer().equals("true"))
+//                .collect(Collectors.toList());
+//        System.out.println(firstSquad);
+//        //return ma sie zmienic na players/firstsquad
+//        return "redirect:/players";
+//    }
 
 
     @PostMapping
