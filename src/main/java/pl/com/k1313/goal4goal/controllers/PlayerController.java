@@ -17,6 +17,8 @@ import pl.com.k1313.goal4goal.domain.UserInformation;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
 
 import javax.validation.Valid;
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,17 +50,21 @@ public class PlayerController {
     }
 
     //obsluga powolan do 11
-//    @PostMapping("/firstsquadcall")
-//    public String handleFirstSquad() {
-//        List<Player> firstSquad = this.playerService
-//                .findAllPlayers().stream()
-//                .filter(player -> player.isFirstSquadPlayer().equals("true"))
-//                .collect(Collectors.toList());
-//        System.out.println(firstSquad);
-//        //return ma sie zmienic na players/firstsquad
-//        return "redirect:/players";
-//    }
+    //pobiera wszystkie checkboxy o nazwie firstsquadplayer i sprawdza czy tickniete
+    //wtedy tworzy pierwsza 11
+    @PostMapping("/firstsquad")
+    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids) {
+        if (ids != null) {
+            for (String id : ids) {
+                int idplayer = Integer.parseInt(id);
+                System.out.println(playerService.findAllPlayers());
+                //do tej pory dziala, pobiera zaznaczonych i listuje w konsoli
+                //teraz ma zmienic flage firstSquadPlayer
+            }
+        }
+        return "redirect:/players";
 
+    }
 
     @PostMapping
     public String handleCreateNewPlayer

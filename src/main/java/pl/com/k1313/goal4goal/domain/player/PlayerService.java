@@ -60,11 +60,8 @@ public class PlayerService {
 //                .collect(Collectors.toList());
 //    }
 
-    public void addToFirstSquad(Long id) {
+    public void setFirstSquadPlayer(Long id) {
         Player player = this.repository.getById(id);
-//        ale ta lista ma byc w DB
-        List<Player> firstSquad = new ArrayList<>();
-        firstSquad.add(player);
 
     }
 }

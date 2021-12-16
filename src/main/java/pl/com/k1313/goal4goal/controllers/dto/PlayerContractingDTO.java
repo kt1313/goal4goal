@@ -18,8 +18,6 @@ public class PlayerContractingDTO {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private final LocalDate birthDate;
     private final Position position;
-    //tutaj musimy sparsowac boolean do stringa??
     private final boolean firstSquadPlayer=false;
-//    private final String firstSquadPlayer;
 
 }

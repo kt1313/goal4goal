@@ -20,7 +20,7 @@ public class Player {
     private String lastName;
     private LocalDate birthDate;
     private Position position;
-//    private String firstSquadPlayer="false";
+    //    private String firstSquadPlayer="false";
 //    @Column
     private boolean firstSquadPlayer;
 
@@ -30,16 +30,14 @@ public class Player {
 
     public Player(String firstName,
                   String lastName, LocalDate birthDate,
-                  Position position
-//            , String firstSquadPlayer
-            , boolean firstSquadPlayer
+                  Position position,
+                  boolean firstSquadPlayer
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.position = position;
         this.firstSquadPlayer = firstSquadPlayer;
-//        this.firstSquadPlayer = firstSquadPlayer;
     }
 
 
@@ -47,14 +45,12 @@ public class Player {
                        String lastName, LocalDate birthDate,
                        Position position
             , boolean firstSquadPlayer
-//            , String squadNr
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.position = position;
-        this.firstSquadPlayer=firstSquadPlayer;
-//        this.firstSquadPlayer = firstSquadPlayer;
+        this.firstSquadPlayer = firstSquadPlayer;
     }
 
     @Override
@@ -62,8 +58,8 @@ public class Player {
         return "Imię: " + firstName +
                 ", Nazwisko: " + lastName +
                 ", Urodzony: " + birthDate + ", " +
-                ", Position: " + position + ", 11: ";
-//                + firstSquadPlayer;
+                ", Position: " + position + ", 11: "
+                + firstSquadPlayer;
     }
 
 }
