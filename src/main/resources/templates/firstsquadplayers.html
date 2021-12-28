@@ -42,6 +42,8 @@
     <div>
         <br>
         <p th:align="center">FIRST SQUAD</p>
+        <form method="GET" th:action="@{/firstsquadplayers}">
+
         <table class="table">
             <thead>
             <td>LEFT</td>
@@ -51,23 +53,13 @@
             <td>RIGHT</td>
             </thead>
             <tbody>
-            <tr >
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td></td>
-            <tbody th:each="player : ${firstsquadplayers}">
-            <tr>
-                <td th:text="${player.firstName}"></td>
-                <td th:text="${player.position}"></td>
+            <tr th:each="player : ${firstsquadplayers}">
+                <td th:text="${player.firstName}"/>
+                <td th:text="${player.lastName}"/>
             </tr>
             </tbody>
-            <td>4</td>
-            <td>5</td>
-            </tr>
-            </td>
         </table>
+        </form>
     </div>
 </div>
 </body>

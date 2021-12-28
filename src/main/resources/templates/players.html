@@ -40,9 +40,8 @@
 </div>
 
 <div class="container">
-<!--    <form th:action="@{/firstsquad/create}" method="post">-->
         <a class="nav-link" href="/players/hire">Hire new player</a>
-    <form method="POST" th:action="@{/players/firstsquad}">
+    <form method="POST" th:action="@{/players/firstsquadplayers}">
 
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -62,7 +61,6 @@
                 <td th:text="${player.lastName}"/>
                 <td th:text="${player.birthDate}"/>
                 <td th:text="${player.position}"/>
-<!--                <td th:text="${player.firstSquadPlayer}"/>-->
                 <td>
                     <input type="checkbox" th:name="firstSquadPlayer"
                            th:value="${player.id}" />
@@ -74,18 +72,11 @@
                     <a th:href="@{/players/managePlayer/{id}(id=${player.id})}">Manage</a>
                 </td>
 
-
-                    <!--                    <form method="POST" th:action="@{/firstsquadcall/{id}(id=${player.id})}">-->
-<!--                    <form method="POST" th:action="@{/players}">-->
-<!--                    <input type="hidden" name="playerId" id="playerId"-->
-<!--                               th:value="${player.id}" />-->
-<!--                        <input type="submit" name="submit" value="Call to 11"/>-->
-<!--                    </form>-->
             </tr>
             </tbody>
         </table>
         <p></p>
-        <input type="submit" class="btn-primary" style="background-color: blue "
+        <input type="submit" class="btn-primary" style="background-color: #0000ff "
                value="Confirm first 11"/>
     </form>
 </div>

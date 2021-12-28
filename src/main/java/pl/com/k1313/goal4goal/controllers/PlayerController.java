@@ -1,24 +1,17 @@
 package pl.com.k1313.goal4goal.controllers;
 
 
-import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pl.com.k1313.goal4goal.components.TimeComponent;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerContractingDTO;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerUpdateDTO;
 import pl.com.k1313.goal4goal.domain.player.Player;
-import pl.com.k1313.goal4goal.domain.UserInformation;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
 
 import javax.validation.Valid;
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,13 +19,10 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/players")
 public class PlayerController {
-
-
     private PlayerService playerService;
 
     @Autowired
     public PlayerController(PlayerService service) {
-
         this.playerService = service;
     }
 
@@ -49,15 +39,32 @@ public class PlayerController {
         return "playerform";
     }
 
+    @GetMapping("/firstsquadplayers")
+    public String firstsquadplayers(Model model){
+        List<Player> firstsquadplayers=this.playerService.findAllPlayers().stream()
+                .filter(Player::isFirstSquadPlayer)
+                .collect(Collectors.toList());
+        model.addAttribute("firstsquadplayers", firstsquadplayers);
+        System.out.println("?????");
+        System.out.println(firstsquadplayers);
+        System.out.println("?????");
+        return "firstsquadplayers";
+    }
+
     //obsluga powolan do 11
     //pobiera wszystkie checkboxy o nazwie firstsquadplayer i sprawdza czy tickniete
     //wtedy tworzy pierwsza 11
-    @PostMapping("/firstsquad")
-    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids) {
+    @PostMapping("/firstsquadplayers")
+    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
+        List<Player> firstsquadplayers=this.playerService.findAllPlayers().stream()
+                .filter(Player::isFirstSquadPlayer)
+                .collect(Collectors.toList());
+        model.addAttribute("firstsquadplayers", firstsquadplayers);
+
         if (ids != null) {
             for (String idplayer : ids) {
                 System.out.println("------------------");
-                System.out.println(idplayer);//sprawdxzam co to b
+                System.out.println(idplayer);//sprawdxzam id playera
                 long l=Long.parseLong(idplayer);
                 System.out.println(l);
                 this.playerService.getPlayerById(l).setFirstSquadPlayer(true);
@@ -68,10 +75,11 @@ public class PlayerController {
                 //powinien uzyc editPlayer, ale wartość firstsquadplayer pobrac z checkboxa...
 
             }
-            List<Player> first11 = this.playerService.findAllPlayers().stream().filter(player -> player.isFirstSquadPlayer()).collect(Collectors.toList());
+            List<Player> first11 = this.playerService.findAllPlayers().stream()
+                    .filter(Player::isFirstSquadPlayer).collect(Collectors.toList());
             System.out.println(first11);
         }
-        return "redirect:/firstsquad";
+        return "firstsquadplayers";
 
     }
 
