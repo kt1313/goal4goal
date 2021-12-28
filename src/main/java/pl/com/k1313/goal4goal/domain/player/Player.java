@@ -53,6 +53,10 @@ public class Player {
         this.firstSquadPlayer = firstSquadPlayer;
     }
 
+    public void setFirstSquadPlayer(boolean firstSquadPlayer) {
+        this.firstSquadPlayer = firstSquadPlayer;
+    }
+
     @Override
     public String toString() {
         return "Imię: " + firstName +

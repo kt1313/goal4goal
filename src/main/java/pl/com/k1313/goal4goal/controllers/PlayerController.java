@@ -55,14 +55,23 @@ public class PlayerController {
     @PostMapping("/firstsquad")
     public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids) {
         if (ids != null) {
-            for (String id : ids) {
-                int idplayer = Integer.parseInt(id);
-                System.out.println(playerService.findAllPlayers());
+            for (String idplayer : ids) {
+                System.out.println("------------------");
+                System.out.println(idplayer);//sprawdxzam co to b
+                long l=Long.parseLong(idplayer);
+                System.out.println(l);
+                this.playerService.getPlayerById(l).setFirstSquadPlayer(true);
+                System.out.println(playerService.getPlayerById(l));
+                System.out.println("*****************");
                 //do tej pory dziala, pobiera zaznaczonych i listuje w konsoli
                 //teraz ma zmienic flage firstSquadPlayer
+                //powinien uzyc editPlayer, ale wartość firstsquadplayer pobrac z checkboxa...
+
             }
+            List<Player> first11 = this.playerService.findAllPlayers().stream().filter(player -> player.isFirstSquadPlayer()).collect(Collectors.toList());
+            System.out.println(first11);
         }
-        return "redirect:/players";
+        return "redirect:/firstsquad";
 
     }
 
