@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.com.k1313.goal4goal.components.TimeComponent;
 import pl.com.k1313.goal4goal.domain.team.Tactics;
@@ -18,6 +19,7 @@ import pl.com.k1313.goal4goal.domain.team.TeamService;
 import java.util.List;
 
 @Controller
+@RequestMapping("/team")
 public class TeamController {
 
     @Autowired
@@ -32,7 +34,7 @@ public class TeamController {
     @Autowired
     TacticsService tacticsService;
 
-    @GetMapping("/firstsquadplayers")
+    @PostMapping("/firstsquadplayers")
     public String first11() {
         this.teamService.setUpfirst11();
         return "firstsquadplayers";

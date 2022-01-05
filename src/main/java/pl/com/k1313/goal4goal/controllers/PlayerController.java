@@ -42,29 +42,29 @@ public class PlayerController {
     //obsluga powolan do 11
     //pobiera wszystkie checkboxy o nazwie firstsquadplayer i sprawdza czy tickniete
     //wtedy tworzy pierwsza 11
-    @PostMapping("/firstsquadplayers")
-    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
-
-        if (ids != null) {
-            for (String idplayer : ids) {
-                long l = Long.parseLong(idplayer);
-                System.out.println(l);
-                this.playerService.getPlayerById(l).setFirstSquadPlayer(true);
-                System.out.println(playerService.getPlayerById(l));
-                List<Player> firstsquadplayers = this.playerService.findAllPlayers().stream()
-                        .filter(Player::isFirstSquadPlayer)
-                        .collect(Collectors.toList());
-                System.out.println(firstsquadplayers);
-                model.addAttribute("firstsquadplayers", firstsquadplayers);
-
-            }
-            List<Player> first11 = this.playerService.findAllPlayers().stream()
-                    .filter(Player::isFirstSquadPlayer).collect(Collectors.toList());
-            System.out.println(first11);
-        }
-        return "firstsquadplayers";
-
-    }
+//    @PostMapping("/firstsquadplayers")
+//    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
+//
+//        if (ids != null) {
+//            for (String idplayer : ids) {
+//                long l = Long.parseLong(idplayer);
+//                System.out.println(l);
+//                this.playerService.getPlayerById(l).setFirstSquadPlayer(true);
+//                System.out.println(playerService.getPlayerById(l));
+//                List<Player> firstsquadplayers = this.playerService.findAllPlayers().stream()
+//                        .filter(Player::isFirstSquadPlayer)
+//                        .collect(Collectors.toList());
+//                System.out.println(firstsquadplayers);
+//                model.addAttribute("firstsquadplayers", firstsquadplayers);
+//
+//            }
+//            List<Player> first11 = this.playerService.findAllPlayers().stream()
+//                    .filter(Player::isFirstSquadPlayer).collect(Collectors.toList());
+//            System.out.println(first11);
+//        }
+//        return "firstsquadplayers";
+//
+//    }
 
     @PostMapping
     public String handleCreateNewPlayer
