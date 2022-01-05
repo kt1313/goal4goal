@@ -13,37 +13,15 @@ public class Team {
     private String managerName="Klmx1313";
     private int assets=1000000;
     //tu bedzie lista uzywanych taktyk i ich poziom
-
+    String[][] first11=new String[5][4];
 
     public Team() {
    }
 
-    public String getTeamName() {
-        return teamName;
-    }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
-
-    public String getManagerName() {
-        return managerName;
-    }
-
-    public void setManagerName(String managerName) {
-        this.managerName = managerName;
-    }
-
-    public int getAssets() {
-        return assets;
-    }
-
-    public void setAssets(int assets) {
-        this.assets = assets;
-    }
 
     @Override
     public String toString() {
-        return "Team: " + getTeamName();
+        return "Team: ";
     }
 }

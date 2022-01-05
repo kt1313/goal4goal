@@ -5,6 +5,7 @@ import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.com.k1313.goal4goal.components.TimeComponent;
 import pl.com.k1313.goal4goal.domain.team.Tactics;
@@ -31,21 +32,10 @@ public class TeamController {
     @Autowired
     TacticsService tacticsService;
 
-    @Autowired
-    UserInformation userInformation;
-    @Autowired
-    TimeComponent timeComponent;
-
-//    @RequestMapping("/team")
-//    public String getPlayers(Model model) throws ExecutionControl.NotImplementedException {
-//        List<Tactics> allTactics = tacticsService.getAllTactics();
-//        model.addAttribute("tactics", allTactics);
-//        model.addAttribute("userInformation", userInformation);
-//        model.addAttribute("team", team);
-//        model.addAttribute("timeComponent", timeComponent);
-//        return "team";
-//    }
-
-
+    @GetMapping("/firstsquadplayers")
+    public String first11() {
+        this.teamService.setUpfirst11();
+        return "firstsquadplayers";
+    }
 }
 

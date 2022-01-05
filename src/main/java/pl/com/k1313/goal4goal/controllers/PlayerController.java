@@ -39,44 +39,23 @@ public class PlayerController {
         return "playerform";
     }
 
-//    @PostMapping("/firstsquadplayers")
-//    public String firstsquadplayers(Model model){
-//        List<Player> firstsquadplayers=this.playerService.findAllPlayers().stream()
-//                .filter(Player::isFirstSquadPlayer)
-//                .collect(Collectors.toList());
-//        model.addAttribute("firstsquadplayers", firstsquadplayers);
-//        System.out.println("?????");
-//        System.out.println(firstsquadplayers);
-//        System.out.println("?????");
-//        return "firstsquadplayers";
-//    }
-
     //obsluga powolan do 11
     //pobiera wszystkie checkboxy o nazwie firstsquadplayer i sprawdza czy tickniete
     //wtedy tworzy pierwsza 11
     @PostMapping("/firstsquadplayers")
     public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
 
-
         if (ids != null) {
             for (String idplayer : ids) {
-                System.out.println("------------------");
-                System.out.println(idplayer);//sprawdxzam id playera
                 long l = Long.parseLong(idplayer);
                 System.out.println(l);
                 this.playerService.getPlayerById(l).setFirstSquadPlayer(true);
                 System.out.println(playerService.getPlayerById(l));
-                System.out.println("*****************");
-                System.out.println("?????");
                 List<Player> firstsquadplayers = this.playerService.findAllPlayers().stream()
                         .filter(Player::isFirstSquadPlayer)
                         .collect(Collectors.toList());
                 System.out.println(firstsquadplayers);
                 model.addAttribute("firstsquadplayers", firstsquadplayers);
-                System.out.println("?????");
-                //do tej pory dziala, pobiera zaznaczonych i listuje w konsoli
-                //teraz ma zmienic flage firstSquadPlayer
-                //powinien uzyc editPlayer, ale wartość firstsquadplayer pobrac z checkboxa...
 
             }
             List<Player> first11 = this.playerService.findAllPlayers().stream()

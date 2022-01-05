@@ -36,7 +36,6 @@ public class PlayerService {
         this.repository.deleteById(id);
     }
 
-
     public Player getPlayerById(Long id) {
         return this.repository.getById(id);
     }
@@ -52,13 +51,6 @@ public class PlayerService {
 //                updatedPlayer.isFirstSquadPlayer());
         this.repository.save(byId);
     }
-
-//    //szuka playersow, ktorych position ma byc rozne od null i dodaje ich do listy pierwszej 11
-//    public List<Player> firstSquadPlayers(long id) {
-//        return this.repository.findAll().stream()
-//                .filter(player -> player.getFirstSquadPlayer().equals())
-//                .collect(Collectors.toList());
-//    }
 
     public void setFirstSquadPlayer(Long id) {
         Player player = this.repository.getById(id);
