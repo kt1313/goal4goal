@@ -28,6 +28,10 @@ public enum Position {
         this.position=position; this.number=number;
     }
 
+    public static String toString(Position playerPosition) {
+        return Position.toString(playerPosition);
+    }
+
     public String toString(){
         return this.position;
     }

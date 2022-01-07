@@ -10,8 +10,10 @@ import pl.com.k1313.goal4goal.controllers.dto.PlayerContractingDTO;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerUpdateDTO;
 import pl.com.k1313.goal4goal.domain.player.Player;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
+import pl.com.k1313.goal4goal.domain.team.TeamService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +27,9 @@ public class PlayerController {
     public PlayerController(PlayerService service) {
         this.playerService = service;
     }
+
+    @Autowired
+    public TeamService teamService;
 
     //localhost8080://players
     @GetMapping
@@ -42,29 +47,26 @@ public class PlayerController {
     //obsluga powolan do 11
     //pobiera wszystkie checkboxy o nazwie firstsquadplayer i sprawdza czy tickniete
     //wtedy tworzy pierwsza 11
-//    @PostMapping("/firstsquadplayers")
-//    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
-//
-//        if (ids != null) {
-//            for (String idplayer : ids) {
-//                long l = Long.parseLong(idplayer);
-//                System.out.println(l);
-//                this.playerService.getPlayerById(l).setFirstSquadPlayer(true);
-//                System.out.println(playerService.getPlayerById(l));
-//                List<Player> firstsquadplayers = this.playerService.findAllPlayers().stream()
-//                        .filter(Player::isFirstSquadPlayer)
-//                        .collect(Collectors.toList());
-//                System.out.println(firstsquadplayers);
-//                model.addAttribute("firstsquadplayers", firstsquadplayers);
-//
-//            }
-//            List<Player> first11 = this.playerService.findAllPlayers().stream()
-//                    .filter(Player::isFirstSquadPlayer).collect(Collectors.toList());
-//            System.out.println(first11);
-//        }
-//        return "firstsquadplayers";
-//
-//    }
+    //a potem tworzy tabele z wybranymi nazwiskami na odpowiednich pozycjach
+    @PostMapping("/firstsquadplayers")
+    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
+
+        List<Player> firstsquadplayers = new ArrayList<>();
+        if (ids != null) {
+            for (String idplayer : ids) {
+                long l = Long.parseLong(idplayer);
+                System.out.println(l);
+                this.playerService.getPlayerById(l).setFirstSquadPlayer(true);
+                firstsquadplayers.add(this.playerService.getPlayerById(l));
+                System.out.println(playerService.getPlayerById(l));
+            }
+            model.addAttribute("firstsquadplayers", firstsquadplayers);
+            String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
+            model.addAttribute("first11FinalTable", first11FinalTable);
+        }
+        return "firstsquadplayers";
+
+    }
 
     @PostMapping
     public String handleCreateNewPlayer
