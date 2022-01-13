@@ -54,7 +54,24 @@
             <td>RIGHT</td>
             </thead>
             <tbody>
-<!--            //kazda cell ma iterowac po graczachz 11 i jesli position==danejcell to .setVa-->
+<!--teraz kazda td ma miec wartosc z odpowiadajacej jej komorki tablicy first11-->
+
+<!--z 4programmers:-->
+<!--<table>-->
+<!--    <tr th:each="i: ${array}">-->
+<!--        <td th:each="item: ${j}">-->
+<!--            <span th:text="${item}"></span >-->
+<!--        </td>-->
+<!--    <tr>-->
+<!--</table>-->
+<table>
+    <tr th:each="i: ${first11FinalTable}">
+        <td th:each="j: ${i}">
+            <span th:text="${j}"></span>
+        </td>
+    </tr>
+</table>
+
             <tr th:each="player : ${firstsquadplayers}">
 
                 <td th:text="${player.firstName}"/>
