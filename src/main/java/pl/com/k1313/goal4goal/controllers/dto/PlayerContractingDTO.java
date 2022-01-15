@@ -19,5 +19,6 @@ public class PlayerContractingDTO {
     private final LocalDate birthDate;
     private final Position position;
     private final boolean firstSquadPlayer=false;
+    private final int attacking;
 
 }

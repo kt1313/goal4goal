@@ -18,7 +18,7 @@ public enum Position {
     LW("Left Winger", "11"),
     RF("Right Forward", "19"),
     CF("Centre Forward", "18"),
-    LF("Left Forward", "17");
+    LF("LeftForward", "17");
 
     private final String position;
     private final String number;

@@ -64,7 +64,6 @@ public class PlayerController {
         if (ids != null) {
             for (String idplayer : ids) {
                 long l = Long.parseLong(idplayer);
-//                System.out.println(l);
                 Player first11Player = this.playerService.getPlayerById(l);
                 System.out.println(first11Player.getPosition());
                 String first11PlayerPos = Position.toString(first11Player.getPosition());
@@ -73,10 +72,10 @@ public class PlayerController {
                 String first11PlayerLastName = first11Player.getLastName();
                 String first11PlayerFullName = first11PlayerFirstName + first11PlayerLastName;
                 System.out.println(")o)o)o)o)o)");
-                System.out.println(first11PlayerPos);
+                System.out.println(first11PlayerFullName + " " + first11PlayerPos);
                 System.out.println(")o)o)o)o)o)");
 
-                if (first11PlayerPos == "goalkeeper") {
+                if (first11PlayerPos == "Goalkeeper") {
                     Player goalkeeper = first11Player;
                     firstsquadplayers.add(goalkeeper);
                 } else if (first11PlayerPos == "rightWingback") {
@@ -115,17 +114,25 @@ public class PlayerController {
                 } else if (first11PlayerPos == "centreForward") {
                     Player centreForward = first11Player;
                     firstsquadplayers.add(centreForward);
-                } else if (first11PlayerPos == "leftForward") {
+                } else if (first11PlayerPos == "LeftForward") {
                     Player leftForward = first11Player;
                     firstsquadplayers.add(leftForward);
                 }
 //                    firstsquadplayers.add(this.playerService.getPlayerById(l));
 //                System.out.println(playerService.getPlayerById(l));
             }
-            for (Player p:firstsquadplayers
-                 ) {
-                System.out.println(p.getFirstName()+" "+p.getLastName());
+
+            for (Player p : firstsquadplayers
+            ) {
+                System.out.println(p.getFirstName() + " " + p.getLastName());
             }
+            //obliczanie ataku
+            int first111Attack = 0;
+            for (Player p : firstsquadplayers
+            ) {
+                first111Attack = +p.getAttacking();
+            }
+            System.out.println("Suma ataku pierwszej 11: " + first111Attack);
             model.addAttribute("firstsquadplayers", firstsquadplayers);
             String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
             model.addAttribute("first11FinalTable", first11FinalTable);

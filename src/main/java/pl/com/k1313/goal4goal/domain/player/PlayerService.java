@@ -28,7 +28,8 @@ public class PlayerService {
                 , playerDTO.getLastName()
                 , playerDTO.getBirthDate()
                 , playerDTO.getPosition()
-                , playerDTO.isFirstSquadPlayer());
+                , playerDTO.isFirstSquadPlayer()
+                , playerDTO.getAttacking());
         this.repository.save(newOne);
     }
 
@@ -43,11 +44,13 @@ public class PlayerService {
     public void update(PlayerUpdateDTO updatedPlayer) {
         Player byId = this.repository.getById(updatedPlayer.getId());
         byId.update(
-                updatedPlayer.getFirstName(),
-                updatedPlayer.getLastName(),
-                updatedPlayer.getBirthDate(),
-                updatedPlayer.getPosition()
-        ,updatedPlayer.isFirstSquadPlayer());
+                updatedPlayer.getFirstName()
+                , updatedPlayer.getLastName()
+                , updatedPlayer.getBirthDate()
+                , updatedPlayer.getPosition()
+                , updatedPlayer.isFirstSquadPlayer()
+                , updatedPlayer.getAttacking());
+
 //                updatedPlayer.isFirstSquadPlayer());
         this.repository.save(byId);
     }

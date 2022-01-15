@@ -20,9 +20,10 @@ public class Player {
     private String lastName;
     private LocalDate birthDate;
     private Position position;
-    //    private String firstSquadPlayer="false";
-//    @Column
+    //    @Column
     private boolean firstSquadPlayer;
+
+    private int attacking;
 
     public Player() {
 
@@ -40,17 +41,32 @@ public class Player {
         this.firstSquadPlayer = firstSquadPlayer;
     }
 
-
-    public void update(String firstName,
-                       String lastName, LocalDate birthDate,
-                       Position position
-            , boolean firstSquadPlayer
+    public Player(String firstName,
+                  String lastName, LocalDate birthDate,
+                  Position position,
+                  boolean firstSquadPlayer,
+                  int attacking
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.position = position;
         this.firstSquadPlayer = firstSquadPlayer;
+        this.attacking = attacking;
+    }
+
+
+    public void update(String firstName,
+                       String lastName, LocalDate birthDate,
+                       Position position
+            , boolean firstSquadPlayer, int attacking
+    ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.position = position;
+        this.firstSquadPlayer = firstSquadPlayer;
+        this.attacking=attacking;
     }
 
     public void setFirstSquadPlayer(boolean firstSquadPlayer) {
@@ -63,7 +79,7 @@ public class Player {
                 ", Nazwisko: " + lastName +
                 ", Urodzony: " + birthDate + ", " +
                 ", Position: " + position + ", 11: "
-                + firstSquadPlayer;
+                + "Atak: "+firstSquadPlayer;
     }
 
 }
