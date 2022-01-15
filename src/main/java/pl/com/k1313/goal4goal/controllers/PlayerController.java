@@ -66,52 +66,52 @@ public class PlayerController {
                 long l = Long.parseLong(idplayer);
                 Player first11Player = this.playerService.getPlayerById(l);
                 System.out.println(first11Player.getPosition());
-                String first11PlayerPos = Position.toString(first11Player.getPosition());
+                String first11PlayerPos = String.valueOf(first11Player.getPosition());
                 first11Player.setFirstSquadPlayer(true);
                 String first11PlayerFirstName = first11Player.getFirstName();
                 String first11PlayerLastName = first11Player.getLastName();
-                String first11PlayerFullName = first11PlayerFirstName + first11PlayerLastName;
+                String first11PlayerFullName = first11PlayerFirstName + " "+first11PlayerLastName;
                 System.out.println(")o)o)o)o)o)");
-                System.out.println(first11PlayerFullName + " " + first11PlayerPos);
+                System.out.println(first11PlayerFullName + " "+"ID: "+first11Player.getId()+" " + first11PlayerPos);
                 System.out.println(")o)o)o)o)o)");
 
                 if (first11PlayerPos == "Goalkeeper") {
                     Player goalkeeper = first11Player;
                     firstsquadplayers.add(goalkeeper);
-                } else if (first11PlayerPos == "rightWingback") {
+                } else if (first11PlayerPos == "RightWingback") {
                     Player rightWingback = first11Player;
                     firstsquadplayers.add(rightWingback);
-                } else if (first11PlayerPos == "rightCentreBack") {
+                } else if (first11PlayerPos == "RightCentreBack") {
                     Player rightCentreBack = first11Player;
                     firstsquadplayers.add(rightCentreBack);
-                } else if (first11PlayerPos == "centreBack") {
+                } else if (first11PlayerPos == "CentreBack") {
                     Player centreBack = first11Player;
                     firstsquadplayers.add(centreBack);
-                } else if (first11PlayerPos == "leftCentreBack") {
+                } else if (first11PlayerPos == "LeftCentreBack") {
                     Player leftCentreBack = first11Player;
                     firstsquadplayers.add(leftCentreBack);
-                } else if (first11PlayerPos == "leftWingback") {
+                } else if (first11PlayerPos == "LeftWingback") {
                     Player leftWingback = first11Player;
                     firstsquadplayers.add(leftWingback);
-                } else if (first11PlayerPos == "rightWinger") {
+                } else if (first11PlayerPos == "RightWinger") {
                     Player rightWinger = first11Player;
                     firstsquadplayers.add(rightWinger);
-                } else if (first11PlayerPos == "centreMidfielderDefending") {
+                } else if (first11PlayerPos == "CentreMidfielderDefending") {
                     Player centreMidfielderDefending = first11Player;
                     firstsquadplayers.add(centreMidfielderDefending);
-                } else if (first11PlayerPos == "centreMidfielder") {
+                } else if (first11PlayerPos == "CentreMidfielder") {
                     Player centreMidfielder = first11Player;
                     firstsquadplayers.add(centreMidfielder);
-                } else if (first11PlayerPos == "centreMidfielderAttacking") {
+                } else if (first11PlayerPos == "CentreMidfielderAttacking") {
                     Player centreMidfielderAttacking = first11Player;
                     firstsquadplayers.add(centreMidfielderAttacking);
-                } else if (first11PlayerPos == "leftWinger") {
+                } else if (first11PlayerPos == "LeftWinger") {
                     Player leftWingback = first11Player;
                     firstsquadplayers.add(leftWingback);
-                } else if (first11PlayerPos == "rightForward") {
+                } else if (first11PlayerPos == "RightForward") {
                     Player rightForward = first11Player;
                     firstsquadplayers.add(rightForward);
-                } else if (first11PlayerPos == "centreForward") {
+                } else if (first11PlayerPos == "CentreForward") {
                     Player centreForward = first11Player;
                     firstsquadplayers.add(centreForward);
                 } else if (first11PlayerPos == "LeftForward") {
@@ -121,18 +121,22 @@ public class PlayerController {
 //                    firstsquadplayers.add(this.playerService.getPlayerById(l));
 //                System.out.println(playerService.getPlayerById(l));
             }
-
+            // tworze X dla sprawdzania
+            int x = 1;
             for (Player p : firstsquadplayers
             ) {
-                System.out.println(p.getFirstName() + " " + p.getLastName());
+                System.out.println("poszczególni zawodnicy: " + x);
+                System.out.println(p.getFirstName() + " " + p.getLastName()+" "+p.getAttacking());
+                x++;
             }
             //obliczanie ataku
             int first111Attack = 0;
             for (Player p : firstsquadplayers
             ) {
-                first111Attack = +p.getAttacking();
+                first111Attack += p.getAttacking();
             }
             System.out.println("Suma ataku pierwszej 11: " + first111Attack);
+            System.out.println("---------KONIEC-------");
             model.addAttribute("firstsquadplayers", firstsquadplayers);
             String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
             model.addAttribute("first11FinalTable", first11FinalTable);
