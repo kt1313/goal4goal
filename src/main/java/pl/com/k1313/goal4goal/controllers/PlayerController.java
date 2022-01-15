@@ -10,6 +10,7 @@ import pl.com.k1313.goal4goal.controllers.dto.PlayerContractingDTO;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerUpdateDTO;
 import pl.com.k1313.goal4goal.domain.player.Player;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
+import pl.com.k1313.goal4goal.domain.player.Position;
 import pl.com.k1313.goal4goal.domain.team.TeamService;
 
 import javax.validation.Valid;
@@ -51,22 +52,87 @@ public class PlayerController {
     @PostMapping("/firstsquadplayers")
     public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
 
+//        np
+//        First11 {  Player leftWinger; Player goalkeeper; Player... }
+//        uzupełnic odpowiednio
+//        potem przesłać do templatki
+//        i w templatce już masz tabele
+//        czy ułożone odpowiednio dvy
+//        i dajesz sobie tylko w komorce w srodku po lewej np. <td th:id="leftwinger" th:value="first11.leftWinger.name"/>
+//
         List<Player> firstsquadplayers = new ArrayList<>();
         if (ids != null) {
             for (String idplayer : ids) {
                 long l = Long.parseLong(idplayer);
-                System.out.println(l);
-                this.playerService.getPlayerById(l).setFirstSquadPlayer(true);
-                firstsquadplayers.add(this.playerService.getPlayerById(l));
-                System.out.println(playerService.getPlayerById(l));
+//                System.out.println(l);
+                Player first11Player = this.playerService.getPlayerById(l);
+                System.out.println(first11Player.getPosition());
+                String first11PlayerPos = Position.toString(first11Player.getPosition());
+                first11Player.setFirstSquadPlayer(true);
+                String first11PlayerFirstName = first11Player.getFirstName();
+                String first11PlayerLastName = first11Player.getLastName();
+                String first11PlayerFullName = first11PlayerFirstName + first11PlayerLastName;
+                System.out.println(")o)o)o)o)o)");
+                System.out.println(first11PlayerPos);
+                System.out.println(")o)o)o)o)o)");
+
+                if (first11PlayerPos == "goalkeeper") {
+                    Player goalkeeper = first11Player;
+                    firstsquadplayers.add(goalkeeper);
+                } else if (first11PlayerPos == "rightWingback") {
+                    Player rightWingback = first11Player;
+                    firstsquadplayers.add(rightWingback);
+                } else if (first11PlayerPos == "rightCentreBack") {
+                    Player rightCentreBack = first11Player;
+                    firstsquadplayers.add(rightCentreBack);
+                } else if (first11PlayerPos == "centreBack") {
+                    Player centreBack = first11Player;
+                    firstsquadplayers.add(centreBack);
+                } else if (first11PlayerPos == "leftCentreBack") {
+                    Player leftCentreBack = first11Player;
+                    firstsquadplayers.add(leftCentreBack);
+                } else if (first11PlayerPos == "leftWingback") {
+                    Player leftWingback = first11Player;
+                    firstsquadplayers.add(leftWingback);
+                } else if (first11PlayerPos == "rightWinger") {
+                    Player rightWinger = first11Player;
+                    firstsquadplayers.add(rightWinger);
+                } else if (first11PlayerPos == "centreMidfielderDefending") {
+                    Player centreMidfielderDefending = first11Player;
+                    firstsquadplayers.add(centreMidfielderDefending);
+                } else if (first11PlayerPos == "centreMidfielder") {
+                    Player centreMidfielder = first11Player;
+                    firstsquadplayers.add(centreMidfielder);
+                } else if (first11PlayerPos == "centreMidfielderAttacking") {
+                    Player centreMidfielderAttacking = first11Player;
+                    firstsquadplayers.add(centreMidfielderAttacking);
+                } else if (first11PlayerPos == "leftWinger") {
+                    Player leftWingback = first11Player;
+                    firstsquadplayers.add(leftWingback);
+                } else if (first11PlayerPos == "rightForward") {
+                    Player rightForward = first11Player;
+                    firstsquadplayers.add(rightForward);
+                } else if (first11PlayerPos == "centreForward") {
+                    Player centreForward = first11Player;
+                    firstsquadplayers.add(centreForward);
+                } else if (first11PlayerPos == "leftForward") {
+                    Player leftForward = first11Player;
+                    firstsquadplayers.add(leftForward);
+                }
+//                    firstsquadplayers.add(this.playerService.getPlayerById(l));
+//                System.out.println(playerService.getPlayerById(l));
+            }
+            for (Player p:firstsquadplayers
+                 ) {
+                System.out.println(p.getFirstName()+" "+p.getLastName());
             }
             model.addAttribute("firstsquadplayers", firstsquadplayers);
             String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
             model.addAttribute("first11FinalTable", first11FinalTable);
         }
         return "firstsquadplayers";
-
     }
+
 
     @PostMapping
     public String handleCreateNewPlayer
