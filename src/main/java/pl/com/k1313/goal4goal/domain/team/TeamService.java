@@ -32,21 +32,21 @@ public class TeamService {
     public String[][] setUpFirst11(List <Player> firstsquadplayers) {
         String[][] first11Table = new String[5][4];
         first11Table[0][0]="0";
-        first11Table[0][1]="Right Wingback";
+        first11Table[0][1]="right Wingback";
         first11Table[0][2]="2";
         first11Table[0][3]="3";
         first11Table[1][0]="4";
         first11Table[1][1]="5";
         first11Table[1][2]="6";
         first11Table[1][3]="7";
-        first11Table[2][0]="Goalkeeper";
-        first11Table[2][1]="Centre Back";
-        first11Table[2][2]="Centre Midfielder";
-        first11Table[2][3]="11";
+        first11Table[2][0]="goalkeeper";
+        first11Table[2][1]="centreback";
+        first11Table[2][2]="centre Midfielder";
+        first11Table[2][3]="centre Forward";
         first11Table[3][0]="12";
         first11Table[3][1]="13";
         first11Table[3][2]="14";
-        first11Table[3][3]="Left Forward";
+        first11Table[3][3]="left Forward";
         first11Table[4][0]="17";
         first11Table[4][1]="18";
         first11Table[4][2]="19";
@@ -60,13 +60,16 @@ public class TeamService {
 //                    System.out.println("x x x x x x x x x");
 //                    System.out.println("x = " + x);
 //                    System.out.println("y = " + y);
-                    System.out.println(player.getFirstName() + " " + player.getLastName() + " " + player.getPosition());
-                    if (first11FinalTable[x][y] != null) {
+//                    System.out.println(player.getFirstName() + " "
+//                            + player.getLastName() + " " + player.getPosition());
+//                    System.out.println("first11FinalTable: "+first11FinalTable[x][y]);
+                    if (first11FinalTable[x][y]==null) {
                         Position playerPosition=player.getPosition();
-                        String playerPos=Position.toString(playerPosition);
-                        if (first11FinalTable[x][y].equals(playerPos)) {
+                        String playerPos=String.valueOf(playerPosition);
+//                        System.out.println(playerPos);
+                        if (first11Table[x][y]==playerPos) {
                             first11FinalTable[x][y] = player.getFirstName() + " " + player.getLastName();
-                            System.out.println(player);
+                            System.out.println("TeamService_setUpFirst11: "+player);
                         }
                     }
                 }

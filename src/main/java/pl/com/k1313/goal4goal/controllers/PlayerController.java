@@ -54,8 +54,8 @@ public class PlayerController {
     //pobiera wszystkie checkboxy o nazwie firstsquadplayer i sprawdza czy tickniete
     //wtedy tworzy pierwsza 11
     //a potem tworzy tabele z wybranymi nazwiskami na odpowiednich pozycjach
-//    @PostMapping("/firstsquadplayers")
-//    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
+    @PostMapping("/firstsquadplayers")
+    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
 ////
 //////        np
 //////        First11 {  Player leftWinger; Player goalkeeper; Player... }
@@ -66,24 +66,25 @@ public class PlayerController {
 //////        i dajesz sobie tylko w komorce w srodku po lewej np. <td th:id="leftwinger" th:value="first11.leftWinger.name"/>
 //////
 //////        na dwa sposoby, numer jeden Lista Playersow
-//        List<Player> firstsquadplayers = new ArrayList<>();
+        List<Player> firstsquadplayers = new ArrayList<>();
 //////        numer dwa, obiekt zawierajacy 11 graczy
 //        First11 first11 = new First11();
-//        Player playerNull = new Player(" ", " ", LocalDate.parse("2000-01-01"),null , false);
-//        if (ids != null) {
-//            for (String idplayer : ids) {
-//                long l = Long.parseLong(idplayer);
-//                Player first11Player = this.playerService.getPlayerById(l);
-//                System.out.println("Player position: "+first11Player.getPosition());
-//                String first11PlayerPos = String.valueOf(first11Player.getPosition());
-//                first11Player.setFirstSquadPlayer(true);
-//                String first11PlayerFirstName = first11Player.getFirstName();
-//                String first11PlayerLastName = first11Player.getLastName();
-//                String first11PlayerFullName = first11PlayerFirstName + " " + first11PlayerLastName;
-//                System.out.println(")o)o)o)o)o)");
-//                System.out.println(first11PlayerFullName + " " + "ID: " + first11Player.getId() + " " + first11PlayerPos);
-//                System.out.println(")o)o)o)o)o)");
-////
+        Player playerNull = new Player(" ", " ", LocalDate.parse("2000-01-01"),null , false);
+        if (ids != null) {
+            for (String idplayer : ids) {
+                long l = Long.parseLong(idplayer);
+                Player first11Player = this.playerService.getPlayerById(l);
+                System.out.println("Player position: "+first11Player.getPosition());
+                String first11PlayerPos = String.valueOf(first11Player.getPosition());
+                first11Player.setFirstSquadPlayer(true);
+                String first11PlayerFirstName = first11Player.getFirstName();
+                String first11PlayerLastName = first11Player.getLastName();
+                String first11PlayerFullName = first11PlayerFirstName + " " + first11PlayerLastName;
+                System.out.println(")o)o)o)o)o)");
+                System.out.println(first11PlayerFullName + " " + "ID: " + first11Player.getId() + " " + first11PlayerPos);
+                System.out.println(")o)o)o)o)o)");
+                firstsquadplayers.add(first11Player);
+
 ////                if (first11PlayerPos == "goalkeeper") {
 ////                    Player goalkeeper = first11Player;
 ////                    firstsquadplayers.add(goalkeeper);
@@ -238,34 +239,36 @@ public class PlayerController {
 //                            }
 //                        }
 //                    }
-//                }
-//            }
+                }
+            }
 //
-//            model.addAttribute("firstsquadplayers", firstsquadplayers);
-//            String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
-//            model.addAttribute("first11FinalTable", first11FinalTable);
-//            System.out.println("-o-o-o-o-o-o-");
-//            System.out.println(firstsquadplayers);
-//            System.out.println("-o-o-o-o-o-o-");
+            model.addAttribute("firstsquadplayers", firstsquadplayers);
+            String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
+            model.addAttribute("first11FinalTable", first11FinalTable);
+            System.out.println("-o-o-o-o-o-o-");
+            System.out.println(firstsquadplayers);
+            System.out.println("-o-o-o-o-o-o-");
 //        }
-//        return "firstsquadplayers";
-//    }
-
-
-
-    @PostMapping("/firstsquadplayers")
-    public String handleFirst11(@Valid First11DTO first11DTO,
-                                BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            model.addAttribute("errors", result.getAllErrors());
-            return "players";
-        } else {
-//            this.teamService.createFirst11(first11DTO);
-            System.out.println("tutaj powinno cos byc--------------------------------");
-            System.out.println();
-            return "firstsquadplayers";
-        }
+        return "firstsquadplayers";
     }
+
+
+
+//    @PostMapping("/firstsquadplayers")
+//    public String handleFirst11(@Valid First11DTO first11DTO,
+//                                BindingResult result, Model model) {
+//        if (result.hasErrors()) {
+//            model.addAttribute("errors", result.getAllErrors());
+//            return "players";
+//        } else {
+////            this.teamService.createFirst11(first11DTO);
+//            System.out.println("tutaj powinno cos byc--------------------------------");
+//            System.out.println(first11DTO);
+//            System.out.println("tutaj powinno cos byc--------------------------------");
+//
+//            return "firstsquadplayers";
+//        }
+//    }
 
     @PostMapping
     public String handleCreateNewPlayer
