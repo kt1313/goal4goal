@@ -1,27 +1,21 @@
 package pl.com.k1313.goal4goal.domain.team;
 
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Data
+@Entity
 public class Team {
 
-    private String teamName="Odra Malczyce";
-    private String managerName="Klmx1313";
-    private int assets=1000000;
-    //tu bedzie lista uzywanych taktyk i ich poziom
-    String[][] first11=new String[5][4];
-
-    public Team() {
-   }
-
-
-
-    @Override
-    public String toString() {
-        return "Team: "+first11;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 }

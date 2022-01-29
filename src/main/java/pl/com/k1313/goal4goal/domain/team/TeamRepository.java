@@ -11,6 +11,8 @@ import java.util.Collection;
 import java.util.Map;
 
 @Repository
-public interface TeamRepository extends JpaRepository<Player,Long> {
+public interface TeamRepository
+        extends JpaRepository<Player,Long>
+{
 
 }

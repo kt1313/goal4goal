@@ -20,10 +20,11 @@ public class Player {
     private String lastName;
     private LocalDate birthDate;
     private Position position;
-    //    @Column
+
     private boolean firstSquadPlayer;
 
     private int attacking;
+
 
     public Player() {
 
@@ -56,6 +57,8 @@ public class Player {
     }
 
 
+
+
     public void update(String firstName,
                        String lastName, LocalDate birthDate,
                        Position position
@@ -78,8 +81,8 @@ public class Player {
         return "Imię: " + firstName +
                 ", Nazwisko: " + lastName +
                 ", Urodzony: " + birthDate + ", " +
-                ", Position: " + position + ", 11: "
-                + "Atak: "+firstSquadPlayer;
+                ", Position: " + position +
+                ", 11: " +firstSquadPlayer;
     }
 
 }

@@ -39,47 +39,47 @@
 
 <div class="container">
 
-    <form th:action="@{/team/firstsquadplayers}" method="post">
-    <h4 align="center" th>FIRST SQUAD: </h4>
-    <div>
-        <br>
-        <p th:align="center">FIRST SQUAD</p>
+    <form th:action="@{/players/firstsquadplayers}" method="post">
+        <h4 align="center" th>FIRST SQUAD: </h4>
+        <div>
+            <br>
+            <p th:align="center">FIRST SQUAD</p>
 
-        <table class="table" th:name="first11">
-            <thead>
-            <td>LEFT</td>
-            <td>LEFT_TO_CENTER</td>
-            <td>CENTER</td>
-            <td>RIGHT_TO_CENTER</td>
-            <td>RIGHT</td>
+            <table class="table" table-striped th:name="first11">
+            <thead class="thead-dark">
+            <tr>
+                <td>LEFT</td>
+                <td>LEFT_TO_CENTER</td>
+                <td>CENTER</td>
+                <td>RIGHT_TO_CENTER</td>
+                <td>RIGHT</td>
+            </tr>
             </thead>
             <tbody>
-<!--teraz kazda td ma miec wartosc z odpowiadajacej jej komorki tablicy first11-->
+                <!--teraz kazda td ma miec wartosc z odpowiadajacej jej komorki tablicy first11-->
+                <!--PAWEL:-->
+                <tr>
+                    <td th:id="line1cell1" th:text="_11_"/>
+                    <td th:id="line1cell2" th:text="_12_"/>
+                    <td th:id="line1cell3" th:text="golkiper_imie"/>
+                    <td th:id="line1cell4" th:text="_14_"/>
+                    <td th:id="line1cell5" th:text="_15_"/>
+                    <!--                        <td th:id="goalkeeper" th:value=${firstsquadplayers.goalkeeper}/>-->
 
-<!--z 4programmers:-->
-<!--<table>-->
-<!--    <tr th:each="i: ${array}">-->
-<!--        <td th:each="item: ${j}">-->
-<!--            <span th:text="${item}"></span >-->
-<!--        </td>-->
-<!--    <tr>-->
-<!--</table>-->
-<table>
-    <tr th:each="i: ${first11FinalTable}">
-        <td th:each="j: ${i}">
-            <span th:text="${j}"></span>
-        </td>
-    </tr>
-</table>
-
-            <tr th:each="player : ${firstsquadplayers}">
-
-                <td th:text="${player.firstName}"/>
-                <td th:text="${player.lastName}"/>
-            </tr>
+                </tr>
+                <tr>
+                    <td th:id="line2cell1" th:text="_21_"/>
+                    <td th:id="line2cell2" th:text="_22_"/>
+                    <td th:id="line2cell3" th:text="srodkowy_obronca"/>
+                    <!--                        <td th:id="goalkeeper" th:value=${firstsquadplayers.goalkeeper}/>-->
+                    <td th:id="line2cell4" th:text="_24_"/>
+                    <td th:id="line2cell5" th:text="_25_"/>
+                </tr>
             </tbody>
-        </table>
-    </div>
+
+            </tbody>
+            </table>
+        </div>
     </form>
 </div>
 </body>

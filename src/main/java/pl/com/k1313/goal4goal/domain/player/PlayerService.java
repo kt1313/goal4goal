@@ -2,8 +2,11 @@ package pl.com.k1313.goal4goal.domain.player;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.com.k1313.goal4goal.controllers.dto.First11DTO;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerContractingDTO;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerUpdateDTO;
+//import pl.com.k1313.goal4goal.domain.team.First11;
+import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,8 @@ import java.util.stream.Collectors;
 public class PlayerService {
 
     private PlayerRepository repository;
+    private TeamRepository teamRepository;
+
 
     @Autowired
     public PlayerService(PlayerRepository repository) {

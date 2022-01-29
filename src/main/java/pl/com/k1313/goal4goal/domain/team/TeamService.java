@@ -4,6 +4,7 @@ import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Service;
+import pl.com.k1313.goal4goal.controllers.dto.First11DTO;
 import pl.com.k1313.goal4goal.domain.player.Player;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
 import pl.com.k1313.goal4goal.domain.player.Position;
@@ -73,4 +74,14 @@ public class TeamService {
         }
         return first11FinalTable;
     }
+
+//    public void createFirst11(First11DTO first11DTO) {
+//        First11 newFirst11 = new First11(first11DTO.getGoalkeeper(),
+//                first11DTO.getRightWingback(),
+//                first11DTO.getRightCentreback(),
+//                first11DTO.getCentreback());
+//        this.teamRepository.save(newFirst11);
+//        System.out.println("8888888888888");
+//        System.out.println(newFirst11);
+//    }
 }

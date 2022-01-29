@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.com.k1313.goal4goal.domain.team.Team;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
 import pl.com.k1313.goal4goal.domain.team.TacticsService;
+import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 import pl.com.k1313.goal4goal.domain.team.TeamService;
 
 @Controller
@@ -21,7 +22,7 @@ public class TeamController {
     TeamService teamService;
 
     @Autowired
-    Team team;
+    TeamRepository teamRepository;
 
     @Autowired
     TacticsService tacticsService;
