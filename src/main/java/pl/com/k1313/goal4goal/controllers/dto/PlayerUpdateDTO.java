@@ -20,6 +20,8 @@ public class PlayerUpdateDTO {
     private final int attacking;
 
 
+
+
 }
 
 
