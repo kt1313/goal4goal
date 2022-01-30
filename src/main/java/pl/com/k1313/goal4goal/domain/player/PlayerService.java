@@ -56,13 +56,27 @@ public class PlayerService {
                 , updatedPlayer.isFirstSquadPlayer()
                 , updatedPlayer.getAttacking());
 
-//                updatedPlayer.isFirstSquadPlayer());
         this.repository.save(byId);
     }
 
-    public void setFirstSquadPlayer(Long id) {
-        Player player = this.repository.getById(id);
+//    public void setFirstSquadPlayer(Long id) {
+//        Player player = this.repository.getById(id);
+//
+//    }
 
+    public List<Player> createFirst11(List<String> ids) {
+        List<Player> firstsquadplayers = new ArrayList<>();
+
+        if (ids != null) {
+            for (String idplayer : ids) {
+                long l = Long.parseLong(idplayer);
+                Player first11Player = getPlayerById(l);
+                first11Player.setFirstSquadPlayer(true);
+
+                firstsquadplayers.add(first11Player);
+            }
+        }
+        return firstsquadplayers;
     }
 }
 

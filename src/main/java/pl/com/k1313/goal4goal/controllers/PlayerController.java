@@ -6,22 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.com.k1313.goal4goal.controllers.dto.First11DTO;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerContractingDTO;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerUpdateDTO;
 import pl.com.k1313.goal4goal.domain.player.Player;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
-import pl.com.k1313.goal4goal.domain.player.Position;
-//import pl.com.k1313.goal4goal.domain.team.First11;
-//import pl.com.k1313.goal4goal.domain.team.First11;
+
 import pl.com.k1313.goal4goal.domain.team.TeamService;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Controller
@@ -56,25 +49,10 @@ public class PlayerController {
     //a potem tworzy tabele first11FinalTable z wybranymi nazwiskami na odpowiednich pozycjach
     @PostMapping("/firstsquadplayers")
     public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
-
-        List<Player> firstsquadplayers = new ArrayList<>();
         if (ids != null) {
-            for (String idplayer : ids) {
-                long l = Long.parseLong(idplayer);
-                Player first11Player = this.playerService.getPlayerById(l);
-                System.out.println("Player position: "+first11Player.getPosition());
-                String first11PlayerPos = String.valueOf(first11Player.getPosition());
-                first11Player.setFirstSquadPlayer(true);
-                String first11PlayerFirstName = first11Player.getFirstName();
-                String first11PlayerLastName = first11Player.getLastName();
-                String first11PlayerFullName = first11PlayerFirstName + " " + first11PlayerLastName;
-                System.out.println(")o)o)o)o)o)");
-                System.out.println(first11PlayerFullName + " " + "ID: " + first11Player.getId() + " " + first11PlayerPos);
-                System.out.println(")o)o)o)o)o)");
-                firstsquadplayers.add(first11Player);
 
-                }
-            }
+            List<Player> firstsquadplayers;
+            firstsquadplayers = this.playerService.createFirst11(ids);
 
             model.addAttribute("firstsquadplayers", firstsquadplayers);
             String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
@@ -83,9 +61,11 @@ public class PlayerController {
             System.out.println(firstsquadplayers);
             System.out.println("-o-o-o-o-o-o-");
 
-        return "firstsquadplayers";
+            return "firstsquadplayers";
+        } else {
+            return "redirect:/players";
+        }
     }
-
 
     @PostMapping
     public String handleCreateNewPlayer
