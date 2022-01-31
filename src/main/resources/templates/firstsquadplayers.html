@@ -36,110 +36,114 @@
     </div>
 </nav>
 <!--/.Navbar -->
+<div class="bg-image"
+     style="background-image:
+     url('https://image.shutterstock.com/image-vector/football-field-3d-background-vector-260nw-194264681.jpg');
+                 background-repeat: no-repeat; background-size: cover;
+                 background-position: center center; height: 100vh">
+    <div class="container">
 
-<div class="container">
-
-    <form th:action="@{/players/firstsquadplayers}" method="post">
-        <br><br>
-        <h4 align="center" th>FIRST SQUAD: </h4>
-        <div>
+        <form th:action="@{/players/firstsquadplayers}" method="post">
             <br>
-            <h5>Actual Tactics: * * * * *___* * *</h5>
-            <br>
-<!--            <style>-->
-<!--                tr { background: #e3f2fd; }-->
-<!--                td:hover {background:#d0e9fb;}-->
+            <h4 align="left" th>FIRST SQUAD: </h4>
+            <div>
+                <table style="table-layout: fixed; width: 100%;  text-align: center"
+                       class="table flex-row borderless "
+                       th:name="first11">
+                    <!--                    <thead class="table-dark" style="font-weight: bold">-->
+                    <!--                    <tr>-->
+                    <!--                        <td>RIGHT</td>-->
+                    <!--                        <td>RIGHT_TO_CENTER</td>-->
+                    <!--                        <td>CENTER</td>-->
+                    <!--                        <td>LEFT_TO_CENTER</td>-->
+                    <!--                        <td>LEFT</td>-->
+                    <!--                    </tr>-->
+                    <!--                    </thead>-->
+                    <tbody style="font-weight: bold; font-size: larger">
+                    <!--            dopasowuje pozycje gracza z pierwszej 11 do odpowiedniego-->
+                    <!--            miejsca na boisku-->
 
-<!--            </style>-->
-            <table style="table-layout: fixed; width: 100%;  text-align: center"
-                   class="table flex-row table-striped table-bordered border-top
-                    border-bottom border-left border-right border-light"
-                   th:name="first11">
-                <thead class="table-dark" style="font-weight: bold">
-                <tr>
-                    <td>RIGHT</td>
-                    <td>RIGHT_TO_CENTER</td>
-                    <td>CENTER</td>
-                    <td>LEFT_TO_CENTER</td>
-                    <td>LEFT</td>
-                </tr>
-                </thead>
-                <tbody>
-                <!--            dopasowuje pozycje gracza z pierwszej 11 do odpowiedniego-->
-                <!--            miejsca na boisku-->
+                    <tr style="height: 100px">
+                        <td style="width: 20%;" th:id="line1cell1" th:text=${first11FinalTable[0][0]}
+                            class="table-hover"/>
+                        <td style="width: 20%;" th:id="line1cell2" th:text=${first11FinalTable[1][0]}
+                            class="table-hover"/>
+                        <td style="width: 20%;" th:id="goalkeeper" th:text=${first11FinalTable[2][0]}
+                            class="table-hover"/>
+                        <td style="width: 20%;" th:id="line1cell4" th:text=${first11FinalTable[3][0]}
+                            class="table-hover"/>
+                        <td style="width: 20%;" th:id="line1cell5" th:text=${first11FinalTable[4][0]}
+                            class="table-hover"/>
 
-                <tr style="height: 80px">
-                    <td style="width: 20%;" th:id="line1cell1" th:text=${first11FinalTable[0][0]} class="table-hover"/>
-                    <td style="width: 20%;" th:id="line1cell2" th:text=${first11FinalTable[1][0]} class="table-hover"/>
-                    <td style="width: 20%;" th:id="goalkeeper" th:text=${first11FinalTable[2][0]} class="table-hover"/>
-                    <td style="width: 20%;" th:id="line1cell4" th:text=${first11FinalTable[3][0]} class="table-hover"/>
-                    <td style="width: 20%;" th:id="line1cell5" th:text=${first11FinalTable[4][0]} class="table-hover"/>
+                    </tr>
+                    <tr style="height: 80px">
+                        <td th:id="rightWingback" th:text=${first11FinalTable[0][1]}/>
+                        <td th:id="rightCentreback" th:text=${first11FinalTable[1][1]}/>
+                        <td th:id="centreback" th:text=${first11FinalTable[2][1]}/>
+                        <td th:id="leftCentreback" th:text=${first11FinalTable[3][1]}/>
+                        <td th:id="leftWingback" th:text=${first11FinalTable[4][1]}/>
+                    </tr>
+                    <tr style="height: 80px">
+                        <td th:id="rightWinger" th:text=${first11FinalTable[0][2]}/>
+                        <td th:id="centreMidfielderDefending" th:text=${first11FinalTable[1][2]}/>
+                        <td th:id="centreMidfielder" th:text=${first11FinalTable[2][2]}/>
+                        <td th:id="centreMidfielderAttacking" th:text=${first11FinalTable[3][2]}/>
+                        <td th:id="leftWinger" th:text=${first11FinalTable[4][2]}/>
+                    </tr>
+                    <tr style="height: 80px">
+                        <td th:id="line4cell1" th:text=${first11FinalTable[0][3]}/>
+                        <td th:id="rightForward" th:text=${first11FinalTable[1][3]}/>
+                        <td th:id="centreForward" th:text=${first11FinalTable[2][3]}/>
+                        <td th:id="leftForward" th:text=${first11FinalTable[3][3]}/>
+                        <td th:id="line4cell5" th:text=${first11FinalTable[4][3]}/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br> <br> <br> <br> <br> <h5>Actual Tactics: * * * * *___* * *</h5><br> <br>
 
-                </tr>
-                <tr style="height: 80px">
-                    <td th:id="rightWingback" th:text=${first11FinalTable[0][1]}/>
-                    <td th:id="rightCentreback" th:text=${first11FinalTable[1][1]}/>
-                    <td th:id="centreback" th:text=${first11FinalTable[2][1]}/>
-                    <td th:id="leftCentreback" th:text=${first11FinalTable[3][1]}/>
-                    <td th:id="leftWingback" th:text=${first11FinalTable[4][1]}/>
-                </tr>
-                <tr style="height: 80px">
-                    <td th:id="rightWinger" th:text=${first11FinalTable[0][2]}/>
-                    <td th:id="centreMidfielderDefending" th:text=${first11FinalTable[1][2]}/>
-                    <td th:id="centreMidfielder" th:text=${first11FinalTable[2][2]}/>
-                    <td th:id="centreMidfielderAttacking" th:text=${first11FinalTable[3][2]}/>
-                    <td th:id="leftWinger" th:text=${first11FinalTable[4][2]}/>
-                </tr>
-                <tr style="height: 80px">
-                    <td th:id="line4cell1" th:text=${first11FinalTable[0][3]}/>
-                    <td th:id="rightForward" th:text=${first11FinalTable[1][3]}/>
-                    <td th:id="centreForward" th:text=${first11FinalTable[2][3]}/>
-                    <td th:id="leftForward" th:text=${first11FinalTable[3][3]}/>
-                    <td th:id="line4cell5" th:text=${first11FinalTable[4][3]}/>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <table style="table-layout: fixed; width: 100%;  text-align: left"
-                   th:name="first11footer">
-                <tr>
-                    <td>
-                        <div style="border-color: #e7f4fd">
-                            <label style="width: 25%" for="choosetactics"><h5>Set Up Tactics</h5></label><br>
-                            <p></p>
-                            <select style="width: max-content" name="tactics" class="form-control" id="choosetactics"
+            <div>
+                <table style="table-layout: fixed; width: 100%;  text-align: left"
+                       th:name="first11footer">
+                    <tr>
+                        <td>
+                            <div style="border-color: #e7f4fd">
+                                <label style="width: 25%" for="choosetactics" hidden>
+                                    <h5>Set Up Tactics</h5></label><br>
+                                <select style="width: max-content" name="tactics" class="form-control"
+                                        id="choosetactics"
+                                        required>
+                                    <option>Pressing</option>
+                                    <option>Counter Attack</option>
+                                    <option>Long Balls</option>
+                                    <option>Ball Possessing</option>
+                                </select>
+                                <p></p>
+                                <input align="right" type="submit" class="btn-primary" value="Set Up New Tactics"/><br>
+                            </div>
+                        </td>
+                        <td>
+                            <label style="width: 25%" for="checkformations" hidden>
+                                <h5>Formation Pts</h5></label><br>
+                            <select style="width: max-content" name="formationsvalue"
+                                    class="form-control" id="checkformations"
                                     required>
-                                <option>Pressing</option>
-                                <option>Counter Attack</option>
-                                <option>Long Balls</option>
-                                <option>Ball Possessing</option>
+                                <option>Defence</option>
+                                <option>Midfield</option>
+                                <option>Attacking</option>
                             </select>
                             <p></p>
-                            <input align="right" type="submit" class="btn-primary" value="Set Up"/><br>
-                        </div>
-                    </td>
-                    <td>
-                        <label style="width: 25%" for="checkformations"><h5>Formation Pts</h5></label><br>
-                        <p></p>
-                        <select style="width: max-content" name="formationsvalue"
-                                class="form-control" id="checkformations"
-                                required>
-                            <option>Defence</option>
-                            <option>Midfield</option>
-                            <option>Attacking</option>
-                        </select>
-                        <p></p>
-                        <input type="submit" class="btn-primary" value="Check"/><br>
-                    </td>
-                </tr>
-                <p></p>
-                <caption>
-                    <a th:href="@{/team/tactics/}">Change Tactics Settings</a>
-                </caption>
-            </table>
-        </div>
-    </form>
+                            <input type="submit" class="btn-primary" value="Check Formation Pts"/><br>
+                        </td>
+                    </tr>
+                    <p></p>
+                    <caption>
+                        <a th:href="@{/team/tactics/}">Change Tactics Settings</a>
+                    </caption>
+                </table>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

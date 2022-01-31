@@ -22,9 +22,6 @@ public class TeamService {
     private TeamRepository teamRepository;
 
     @Autowired
-    private PlayerService playerService;
-
-    @Autowired
     public TeamService(TeamRepository teamRepository) {
         this.teamRepository = teamRepository;
     }
