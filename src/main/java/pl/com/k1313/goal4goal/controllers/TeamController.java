@@ -15,11 +15,13 @@ import pl.com.k1313.goal4goal.domain.team.TeamService;
 @RequestMapping("/team")
 public class TeamController {
 
+private TeamService teamService;
+
     @Autowired
     PlayerService playerService;
 
     @Autowired
-    TeamService teamService;
+    public TeamController(TeamService teamService){this.teamService=teamService;}
 
     @Autowired
     TeamRepository teamRepository;

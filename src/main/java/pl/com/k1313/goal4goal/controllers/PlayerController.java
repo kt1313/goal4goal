@@ -20,6 +20,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/players")
 public class PlayerController {
+
     private PlayerService playerService;
 
     @Autowired

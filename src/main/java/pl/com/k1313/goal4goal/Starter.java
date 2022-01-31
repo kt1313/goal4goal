@@ -7,6 +7,7 @@ import pl.com.k1313.goal4goal.domain.player.PlayerRepository;
 import pl.com.k1313.goal4goal.domain.player.PlayerTaskRepository;
 import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 import pl.com.k1313.goal4goal.domain.player.PlayerTaskService;
+import pl.com.k1313.goal4goal.domain.team.TeamService;
 
 @Component
 public class Starter implements CommandLineRunner {
@@ -22,6 +23,9 @@ public class Starter implements CommandLineRunner {
 
     @Autowired
     TeamRepository teamRepository;
+
+    @Autowired
+    TeamService teamService;
 
     @Override
     public void run(String... args) throws Exception {
