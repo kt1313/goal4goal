@@ -2,8 +2,11 @@ package pl.com.k1313.goal4goal.domain.team;
 
 import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.json.GsonBuilderUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import pl.com.k1313.goal4goal.controllers.PlayerController;
 import pl.com.k1313.goal4goal.controllers.dto.First11DTO;
 import pl.com.k1313.goal4goal.domain.player.Player;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
@@ -15,11 +18,13 @@ import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 @Service
 public class TeamService {
 
     private TeamRepository teamRepository;
+
+    @Autowired
+    private PlayerController playerController;
 
     @Autowired
     public TeamService(TeamRepository teamRepository) {

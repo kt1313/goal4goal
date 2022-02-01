@@ -33,7 +33,7 @@ public class PlayerController {
 
     //localhost8080://players
     @GetMapping
-    public String guests(Model model) {
+    public String players(Model model) {
         model.addAttribute("players",
                 this.playerService.findAllPlayers());
         return "players";
@@ -44,29 +44,6 @@ public class PlayerController {
         return "playerform";
     }
 
-    //obsluga powolan do 11
-    //pobiera wszystkie checkboxy o nazwie firstsquadplayer i sprawdza czy tickniete
-    //wtedy tworzy pierwsza 11
-    //a potem tworzy tabele first11FinalTable z wybranymi nazwiskami na odpowiednich pozycjach
-    @PostMapping("/firstsquadplayers")
-    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
-        if (ids != null) {
-
-            List<Player> firstsquadplayers;
-            firstsquadplayers = this.playerService.createFirst11(ids);
-
-            model.addAttribute("firstsquadplayers", firstsquadplayers);
-            String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
-            model.addAttribute("first11FinalTable", first11FinalTable);
-            System.out.println("-o-o-o-o-o-o-");
-            System.out.println(firstsquadplayers);
-            System.out.println("-o-o-o-o-o-o-");
-
-            return "firstsquadplayers";
-        } else {
-            return "redirect:/players";
-        }
-    }
 
     @PostMapping
     public String handleCreateNewPlayer
@@ -101,6 +78,33 @@ public class PlayerController {
         this.playerService.update(updatedPlayer);
         return "redirect:/players";
     }
+
+    //obsluga powolan do 11
+    //pobiera wszystkie checkboxy o nazwie firstsquadplayer i sprawdza czy tickniete
+    //wtedy tworzy pierwsza 11
+    //a potem tworzy tabele first11FinalTable z wybranymi nazwiskami na odpowiednich pozycjach
+    @PostMapping("/firstsquadplayers")
+    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
+        if (ids != null) {
+
+            List<Player> firstsquadplayers;
+            firstsquadplayers = this.playerService.createFirst11(ids);
+
+            model.addAttribute("firstsquadplayers", firstsquadplayers);
+            String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
+            model.addAttribute("first11FinalTable", first11FinalTable);
+            System.out.println("-o-o-o-o-o-o-");
+            System.out.println(firstsquadplayers);
+            System.out.println("-o-o-o-o-o-o-");
+
+            return "firstsquadplayers";
+        } else {
+            return "redirect:/players";
+        }
+    }
+
+
+
 
 
 }
