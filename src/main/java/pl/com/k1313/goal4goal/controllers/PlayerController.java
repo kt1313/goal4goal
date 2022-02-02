@@ -84,7 +84,7 @@ public class PlayerController {
     //wtedy tworzy pierwsza 11
     //a potem tworzy tabele first11FinalTable z wybranymi nazwiskami na odpowiednich pozycjach
     @PostMapping("/firstsquadplayers")
-    public String handleFirstSquad(@RequestParam("firstSquadPlayer") List<String> ids, Model model) {
+    public String handleFirstSquad(@RequestParam(value = "firstSquadPlayer", required = false) List<String> ids, Model model) {
         if (ids != null) {
 
             List<Player> firstsquadplayers;
