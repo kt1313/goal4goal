@@ -32,6 +32,7 @@ public class PlayerController {
     public TeamService teamService;
 
     //localhost8080://players
+    //unit test done- not working
     @GetMapping
     public String players(Model model) {
         model.addAttribute("players",
@@ -59,6 +60,7 @@ public class PlayerController {
         }
     }
 
+    //unit test done-  working
     @GetMapping("/delete/{id}")
     public String removePlayer(@PathVariable("id") Long id) {
         this.playerService.removeById(id);
@@ -72,13 +74,15 @@ public class PlayerController {
         model.addAttribute("player", player);
         return "managePlayer";
     }
-
+    //unit test done - not working - w update "byId" jest null..
     @PostMapping("/managePlayer")
     public String editPlayer(PlayerUpdateDTO updatedPlayer) {
         this.playerService.update(updatedPlayer);
         return "redirect:/players";
     }
 
+
+    //unit test done- not working
     //obsluga powolan do 11
     //pobiera wszystkie checkboxy o nazwie firstsquadplayer i sprawdza czy tickniete
     //wtedy tworzy pierwsza 11
@@ -93,9 +97,6 @@ public class PlayerController {
             model.addAttribute("firstsquadplayers", firstsquadplayers);
             String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
             model.addAttribute("first11FinalTable", first11FinalTable);
-            System.out.println("-o-o-o-o-o-o-");
-            System.out.println(firstsquadplayers);
-            System.out.println("-o-o-o-o-o-o-");
 
             return "firstsquadplayers";
         } else {

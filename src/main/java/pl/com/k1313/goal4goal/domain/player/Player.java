@@ -57,8 +57,6 @@ public class Player {
     }
 
 
-
-
     public void update(String firstName,
                        String lastName, LocalDate birthDate,
                        Position position

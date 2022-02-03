@@ -47,7 +47,9 @@ public class PlayerService {
     }
 
     public void update(PlayerUpdateDTO updatedPlayer) {
-        Player byId = this.repository.getById(updatedPlayer.getId());
+        Player byId = this.repository
+                .getById(updatedPlayer.getId());
+        System.out.println(byId.getId());
         byId.update(
                 updatedPlayer.getFirstName()
                 , updatedPlayer.getLastName()
