@@ -142,7 +142,7 @@ public class PlayerControllerTest {
         Player playerBefore = new Player("Tom", "Klmx", LocalDate.parse("1976-05-08")
                 , Position.GK, false);
         Player playerAfter = new Player(
-                 "Tom", "After"
+                "Tom", "After"
                 , LocalDate.parse("1976-05-08")
                 , Position.GK
                 , false);
@@ -159,19 +159,27 @@ public class PlayerControllerTest {
         playerService.update(playerToModifyDTO);
         Player playerUpdated = playerService.getPlayerById((long) 21);
         //then
-        assertEquals(playerAfter,playerUpdated);
+        assertEquals(playerAfter, playerUpdated);
     }
-@Test
-public void createNew Player
-//    public void createNewPlayer(PlayerContractingDTO playerDTO) {
-//        Player newOne = new Player(playerDTO.getFirstName()
-//                , playerDTO.getLastName()
-//                , playerDTO.getBirthDate()
-//                , playerDTO.getPosition()
-//                , playerDTO.isFirstSquadPlayer()
-//                , playerDTO.getAttacking());
-//        this.repository.save(newOne);
-//    }
+
+    @Test
+    public void createNewPlayerTest() {
+
+        //given
+        Player playerExpected = new Player("Tom", "Klmx", LocalDate.parse("1976-05-08")
+                , Position.GK, false);
+
+        PlayerContractingDTO playerContractingDTO = new PlayerContractingDTO(
+                "Tom", "Klmx"
+                , LocalDate.parse("1976-05-08")
+                , Position.GK
+                , 67);
+        //when
+        Mockito.doNothing().when(playerService).createNewPlayer(playerContractingDTO);
+        System.out.println("players"+playerRepository.findAll());
+        //then
+        assertEquals(playerExpected, this.playerRepository.getById((long) 21));
+    }
 
 }
 
