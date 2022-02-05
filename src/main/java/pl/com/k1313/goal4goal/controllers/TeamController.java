@@ -3,6 +3,7 @@ package pl.com.k1313.goal4goal.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.com.k1313.goal4goal.domain.team.Team;
@@ -15,13 +16,15 @@ import pl.com.k1313.goal4goal.domain.team.TeamService;
 @RequestMapping("/team")
 public class TeamController {
 
-private TeamService teamService;
+    private TeamService teamService;
 
     @Autowired
     PlayerService playerService;
 
     @Autowired
-    public TeamController(TeamService teamService){this.teamService=teamService;}
+    public TeamController(TeamService teamService) {
+        this.teamService = teamService;
+    }
 
     @Autowired
     TeamRepository teamRepository;
@@ -33,6 +36,12 @@ private TeamService teamService;
 //    public String first11() {
 //        this.teamService.setUpFirst11();
 //        return "firstsquadplayers";
+
+    @GetMapping("/first11Attack")
+    public String first11AttackCalculation() {
+        this.teamService.calculateFirst11Attack();
+        return "redirect:/firstsquadplayers";
+    }
 }
 
 
