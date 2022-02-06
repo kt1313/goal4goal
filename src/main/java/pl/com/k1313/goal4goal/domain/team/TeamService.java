@@ -92,26 +92,26 @@ public class TeamService {
         // i w zależności od tego sumuje procent jego umiejętności attacking
         for (Player player : first11players
         ) {
-            if (player.getPosition().equals("leftForward") ||
-                    (player.getPosition().equals("centreForward")) ||
-                    (player.getPosition().equals("rightForward"))) {
+            if (player.getPosition().equals(Position.LF) ||
+                    (player.getPosition().equals(Position.CF)) ||
+                    (player.getPosition().equals(Position.RF))) {
                 first11Attack += player.getAttacking();
             }
-            if (player.getPosition().equals("leftWinger") ||
-                    (player.getPosition().equals("centreMidfielderAttacking")) ||
-                    (player.getPosition().equals("centreMidfielder")) ||
-                    (player.getPosition().equals("centreMidfielderDefending")) ||
-                    (player.getPosition().equals("rightWinger"))) {
+            if (player.getPosition().equals(Position.LW) ||
+                    (player.getPosition().equals(Position.CMA)) ||
+                    (player.getPosition().equals(Position.CM)) ||
+                    (player.getPosition().equals(Position.CMA)) ||
+                    (player.getPosition().equals(Position.RW))) {
                 first11Attack += (player.getAttacking() * 0.75);
             }
-            if (player.getPosition().equals("leftWingback") ||
-                    (player.getPosition().equals("leftCentreback")) ||
-                    (player.getPosition().equals("centreback")) ||
-                    (player.getPosition().equals("rightCentreback")) ||
-                    (player.getPosition().equals("rightWingback"))) {
+            if (player.getPosition().equals(Position.LWB) ||
+                    (player.getPosition().equals(Position.LCB)) ||
+                    (player.getPosition().equals(Position.CB)) ||
+                    (player.getPosition().equals(Position.RCB)) ||
+                    (player.getPosition().equals(Position.RWB))) {
                 first11Attack += (player.getAttacking() * 0.5);
             }
-            if (player.getPosition().equals("goalkeeper")) {
+            if (player.getPosition().equals(Position.GK)) {
                 first11Attack += (player.getAttacking() * 0.1);
             }
         }

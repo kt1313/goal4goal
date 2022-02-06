@@ -97,7 +97,7 @@ public class PlayerController {
             model.addAttribute("firstsquadplayers", firstsquadplayers);
             String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
             model.addAttribute("first11FinalTable", first11FinalTable);
-
+            System.out.println("Siła ataku: "+teamService.calculateFirst11Attack());
             return "firstsquadplayers";
         } else {
             return "redirect:/players";

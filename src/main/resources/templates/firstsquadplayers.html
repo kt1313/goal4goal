@@ -45,24 +45,12 @@
 
         <form th:action="@{/players/firstsquadplayers}" method="post">
             <br>
-<!--            <h4 align="left" th>FIRST SQUAD: </h4>-->
+            <!--            <h4 align="left" th>FIRST SQUAD: </h4>-->
             <div>
                 <table style="table-layout: fixed; width: 100%;  text-align: center"
                        class="table flex-row borderless "
                        th:name="first11">
-                    <!--                    <thead class="table-dark" style="font-weight: bold">-->
-                    <!--                    <tr>-->
-                    <!--                        <td>RIGHT</td>-->
-                    <!--                        <td>RIGHT_TO_CENTER</td>-->
-                    <!--                        <td>CENTER</td>-->
-                    <!--                        <td>LEFT_TO_CENTER</td>-->
-                    <!--                        <td>LEFT</td>-->
-                    <!--                    </tr>-->
-                    <!--                    </thead>-->
                     <tbody style="font-weight: bold; font-size: larger">
-                    <!--            dopasowuje pozycje gracza z pierwszej 11 do odpowiedniego-->
-                    <!--            miejsca na boisku-->
-
                     <tr style="height: 130px">
                         <td style="width: 20%;" th:id="line1cell1" th:text=${first11FinalTable[0][0]}
                             class="table-hover"/>
@@ -100,7 +88,6 @@
                     </tbody>
                 </table>
             </div>
-<!--             <br> <h5>Actual Tactics: * * * * *___* * *</h5>-->
             <div>
                 <table style="table-layout: fixed; width: 100%;  text-align: left"
                        th:name="first11footer">
@@ -121,9 +108,10 @@
                                 <input align="right" type="submit" class="btn-primary" value="Set Up New Tactics"/><br>
                             </div>
                         </td>
-                        <td align="center"><h2 style="color: cornsilk; align-content: center">First Line Up</h2></td>
+                        <td align="center"><h2 style="color: cornsilk; transition-property: text-shadow;
+                          align-content: center">First Line Up</h2></td>
                         <td align="right">
-                            <label style="width: 25%" for="checkformations" hidden >
+                            <label style="width: 25%" for="checkformations" hidden>
                                 <h5>Formation Pts</h5></label><br>
                             <select style="width: max-content" name="formationsvalue"
                                     class="form-control" id="checkformations"
@@ -133,7 +121,8 @@
                                 <option>Attacking</option>
                             </select>
                             <p></p>
-                            <input type="submit" class="btn-primary" value="Check Formation Pts"/><br>
+                            <input type="submit" class="btn-primary" value="Check Formation Pts"/>
+                            ${team.attack}<br>
                         </td>
                     </tr>
                     <p></p>
