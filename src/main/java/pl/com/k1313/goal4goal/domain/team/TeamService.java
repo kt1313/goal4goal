@@ -79,14 +79,16 @@ public class TeamService {
     }
 
     //oblicza sumę attacku pierwszej 11
-    public int calculateFirst11Attack() {
+    public List<Integer> calculateFirst11FormationsValues() {
 
         int first11Attack = 0;
+        int first11Defence = 0;
+        int first11Midfield = 0;
 
         //pobiera tylko zawodników z pierwszej 11
         List<Player> first11players = new ArrayList<>();
         first11players = this.playerRepository.findAll().stream()
-                .filter(player -> player.isFirstSquadPlayer() == true)
+                .filter(Player::isFirstSquadPlayer)
                 .collect(Collectors.toList());
         //dla każdego sprawdza czy jest w ataku, pomocy czy obronie lub bramkarz
         // i w zależności od tego sumuje procent jego umiejętności attacking
@@ -96,13 +98,17 @@ public class TeamService {
                     (player.getPosition().equals(Position.CF)) ||
                     (player.getPosition().equals(Position.RF))) {
                 first11Attack += player.getAttacking();
+//                first11Midfield+=(player.getBallControl()*0.35+player.getPassing()*0.35);
+//                first11Defence+=player.getDefending()*0.5;
             }
             if (player.getPosition().equals(Position.LW) ||
                     (player.getPosition().equals(Position.CMA)) ||
                     (player.getPosition().equals(Position.CM)) ||
-                    (player.getPosition().equals(Position.CMA)) ||
+                    (player.getPosition().equals(Position.CMD)) ||
                     (player.getPosition().equals(Position.RW))) {
                 first11Attack += (player.getAttacking() * 0.75);
+//                first11Midfield+=(player.getBallControl()*0.5+player.getPassing()*0.5);
+//                first11Defence+=player.getDefending()*0.75;
             }
             if (player.getPosition().equals(Position.LWB) ||
                     (player.getPosition().equals(Position.LCB)) ||
@@ -110,13 +116,21 @@ public class TeamService {
                     (player.getPosition().equals(Position.RCB)) ||
                     (player.getPosition().equals(Position.RWB))) {
                 first11Attack += (player.getAttacking() * 0.5);
+//                first11Midfield+=(player.getBallControl()*0.25+player.getPassing()*0.25);
+//                first11Defence+=player.getDefending();
             }
             if (player.getPosition().equals(Position.GK)) {
                 first11Attack += (player.getAttacking() * 0.1);
+//                first11Midfield+=(player.getBallControl()*0.1+player.getPassing()*0.1);
+//                first11Defence+=player.getDefending();
             }
         }
+        List<Integer> formationsValues=new ArrayList<Integer>(List.of(first11Defence,first11Midfield,first11Attack));
         System.out.println("Suma ataku wynosi" + first11Attack);
-        return first11Attack;
-
+        System.out.println("Wartość formacji: "
+                +" Atak: "+formationsValues.get(0)
+                +" Defensywa: "+formationsValues.get(1)
+                +" Pomoc: "+formationsValues.get(2));
+        return formationsValues;
     }
 }

@@ -74,6 +74,7 @@ public class PlayerController {
         model.addAttribute("player", player);
         return "managePlayer";
     }
+
     //unit test done - not working - w update "byId" jest null..
     @PostMapping("/managePlayer")
     public String editPlayer(PlayerUpdateDTO updatedPlayer) {
@@ -88,7 +89,8 @@ public class PlayerController {
     //wtedy tworzy pierwsza 11
     //a potem tworzy tabele first11FinalTable z wybranymi nazwiskami na odpowiednich pozycjach
     @PostMapping("/firstsquadplayers")
-    public String handleFirstSquad(@RequestParam(value = "firstSquadPlayer", required = false) List<String> ids, Model model) {
+    public String handleFirstSquad(@RequestParam(value = "firstSquadPlayer", required = false) List<String> ids
+            , Model model) {
         if (ids != null) {
 
             List<Player> firstsquadplayers;
@@ -97,15 +99,11 @@ public class PlayerController {
             model.addAttribute("firstsquadplayers", firstsquadplayers);
             String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
             model.addAttribute("first11FinalTable", first11FinalTable);
-            System.out.println("Siła ataku: "+teamService.calculateFirst11Attack());
             return "firstsquadplayers";
         } else {
             return "redirect:/players";
         }
     }
-
-
-
 
 
 }
