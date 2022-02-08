@@ -134,30 +134,39 @@ public class PlayerControllerTest {
         assertEquals(2, result.size());
     }
 
+    //unit test done-  working
     @Test
-    public void editPlayerTest() throws Exception {
+    public void updatePlayerTest() throws Exception {
 
         //given
-        MockHttpServletRequestBuilder request = get("/managePlayer/21");
-        Player playerBefore = new Player("Tom", "Klmx", LocalDate.parse("1976-05-08")
-                , Position.GK, false);
+        PlayerRepository playerRepository = Mockito.mock(PlayerRepository.class);
+        PlayerService playerService = new PlayerService(playerRepository);
+
+        List<Player> players = new ArrayList<>();
+
+        Player playerBefore = new Player(21, "Tom", "Klmx",
+                LocalDate.parse("1976-05-08"), Position.GK, false, 67);
+        players.add(playerBefore);
+
         Player playerAfter = new Player(
                 "Tom", "After"
                 , LocalDate.parse("1976-05-08")
                 , Position.GK
                 , false);
-        PlayerUpdateDTO playerToModifyDTO = new PlayerUpdateDTO((long) 21
+        players.add(playerAfter);
+
+        PlayerUpdateDTO playerUpdateDTO = new PlayerUpdateDTO((long) 21
                 , "Tom", "After"
                 , LocalDate.parse("1976-05-08")
                 , Position.GK
                 , 67
         );
 
-        PlayerRepository playerRepository = Mockito.mock(PlayerRepository.class);
-        PlayerService playerService = new PlayerService(playerRepository);
         //when
-        playerService.update(playerToModifyDTO);
-        Player playerUpdated = playerService.getPlayerById((long) 21);
+        Mockito.when(playerService.getPlayerById((long) 21)).thenReturn(playerAfter);
+        playerService.update(playerUpdateDTO);
+        Player playerUpdated = playerRepository.getById((long) 21);
+
         //then
         assertEquals(playerAfter, playerUpdated);
     }
@@ -176,7 +185,7 @@ public class PlayerControllerTest {
                 , 67);
         //when
         Mockito.doNothing().when(playerService).createNewPlayer(playerContractingDTO);
-        System.out.println("players"+playerRepository.findAll());
+        System.out.println("players" + playerRepository.findAll());
         //then
         assertEquals(playerExpected, this.playerRepository.getById((long) 21));
     }

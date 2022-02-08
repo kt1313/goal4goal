@@ -46,10 +46,9 @@ public class PlayerService {
         return this.repository.getById(id);
     }
 
-    public void update(PlayerUpdateDTO updatedPlayer) {
-        Player byId = this.repository
-                .getById(updatedPlayer.getId());
-        System.out.println(byId.getId());
+    //unit test done-  working
+    public Player update(PlayerUpdateDTO updatedPlayer) {
+        Player byId=getPlayerById(updatedPlayer.getId());
         byId.update(
                 updatedPlayer.getFirstName()
                 , updatedPlayer.getLastName()
@@ -59,6 +58,8 @@ public class PlayerService {
                 , updatedPlayer.getAttacking());
 
         this.repository.save(byId);
+
+        return byId;
     }
 
 //    public void setFirstSquadPlayer(Long id) {

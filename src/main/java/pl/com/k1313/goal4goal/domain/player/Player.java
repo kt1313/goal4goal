@@ -56,6 +56,21 @@ public class Player {
         this.attacking = attacking;
     }
 
+    public Player(long id,
+                  String firstName,
+                  String lastName, LocalDate birthDate,
+                  Position position
+            , boolean firstSquadPlayer, int attacking){
+
+        this.id=id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.position = position;
+        this.firstSquadPlayer = firstSquadPlayer;
+        this.attacking=attacking;
+
+    }
 
     public void update(String firstName,
                        String lastName, LocalDate birthDate,

@@ -47,11 +47,11 @@
             <br>
             <!--            <h4 align="left" th>FIRST SQUAD: </h4>-->
             <div>
-                <table style="table-layout: fixed; width: 100%;  text-align: center"
+                <table style="table-layout: fixed; width: 110%;  text-align: center"
                        class="table flex-row borderless "
                        th:name="first11">
                     <tbody style="font-weight: bold; font-size: larger">
-                    <tr style="height: 130px">
+                    <tr style="height: 110px">
                         <td style="width: 20%;" th:id="line1cell1" th:text=${first11FinalTable[0][0]}
                             class="table-hover"/>
                         <td style="width: 20%;" th:id="line1cell2" th:text=${first11FinalTable[1][0]}
@@ -64,21 +64,21 @@
                             class="table-hover"/>
 
                     </tr>
-                    <tr style="height: 130px">
+                    <tr style="height: 110px">
                         <td th:id="rightWingback" th:text=${first11FinalTable[0][1]}/>
                         <td th:id="rightCentreback" th:text=${first11FinalTable[1][1]}/>
                         <td th:id="centreback" th:text=${first11FinalTable[2][1]}/>
                         <td th:id="leftCentreback" th:text=${first11FinalTable[3][1]}/>
                         <td th:id="leftWingback" th:text=${first11FinalTable[4][1]}/>
                     </tr>
-                    <tr style="height: 130px">
+                    <tr style="height: 110px">
                         <td th:id="rightWinger" th:text=${first11FinalTable[0][2]}/>
                         <td th:id="centreMidfielderDefending" th:text=${first11FinalTable[1][2]}/>
                         <td th:id="centreMidfielder" th:text=${first11FinalTable[2][2]}/>
                         <td th:id="centreMidfielderAttacking" th:text=${first11FinalTable[3][2]}/>
                         <td th:id="leftWinger" th:text=${first11FinalTable[4][2]}/>
                     </tr>
-                    <tr style="height: 130px">
+                    <tr style="height: 110px">
                         <td th:id="line4cell1" th:text=${first11FinalTable[0][3]}/>
                         <td th:id="rightForward" th:text=${first11FinalTable[1][3]}/>
                         <td th:id="centreForward" th:text=${first11FinalTable[2][3]}/>
@@ -89,51 +89,100 @@
                 </table>
             </div>
         </form>
-        Tu ma byc FOOTER ładny. z kilku divów? znajdz wzor tak by w kazdym byl przycisk SUBMIT
-            <div >
-                <table style="table-layout: fixed; width: 100%;  text-align: left"
-                       th:name="first11footer">
-                    <tr>
-                        <td>
-                            <div style="border-color: #e7f4fd">
-                                <label style="width: 25%" for="choosetactics" hidden>
-                                    <h5>Set Up Tactics</h5></label><br>
-                                <select style="width: max-content" name="tactics" class="form-control"
-                                        id="choosetactics"
-                                        required>
-                                    <option>Pressing</option>
-                                    <option>Counter Attack</option>
-                                    <option>Long Balls</option>
-                                    <option>Ball Possessing</option>
-                                </select>
-                                <p></p>
-                                <input align="right" type="submit" class="btn-primary" value="Set Up New Tactics"/><br>
-                            </div>
-                        </td>
-                        <td align="center"><h2 style="color: cornsilk; transition-property: text-shadow;
-                          align-content: center">First Line Up</h2></td>
-                        <td align="right">
-                            <label style="width: 25%" for="checkformations" hidden>
-                                <h5>Formation Pts</h5></label><br>
-                            <select style="width: max-content" name="formationsvalue"
-                                    class="form-control" id="checkformations"
-                                    required>
-                                <option>Defence</option>
-                                <option>Midfield</option>
-                                <option>Attacking</option>
-                            </select>
-                            <p></p>
-                            <input type="submit" class="btn-primary" value="Check Formation Pts"/>
-                            ${team.attack}<br>
-                        </td>
-                    </tr>
-                    <p></p>
-                    <caption>
-                        <a style="color: cornsilk" th:href="@{/team/tactics/}">Tactics Settings</a>
-                    </caption>
-                </table>
+    </div>
+    <div class="row" style="height: 100px">
+        <div style="border-color: #e7f4fd">
+            <label style="width: 25%; align-content: center" for="choosetactics" hidden>
+                <h5>Set Up Tactics</h5></label><br>
+            <select style="width: max-content" name="tactics" class="form-control"
+                    id="choosetactics"
+                    required>
+                <option>Pressing</option>
+                <option>Counter Attack</option>
+                <option>Long Balls</option>
+                <option>Ball Possessing</option>
+            </select>
+            <p></p>
+            <input align="right" type="submit" class="btn-primary" value="Set Up New Tactics"/><br>
+            <caption>
+                <a style="color: cornsilk" th:href="@{/team/tactics/}">Tactics Settings</a>
+            </caption>
+        </div>
+        <div>
+            <label style="width: 25%; align-content: center" for="checkformations" hidden>
+                <h5>Formation Pts</h5></label><br>
+            <select style="width: max-content" name="formationsvalue"
+                    class="form-control" id="checkformations"
+                    required>
+                <option>Defence</option>
+                <option>Midfield</option>
+                <option>Attacking</option>
+            </select>
+            <p></p>
+            <input type="submit" class="btn-primary" value="Check Formation Pts"/>
+        </div>
+    </div>
+    <div class="">
+        <section style="height:80px;"></section>
+        <div class="row" style="text-align:center;">
+            <h2>First Line-Up</h2>
+        </div>
+        <!----------- Footer ------------>
+        <footer class="footer-bs">
+            <div class="row">
+                <div class="col-md-3 footer-brand animated fadeInLeft">
+                    <p>Choose Tactics and Tactics Settings to improve your Team. Check the level of your team formation
+                        to adapt to your oponent. Enjoy the game!</p>
+                    <br><br><br><br><br>
+                    <p>@2022 @Sea, enjoy the Game</p>
+                </div>
+
+                <div class="col-md-4 footer-nav animated fadeInUp">
+                    <h4>Menu </h4>
+                    <div class="col-md-3">
+                        <ul class="pages">
+                            <li><a href="#">Main page</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Tactics</a></li>
+                            <li><a href="#">Players</a></li>
+                            <li><a href="#">Advice</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="list">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 footer-social animated fadeInDown">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">RSS</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 footer-ns animated fadeInRight">
+                    <h4>Newsletter</h4>
+                    <p>Football is a life, Globe is a football ball</p>
+                    <p>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-envelope"></span></button>
+                      </span>
+                    </div><!-- /input-group -->
+                    </p>
+                </div>
             </div>
+        </footer>
+        <section style="text-align:center; margin:10px auto;"><p>Designed by <a href="http://k1313.com.pl">Klmx1313</a>
+        </p></section>
+
     </div>
 </div>
+
 </body>
 </html>
