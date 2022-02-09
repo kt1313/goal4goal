@@ -171,23 +171,36 @@ public class PlayerControllerTest {
         assertEquals(playerAfter, playerUpdated);
     }
 
+    //unit test done-  working
     @Test
     public void createNewPlayerTest() {
 
         //given
-        Player playerExpected = new Player("Tom", "Klmx", LocalDate.parse("1976-05-08")
-                , Position.GK, false);
+        PlayerRepository playerRepository = Mockito.mock(PlayerRepository.class);
+        PlayerService playerService = new PlayerService(playerRepository);
+
+        List<Player> players = new ArrayList<>();
+        Player playerExpected = new Player("Tom", "Klmx"
+                , LocalDate.parse("1976-05-08"), Position.GK, 67);
 
         PlayerContractingDTO playerContractingDTO = new PlayerContractingDTO(
                 "Tom", "Klmx"
                 , LocalDate.parse("1976-05-08")
                 , Position.GK
                 , 67);
+        Player addPlayer = new Player(playerContractingDTO.getFirstName()
+                , playerContractingDTO.getLastName()
+                , playerContractingDTO.getBirthDate()
+                , playerContractingDTO.getPosition()
+                , playerContractingDTO.getAttacking()
+        );
+        players.add(addPlayer);
+
         //when
-        Mockito.doNothing().when(playerService).createNewPlayer(playerContractingDTO);
-        System.out.println("players" + playerRepository.findAll());
+        Player p=playerService.createNewPlayer(playerContractingDTO);
+
         //then
-        assertEquals(playerExpected, this.playerRepository.getById((long) 21));
+        assertEquals(playerExpected, p);
     }
 
 }

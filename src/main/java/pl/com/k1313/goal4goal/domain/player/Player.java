@@ -55,7 +55,17 @@ public class Player {
         this.firstSquadPlayer = firstSquadPlayer;
         this.attacking = attacking;
     }
-
+    public Player(String firstName,
+                  String lastName, LocalDate birthDate,
+                  Position position,
+                  int attacking
+    ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.position = position;
+        this.attacking = attacking;
+    }
     public Player(long id,
                   String firstName,
                   String lastName, LocalDate birthDate,
