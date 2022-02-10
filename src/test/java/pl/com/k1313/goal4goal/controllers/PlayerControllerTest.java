@@ -16,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -104,34 +105,41 @@ public class PlayerControllerTest {
 
     //unit test done- not working
     @Test
-    public void handleFirstSquadTest() {
+    public void createFirst11Test() {
 
         //given
-        List<Player> firstsquadplayers = new ArrayList<>();
+        List<Player> players = new ArrayList<>();
         Player player1 = new Player("Zyg", "Pol", LocalDate.parse("2021-11-01"), Position.GK, true, 67);
-        firstsquadplayers.add(player1);
+        players.add(player1);
         Player player2 = new Player("Pyg", "Zol", LocalDate.parse("2001-11-01"), Position.RF, true, 76);
-        firstsquadplayers.add(player2);
+        players.add(player2);
         Player player3 = new Player("Gyg", "Gol", LocalDate.parse("2001-11-06"), Position.CB, false, 88);
-        firstsquadplayers.add(player3);
+        players.add(player3);
+
+        String f11player1 = new String(String.valueOf(players.indexOf(player1)));
+        String f11player2 = new String(String.valueOf(players.indexOf(player3)));
+        System.out.println("PlContrTest, createFirst11, f11p1 i f11p2: "+ f11player1+" i "+f11player2);
+        List<Player> first11PlayersExpected = new ArrayList<>(Arrays.asList(player1,player3));
 
         PlayerRepository playerRepository = Mockito.mock(PlayerRepository.class);
-        Mockito.when(playerRepository.findAll().stream()
-                .filter(Player::isFirstSquadPlayer)
-                .collect(Collectors.toList()))
-                .thenReturn(firstsquadplayers);
         PlayerService playerService = new PlayerService(playerRepository);
-        List<String> firstsquadplayersStrings = new ArrayList<>();
-        for (Player p : firstsquadplayers
-        ) {
-            firstsquadplayersStrings.add(String.valueOf(p.getId()));
-        }
+
+        List<String> stringList = new ArrayList<>(Arrays.asList("0", "2"));
+//        playerService.createFirst11(stringList);
 
         //when
-        List<Player> result = playerService.createFirst11(firstsquadplayersStrings);
+        long l1 = Long.parseLong(stringList.get(0));
+        long l2 = Long.parseLong(stringList.get(1));
+
+        Mockito.when(playerRepository.getById(l1)).thenReturn(players.get((int) l1));
+        Mockito.when(playerRepository.getById(l2)).thenReturn(players.get((int) l2));
+
+        List<Player> result = playerService.createFirst11(stringList);
 
         //then
-        assertEquals(2, result.size());
+        assertEquals(player1, result.get(0));
+        assertEquals(player3, result.get(1));
+        assertEquals(first11PlayersExpected,result);
     }
 
     //unit test done-  working
@@ -197,7 +205,7 @@ public class PlayerControllerTest {
         players.add(addPlayer);
 
         //when
-        Player p=playerService.createNewPlayer(playerContractingDTO);
+        Player p = playerService.createNewPlayer(playerContractingDTO);
 
         //then
         assertEquals(playerExpected, p);
