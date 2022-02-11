@@ -78,7 +78,7 @@ public class TeamService {
         return first11FinalTable;
     }
 
-    //oblicza sumę attacku pierwszej 11
+    //oblicza sumę ataku (i nie tylko) pierwszej 11
     public List<Integer> calculateFirst11FormationsValues() {
 
         int first11Attack = 0;
@@ -86,8 +86,7 @@ public class TeamService {
         int first11Midfield = 0;
 
         //pobiera tylko zawodników z pierwszej 11
-        List<Player> first11players = new ArrayList<>();
-        first11players = this.playerRepository.findAll().stream()
+        List<Player> first11players = this.playerRepository.findAll().stream()
                 .filter(Player::isFirstSquadPlayer)
                 .collect(Collectors.toList());
         //dla każdego sprawdza czy jest w ataku, pomocy czy obronie lub bramkarz
@@ -125,12 +124,12 @@ public class TeamService {
 //                first11Defence+=player.getDefending();
             }
         }
-        List<Integer> formationsValues=new ArrayList<Integer>(List.of(first11Defence,first11Midfield,first11Attack));
+        List<Integer> formationsValues = new ArrayList<Integer>(List.of(first11Defence, first11Midfield, first11Attack));
         System.out.println("Suma ataku wynosi" + first11Attack);
         System.out.println("Wartość formacji: "
-                +" Atak: "+formationsValues.get(0)
-                +" Defensywa: "+formationsValues.get(1)
-                +" Pomoc: "+formationsValues.get(2));
+                + " Atak: " + formationsValues.get(0)
+                + " Defensywa: " + formationsValues.get(1)
+                + " Pomoc: " + formationsValues.get(2));
         return formationsValues;
     }
 }

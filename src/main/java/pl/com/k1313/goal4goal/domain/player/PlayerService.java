@@ -27,6 +27,7 @@ public class PlayerService {
     public List<Player> findAllPlayers() {
         return this.repository.findAll();
     }
+
     //unit test done-  working
     public Player createNewPlayer(PlayerContractingDTO playerDTO) {
         Player newOne = new Player(playerDTO.getFirstName()
@@ -34,7 +35,9 @@ public class PlayerService {
                 , playerDTO.getBirthDate()
                 , playerDTO.getPosition()
                 , playerDTO.isFirstSquadPlayer()
-                , playerDTO.getAttacking());
+                , playerDTO.getAttacking()
+                , playerDTO.getBallControl()
+                , playerDTO.getPassing());
         this.repository.save(newOne);
         return newOne;
     }
@@ -49,21 +52,23 @@ public class PlayerService {
 
     //unit test done-  working
     public Player update(PlayerUpdateDTO updatedPlayer) {
-        Player byId=getPlayerById(updatedPlayer.getId());
+        Player byId = getPlayerById(updatedPlayer.getId());
         byId.update(
                 updatedPlayer.getFirstName()
                 , updatedPlayer.getLastName()
                 , updatedPlayer.getBirthDate()
                 , updatedPlayer.getPosition()
                 , updatedPlayer.isFirstSquadPlayer()
-                , updatedPlayer.getAttacking());
+                , updatedPlayer.getAttacking()
+                , updatedPlayer.getBallControl()
+                , updatedPlayer.getPassing());
 
         this.repository.save(byId);
 
         return byId;
     }
 
-
+    //unit test done-  working
     public List<Player> createFirst11(List<String> ids) {
         List<Player> firstsquadplayers = new ArrayList<>();
 

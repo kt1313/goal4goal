@@ -68,22 +68,24 @@ public class PlayerControllerTest {
     public void handlePostTest() throws Exception {
 
         String postContent = "firstName=Tom&lastName=Klimkiewicz" +
-                "&dateOfBirth=2021-11-01&position=goalkeeper&attacking=67";
+                "&dateOfBirth=2021-11-01&position=goalkeeper&attacking=67&ballControl=55&passing=77";
 
         MockHttpServletRequestBuilder request = post("/players")
                 .contentType(MediaType.valueOf(MediaType.APPLICATION_FORM_URLENCODED_VALUE))
                 .content(postContent);
 
         PlayerContractingDTO dto = new PlayerContractingDTO("Tomek", "Klimkiewicz"
-                , LocalDate.parse("2021-11-01"), Position.GK, 67);
+                , LocalDate.parse("2021-11-01"), Position.GK, 67, 55, 77);
 
         mockMvc.perform(request)
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/players"));
+        System.out.println("1");
 
         Mockito
                 .verify(playerService, Mockito.times(1))
                 .createNewPlayer(dto);
+        System.out.println("2");
     }
 
     //unit test done- working
@@ -103,23 +105,23 @@ public class PlayerControllerTest {
                 .removeById((long) 21);
     }
 
-    //unit test done- not working
+    //unit test done- working
     @Test
     public void createFirst11Test() {
 
         //given
         List<Player> players = new ArrayList<>();
-        Player player1 = new Player("Zyg", "Pol", LocalDate.parse("2021-11-01"), Position.GK, true, 67);
+        Player player1 = new Player("Zyg", "Pol", LocalDate.parse("2021-11-01"), Position.GK, 44, 67, 55);
         players.add(player1);
-        Player player2 = new Player("Pyg", "Zol", LocalDate.parse("2001-11-01"), Position.RF, true, 76);
+        Player player2 = new Player("Pyg", "Zol", LocalDate.parse("2001-11-01"), Position.RF, 44, 76, 55);
         players.add(player2);
-        Player player3 = new Player("Gyg", "Gol", LocalDate.parse("2001-11-06"), Position.CB, false, 88);
+        Player player3 = new Player("Gyg", "Gol", LocalDate.parse("2001-11-06"), Position.CB, 44, 88, 55);
         players.add(player3);
 
         String f11player1 = new String(String.valueOf(players.indexOf(player1)));
         String f11player2 = new String(String.valueOf(players.indexOf(player3)));
-        System.out.println("PlContrTest, createFirst11, f11p1 i f11p2: "+ f11player1+" i "+f11player2);
-        List<Player> first11PlayersExpected = new ArrayList<>(Arrays.asList(player1,player3));
+        System.out.println("PlContrTest, createFirst11, f11p1 i f11p2: " + f11player1 + " i " + f11player2);
+        List<Player> first11PlayersExpected = new ArrayList<>(Arrays.asList(player1, player3));
 
         PlayerRepository playerRepository = Mockito.mock(PlayerRepository.class);
         PlayerService playerService = new PlayerService(playerRepository);
@@ -139,7 +141,7 @@ public class PlayerControllerTest {
         //then
         assertEquals(player1, result.get(0));
         assertEquals(player3, result.get(1));
-        assertEquals(first11PlayersExpected,result);
+        assertEquals(first11PlayersExpected, result);
     }
 
     //unit test done-  working
@@ -153,7 +155,7 @@ public class PlayerControllerTest {
         List<Player> players = new ArrayList<>();
 
         Player playerBefore = new Player(21, "Tom", "Klmx",
-                LocalDate.parse("1976-05-08"), Position.GK, false, 67);
+                LocalDate.parse("1976-05-08"), Position.GK, false, 67, 55, 55);
         players.add(playerBefore);
 
         Player playerAfter = new Player(
@@ -189,18 +191,22 @@ public class PlayerControllerTest {
 
         List<Player> players = new ArrayList<>();
         Player playerExpected = new Player("Tom", "Klmx"
-                , LocalDate.parse("1976-05-08"), Position.GK, 67);
+                , LocalDate.parse("1976-05-08"), Position.GK, 67, 55,55);
 
         PlayerContractingDTO playerContractingDTO = new PlayerContractingDTO(
                 "Tom", "Klmx"
                 , LocalDate.parse("1976-05-08")
                 , Position.GK
-                , 67);
+                , 67
+                , 55
+                , 55);
         Player addPlayer = new Player(playerContractingDTO.getFirstName()
                 , playerContractingDTO.getLastName()
                 , playerContractingDTO.getBirthDate()
                 , playerContractingDTO.getPosition()
                 , playerContractingDTO.getAttacking()
+                , playerContractingDTO.getBallControl()
+                , playerContractingDTO.getPassing()
         );
         players.add(addPlayer);
 
