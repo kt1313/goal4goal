@@ -50,7 +50,7 @@ public class PlayerController {
     public String handleCreateNewPlayer
             (@Valid PlayerContractingDTO playerDTO,
              BindingResult result, Model model) {
-        System.out.println(playerDTO);
+        System.out.println("PlContr, createNewPl: "+playerDTO);
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
             return "playerform";
@@ -75,7 +75,7 @@ public class PlayerController {
         return "managePlayer";
     }
 
-    //unit test done - not working - w update "byId" jest null..
+    //unit test done -  working
     @PostMapping("/managePlayer")
     public String editPlayer(PlayerUpdateDTO updatedPlayer) {
         this.playerService.update(updatedPlayer);
@@ -83,7 +83,7 @@ public class PlayerController {
     }
 
 
-    //unit test done- not working
+    //unit test done-  working
     //obsluga powolan do 11
     //pobiera wszystkie checkboxy o nazwie firstsquadplayer i sprawdza czy tickniete
     //wtedy tworzy pierwsza 11

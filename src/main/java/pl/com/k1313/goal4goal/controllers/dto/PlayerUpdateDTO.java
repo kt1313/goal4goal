@@ -18,8 +18,8 @@ public class PlayerUpdateDTO {
     private final Position position;
     private final boolean firstSquadPlayer=false;
     private final int attacking;
-    public int ballControl;
-    public int passing;
+//    public int ballControl;
+//    public int passing;
 
 }
 

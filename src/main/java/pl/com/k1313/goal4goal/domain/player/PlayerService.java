@@ -36,8 +36,9 @@ public class PlayerService {
                 , playerDTO.getPosition()
                 , playerDTO.isFirstSquadPlayer()
                 , playerDTO.getAttacking()
-                , playerDTO.getBallControl()
-                , playerDTO.getPassing());
+//                , playerDTO.getBallControl()
+//                , playerDTO.getPassing()
+        );
         this.repository.save(newOne);
         return newOne;
     }
@@ -60,8 +61,9 @@ public class PlayerService {
                 , updatedPlayer.getPosition()
                 , updatedPlayer.isFirstSquadPlayer()
                 , updatedPlayer.getAttacking()
-                , updatedPlayer.getBallControl()
-                , updatedPlayer.getPassing());
+//                , updatedPlayer.getBallControl()
+//                , updatedPlayer.getPassing();
+        );
 
         this.repository.save(byId);
 

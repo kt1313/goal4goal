@@ -75,6 +75,7 @@ public class TeamService {
                 }
             }
         }
+        calculateFirst11FormationsValues();
         return first11FinalTable;
     }
 
@@ -125,7 +126,14 @@ public class TeamService {
             }
         }
         List<Integer> formationsValues = new ArrayList<Integer>(List.of(first11Defence, first11Midfield, first11Attack));
-        System.out.println("Suma ataku wynosi" + first11Attack);
+        System.out.println("TeamService, calculateFormVal , Suma ataku wynosi" + first11Attack);
+        int k = 0;
+        for (int i :
+                formationsValues) {
+            System.out.println("formVal size wynosi: " + formationsValues.size() + " k wynosi " + k
+                    +" a formationValue.get(k): " + formationsValues.get(k));
+            k++;
+        }
         System.out.println("Wartość formacji: "
                 + " Atak: " + formationsValues.get(0)
                 + " Defensywa: " + formationsValues.get(1)
