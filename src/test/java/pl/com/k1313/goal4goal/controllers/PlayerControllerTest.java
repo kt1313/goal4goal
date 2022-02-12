@@ -77,8 +77,8 @@ public class PlayerControllerTest {
         PlayerContractingDTO dto = new PlayerContractingDTO("Tomek", "Klimkiewicz"
                 , LocalDate.parse("2021-11-01"), Position.GK
                 , 67
-//                , 55
-//                , 77
+                , 55
+                , 77
         );
 
         mockMvc.perform(request)
@@ -117,20 +117,20 @@ public class PlayerControllerTest {
         List<Player> players = new ArrayList<>();
         Player player1 = new Player("Zyg", "Pol", LocalDate.parse("2021-11-01"), Position.GK
                 , 44
-//                , 67
-//                , 55
+                , 67
+                , 55
         );
         players.add(player1);
         Player player2 = new Player("Pyg", "Zol", LocalDate.parse("2001-11-01"), Position.RF
                 , 44
-//                , 76
-//                , 55
+                , 76
+                , 55
                 );
         players.add(player2);
         Player player3 = new Player("Gyg", "Gol", LocalDate.parse("2001-11-06"), Position.CB
                 , 44
-//                , 88
-//                , 55
+                , 88
+                , 55
         );
         players.add(player3);
 
@@ -173,8 +173,8 @@ public class PlayerControllerTest {
         Player playerBefore = new Player(21, "Tom", "Klmx",
                 LocalDate.parse("1976-05-08"), Position.GK, false
                 , 67
-//                , 55
-//                , 55
+                , 55
+                , 55
         );
         players.add(playerBefore);
 
@@ -212,8 +212,8 @@ public class PlayerControllerTest {
         List<Player> players = new ArrayList<>();
         Player playerExpected = new Player("Tom", "Klmx"
                 , LocalDate.parse("1976-05-08"), Position.GK, 67
-//                , 55
-//                ,55
+                , 55
+                ,55
         );
 
         PlayerContractingDTO playerContractingDTO = new PlayerContractingDTO(
@@ -221,16 +221,16 @@ public class PlayerControllerTest {
                 , LocalDate.parse("1976-05-08")
                 , Position.GK
                 , 67
-//                , 55
-//                , 55
+                , 55
+                , 55
         );
         Player addPlayer = new Player(playerContractingDTO.getFirstName()
                 , playerContractingDTO.getLastName()
                 , playerContractingDTO.getBirthDate()
                 , playerContractingDTO.getPosition()
                 , playerContractingDTO.getAttacking()
-//                , playerContractingDTO.getBallControl()
-//                , playerContractingDTO.getPassing()
+                , playerContractingDTO.getBallControl()
+                , playerContractingDTO.getPassing()
         );
         players.add(addPlayer);
 

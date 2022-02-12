@@ -24,8 +24,8 @@ public class Player {
     private boolean firstSquadPlayer;
 
     private int attacking;
-//    private int ballControl=33;
-//    private int passing=44;
+    private  int ballControl;
+    private  int passing;
 
 
     public Player() {
@@ -49,8 +49,8 @@ public class Player {
                   Position position,
                   boolean firstSquadPlayer,
                   int attacking
-//                  , int ballControl
-//                  , int passing
+                  , int ballControl
+                  , int passing
 
     ) {
         this.firstName = firstName;
@@ -59,16 +59,16 @@ public class Player {
         this.position = position;
         this.firstSquadPlayer = firstSquadPlayer;
         this.attacking = attacking;
-//        this.ballControl = ballControl;
-//        this.passing=passing;
+        this.ballControl = ballControl;
+        this.passing=passing;
     }
 
     public Player(String firstName,
                   String lastName, LocalDate birthDate,
                   Position position,
                   int attacking
-//                 , int ballControl
-//                 , int passing
+                 , int ballControl
+                 , int passing
 
     ) {
         this.firstName = firstName;
@@ -76,8 +76,8 @@ public class Player {
         this.birthDate = birthDate;
         this.position = position;
         this.attacking = attacking;
-//        this.ballControl = ballControl;
-//        this.passing=passing;
+        this.ballControl = ballControl;
+        this.passing=passing;
 
     }
 
@@ -86,8 +86,8 @@ public class Player {
                   String lastName, LocalDate birthDate,
                   Position position
             , boolean firstSquadPlayer, int attacking
-//            , int ballControl
-//            , int passing
+            , int ballControl
+            , int passing
     ) {
 
         this.id = id;
@@ -97,8 +97,8 @@ public class Player {
         this.position = position;
         this.firstSquadPlayer = firstSquadPlayer;
         this.attacking = attacking;
-//        this.ballControl = ballControl;
-//        this.passing = passing;
+        this.ballControl = ballControl;
+        this.passing = passing;
 
 
     }
@@ -107,8 +107,8 @@ public class Player {
                        String lastName, LocalDate birthDate,
                        Position position
             , boolean firstSquadPlayer, int attacking
-//            , int ballControl
-//            , int passing
+            , int ballControl
+            , int passing
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -116,8 +116,8 @@ public class Player {
         this.position = position;
         this.firstSquadPlayer = firstSquadPlayer;
         this.attacking = attacking;
-//        this.ballControl = ballControl;
-//        this.passing=passing;
+        this.ballControl = ballControl;
+        this.passing=passing;
 
     }
 
@@ -135,8 +135,8 @@ public class Player {
                 ", position=" + position +
                 ", firstSquadPlayer=" + firstSquadPlayer +
                 ", attacking=" + attacking +
-//                ", ballControl=" + ballControl +
-//                ", passing=" + passing +
+                ", ballControl=" + ballControl +
+                ", passing=" + passing +
                 '}';
     }
 

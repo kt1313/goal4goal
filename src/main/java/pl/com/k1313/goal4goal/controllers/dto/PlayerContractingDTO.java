@@ -21,6 +21,6 @@ public class PlayerContractingDTO {
     private final Position position;
     private final boolean firstSquadPlayer = false;
     private final int attacking;
-//    public final int ballControl;
-//    public final int passing;
+    private final int ballControl;
+    private final int passing;
 }

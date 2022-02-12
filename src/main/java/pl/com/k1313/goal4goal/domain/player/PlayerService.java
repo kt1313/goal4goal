@@ -2,21 +2,20 @@ package pl.com.k1313.goal4goal.domain.player;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.com.k1313.goal4goal.controllers.dto.First11DTO;
+import pl.com.k1313.goal4goal.controllers.PlayerController;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerContractingDTO;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerUpdateDTO;
-//import pl.com.k1313.goal4goal.domain.team.First11;
 import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PlayerService {
 
     private PlayerRepository repository;
     private TeamRepository teamRepository;
+    private PlayerController playerController;
 
 
     @Autowired
@@ -36,8 +35,8 @@ public class PlayerService {
                 , playerDTO.getPosition()
                 , playerDTO.isFirstSquadPlayer()
                 , playerDTO.getAttacking()
-//                , playerDTO.getBallControl()
-//                , playerDTO.getPassing()
+                , playerDTO.getBallControl()
+                , playerDTO.getPassing()
         );
         this.repository.save(newOne);
         return newOne;
@@ -61,12 +60,10 @@ public class PlayerService {
                 , updatedPlayer.getPosition()
                 , updatedPlayer.isFirstSquadPlayer()
                 , updatedPlayer.getAttacking()
-//                , updatedPlayer.getBallControl()
-//                , updatedPlayer.getPassing();
+                , updatedPlayer.getBallControl()
+                , updatedPlayer.getPassing()
         );
-
         this.repository.save(byId);
-
         return byId;
     }
 
@@ -79,7 +76,6 @@ public class PlayerService {
                 long l = Long.parseLong(idplayer);
                 Player first11Player = getPlayerById(l);
                 first11Player.setFirstSquadPlayer(true);
-
                 firstsquadplayers.add(first11Player);
             }
         }
