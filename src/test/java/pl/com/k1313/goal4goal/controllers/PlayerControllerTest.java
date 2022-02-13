@@ -190,6 +190,8 @@ public class PlayerControllerTest {
                 , LocalDate.parse("1976-05-08")
                 , Position.GK
                 , 67
+                , 50
+                , 77
         );
 
         //when

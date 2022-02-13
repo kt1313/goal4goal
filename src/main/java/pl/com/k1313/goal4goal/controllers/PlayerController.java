@@ -1,6 +1,5 @@
 package pl.com.k1313.goal4goal.controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -92,7 +91,6 @@ public class PlayerController {
     public String handleFirstSquad(@RequestParam(value = "firstSquadPlayer", required = false) List<String> ids
             , Model model) {
         if (ids != null) {
-
             List<Player> firstsquadplayers;
             firstsquadplayers = this.playerService.createFirst11(ids);
 
@@ -104,6 +102,4 @@ public class PlayerController {
             return "redirect:/players";
         }
     }
-
-
 }
