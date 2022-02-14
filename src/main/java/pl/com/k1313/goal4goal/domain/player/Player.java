@@ -24,9 +24,9 @@ public class Player {
     private boolean firstSquadPlayer;
 
     private int attacking;
-    private  int ballControl;
-    private  int passing;
-
+    private int ballControl;
+    private int passing;
+    private int tackling;
 
     public Player() {
 
@@ -49,8 +49,9 @@ public class Player {
                   Position position,
                   boolean firstSquadPlayer,
                   int attacking
-                  , int ballControl
-                  , int passing
+            , int ballControl
+            , int passing
+            , int tackling
 
     ) {
         this.firstName = firstName;
@@ -60,15 +61,17 @@ public class Player {
         this.firstSquadPlayer = firstSquadPlayer;
         this.attacking = attacking;
         this.ballControl = ballControl;
-        this.passing=passing;
+        this.passing = passing;
+        this.tackling = tackling;
     }
 
     public Player(String firstName,
                   String lastName, LocalDate birthDate,
                   Position position,
                   int attacking
-                 , int ballControl
-                 , int passing
+            , int ballControl
+            , int passing
+            , int tackling
 
     ) {
         this.firstName = firstName;
@@ -77,8 +80,8 @@ public class Player {
         this.position = position;
         this.attacking = attacking;
         this.ballControl = ballControl;
-        this.passing=passing;
-
+        this.passing = passing;
+        this.tackling = tackling;
     }
 
     public Player(long id,
@@ -88,6 +91,7 @@ public class Player {
             , boolean firstSquadPlayer, int attacking
             , int ballControl
             , int passing
+            , int tackling
     ) {
 
         this.id = id;
@@ -99,8 +103,7 @@ public class Player {
         this.attacking = attacking;
         this.ballControl = ballControl;
         this.passing = passing;
-
-
+        this.tackling = tackling;
     }
 
     public void update(String firstName,
@@ -109,6 +112,7 @@ public class Player {
             , boolean firstSquadPlayer, int attacking
             , int ballControl
             , int passing
+            , int tackling
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -117,7 +121,8 @@ public class Player {
         this.firstSquadPlayer = firstSquadPlayer;
         this.attacking = attacking;
         this.ballControl = ballControl;
-        this.passing=passing;
+        this.passing = passing;
+        this.tackling=tackling;
 
     }
 
@@ -137,6 +142,7 @@ public class Player {
                 ", attacking=" + attacking +
                 ", ballControl=" + ballControl +
                 ", passing=" + passing +
+                ", tackling="+tackling+
                 '}';
     }
 

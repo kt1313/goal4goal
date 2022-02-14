@@ -23,4 +23,5 @@ public class PlayerContractingDTO {
     private final int attacking;
     private final int ballControl;
     private final int passing;
+    private final int tackling;
 }

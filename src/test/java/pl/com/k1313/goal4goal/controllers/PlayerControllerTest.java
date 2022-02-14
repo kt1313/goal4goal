@@ -79,6 +79,7 @@ public class PlayerControllerTest {
                 , 67
                 , 55
                 , 77
+                , 55
         );
 
         mockMvc.perform(request)
@@ -119,18 +120,21 @@ public class PlayerControllerTest {
                 , 44
                 , 67
                 , 55
+                , 44
         );
         players.add(player1);
         Player player2 = new Player("Pyg", "Zol", LocalDate.parse("2001-11-01"), Position.RF
                 , 44
                 , 76
                 , 55
+                , 44
                 );
         players.add(player2);
         Player player3 = new Player("Gyg", "Gol", LocalDate.parse("2001-11-06"), Position.CB
                 , 44
                 , 88
                 , 55
+                , 33
         );
         players.add(player3);
 
@@ -175,6 +179,7 @@ public class PlayerControllerTest {
                 , 67
                 , 55
                 , 55
+                , 55
         );
         players.add(playerBefore);
 
@@ -192,6 +197,7 @@ public class PlayerControllerTest {
                 , 67
                 , 50
                 , 77
+                , 44
         );
 
         //when
@@ -213,9 +219,11 @@ public class PlayerControllerTest {
 
         List<Player> players = new ArrayList<>();
         Player playerExpected = new Player("Tom", "Klmx"
-                , LocalDate.parse("1976-05-08"), Position.GK, 67
+                , LocalDate.parse("1976-05-08"), Position.GK
+                , 67
                 , 55
                 ,55
+                , 44
         );
 
         PlayerContractingDTO playerContractingDTO = new PlayerContractingDTO(
@@ -225,6 +233,7 @@ public class PlayerControllerTest {
                 , 67
                 , 55
                 , 55
+                , 44
         );
         Player addPlayer = new Player(playerContractingDTO.getFirstName()
                 , playerContractingDTO.getLastName()
@@ -233,6 +242,7 @@ public class PlayerControllerTest {
                 , playerContractingDTO.getAttacking()
                 , playerContractingDTO.getBallControl()
                 , playerContractingDTO.getPassing()
+                , playerContractingDTO.getTackling()
         );
         players.add(addPlayer);
 

@@ -47,7 +47,7 @@
             <br>
             <div>
                 <br><br><br>
-                <table  style="table-layout: fixed; width: 90%;  text-align: center"
+                <table style="table-layout: fixed; width: 90%;  text-align: center"
                        class="table flex-row borderless "
                        th:name="first11">
                     <tbody style="font-weight: bold; font-size: larger">
@@ -89,7 +89,6 @@
                 </table>
             </div>
         </form>
-
         <div>
             <table style="table-layout: fixed; width: 100%;  text-align: left"
                    th:name="first11footer">
@@ -111,17 +110,23 @@
                         </div>
                     </td>
                     <td align="right">
-                        <label style="width: 25%" for="checkformations" hidden>
-                            <h5>Formation Pts</h5></label><br>
-                        <select style="width: max-content" name="formationsvalue"
-                                class="form-control" id="checkformations"
-                                required>
-                            <option>Defence</option>
-                            <option>Midfield</option>
-                            <option>Attacking</option>
-                        </select>
-                        <p></p>
-                        <input type="submit" class="btn-primary" value="Check Formation Pts"/><br>
+                        <form th:action="@{/team/first11FormationsValues}" method="post">
+
+                            <label style="width: 25%" for="checkformations" hidden>
+                                <h5>Formation Pts</h5></label><br>
+                            <select style="width: max-content" name="formationsvalue"
+                                    class="form-control" id="checkformations"
+                                    required>
+                                <option>Defence</option>
+                                <option>Midfield</option>
+                                <option>Attacking</option>
+                            </select>
+                            <br>
+                            <input type="submit" class="btn-primary" value="Check Formation Pts"/><br>
+                            <br>
+                            <input th:text="${first11Attack}"/>
+                            <form th:action="@{/team/first11FormationsValues}" method="post">
+
                     </td>
                 </tr>
                 <p></p>

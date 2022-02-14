@@ -38,16 +38,28 @@ public class TeamController {
     TacticsService tacticsService;
 
     @PostMapping("/first11FormationsValues")
-    public String first11AttackCalculation
-            (Model model) {
+    public String first11FormationValuesCalculation
+            (List<Integer> values, Model model) {
+        if (values == null) {
+            System.out.println("Brak wartości dla formacji, sprawdz skład");
+        } else {
+            List<Integer> formationsValues = this.teamService.calculateFirst11FormationsValues();
+            int attacking = 0;
+            int ballControl = 1;
+            int passing = 2;
+            int first11Attack = formationsValues.get(attacking);
+            int first11BallControl = formationsValues.get(ballControl);
+            int first11Passing = formationsValues.get(passing);
 
-        List<Integer> formationsValues=new ArrayList<>();
-
-        this.teamService.calculateFirst11FormationsValues();
-//        model.addAttribute();
-
+            model.addAttribute("first11Attack", first11Attack);
+            System.out.println("TeamContr , first11FormValCalculation: atak: "
+                    + model.getAttribute("first11Attack"));
+            model.addAttribute("first11BallControl", first11BallControl);
+            model.addAttribute("first11Passing", first11Passing);
+        }
         return "redirect:/firstsquadplayers";
     }
+
 }
 
 

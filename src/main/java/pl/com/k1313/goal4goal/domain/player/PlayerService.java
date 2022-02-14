@@ -37,6 +37,7 @@ public class PlayerService {
                 , playerDTO.getAttacking()
                 , playerDTO.getBallControl()
                 , playerDTO.getPassing()
+                , playerDTO.getTackling()
         );
         this.repository.save(newOne);
         return newOne;
@@ -62,6 +63,7 @@ public class PlayerService {
                 , updatedPlayer.getAttacking()
                 , updatedPlayer.getBallControl()
                 , updatedPlayer.getPassing()
+                , updatedPlayer.getTackling()
         );
         this.repository.save(byId);
         return byId;
