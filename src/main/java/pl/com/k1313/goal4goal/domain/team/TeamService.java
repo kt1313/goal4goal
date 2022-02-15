@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import pl.com.k1313.goal4goal.controllers.PlayerController;
 import pl.com.k1313.goal4goal.controllers.dto.First11DTO;
+import pl.com.k1313.goal4goal.domain.match.MatchService;
 import pl.com.k1313.goal4goal.domain.player.Player;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
 import pl.com.k1313.goal4goal.domain.player.Position;
@@ -34,6 +35,12 @@ public class TeamService {
     public TeamService(TeamRepository teamRepository) {
         this.teamRepository = teamRepository;
     }
+
+    @Autowired
+    public MatchTeam matchTeam;
+
+    @Autowired
+    public MatchService matchService;
 
     public String[][] setUpFirst11(List<Player> firstsquadplayers) {
         String[][] first11Table = new String[5][4];
@@ -127,21 +134,12 @@ public class TeamService {
         }
         List<Integer> formationsValues = new ArrayList<Integer>(List.of(first11Defence
                 , first11Midfield, first11Attack));
-        System.out.println("TeamService, calculateFormVal , Suma ataku wynosi" + first11Attack);
-        for (int i=0;i<formationsValues.size();i++) {
-            System.out.println("formVal size wynosi: " + formationsValues.size() + " i wynosi " + i
-                    +" a formationValue.get(i): " + formationsValues.get(i));
-        }
-        {
-            for (int j:formationsValues
-                 ) {
-                System.out.println("wartosci formacji"+j);
-            }
-        }
-        System.out.println("Wartość formacji: "
+        System.out.println("TeamServ, calculateFirst11FormVal, Wartość formacji: "
                 + " Defensywa: " + formationsValues.get(0)
                 + " Pomoc: " + formationsValues.get(1)
                 + " Atak: " + formationsValues.get(2));
+        this.matchService.createDefaultOppTeam();
+//        this.matchService.createUserTeam();
         return formationsValues;
     }
 }
