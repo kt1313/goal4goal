@@ -30,25 +30,30 @@ public class MatchService {
 
     public MatchTeam createDefaultOppTeam() {
         MatchTeam defaultOppTeam = new MatchTeam(30, 40, 50, 60);
-        System.out.println("MatchService, createDefaultOppTeam, defTeam: "+defaultOppTeam.toString());
+        System.out.println("MatchService, createDefaultOppTeam, defTeam: " + defaultOppTeam.toString());
         return defaultOppTeam;
     }
 
     //w przyszłości będzie podawane jako parametr nickname usera
     public MatchTeam createUserTeam() {
 
-        List<Integer> userTeamValues = teamService.calculateFirst11FormationsValues();
-        String userGoalkeeperSkillString=this.playerRepository.findAll()
+        List<Integer> userTeamValues = this.teamService.calculateFirst11FormationsValues();
+        Player userGoalkeeper = this.playerRepository.findAll()
                 .stream().filter(Player::isFirstSquadPlayer)
                 .filter(player -> player.getPosition().equals(Position.GK))
-                .toString();
-        Integer userGoalkeeperSkill=Integer.valueOf(userGoalkeeperSkillString);
+                .findFirst().get();
 
-        MatchTeam userTeam = new MatchTeam(userTeamValues.get(0)
-                , userTeamValues.get(1), userTeamValues.get(2)
-                , userGoalkeeperSkill);
-        System.out.println("MatchService, create userTeam, TEAM VALUES: "+userTeam);
+        Integer userGoalkeeperSkillInt = userGoalkeeper.getTackling();
+
+        MatchTeam userTeam = new MatchTeam(
+                userTeamValues.get(0)
+                , userTeamValues.get(1)
+                , userTeamValues.get(2)
+                , userGoalkeeperSkillInt);
+        System.out.println("--------------------------------------");
+        System.out.println("MatchService, create userTeam, TEAM VALUES: " + userTeam);
         return userTeam;
+
     }
 
 }

@@ -18,6 +18,7 @@ import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -105,8 +106,8 @@ public class TeamService {
                     (player.getPosition().equals(Position.CF)) ||
                     (player.getPosition().equals(Position.RF))) {
                 first11Attack += player.getAttacking();
-                first11Midfield+=(player.getBallControl()*0.35+player.getPassing()*0.35);
-                first11Defence+=player.getTackling()*0.5;
+                first11Midfield += (player.getBallControl() * 0.35 + player.getPassing() * 0.35);
+                first11Defence += player.getTackling() * 0.5;
             }
             if (player.getPosition().equals(Position.LW) ||
                     (player.getPosition().equals(Position.CMA)) ||
@@ -114,8 +115,8 @@ public class TeamService {
                     (player.getPosition().equals(Position.CMD)) ||
                     (player.getPosition().equals(Position.RW))) {
                 first11Attack += (player.getAttacking() * 0.75);
-                first11Midfield+=(player.getBallControl()*0.5+player.getPassing()*0.5);
-                first11Defence+=player.getTackling()*0.5;
+                first11Midfield += (player.getBallControl() * 0.5 + player.getPassing() * 0.5);
+                first11Defence += player.getTackling() * 0.5;
             }
             if (player.getPosition().equals(Position.LWB) ||
                     (player.getPosition().equals(Position.LCB)) ||
@@ -123,13 +124,13 @@ public class TeamService {
                     (player.getPosition().equals(Position.RCB)) ||
                     (player.getPosition().equals(Position.RWB))) {
                 first11Attack += (player.getAttacking() * 0.5);
-                first11Midfield+=(player.getBallControl()*0.25+player.getPassing()*0.25);
-                first11Defence+=player.getTackling()*0.5;
+                first11Midfield += (player.getBallControl() * 0.25 + player.getPassing() * 0.25);
+                first11Defence += player.getTackling() * 0.5;
             }
             if (player.getPosition().equals(Position.GK)) {
                 first11Attack += (player.getAttacking() * 0.1);
-                first11Midfield+=(player.getBallControl()*0.1+player.getPassing()*0.1);
-                first11Defence+=player.getTackling()*0.5;
+                first11Midfield += (player.getBallControl() * 0.1 + player.getPassing() * 0.1);
+                first11Defence += player.getTackling() * 0.5;
             }
         }
         List<Integer> formationsValues = new ArrayList<Integer>(List.of(first11Defence
@@ -138,8 +139,7 @@ public class TeamService {
                 + " Defensywa: " + formationsValues.get(0)
                 + " Pomoc: " + formationsValues.get(1)
                 + " Atak: " + formationsValues.get(2));
-        this.matchService.createDefaultOppTeam();
-//        this.matchService.createUserTeam();
+
         return formationsValues;
     }
 }

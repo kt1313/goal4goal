@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.com.k1313.goal4goal.domain.match.MatchService;
 import pl.com.k1313.goal4goal.domain.team.Team;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
 import pl.com.k1313.goal4goal.domain.team.TacticsService;
@@ -36,6 +37,8 @@ public class TeamController {
 
     @Autowired
     TacticsService tacticsService;
+    @Autowired
+    MatchService matchService;
 
     @PostMapping("/first11FormationsValues")
     public String first11FormationValuesCalculation
@@ -56,6 +59,8 @@ public class TeamController {
                     + model.getAttribute("first11Attack"));
             model.addAttribute("first11BallControl", first11BallControl);
             model.addAttribute("first11Passing", first11Passing);
+            this.matchService.createUserTeam();
+
         }
         return "redirect:/firstsquadplayers";
     }
