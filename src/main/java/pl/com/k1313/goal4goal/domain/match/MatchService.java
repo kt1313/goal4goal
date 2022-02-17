@@ -43,7 +43,7 @@ public class MatchService {
                 .filter(player -> player.getPosition().equals(Position.GK))
                 .findFirst().get();
 
-        Integer userGoalkeeperSkillInt = userGoalkeeper.getTackling();
+        Integer userGoalkeeperSkillInt = userGoalkeeper.getGoalkeeping();
 
         MatchTeam userTeam = new MatchTeam(
                 userTeamValues.get(0)

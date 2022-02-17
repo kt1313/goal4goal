@@ -21,6 +21,7 @@ public class PlayerUpdateDTO {
     private final int ballControl;
     private final int passing;
     private final int tackling;
+    private final int goalkeeping;
 
 }
 

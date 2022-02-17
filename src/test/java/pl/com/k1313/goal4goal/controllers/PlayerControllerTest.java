@@ -80,6 +80,7 @@ public class PlayerControllerTest {
                 , 55
                 , 77
                 , 55
+                , 5
         );
 
         mockMvc.perform(request)
@@ -121,6 +122,7 @@ public class PlayerControllerTest {
                 , 67
                 , 55
                 , 44
+                , 5
         );
         players.add(player1);
         Player player2 = new Player("Pyg", "Zol", LocalDate.parse("2001-11-01"), Position.RF
@@ -128,6 +130,7 @@ public class PlayerControllerTest {
                 , 76
                 , 55
                 , 44
+                ,5
                 );
         players.add(player2);
         Player player3 = new Player("Gyg", "Gol", LocalDate.parse("2001-11-06"), Position.CB
@@ -135,6 +138,7 @@ public class PlayerControllerTest {
                 , 88
                 , 55
                 , 33
+                , 5
         );
         players.add(player3);
 
@@ -180,6 +184,7 @@ public class PlayerControllerTest {
                 , 55
                 , 55
                 , 55
+                , 5
         );
         players.add(playerBefore);
 
@@ -198,6 +203,7 @@ public class PlayerControllerTest {
                 , 50
                 , 77
                 , 44
+                , 5
         );
 
         //when
@@ -224,6 +230,7 @@ public class PlayerControllerTest {
                 , 55
                 ,55
                 , 44
+                , 5
         );
 
         PlayerContractingDTO playerContractingDTO = new PlayerContractingDTO(
@@ -234,6 +241,7 @@ public class PlayerControllerTest {
                 , 55
                 , 55
                 , 44
+                , 5
         );
         Player addPlayer = new Player(playerContractingDTO.getFirstName()
                 , playerContractingDTO.getLastName()
@@ -243,6 +251,7 @@ public class PlayerControllerTest {
                 , playerContractingDTO.getBallControl()
                 , playerContractingDTO.getPassing()
                 , playerContractingDTO.getTackling()
+                , playerContractingDTO.getGoalkeeping()
         );
         players.add(addPlayer);
 

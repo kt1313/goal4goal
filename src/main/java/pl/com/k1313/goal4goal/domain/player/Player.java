@@ -27,6 +27,8 @@ public class Player {
     private int ballControl;
     private int passing;
     private int tackling;
+    private int goalkeeping;
+
 
     public Player() {
 
@@ -52,6 +54,7 @@ public class Player {
             , int ballControl
             , int passing
             , int tackling
+            , int goalkeeping
 
     ) {
         this.firstName = firstName;
@@ -63,6 +66,7 @@ public class Player {
         this.ballControl = ballControl;
         this.passing = passing;
         this.tackling = tackling;
+        this.goalkeeping = goalkeeping;
     }
 
     public Player(String firstName,
@@ -72,6 +76,7 @@ public class Player {
             , int ballControl
             , int passing
             , int tackling
+            , int goalkeeping
 
     ) {
         this.firstName = firstName;
@@ -82,6 +87,8 @@ public class Player {
         this.ballControl = ballControl;
         this.passing = passing;
         this.tackling = tackling;
+        this.goalkeeping = goalkeeping;
+
     }
 
     public Player(long id,
@@ -92,6 +99,7 @@ public class Player {
             , int ballControl
             , int passing
             , int tackling
+            , int goalkeeping
     ) {
 
         this.id = id;
@@ -104,6 +112,8 @@ public class Player {
         this.ballControl = ballControl;
         this.passing = passing;
         this.tackling = tackling;
+        this.goalkeeping = goalkeeping;
+
     }
 
     public void update(String firstName,
@@ -113,6 +123,7 @@ public class Player {
             , int ballControl
             , int passing
             , int tackling
+            , int goalkeeping
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -122,7 +133,8 @@ public class Player {
         this.attacking = attacking;
         this.ballControl = ballControl;
         this.passing = passing;
-        this.tackling=tackling;
+        this.tackling = tackling;
+        this.goalkeeping = goalkeeping;
 
     }
 
@@ -142,7 +154,8 @@ public class Player {
                 ", attacking=" + attacking +
                 ", ballControl=" + ballControl +
                 ", passing=" + passing +
-                ", tackling="+tackling+
+                ", tackling=" + tackling +
+                ", goalkiping=" + goalkeeping +
                 '}';
     }
 
