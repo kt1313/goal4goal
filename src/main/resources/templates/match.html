@@ -42,48 +42,34 @@
     </div>
 </nav>
 
-<div class="p-3 text-center bg-light"><h2 class="mb-3">Players List</h2>
-</div>
+
 
 <div class="container">
-        <a class="nav-link" href="/players/hire">Hire new player</a>
-    <form method="POST" th:action="@{/players/firstsquadplayers}">
-
-        <table class="table table-striped">
-            <thead class="thead-dark">
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date of Birth</th>
-                <th>Position</th>
-                <th>First 11</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="player : ${players}">
-                <td th:text="${player.firstName}"/>
-                <td th:text="${player.lastName}"/>
-                <td th:text="${player.birthDate}"/>
-                <td th:text="${player.position}"/>
-                <td>
-                    <input type="checkbox" th:name="firstSquadPlayer"
-                           th:value="${player.id}" />
-                </td>
-                <td>
-                    <a th:href="@{/players/delete/{id}(id=${player.id})}">Fire</a>
-                </td>
-                <td>
-                    <a th:href="@{/players/managePlayer/{id}(id=${player.id})}">Manage</a>
-                </td>
-
-            </tr>
-            </tbody>
-        </table>
-        <p></p>
+    <br>
+    <h2 style="text-align: center">Match of the Day</h2>
+    <br>
+    <table style="text-align: center; width: max-content; font-size: x-large">
+        <td></td>
+        <td >Host Team </td>
+        <td>Host Score</td>
+        <td> : </td>
+        <td>Guest Score</td>
+        <td>Guest Team</td>
+        <td></td>
+        <br><br>
+    </table>
+    <form method="POST" th:action="@{/match/stats}">
+        <div>
+            <p>Min 1. Rozpoczynamy. Nad stadionem ciężkie chmury, a na twarzach gości gości uśmiech.
+            Czują się jak u siebie.</p>
+            <p>Min 8. Akcja drużyny XXX jednak bramkarz szerokim gestem wyciągnął królika z kapelusza czym zupełnie zmylił
+            napastnika drużyny YYY</p>
+            <p>Min 34. Kontra w wykonaniu YYY. Piłka sunie jak po sznurku. Było łatwo. Defensorzy XXX poszli
+            oglądać nowy model Dacii. W końcowej fazie jednak zabrakło precyzji. Wynik bez zmian.</p><
+            p>Min 45. Gooooooool! W sytuacji sam na sam PlayerX wykańcza akcję sprytna podcinką. HostScore:GuestScore</p>
+        </div>
         <input type="submit" class="btn-primary" style="background-color: #0040ff"
-               value="Confirm first 11"/>
+               value="Check Match Stats"/>
     </form>
 </div>
 </body>

@@ -10,9 +10,7 @@ import pl.com.k1313.goal4goal.domain.team.MatchTeam;
 import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 import pl.com.k1313.goal4goal.domain.team.TeamService;
 
-import java.util.Collection;
 import java.util.List;
-//import pl.com.k1313.goal4goal.repository.TeamRepository;
 
 @Service
 public class MatchService {
