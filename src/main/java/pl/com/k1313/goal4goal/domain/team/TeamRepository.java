@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Repository
 public interface TeamRepository
-        extends JpaRepository<Player,Long>
+        extends JpaRepository<Team,Long>
 {
 
 }

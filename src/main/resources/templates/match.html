@@ -34,10 +34,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/growStar">Grow a Star</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                   href="/reservations/create/stepone">Hire player</a>
-            </li>
+
         </ul>
     </div>
 </nav>
@@ -45,19 +42,25 @@
 
 
 <div class="container">
-    <br>
-    <h2 style="text-align: center">Match of the Day</h2>
-    <br>
-    <table style="text-align: center; width: max-content; font-size: x-large">
+<div>
+    <br><h2 style="text-align: center">Match of the Day</h2>
+</div>
+    <div>
+    <table style="margin-left: auto; margin-right: auto; font-size: xx-large">
         <td></td>
-        <td >Host Team </td>
+        <td th:id="hostTeamName" th:text=${hostTeamName}/>
+        <td></td>
         <td>Host Score</td>
-        <td> : </td>
-        <td>Guest Score</td>
-        <td>Guest Team</td>
         <td></td>
-        <br><br>
+        <td> : </td>
+        <td></td>
+        <td>Guest Score</td>
+        <td></td>
+        <td th:id="guestTeamName" th:text=${guestTeamName}/>
+        <td></td>
     </table>
+    </div>
+    <br><br>
     <form method="POST" th:action="@{/match/stats}">
         <div>
             <p>Min 1. Rozpoczynamy. Nad stadionem ciężkie chmury, a na twarzach gości gości uśmiech.
@@ -65,8 +68,9 @@
             <p>Min 8. Akcja drużyny XXX jednak bramkarz szerokim gestem wyciągnął królika z kapelusza czym zupełnie zmylił
             napastnika drużyny YYY</p>
             <p>Min 34. Kontra w wykonaniu YYY. Piłka sunie jak po sznurku. Było łatwo. Defensorzy XXX poszli
-            oglądać nowy model Dacii. W końcowej fazie jednak zabrakło precyzji. Wynik bez zmian.</p><
-            p>Min 45. Gooooooool! W sytuacji sam na sam PlayerX wykańcza akcję sprytna podcinką. HostScore:GuestScore</p>
+            oglądać nowy model Dacii. W końcowej fazie jednak zabrakło precyzji.
+                Wynik bez zmian.</p>
+            <p>Min 45. Gooooooool! W sytuacji sam na sam PlayerX wykańcza akcję sprytna podcinką. HostScore:GuestScore</p>
         </div>
         <input type="submit" class="btn-primary" style="background-color: #0040ff"
                value="Check Match Stats"/>

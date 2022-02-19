@@ -1,26 +1,54 @@
 package pl.com.k1313.goal4goal.domain.team;
 
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Component
+@Data
+@Entity
+//@Component
 public class MatchTeam {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
+    private  String teamName;
     private int attack;
     private int midfield;
     private int defence;
 
     private int goalkeeperSkill;
 
-    public MatchTeam(){}
+    public MatchTeam() {
+    }
 
-    public MatchTeam(int attack, int midfield, int defence, int goalkeeperSkill){
+    public MatchTeam(String teamName, int attack, int midfield, int defence, int goalkeeperSkill) {
 
-        this.attack=attack;
-        this.midfield=midfield;
-        this.defence=defence;
-        this.goalkeeperSkill=goalkeeperSkill;
+        this.teamName=teamName;
+        this.attack = attack;
+        this.midfield = midfield;
+        this.defence = defence;
+        this.goalkeeperSkill = goalkeeperSkill;
+    }
+
+    public MatchTeam(long id, String teamName, int attack, int midfield, int defence, int goalkeeperSkill) {
+
+        this.id=id;
+        this.teamName=teamName;
+        this.attack = attack;
+        this.midfield = midfield;
+        this.defence = defence;
+        this.goalkeeperSkill = goalkeeperSkill;
+    }
+    public String getTeamName() {return teamName;}
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
     public int getAttack() {
@@ -58,7 +86,8 @@ public class MatchTeam {
     @Override
     public String toString() {
         return "MatchTeam{" +
-                "attack=" + attack +
+                "userTeamName='" + teamName + '\'' +
+                ", attack=" + attack +
                 ", midfield=" + midfield +
                 ", defence=" + defence +
                 ", goalkeeperSkill=" + goalkeeperSkill +

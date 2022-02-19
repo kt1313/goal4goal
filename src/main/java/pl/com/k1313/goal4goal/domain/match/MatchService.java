@@ -27,7 +27,7 @@ public class MatchService {
     private PlayerRepository playerRepository;
 
     public MatchTeam createDefaultOppTeam() {
-        MatchTeam defaultOppTeam = new MatchTeam(30, 40, 50, 60);
+        MatchTeam defaultOppTeam = new MatchTeam("Cream Team FC",30, 40, 50, 60);
         System.out.println("MatchService, createDefaultOppTeam, defTeam: " + defaultOppTeam.toString());
         return defaultOppTeam;
     }
@@ -44,7 +44,8 @@ public class MatchService {
         Integer userGoalkeeperSkillInt = userGoalkeeper.getGoalkeeping();
 
         MatchTeam userTeam = new MatchTeam(
-                userTeamValues.get(0)
+                this.matchTeam.getTeamName()
+                , userTeamValues.get(0)
                 , userTeamValues.get(1)
                 , userTeamValues.get(2)
                 , userGoalkeeperSkillInt);

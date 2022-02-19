@@ -6,7 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.com.k1313.goal4goal.domain.match.MatchService;
-import pl.com.k1313.goal4goal.domain.player.PlayerService;
+import pl.com.k1313.goal4goal.domain.team.MatchTeam;
+import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 import pl.com.k1313.goal4goal.domain.team.TeamService;
 
 @Controller
@@ -21,12 +22,23 @@ public class MatchController {
     }
 
     @Autowired
+    public MatchTeam matchTeam;
+
+    @Autowired
     public TeamService teamService;
+    @Autowired
+    public TeamRepository teamRepository;
 
     @GetMapping
     public String match(Model m) {
-//        m.addAttribute("defaultOppTeam", this.matchService.createDefaultOppTeam());
-//        m.addAttribute("userTeam", this.matchService.createUserTeam());
+
+        System.out.println("MatchContr, --------------------");
+        this.teamService.findAllMatchTeams().stream()
+                .filter(matchTeam1 -> matchTeam1.)
+        m.addAttribute("hostTeamName",
+                this.matchService.createUserTeam().getTeamName());
+        m.addAttribute("guestTeamName",
+                this.matchService.createDefaultOppTeam().getTeamName());
         return "match";
     }
 

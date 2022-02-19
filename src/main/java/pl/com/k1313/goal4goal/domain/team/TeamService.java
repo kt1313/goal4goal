@@ -17,6 +17,7 @@ import pl.com.k1313.goal4goal.domain.player.PlayerRepository;
 import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 public class TeamService {
 
     private TeamRepository teamRepository;
+    private MatchTeamRepository matchTeamRepository;
 
     @Autowired
     private PlayerController playerController;
@@ -37,8 +39,8 @@ public class TeamService {
         this.teamRepository = teamRepository;
     }
 
-    @Autowired
-    public MatchTeam matchTeam;
+//    @Autowired
+//    public MatchTeam matchTeam;
 
     @Autowired
     public MatchService matchService;
@@ -142,4 +144,10 @@ public class TeamService {
 
         return formationsValues;
     }
+
+    public List<Team> findAllTeams() {
+        return this.teamRepository.findAll();
+    }
+
+    public List<MatchTeam> findAllMatchTeams() {return this.matchTeamRepository.findAll();}
 }
