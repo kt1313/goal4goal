@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 public class TeamService {
 
     private TeamRepository teamRepository;
+    @Autowired
     private MatchTeamRepository matchTeamRepository;
 
     @Autowired
@@ -150,4 +151,39 @@ public class TeamService {
     }
 
     public List<MatchTeam> findAllMatchTeams() {return this.matchTeamRepository.findAll();}
+//proba proba proba 21/2/22
+    public MatchTeam createUserTim() {
+
+        List<Integer> userTeamValues = calculateFirst11FormationsValues();
+        Player userGoalkeeper = this.playerRepository.findAll()
+                .stream().filter(Player::isFirstSquadPlayer)
+                .filter(player -> player.getPosition().equals(Position.GK))
+                .findFirst().get();
+
+        Integer userGoalkeeperSkillInt = userGoalkeeper.getGoalkeeping();
+
+        MatchTeam userTeam = new MatchTeam(
+                //tu bedzie z repository UserRepo wziete teamName
+                "Tres Tigres"
+                , userTeamValues.get(0)
+                , userTeamValues.get(1)
+                , userTeamValues.get(2)
+                , userGoalkeeperSkillInt);
+        System.out.println("--------------------------------------");
+        System.out.println("MatchService, create userTeam, TEAM VALUES: " + userTeam);
+        this.matchTeamRepository.save(userTeam);
+//        System.out.println(this.matchTeamRepository.findAll().stream().findFirst().toString());
+        return userTeam;
+
+    }
+
+
+    //proba proba proba
+    public MatchTeam createDefaultOppTim() {
+        MatchTeam defaultOppTeam = new MatchTeam("Cream Team FC", 30, 40, 50, 60);
+        System.out.println("MatchService, createDefaultOppTeam, defTeam: " + defaultOppTeam.toString());
+        this.matchTeamRepository.save(defaultOppTeam);
+        return defaultOppTeam;
+    }
+
 }

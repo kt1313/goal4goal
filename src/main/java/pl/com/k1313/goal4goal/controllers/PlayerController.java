@@ -97,6 +97,7 @@ public class PlayerController {
             model.addAttribute("firstsquadplayers", firstsquadplayers);
             String[][] first11FinalTable = this.teamService.setUpFirst11(firstsquadplayers);
             model.addAttribute("first11FinalTable", first11FinalTable);
+
             return "firstsquadplayers";
         } else {
             return "redirect:/players";

@@ -7,8 +7,6 @@ import pl.com.k1313.goal4goal.domain.team.MatchTeam;
 @Component
 public class Match {
 
-    @Autowired
-    private MatchTeam matchTeam;
 
     public Match() {
     }

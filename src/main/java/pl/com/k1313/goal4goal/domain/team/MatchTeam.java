@@ -86,7 +86,7 @@ public class MatchTeam {
     @Override
     public String toString() {
         return "MatchTeam{" +
-                "userTeamName='" + teamName + '\'' +
+                "teamName='" + teamName + '\'' +
                 ", attack=" + attack +
                 ", midfield=" + midfield +
                 ", defence=" + defence +

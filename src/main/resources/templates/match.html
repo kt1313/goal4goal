@@ -40,37 +40,39 @@
 </nav>
 
 
-
 <div class="container">
-<div>
-    <br><h2 style="text-align: center">Match of the Day</h2>
-</div>
-    <div>
-    <table style="margin-left: auto; margin-right: auto; font-size: xx-large">
-        <td></td>
-        <td th:id="hostTeamName" th:text=${hostTeamName}/>
-        <td></td>
-        <td>Host Score</td>
-        <td></td>
-        <td> : </td>
-        <td></td>
-        <td>Guest Score</td>
-        <td></td>
-        <td th:id="guestTeamName" th:text=${guestTeamName}/>
-        <td></td>
-    </table>
+    <br><br>
+    <div style="border-top-left-radius: 30px; border-bottom-right-radius: 30px; background-color: aliceblue">
+        <div>
+            <h2 style="text-align: center">Match of the Day</h2>
+        </div>
+        <table style="margin-left: auto; margin-right: auto; font-size: xx-large">
+            <td></td>
+            <td th:id="hostTeamName" th:text=${hostTeamName}/>
+            <td></td>
+            <td>1</td>
+            <td></td>
+            <td> :</td>
+            <td></td>
+            <td>0</td>
+            <td></td>
+            <td th:id="guestTeamName" th:text=${guestTeamName}/>
+            <td></td>
+        </table>
     </div>
     <br><br>
     <form method="POST" th:action="@{/match/stats}">
         <div>
             <p>Min 1. Rozpoczynamy. Nad stadionem ciężkie chmury, a na twarzach gości gości uśmiech.
-            Czują się jak u siebie.</p>
-            <p>Min 8. Akcja drużyny XXX jednak bramkarz szerokim gestem wyciągnął królika z kapelusza czym zupełnie zmylił
-            napastnika drużyny YYY</p>
+                Czują się jak u siebie.</p>
+            <p>Min 8. Akcja drużyny XXX jednak bramkarz szerokim gestem wyciągnął królika z kapelusza czym zupełnie
+                zmylił
+                napastnika drużyny YYY</p>
             <p>Min 34. Kontra w wykonaniu YYY. Piłka sunie jak po sznurku. Było łatwo. Defensorzy XXX poszli
-            oglądać nowy model Dacii. W końcowej fazie jednak zabrakło precyzji.
+                oglądać nowy model Dacii. W końcowej fazie jednak zabrakło precyzji.
                 Wynik bez zmian.</p>
-            <p>Min 45. Gooooooool! W sytuacji sam na sam PlayerX wykańcza akcję sprytna podcinką. HostScore:GuestScore</p>
+            <p>Min 45. Gooooooool! W sytuacji sam na sam PlayerX wykańcza akcję sprytna podcinką.
+                HostScore:GuestScore</p>
         </div>
         <input type="submit" class="btn-primary" style="background-color: #0040ff"
                value="Check Match Stats"/>

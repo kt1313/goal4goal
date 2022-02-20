@@ -81,6 +81,9 @@ public class PlayerService {
                 Player first11Player = getPlayerById(l);
                 first11Player.setFirstSquadPlayer(true);
                 firstsquadplayers.add(first11Player);
+                System.out.println("save1?");
+                this.repository.save(first11Player);
+                System.out.println("save2?");
             }
         }
         return firstsquadplayers;
