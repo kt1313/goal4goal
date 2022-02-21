@@ -55,21 +55,9 @@ public class MatchService {
                 , userTeamValues.get(1)
                 , userTeamValues.get(2)
                 , userGoalkeeperSkillInt);
-        System.out.println("--------------------------------------");
-        System.out.println("MatchService, create userTeam, TEAM VALUES: " + userTeam);
         this.matchTeamRepository.save(userTeam);
-//        System.out.println(this.matchTeamRepository.findAll().stream().findFirst().toString());
         return userTeam;
 
-    }
-
-    public void proba(){
-        Optional<Player> p=this.playerRepository.findAll().stream().findFirst();
-        System.out.println("MatchService, proba, player w Repo:"+p.get().isFirstSquadPlayer());
-        List<Player> first11players = this.playerRepository.findAll().stream()
-                .filter(Player::isFirstSquadPlayer)
-                .collect(Collectors.toList());
-        System.out.println("matchserv, proba, first11: "+first11players.size());
     }
 
 }
