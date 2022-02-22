@@ -50,11 +50,11 @@
             <td></td>
             <td th:id="hostTeamName" th:text=${hostTeamName}/>
             <td></td>
-            <td>1</td>
+            <td>th:id="hostTeamScore" th:text=${matchScore.getHostScore()}</td>
             <td></td>
             <td> :</td>
             <td></td>
-            <td>0</td>
+            <td>th:id="guestTeamScore" th:text=${matchScore.getGuestScore()}</td>
             <td></td>
             <td th:id="guestTeamName" th:text=${guestTeamName}/>
             <td></td>

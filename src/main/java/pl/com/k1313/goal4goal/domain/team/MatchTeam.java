@@ -10,7 +10,6 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-//@Component
 public class MatchTeam {
 
     @Id

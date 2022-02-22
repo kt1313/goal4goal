@@ -12,9 +12,6 @@ import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 import pl.com.k1313.goal4goal.domain.team.TeamService;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.stream.Collectors;
 
 @Service
 public class MatchService {
@@ -29,6 +26,9 @@ public class MatchService {
     private PlayerRepository playerRepository;
     @Autowired
     private MatchTeamRepository matchTeamRepository;
+    @Autowired
+    private MatchRepository matchRepository;
+
 
     public MatchTeam createDefaultOppTeam() {
         MatchTeam defaultOppTeam = new MatchTeam("Cream Team FC", 30, 40, 50, 60);
@@ -57,7 +57,33 @@ public class MatchService {
                 , userGoalkeeperSkillInt);
         this.matchTeamRepository.save(userTeam);
         return userTeam;
-
     }
 
+    public MatchScore getResult(Match match) {
+
+        Long id = match.getId();
+        MatchScore result = this.matchRepository.getById(id).matchScore;
+        return result;
+    }
+
+//    public MatchScore goalScored(MatchTeam matchTeam) throws IllegalArgumentException {
+//
+//        Match matchInProgress = this.matchRepository.findAll().stream()
+//                .filter(match -> match.inProgress)
+//                .findFirst().get();
+//        MatchScore matchInProgressMatchScore = matchInProgress.getMatchScore();
+//
+//        int updatedHostScore = matchInProgressMatchScore.getHostScore();
+//        int updatedGuestScore = matchInProgressMatchScore.getGuestScore();
+//
+//        if (matchInProgress.getHostTeam().equals(matchTeam)) {
+//            updatedHostScore++;
+//        } else if (matchInProgress.getGuestTeam().equals(matchTeam)) {
+//            updatedGuestScore++;
+//        }
+//        MatchScore matchScore=new MatchScore(updatedHostScore, updatedGuestScore);
+//        //zapisac teraz czy po meczu??? teraz, bo bedzie pobierany przy nast bramce
+//        this.matchRepository.save(matchInProgress);
+//        return matchScore;
+//    }
 }

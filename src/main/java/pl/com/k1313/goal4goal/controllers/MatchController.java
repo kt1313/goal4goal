@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.com.k1313.goal4goal.domain.match.MatchScore;
 import pl.com.k1313.goal4goal.domain.match.MatchService;
 import pl.com.k1313.goal4goal.domain.player.Player;
 import pl.com.k1313.goal4goal.domain.player.PlayerRepository;
@@ -34,6 +36,8 @@ public class MatchController {
     public TeamRepository teamRepository;
     @Autowired
     public PlayerRepository playerRepository;
+    @Autowired
+    public MatchTeam matchTeam;
 
     @GetMapping
     public String match(Model m) {
@@ -56,6 +60,14 @@ public class MatchController {
 
         return "match";
     }
+//    @PostMapping("/goalScored")
+//    public String goalScored(MatchTeam matchTeam, Model model){
+//
+//        MatchScore matchScore=this.matchService.goalScored(matchTeam);
+//        model.addAttribute("matchScore", matchScore);
+//
+//        return "match";
+//    }
 
 
 }
