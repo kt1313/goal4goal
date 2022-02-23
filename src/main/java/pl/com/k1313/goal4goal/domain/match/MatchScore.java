@@ -4,6 +4,7 @@ public class MatchScore {
     int hostScore;
     int guestScore;
     boolean penaltyScore;
+    boolean finalScore;
 
     public MatchScore(){}
 
@@ -12,10 +13,11 @@ public class MatchScore {
         this.guestScore = guestScore;
     }
 
-    public MatchScore(int hostScore, int guestScore, boolean penaltyScore){
+    public MatchScore(int hostScore, int guestScore, boolean penaltyScore, boolean finalScore){
         this.hostScore=hostScore;
         this.guestScore = guestScore;
         this.penaltyScore=penaltyScore;
+        this.finalScore=finalScore;
     }
 
 

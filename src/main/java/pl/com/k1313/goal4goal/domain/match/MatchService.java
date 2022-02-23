@@ -41,12 +41,7 @@ public class MatchService {
     public MatchTeam createUserTeam() {
 
         List<Integer> userTeamValues = this.teamService.calculateFirst11FormationsValues();
-        Player userGoalkeeper = this.playerRepository.findAll()
-                .stream().filter(Player::isFirstSquadPlayer)
-                .filter(player -> player.getPosition().equals(Position.GK))
-                .findFirst().get();
-
-        Integer userGoalkeeperSkillInt = userGoalkeeper.getGoalkeeping();
+        Integer userGoalkeeperSkillInt=getGoalkeeperSkills();
 
         MatchTeam userTeam = new MatchTeam(
                 //tu bedzie z repository UserRepo wziete teamName
@@ -59,31 +54,13 @@ public class MatchService {
         return userTeam;
     }
 
-    public MatchScore getResult(Match match) {
+    public Integer getGoalkeeperSkills(){
+        Integer goalkeeperSkills = this.playerRepository.findAll()
+                .stream().filter(Player::isFirstSquadPlayer)
+                .filter(player -> player.getPosition().equals(Position.GK))
+                .findFirst().get().getGoalkeeping();
 
-        Long id = match.getId();
-        MatchScore result = this.matchRepository.getById(id).matchScore;
-        return result;
+        return goalkeeperSkills;
     }
 
-//    public MatchScore goalScored(MatchTeam matchTeam) throws IllegalArgumentException {
-//
-//        Match matchInProgress = this.matchRepository.findAll().stream()
-//                .filter(match -> match.inProgress)
-//                .findFirst().get();
-//        MatchScore matchInProgressMatchScore = matchInProgress.getMatchScore();
-//
-//        int updatedHostScore = matchInProgressMatchScore.getHostScore();
-//        int updatedGuestScore = matchInProgressMatchScore.getGuestScore();
-//
-//        if (matchInProgress.getHostTeam().equals(matchTeam)) {
-//            updatedHostScore++;
-//        } else if (matchInProgress.getGuestTeam().equals(matchTeam)) {
-//            updatedGuestScore++;
-//        }
-//        MatchScore matchScore=new MatchScore(updatedHostScore, updatedGuestScore);
-//        //zapisac teraz czy po meczu??? teraz, bo bedzie pobierany przy nast bramce
-//        this.matchRepository.save(matchInProgress);
-//        return matchScore;
-//    }
 }

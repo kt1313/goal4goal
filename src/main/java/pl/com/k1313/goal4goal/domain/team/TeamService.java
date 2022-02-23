@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import pl.com.k1313.goal4goal.controllers.PlayerController;
 import pl.com.k1313.goal4goal.controllers.dto.First11DTO;
+import pl.com.k1313.goal4goal.domain.match.Match;
+import pl.com.k1313.goal4goal.domain.match.MatchRepository;
 import pl.com.k1313.goal4goal.domain.match.MatchService;
 import pl.com.k1313.goal4goal.domain.player.Player;
 import pl.com.k1313.goal4goal.domain.player.PlayerService;
@@ -28,6 +30,8 @@ public class TeamService {
     private TeamRepository teamRepository;
     @Autowired
     private MatchTeamRepository matchTeamRepository;
+    @Autowired
+    private MatchRepository matchRepository;
 
     @Autowired
     private PlayerController playerController;
@@ -153,4 +157,29 @@ public class TeamService {
     public List<MatchTeam> findAllMatchTeams() {return this.matchTeamRepository.findAll();}
 
 
+    public Match createMatch() {
+        Match match;
+        this.matchService.createUserTeam();
+        this.matchService.createDefaultOppTeam();
+
+        Optional<MatchTeam> hostTeamOpt = findAllMatchTeams().stream()
+                .filter(matchTeam1 -> matchTeam1.getTeamName()
+                        .equals("Tres Tigres"))
+                .findFirst();
+        String hostTeamName = hostTeamOpt.get().getTeamName();
+
+        Optional<MatchTeam> guestTeamOpt = findAllMatchTeams()
+                .stream().filter(matchTeam -> matchTeam.getTeamName().equals("Cream Team FC"))
+                .findFirst();
+        String guestTeamName = guestTeamOpt.get().getTeamName();
+
+        List<MatchTeam> matchTeamList=new ArrayList<>();
+        matchTeamList.add(hostTeamOpt.get());
+        matchTeamList.add(guestTeamOpt.get());
+
+        match=new Match(matchTeamList,true);
+        this.matchRepository.save(match);
+
+        return match;
+    }
 }
