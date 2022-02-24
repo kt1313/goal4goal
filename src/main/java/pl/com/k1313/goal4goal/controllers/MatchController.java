@@ -47,8 +47,8 @@ public class MatchController {
         //tu utworz Match i go zasejwuj na repo
         Match match=this.teamService.createMatch();
 
-        String hostTeamName=match.getMatchteams().get(0).getTeamName();
-        String guestTeamName=match.getMatchteams().get(1).getTeamName();
+        String hostTeamName=match.getMatchTeams().get(0).getTeamName();
+        String guestTeamName=match.getMatchTeams().get(1).getTeamName();
         Integer hostTeamScore=match.getHostScore();
         Integer guestTeamScore=match.getGuestScore();
 
@@ -65,11 +65,15 @@ public class MatchController {
 
         MatchScore matchScore = new MatchScore();
         Match match = this.matchRepository.findAll().stream().filter(Match::isInProgress).findFirst().get();
-
-        if (matchTeam.equals(match.getMatchteams().get(0))) {
+//Long matchId=this.matchRepository.findAll().stream().filter(Match::isInProgress).findFirst().get().getId();
+        if (matchTeam.equals(match.getMatchTeams().get(0))) {
+            System.out.println("MatchContr, goalScored: host "+match.getHostScore());
             match.setHostScore(match.getHostScore() + 1);
-        } else if (matchTeam.equals(match.getMatchteams().get(1))) {
+            System.out.println("MatchContr, goalScored: host "+match.getHostScore());
+        } else if (matchTeam.equals(match.getMatchTeams().get(1))) {
+            System.out.println("MatchContr, goalScored: guest "+match.getGuestScore());
             match.setGuestScore(match.getGuestScore() + 1);
+            System.out.println("MatchContr, goalScored: guest "+match.getGuestScore());
         } else {
             throw new IllegalArgumentException("Błędny zespół");
         }
@@ -77,6 +81,4 @@ public class MatchController {
         this.matchRepository.save(match);
         return "match";
     }
-
-
 }

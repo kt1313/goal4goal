@@ -25,8 +25,7 @@ public class Match {
     private boolean inProgress;
 
 
-    @OneToMany
-    List<MatchTeam> matchteams;
+
 
     //zlikwiduj klasę i zastosuj metodę, i tak będziesz archiwizował cały mecz
     private MatchScore matchScore(Match match) {
@@ -42,16 +41,8 @@ public class Match {
     }
 
     public Match(List<MatchTeam> matchTeams, boolean inProgress) {
-        this.matchteams = matchTeams;
+        this.matchTeams = matchTeams;
         this.inProgress = inProgress;
-    }
-
-    public List<MatchTeam> getMatchteams() {
-        return matchteams;
-    }
-
-    public void setMatchteams(List<MatchTeam> matchteams) {
-        this.matchteams = matchteams;
     }
 
     public boolean isInProgress() {
@@ -102,7 +93,7 @@ public class Match {
                 ", guestScore=" + guestScore +
                 ", isPenaltyScore=" + isPenaltyScore +
                 ", inProgress=" + inProgress +
-                ", matchteams=" + matchteams +
+                ", matchTeams=" + matchTeams +
                 '}';
     }
 }

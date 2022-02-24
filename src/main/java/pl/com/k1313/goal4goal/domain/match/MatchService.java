@@ -41,7 +41,7 @@ public class MatchService {
     public MatchTeam createUserTeam() {
 
         List<Integer> userTeamValues = this.teamService.calculateFirst11FormationsValues();
-        Integer userGoalkeeperSkillInt=getGoalkeeperSkills();
+        Integer userGoalkeeperSkillInt = getGoalkeeperSkills();
 
         MatchTeam userTeam = new MatchTeam(
                 //tu bedzie z repository UserRepo wziete teamName
@@ -51,10 +51,12 @@ public class MatchService {
                 , userTeamValues.get(2)
                 , userGoalkeeperSkillInt);
         this.matchTeamRepository.save(userTeam);
+
+        System.out.println("MatchServ, creatUserTeam, userTeam: " + userTeam);
         return userTeam;
     }
 
-    public Integer getGoalkeeperSkills(){
+    public Integer getGoalkeeperSkills() {
         Integer goalkeeperSkills = this.playerRepository.findAll()
                 .stream().filter(Player::isFirstSquadPlayer)
                 .filter(player -> player.getPosition().equals(Position.GK))
