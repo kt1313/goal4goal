@@ -50,12 +50,11 @@
         <table style="margin-left: auto; margin-right: auto; font-size: xx-large">
             <td></td>
             <td th:id="hostTeamName" th:text=${hostTeamName}/>
+            <td th:id="hostTeamScore" th:text=${hostTeamScore}/>
             <td></td>
-            <td>th:id="hostTeamScore" th:text=${matchScore.getHostScore()}</td>
+            <td> : </td>
             <td></td>
-            <td> :</td>
-            <td></td>
-            <td>th:id="guestTeamScore" th:text=${matchScore.getGuestScore()}</td>
+            <td th:id="guestTeamScore" th:text=${guestTeamScore}/>
             <td></td>
             <td th:id="guestTeamName" th:text=${guestTeamName}/>
             <td></td>
