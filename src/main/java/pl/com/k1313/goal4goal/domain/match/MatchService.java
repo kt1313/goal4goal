@@ -12,6 +12,7 @@ import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 import pl.com.k1313.goal4goal.domain.team.TeamService;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class MatchService {
@@ -63,6 +64,102 @@ public class MatchService {
                 .findFirst().get().getGoalkeeping();
 
         return goalkeeperSkills;
+    }
+
+    public void handleMatchEngine(Match match) {
+        List<MatchTeam> matchTeamList = match.getMatchTeams();
+        MatchTeam hostTeam = matchTeamList.get(0);
+        MatchTeam guestTeam = matchTeamList.get(1);
+        MatchTeam teamOnOpportunity;
+        int matchTime = 0;
+        boolean matchInProgress = true;
+        while (matchInProgress) {
+            matchTime++;
+            teamOnOpportunity = ballPossesionCheckOut(hostTeam, guestTeam);
+            if (opportunitySucceed()) {
+                if (compareAttackDefence(teamOnOpportunity, hostTeam, guestTeam)) {
+                drawForwarder();
+                //sprawdz czy tu nawias
+                    }
+                if compareForwardGoalkeeper();
+                {
+                    methodScore
+                }
+                plus methodMatchCommentary ();
+                if (matchTime > 90) {
+                    matchInProgress = false;
+                }
+            } else drawCAttackChance();
+
+        }
+    }
+
+    //sprawdza posiadanie, na jego podstawie losuje kto ma akcję
+    private MatchTeam ballPossesionCheckOut(MatchTeam hostTeam, MatchTeam guestTeam) {
+        Random random = new Random();
+        int chance;
+        int totalMidfield = hostTeam.getMidfield() + guestTeam.getMidfield();
+        int hostTeamMatchMid = hostTeam.getMidfield() / totalMidfield * 100;
+        int guestTeamMatchMid = guestTeam.getMidfield() / totalMidfield * 100;
+        chance = random.nextInt(100) + 1;
+        if (chance >= hostTeamMatchMid) {
+            return hostTeam;
+        } else {
+            return guestTeam;
+        }
+    }
+
+    //tu można regulować ilość akcji
+    private boolean opportunitySucceed() {
+        Random random = new Random();
+        int succeed = random.nextInt(2);
+        if (succeed == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //sparawdza czy akcja się udała porównując atak do defensywy
+    private boolean compareAttackDefence(MatchTeam teamOnOpportunity, MatchTeam hostTeam, MatchTeam guestTeam) {
+        Random random = new Random();
+        boolean attackSucceed = false;
+        if (teamOnOpportunity.equals(hostTeam)) {
+            int sumAttackDefence = hostTeam.getAttack() + guestTeam.getDefence();
+            int attackPart = hostTeam.getAttack() / sumAttackDefence * 100;
+            int defPart = guestTeam.getDefence() / sumAttackDefence * 100;
+            int succeed = random.nextInt(100) + 1;
+            if (succeed <= attackPart) {
+                attackSucceed = true;
+            } else {
+                attackSucceed = false;
+            }
+        } else {
+            if (teamOnOpportunity.equals(guestTeam)) {
+                int sumAttackDefence = guestTeam.getAttack() + hostTeam.getDefence();
+                int attackPart = guestTeam.getAttack() / sumAttackDefence * 100;
+                int defPart = hostTeam.getDefence() / sumAttackDefence * 100;
+                int succeed = random.nextInt(100) + 1;
+                if (succeed <= attackPart) {
+                    attackSucceed = true;
+                } else {
+                    attackSucceed = false;
+                }
+            } else {
+                System.out.println("Atakujacy to nie host ani guest");
+            }
+        }
+        return attackSucceed;
+    }
+
+    //musi zebrac liste zawodnikow, ktorzy sa napastnikami (poki co tylko napastnicy) i
+    //porownac ich atak do goalkeepingu
+    private void drawForwarder(){
+        this.playerRepository.findAll().stream()
+                .filter(Player::isFirstSquadPlayer)
+                .filter(player -> player.getPosition().equals(Position.RF))
+                .findFirst().get()
+
     }
 
 }
