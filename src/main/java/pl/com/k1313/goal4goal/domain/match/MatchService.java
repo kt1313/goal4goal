@@ -71,19 +71,23 @@ public class MatchService {
         MatchTeam hostTeam = matchTeamList.get(0);
         MatchTeam guestTeam = matchTeamList.get(1);
         MatchTeam teamOnOpportunity;
+        MatchTeam teamInDefence;
         int matchTime = 0;
         boolean matchInProgress = true;
         while (matchInProgress) {
             matchTime++;
             teamOnOpportunity = ballPossesionCheckOut(hostTeam, guestTeam);
+            if (teamOnOpportunity.equals(hostTeam)) {
+                teamInDefence = guestTeam;
+            } else {
+                teamInDefence = hostTeam
+            }
             if (opportunitySucceed()) {
                 if (compareAttackDefence(teamOnOpportunity, hostTeam, guestTeam)) {
-                drawForwarder();
-                //sprawdz czy tu nawias
+                    int forwarderAttack = getForwarderAttack(teamOnOpportunity, hostTeam, guestTeam);
+                    if (forwardScoresVsGoalkeeper(teamInDefence.getGoalkeeperSkill(), forwarderAttack)) {
+                        methodScore();
                     }
-                if compareForwardGoalkeeper();
-                {
-                    methodScore
                 }
                 plus methodMatchCommentary ();
                 if (matchTime > 90) {
@@ -152,14 +156,31 @@ public class MatchService {
         return attackSucceed;
     }
 
-    //musi zebrac liste zawodnikow, ktorzy sa napastnikami (poki co tylko napastnicy) i
-    //porownac ich atak do goalkeepingu
-    private void drawForwarder(){
-        this.playerRepository.findAll().stream()
-                .filter(Player::isFirstSquadPlayer)
-                .filter(player -> player.getPosition().equals(Position.RF))
-                .findFirst().get()
-
+    //musi zebrac liste zawodnikow, ktorzy sa napastnikami (poki co tylko napastnicy)
+    private Integer getForwarderAttack(MatchTeam attackingTeam, MatchTeam hostTeam, MatchTeam guestTeam) {
+        int strikerAttack = 0;
+        if (attackingTeam.equals(hostTeam)) {
+            strikerAttack = this.playerRepository.findAll().stream()
+                    .filter(Player::isFirstSquadPlayer)
+                    .filter(player -> player.getPosition().equals(Position.RF))
+                    .findFirst().get().getAttacking();
+        } else if (attackingTeam.equals(guestTeam)) {
+            //tu zakladamy sredni atak defaultowego zespołu
+            strikerAttack = 60;
+        } else {
+            System.out.println("Atakujacy to nie host ani guest");
+        }
+        return strikerAttack;
     }
 
+    private boolean forwardScoresVsGoalkeeper(Integer goalkeeperSkill, int strikerAttack) {
+        Random random = new Random();
+        int goalChance = goalkeeperSkill + strikerAttack;
+        int goal = random.nextInt(goalChance);
+        if (goal > goalkeeperSkill) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
