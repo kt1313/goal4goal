@@ -45,12 +45,12 @@ public class MatchController {
     public String match(Model m) {
 
         //tu utworz Match i go zasejwuj na repo
-        Match match=this.teamService.createMatch();
+        Match match = this.teamService.createMatch();
 
-        String hostTeamName=match.getMatchTeams().get(0).getTeamName();
-        String guestTeamName=match.getMatchTeams().get(1).getTeamName();
-        Integer hostTeamScore=match.getHostScore();
-        Integer guestTeamScore=match.getGuestScore();
+        String hostTeamName = match.getMatchTeams().get(0).getTeamName();
+        String guestTeamName = match.getMatchTeams().get(1).getTeamName();
+        Integer hostTeamScore = match.getHostScore();
+        Integer guestTeamScore = match.getGuestScore();
 
         m.addAttribute("hostTeamName", hostTeamName);
         m.addAttribute("guestTeamName", guestTeamName);
@@ -63,20 +63,7 @@ public class MatchController {
     @PostMapping("/goalScored")
     public String goalScored(MatchTeam matchTeam, Model model) throws IllegalArgumentException {
 
-        MatchScore matchScore = new MatchScore();
-        Match match = this.matchRepository.findAll().stream().filter(Match::isInProgress).findFirst().get();
-//Long matchId=this.matchRepository.findAll().stream().filter(Match::isInProgress).findFirst().get().getId();
-        if (matchTeam.equals(match.getMatchTeams().get(0))) {
-            System.out.println("MatchContr, goalScored: host "+match.getHostScore());
-            match.setHostScore(match.getHostScore() + 1);
-            System.out.println("MatchContr, goalScored: host "+match.getHostScore());
-        } else if (matchTeam.equals(match.getMatchTeams().get(1))) {
-            System.out.println("MatchContr, goalScored: guest "+match.getGuestScore());
-            match.setGuestScore(match.getGuestScore() + 1);
-            System.out.println("MatchContr, goalScored: guest "+match.getGuestScore());
-        } else {
-            throw new IllegalArgumentException("Błędny zespół");
-        }
+        this.matchService.goalEvent(matchTeam);
         model.addAttribute("matchScore", matchScore);
         this.matchRepository.save(match);
         return "match";

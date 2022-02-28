@@ -66,7 +66,7 @@ public class MatchService {
         return goalkeeperSkills;
     }
 
-    public void handleMatchEngine(Match match) {
+    public void handleMatchEngine(Match match) throws InterruptedException {
         List<MatchTeam> matchTeamList = match.getMatchTeams();
         MatchTeam hostTeam = matchTeamList.get(0);
         MatchTeam guestTeam = matchTeamList.get(1);
@@ -76,24 +76,28 @@ public class MatchService {
         boolean matchInProgress = true;
         while (matchInProgress) {
             matchTime++;
+            Thread.sleep(3000);
             teamOnOpportunity = ballPossesionCheckOut(hostTeam, guestTeam);
             if (teamOnOpportunity.equals(hostTeam)) {
                 teamInDefence = guestTeam;
             } else {
-                teamInDefence = hostTeam
+                teamInDefence = hostTeam;
             }
             if (opportunitySucceed()) {
                 if (compareAttackDefence(teamOnOpportunity, hostTeam, guestTeam)) {
                     int forwarderAttack = getForwarderAttack(teamOnOpportunity, hostTeam, guestTeam);
                     if (forwardScoresVsGoalkeeper(teamInDefence.getGoalkeeperSkill(), forwarderAttack)) {
-                        methodScore();
+                        goalEvent(teamOnOpportunity);
+                        //i tu odsieżyc wynik na stronie
+
+
                     }
                 }
                 plus methodMatchCommentary ();
                 if (matchTime > 90) {
                     matchInProgress = false;
                 }
-            } else drawCAttackChance();
+            } else drawCAChance();
 
         }
     }
@@ -182,5 +186,25 @@ public class MatchService {
         } else {
             return false;
         }
+    }
+
+    public MatchScore  goalEvent(MatchTeam matchTeam){
+        // wez z kontrollera
+        MatchScore matchScore = new MatchScore();
+        Match match = this.matchRepository.findAll().stream().filter(Match::isInProgress).findFirst().get();
+//Long matchId=this.matchRepository.findAll().stream().filter(Match::isInProgress).findFirst().get().getId();
+        if (matchTeam.equals(match.getMatchTeams().get(0))) {
+            System.out.println("MatchContr, goalScored: host "+match.getHostScore());
+            match.setHostScore(match.getHostScore() + 1);
+            System.out.println("MatchContr, goalScored: host "+match.getHostScore());
+        } else if (matchTeam.equals(match.getMatchTeams().get(1))) {
+            System.out.println("MatchContr, goalScored: guest "+match.getGuestScore());
+            match.setGuestScore(match.getGuestScore() + 1);
+            System.out.println("MatchContr, goalScored: guest "+match.getGuestScore());
+        } else {
+            throw new IllegalArgumentException("Błędny zespół");
+        }
+        result = match.
+        return matchScore;
     }
 }
