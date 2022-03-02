@@ -13,10 +13,12 @@ import pl.com.k1313.goal4goal.domain.team.TeamService;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class MatchService {
 
+    int matchMinute;
     @Autowired
     private TeamService teamService;
     @Autowired
@@ -66,23 +68,30 @@ public class MatchService {
     }
 //cały mecz event po evencie z komentarzami
     public void handleMatchEngine(Match match) throws InterruptedException {
-        List<MatchTeam> matchTeamList = match.getMatchTeams();
+        List<MatchTeam> matchTeamList=this.matchRepository
+                .findAll().stream()
+                .filter(match1 -> match1.isInProgress())
+                .findFirst().get().getMatchTeams();
+        //----------------------------------------------
+        System.out.println("MatchContr, match, Stworzony mecz i druzymny: "+matchTeamList);
+        //----------------------------------------------
+//        List<MatchTeam> matchTeamList = match.getMatchTeams();
         MatchTeam hostTeam = matchTeamList.get(0);
         MatchTeam guestTeam = matchTeamList.get(1);
         MatchTeam teamOnOpportunity;
         MatchTeam teamInDefence;
-        int matchTime = 0;
+        matchMinute= 0;
         boolean matchInProgress = true;
         while (matchInProgress) {
-            matchTime++;
-            Thread.sleep(3000);
+            matchMinute++;
+            Thread.sleep(100);
             teamOnOpportunity = ballPossesionCheckOut(hostTeam, guestTeam);
             if (teamOnOpportunity.equals(hostTeam)) {
                 teamInDefence = guestTeam;
             } else {
                 teamInDefence = hostTeam;
             }
-            //komentarz o posiadaniu pilki, niech losuje tylko co...5
+            //komentarz o posiadaniu pilki, niech losuje tylko co...5event
             matchCommentary(teamOnOpportunity, 1);
             if (opportunitySucceed()) {
                 //komentarz o zawiązaniu akcji
@@ -101,7 +110,7 @@ public class MatchService {
                     opportunityEvent(teamInDefence,teamOnOpportunity,hostTeam,guestTeam);
                 }
             }
-            if (matchTime > 90) {
+            if (matchMinute > 90) {
                 matchInProgress = false;
             }
         }
@@ -110,16 +119,16 @@ public class MatchService {
     private void matchCommentary(MatchTeam team, int typeOfCommentary) {
         switch (typeOfCommentary) {
             case 1:
-                System.out.println("Posiadanie piłki po stronie "+team);
+                System.out.println(matchMinute+"min. Posiadanie piłki po stronie "+team.getTeamName());
                 break;
             case 2:
-                System.out.println("Zawiązała sie akcja zespołu "+team);
+                System.out.println(matchMinute+"min. Zawiązała sie akcja zespołu "+team.getTeamName());
                 break;
             case 3:
-                System.out.println("Przejęcie w obronie i konrra w wykonaniu "+team);
+                System.out.println(matchMinute+"min. Przejęcie w obronie i kontra w wykonaniu "+team.getTeamName());
                 break;
             case 4:
-                System.out.println("Komentarz 4");
+                System.out.println(matchMinute+"min. Goooool!!!! Bramka dla "+team.getTeamName());
                 break;
             default:
                 System.out.println("Piękna dziś pogoda, nieprawdaż?");
@@ -130,9 +139,11 @@ public class MatchService {
         private void opportunityEvent(MatchTeam teamOnOpportunity, MatchTeam teamInDefence, MatchTeam hostTeam, MatchTeam guestTeam)
         {
             if (attackSucceedOverDefence(teamOnOpportunity, hostTeam, guestTeam)) {
+                System.out.println("MatchServ, opportunityEvent, aatackSucceedOverDef ");
                 int forwarderAttack = getForwarderAttack(teamOnOpportunity, hostTeam, guestTeam);
                 if (forwardScoresVsGoalkeeper(teamInDefence.getGoalkeeperSkill(), forwarderAttack)) {
                     goalEvent(teamOnOpportunity);
+                    matchCommentary(teamOnOpportunity, 4);
                     //i tu odsieżyc wynik na stronie/ po kazdym evencie
                     //i dodac methodMatchCommentary()
                 }
@@ -172,10 +183,14 @@ public class MatchService {
             Random random = new Random();
             boolean attackSucceed = false;
             if (teamOnOpportunity.equals(hostTeam)) {
-                int sumAttackDefence = hostTeam.getAttack() + guestTeam.getDefence();
-                int attackPart = hostTeam.getAttack() / sumAttackDefence * 100;
-                int defPart = guestTeam.getDefence() / sumAttackDefence * 100;
+                double sumAttackDefence = hostTeam.getAttack() + guestTeam.getDefence();
+                double attackPartDouble =( (hostTeam.getAttack() / sumAttackDefence) * 100);
+                int attackPart=(int)attackPartDouble;
+                double defPartDouble = ((guestTeam.getDefence() / sumAttackDefence) * 100);
+                int defPart=(int)defPartDouble;
                 int succeed = random.nextInt(100) + 1;
+                System.out.println("MatchServ, attackSucceedOverDef, random:"+succeed+" attackPart: "
+                        + attackPart+" defPart: "+defPart);
                 if (succeed <= attackPart) {
                     attackSucceed = true;
                 } else {

@@ -46,7 +46,14 @@ public class MatchController {
 
         //tu utworz Match i go zasejwuj na repo
         Match match = this.teamService.createMatch();
-
+        //ponizej 5 linijek do testu
+        //----------------------------------------------
+        List<MatchTeam> matchTeamList=this.matchRepository
+                .findAll().stream()
+                .filter(match1 -> match1.isInProgress())
+                .findFirst().get().getMatchTeams();
+        System.out.println("MatchContr, match, Stworzone mecze: "+matchTeamList);
+        //----------------------------------------------
         String hostTeamName = match.getMatchTeams().get(0).getTeamName();
         String guestTeamName = match.getMatchTeams().get(1).getTeamName();
         Integer hostTeamScore = match.getHostScore();
@@ -60,12 +67,12 @@ public class MatchController {
         return "match";
     }
 
-    @PostMapping("/goalScored")
-    public String goalScored(MatchTeam matchTeam, Model model) throws IllegalArgumentException {
+    @PostMapping("/matchInProgress")
+    public String handleMatch(Match match, Model model) throws IllegalArgumentException, InterruptedException {
 
-        this.matchService.goalEvent(matchTeam);
-        model.addAttribute("matchScore", matchScore);
-        this.matchRepository.save(match);
+        this.matchService.handleMatchEngine(match);
+
+
         return "match";
     }
 }
