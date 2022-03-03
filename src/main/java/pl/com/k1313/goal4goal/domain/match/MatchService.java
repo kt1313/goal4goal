@@ -198,9 +198,11 @@ public class MatchService {
                 }
             } else {
                 if (teamOnOpportunity.equals(guestTeam)) {
-                    int sumAttackDefence = guestTeam.getAttack() + hostTeam.getDefence();
-                    int attackPart = guestTeam.getAttack() / sumAttackDefence * 100;
-                    int defPart = hostTeam.getDefence() / sumAttackDefence * 100;
+                    double sumAttackDefence = guestTeam.getAttack() + hostTeam.getDefence();
+                    double attackPartDouble = guestTeam.getAttack() / sumAttackDefence * 100;
+                    int attackPart=(int)attackPartDouble;
+                    double defPartDouble = hostTeam.getDefence() / sumAttackDefence * 100;
+                    int defPart=(int)defPartDouble;
                     int succeed = random.nextInt(100) + 1;
                     if (succeed <= attackPart) {
                         attackSucceed = true;
@@ -220,7 +222,7 @@ public class MatchService {
             if (attackingTeam.equals(hostTeam)) {
                 strikerAttack = this.playerRepository.findAll().stream()
                         .filter(Player::isFirstSquadPlayer)
-                        .filter(player -> player.getPosition().equals(Position.RF))
+                        .filter(player -> player.getPosition().equals(Position.LF))
                         .findFirst().get().getAttacking();
             } else if (attackingTeam.equals(guestTeam)) {
                 //tu zakladamy sredni atak defaultowego zespołu
