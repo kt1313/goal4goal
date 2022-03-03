@@ -48,11 +48,11 @@ public class MatchController {
         Match match = this.teamService.createMatch();
         //ponizej 5 linijek do testu
         //----------------------------------------------
-        List<MatchTeam> matchTeamList=this.matchRepository
+        List<MatchTeam> matchTeamList = this.matchRepository
                 .findAll().stream()
                 .filter(match1 -> match1.isInProgress())
                 .findFirst().get().getMatchTeams();
-        System.out.println("MatchContr, match, Stworzone mecze: "+matchTeamList);
+        System.out.println("MatchContr, match, Stworzone mecze: " + matchTeamList);
         //----------------------------------------------
         String hostTeamName = match.getMatchTeams().get(0).getTeamName();
         String guestTeamName = match.getMatchTeams().get(1).getTeamName();
@@ -68,8 +68,9 @@ public class MatchController {
     }
 
     @PostMapping("/matchInProgress")
-    public String handleMatch(Match match, Model model) throws IllegalArgumentException, InterruptedException {
-
+    public String handleMatch(Model model) throws IllegalArgumentException, InterruptedException {
+        Match match = this.matchRepository.findAll()
+                .stream().filter(match1 -> match1.isInProgress()).findFirst().get();
         this.matchService.handleMatchEngine(match);
 
 

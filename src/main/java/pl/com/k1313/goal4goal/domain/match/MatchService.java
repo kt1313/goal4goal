@@ -35,7 +35,7 @@ public class MatchService {
 
     public MatchTeam createDefaultOppTeam() {
         MatchTeam defaultOppTeam = new MatchTeam("Cream Team FC", 30, 40, 50, 60);
-        System.out.println("MatchService, createDefaultOppTeam, defTeam: " + defaultOppTeam.toString());
+//        System.out.println("MatchService, createDefaultOppTeam, defTeam: " + defaultOppTeam.toString());
         this.matchTeamRepository.save(defaultOppTeam);
         return defaultOppTeam;
     }
@@ -55,7 +55,7 @@ public class MatchService {
                 , userGoalkeeperSkillInt);
         this.matchTeamRepository.save(userTeam);
 
-        System.out.println("MatchServ, creatUserTeam, userTeam: " + userTeam);
+//        System.out.println("MatchServ, creatUserTeam, userTeam: " + userTeam);
         return userTeam;
     }
 
@@ -72,10 +72,10 @@ public class MatchService {
                 .findAll().stream()
                 .filter(match1 -> match1.isInProgress())
                 .findFirst().get().getMatchTeams();
-        //----------------------------------------------
-        System.out.println("MatchContr, match, Stworzony mecz i druzymny: "+matchTeamList);
-        //----------------------------------------------
-//        List<MatchTeam> matchTeamList = match.getMatchTeams();
+//        //----------------------------------------------
+//        System.out.println("MatchContr, match, Stworzony mecz i druzymny: "+matchTeamList);
+//        //----------------------------------------------
+////        List<MatchTeam> matchTeamList = match.getMatchTeams();
         MatchTeam hostTeam = matchTeamList.get(0);
         MatchTeam guestTeam = matchTeamList.get(1);
         MatchTeam teamOnOpportunity;
@@ -128,7 +128,7 @@ public class MatchService {
                 System.out.println(matchMinute+"min. Przejęcie w obronie i kontra w wykonaniu "+team.getTeamName());
                 break;
             case 4:
-                System.out.println(matchMinute+"min. Goooool!!!! Bramka dla "+team.getTeamName());
+                System.out.println(matchMinute+"min. Gooooooooooooooooooool!!!! Bramka dla "+team.getTeamName());
                 break;
             default:
                 System.out.println("Piękna dziś pogoda, nieprawdaż?");
@@ -139,7 +139,7 @@ public class MatchService {
         private void opportunityEvent(MatchTeam teamOnOpportunity, MatchTeam teamInDefence, MatchTeam hostTeam, MatchTeam guestTeam)
         {
             if (attackSucceedOverDefence(teamOnOpportunity, hostTeam, guestTeam)) {
-                System.out.println("MatchServ, opportunityEvent, aatackSucceedOverDef ");
+//                System.out.println("MatchServ, opportunityEvent, aatackSucceedOverDef ");
                 int forwarderAttack = getForwarderAttack(teamOnOpportunity, hostTeam, guestTeam);
                 if (forwardScoresVsGoalkeeper(teamInDefence.getGoalkeeperSkill(), forwarderAttack)) {
                     goalEvent(teamOnOpportunity);
@@ -155,14 +155,24 @@ public class MatchService {
         private MatchTeam ballPossesionCheckOut (MatchTeam hostTeam, MatchTeam guestTeam){
             Random random = new Random();
             int chance;
-            int totalMidfield = hostTeam.getMidfield() + guestTeam.getMidfield();
-            int hostTeamMatchMid = hostTeam.getMidfield() / totalMidfield * 100;
-            int guestTeamMatchMid = guestTeam.getMidfield() / totalMidfield * 100;
+            double totalMidfieldDouble = hostTeam.getMidfield() + guestTeam.getMidfield();
+            int totalMidfield=(int)totalMidfieldDouble;
+
+            double hostTeamMidfield=hostTeam.getMidfield();
+            double hostTeamMatchMidPartDouble = (hostTeamMidfield/totalMidfield)*100;
+            int hostTeamMatchMid=(int)hostTeamMatchMidPartDouble;
+            System.out.println("matchServ,ballPossesionCheckOut, hostTeam: "+hostTeamMatchMid);
+
+            double guestTeamMidfield=guestTeam.getMidfield();
+            double guestTeamMatchMidPartDouble = (guestTeamMidfield / totalMidfield) * 100;
+            int guestTeamMatchMid=(int)guestTeamMatchMidPartDouble;
+            System.out.println("matchServ,ballPossesionCheckOut, guestTeam: "+guestTeamMatchMid);
+
             chance = random.nextInt(100) + 1;
             if (chance >= hostTeamMatchMid) {
-                return hostTeam;
-            } else {
                 return guestTeam;
+            } else {
+                return hostTeam;
             }
         }
 
@@ -189,8 +199,8 @@ public class MatchService {
                 double defPartDouble = ((guestTeam.getDefence() / sumAttackDefence) * 100);
                 int defPart=(int)defPartDouble;
                 int succeed = random.nextInt(100) + 1;
-                System.out.println("MatchServ, attackSucceedOverDef, random:"+succeed+" attackPart: "
-                        + attackPart+" defPart: "+defPart);
+//                System.out.println("MatchServ, attackSucceedOverDef, random:"+succeed+" attackPart: "
+//                        + attackPart+" defPart: "+defPart);
                 if (succeed <= attackPart) {
                     attackSucceed = true;
                 } else {
@@ -250,13 +260,16 @@ public class MatchService {
             Match match = this.matchRepository.findAll().stream().filter(Match::isInProgress).findFirst().get();
 //Long matchId=this.matchRepository.findAll().stream().filter(Match::isInProgress).findFirst().get().getId();
             if (matchTeam.equals(match.getMatchTeams().get(0))) {
-                System.out.println("MatchContr, goalScored: host " + match.getHostScore());
+//                System.out.println("MatchContr, goalScored: host " + match.getHostScore());
                 match.setHostScore(match.getHostScore() + 1);
-                System.out.println("MatchContr, goalScored: host " + match.getHostScore());
+//                System.out.println("MatchContr, goalScored: host " + match.getHostScore());
+                System.out.println("Match score: Gospodarze: "+match.getHostScore()+" Goście: "+match.getGuestScore());
             } else if (matchTeam.equals(match.getMatchTeams().get(1))) {
-                System.out.println("MatchContr, goalScored: guest " + match.getGuestScore());
+//                System.out.println("MatchContr, goalScored: guest " + match.getGuestScore());
                 match.setGuestScore(match.getGuestScore() + 1);
-                System.out.println("MatchContr, goalScored: guest " + match.getGuestScore());
+//                System.out.println("MatchContr, goalScored: guest " + match.getGuestScore());
+                System.out.println("Match score: Gospodarze: "+match.getHostScore()+" Goście: "+match.getGuestScore());
+
             } else {
                 throw new IllegalArgumentException("Błędny zespół");
             }
