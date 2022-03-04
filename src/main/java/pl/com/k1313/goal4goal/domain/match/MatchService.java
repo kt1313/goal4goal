@@ -91,8 +91,9 @@ public class MatchService {
             } else {
                 teamInDefence = hostTeam;
             }
-            //komentarz o posiadaniu pilki, niech losuje tylko co...5event
-            matchCommentary(teamOnOpportunity, 1);
+            //komentarz o posiadaniu pilki, niech losuje tylko co...75%event
+            if(commentaryBallPossesion()>2){
+            matchCommentary(teamOnOpportunity, 1);}
             if (opportunitySucceed()) {
                 //komentarz o zawiązaniu akcji
                 matchCommentary(teamOnOpportunity,2);
@@ -114,6 +115,12 @@ public class MatchService {
                 matchInProgress = false;
             }
         }
+        System.out.println("Koniec. Wynik meczu: "+ match.getHostScore()+" : "+match.getGuestScore());
+    }
+    private int commentaryBallPossesion(){
+        Random random=new Random();
+         int commentarySent=random.nextInt(4);
+         return commentarySent;
     }
 //nad tym trzeba popracować, żeby zrzucic na templatkę
     private void matchCommentary(MatchTeam team, int typeOfCommentary) {
@@ -161,12 +168,12 @@ public class MatchService {
             double hostTeamMidfield=hostTeam.getMidfield();
             double hostTeamMatchMidPartDouble = (hostTeamMidfield/totalMidfield)*100;
             int hostTeamMatchMid=(int)hostTeamMatchMidPartDouble;
-            System.out.println("matchServ,ballPossesionCheckOut, hostTeam: "+hostTeamMatchMid);
+//            System.out.println("matchServ,ballPossesionCheckOut, hostTeam: "+hostTeamMatchMid);
 
             double guestTeamMidfield=guestTeam.getMidfield();
             double guestTeamMatchMidPartDouble = (guestTeamMidfield / totalMidfield) * 100;
             int guestTeamMatchMid=(int)guestTeamMatchMidPartDouble;
-            System.out.println("matchServ,ballPossesionCheckOut, guestTeam: "+guestTeamMatchMid);
+//            System.out.println("matchServ,ballPossesionCheckOut, guestTeam: "+guestTeamMatchMid);
 
             chance = random.nextInt(100) + 1;
             if (chance >= hostTeamMatchMid) {
@@ -247,7 +254,7 @@ public class MatchService {
             Random random = new Random();
             int goalChance = goalkeeperSkill + strikerAttack;
             int goal = random.nextInt(goalChance);
-            if (goal > goalkeeperSkill) {
+            if ((goal*0.5) > goalkeeperSkill) {
                 return true;
             } else {
                 return false;

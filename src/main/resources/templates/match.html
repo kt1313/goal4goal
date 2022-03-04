@@ -4,6 +4,9 @@
       xmlns:th="http:/>/www.thymeleaf.org"
 >
 <head>
+    <meta http-equiv="refresh" content="10">
+
+
     <meta charset="UTF-8">
     <title>G4G - Players</title>
     <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
@@ -61,6 +64,11 @@
         </table>
     </div>
     <br><br>
+
+        //odswiezajacy się komentarz
+        <div>
+            <p th:id="matchCommentary" th:text="${matchCommentary}"/>
+        </div>
         <div>
             <p>Min 1. Rozpoczynamy. Nad stadionem ciężkie chmury, a na twarzach gości gości uśmiech.
                 Czują się jak u siebie.</p>
@@ -74,7 +82,7 @@
                 HostScore:GuestScore</p>
         </div>
         <input type="submit" class="btn-primary" style="background-color: #0040ff"
-               value="Check Match Stats"/>
+               value="Start Game"/>
     </form>
 </div>
 </body>
