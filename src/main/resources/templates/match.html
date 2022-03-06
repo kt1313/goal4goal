@@ -10,6 +10,13 @@
     <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css">
 
+    <script type = "text/javascript">
+        function updateEventCount() {
+            $.get("/match-InProgress").done(function(fragment) { // get from controller
+                $("#matchInProgress1").replaceWith(fragment); // update snippet of page
+            });
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -43,7 +50,7 @@
 
 <div class="container">
     <br><br>
-    <form method="POST" th:action="@{/match/matchInProgress}">
+    <form method="POST" th:action="@{/match/matchIn-Progress}">
     <div style="border-top-left-radius: 30px; border-bottom-right-radius: 30px; background-color: aliceblue">
         <div>
             <h2 style="text-align: center">Match of the Day</h2>
@@ -62,26 +69,23 @@
         </table>
     </div>
     <br><br>
+<!--        proba autorefreshingu-->
 
-        //odswiezajacy się komentarz
-        <div>
-            <p th:id="matchCommentary" th:text="${matchCommentary}"/>
-        </div>
-        <div>
-            <p>Min 1. Rozpoczynamy. Nad stadionem ciężkie chmury, a na twarzach gości gości uśmiech.
-                Czują się jak u siebie.</p>
-            <p>Min 8. Akcja drużyny XXX jednak bramkarz szerokim gestem wyciągnął królika z kapelusza czym zupełnie
-                zmylił
-                napastnika drużyny YYY</p>
-            <p>Min 34. Kontra w wykonaniu YYY. Piłka sunie jak po sznurku. Było łatwo. Defensorzy XXX poszli
-                oglądać nowy model Dacii. W końcowej fazie jednak zabrakło precyzji.
-                Wynik bez zmian.</p>
-            <p>Min 45. Gooooooool! W sytuacji sam na sam PlayerX wykańcza akcję sprytna podcinką.
-                HostScore:GuestScore</p>
-        </div>
-        <input type="submit" class="btn-primary" style="background-color: #0040ff"
-               value="Start Game"/>
+<!--        odswiezajacy się komentarz-->
+<!--        <div>-->
+
+<!--            <p th:id="matchCommentary" th:text="${matchCommentary}"/>-->
+<!--        </div>-->
+
+<input type="button" onclick="updateEventCount()" value="Start Game">
+<!--        <input type="submit" class="btn-primary" style="background-color: #0040ff"-->
+<!--               value="Start Game"/>-->
     </form>
+    <div>
+
+
+        <span id="matchInProgress1" th:text="${matchCommentary}"></span>
+    </div>
 </div>
 </body>
 </html>

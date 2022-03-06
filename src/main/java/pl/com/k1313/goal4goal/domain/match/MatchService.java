@@ -83,7 +83,7 @@ public class MatchService {
         boolean matchInProgress = true;
         while (matchInProgress) {
             matchMinute++;
-            Thread.sleep(1000);
+            Thread.sleep(100);
             teamOnOpportunity = ballPossesionCheckOut(hostTeam, guestTeam);
             if (teamOnOpportunity.equals(hostTeam)) {
                 teamInDefence = guestTeam;
@@ -114,6 +114,8 @@ public class MatchService {
                 matchInProgress = false;
             }
         }
+        String matchResult="Koniec meczu. Na tablicy widnieje "+ match.getHostScore()+" : "+match.getGuestScore();
+        matchCommentaryList.add(matchResult);
         System.out.println("Koniec. Wynik meczu: "+ match.getHostScore()+" : "+match.getGuestScore());
         return matchCommentaryList;
 
@@ -127,26 +129,30 @@ public class MatchService {
     private void matchCommentary(MatchTeam team, int typeOfCommentary, List<String> matchCommmentaryList) {
         switch (typeOfCommentary) {
             case 1:
-                String commentaryBallPossesion1=matchMinute+"min. Posiadanie piłki po stronie "
-                        +team.getTeamName()+System.lineSeparator();
+                String commentaryBallPossesion1=matchMinute
+                        +"min. Uwijają się jak mrówki i wygrali walkę o piłkę w środku pola piłkarze "
+                        +team.getTeamName()+"\r\n";
                 System.out.println(commentaryBallPossesion1);
                 matchCommmentaryList.add(commentaryBallPossesion1);
                 break;
             case 2:
-                String commentaryCreationChance1=matchMinute+"min. Zawiązała sie akcja zespołu "
-                        +team.getTeamName();
+                String commentaryCreationChance1=matchMinute
+                        +"min. Ruszył teraz na przeciwnika z balem przy nodze grajek zespołu "
+                        +team.getTeamName()+"\r\n";
                 System.out.println(commentaryCreationChance1);
                 matchCommmentaryList.add(commentaryCreationChance1);
                 break;
             case 3:
-                String commentaryCA1=matchMinute+"min. Przejęcie w obronie i kontra w wykonaniu "
-                        +team.getTeamName();
+                String commentaryCA1=matchMinute
+                        +"min. Oni są jak stal, nieugięci w obronie. Odbiór i mkną z kontrą jak torpeda zawodnicy "
+                        +team.getTeamName()+"\r\n";
                 System.out.println(commentaryCA1);
                 matchCommmentaryList.add(commentaryCA1);
                 break;
             case 4:
-                String commentaryGoal1=matchMinute+"min. Gooooooooooooooooooool!!!! Bramka dla "
-                        +team.getTeamName();
+                String commentaryGoal1=matchMinute
+                        +"min. Gooooooooooooooooooool!!!! Stadiony świata!!! Bramka dla "
+                        +team.getTeamName()+"\r\n";
                 System.out.println(commentaryGoal1);
                 matchCommmentaryList.add(commentaryGoal1);
                 break;
@@ -254,7 +260,9 @@ public class MatchService {
             if (attackingTeam.equals(hostTeam)) {
                 strikerAttack = this.playerRepository.findAll().stream()
                         .filter(Player::isFirstSquadPlayer)
-                        .filter(player -> player.getPosition().equals(Position.LF))
+                        .filter(player -> player.getPosition().equals(Position.LF)
+                                ||player.getPosition().equals(Position.CF)
+                                ||player.getPosition().equals(Position.RF))
                         .findFirst().get().getAttacking();
             } else if (attackingTeam.equals(guestTeam)) {
                 //tu zakladamy sredni atak defaultowego zespołu

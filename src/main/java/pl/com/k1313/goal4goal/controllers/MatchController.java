@@ -73,21 +73,22 @@ public class MatchController {
         return "match";
     }
 
-    @PostMapping("/matchInProgress")
-    public String handleMatch(Model model) throws IllegalArgumentException, InterruptedException {
+    @RequestMapping(value="/matchIn-Progress", method = RequestMethod.GET)
+    public String handleMatch(ModelMap map) throws InterruptedException {
+
         Match match = this.matchRepository.findAll()
-                .stream().filter(match1 -> match1.isInProgress()).findFirst().get();
-        this.matchService.handleMatchEngine(match);
+                .stream().filter(Match::isInProgress).findFirst().get();
+        List<String> matchCommentary=this.matchService.handleMatchEngine(match);
+         map.addAttribute("matchCommentary", matchCommentary);
 
-
-        return "match";
+        return "match :: #matchInProgress1";
     }
-//    @RequestMapping(value="/event-count", method= RequestMethod.GET)
+//    @RequestMapping(value="/matchInProgress", method= RequestMethod.GET)
 //    public String getEventCount(ModelMap map) {
 //        // TODO: retrieve the new value here so you can add it to model map
 //        map.addAttribute("numDeviceEventsWithAlarm", count);
 //
 //        // change "myview" to the name of your view
-//        return "myview :: #eventCount";
+//        return "match :: #matchInProgress";
 //    }
 }
