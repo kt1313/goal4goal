@@ -10,13 +10,13 @@
     <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css">
 
-    <script type = "text/javascript">
-        function updateEventCount() {
-            $.get("/match-InProgress").done(function(fragment) { // get from controller
-                $("#matchInProgress1").replaceWith(fragment); // update snippet of page
-            });
-        }
-    </script>
+<!--    <script type = "text/javascript">-->
+<!--        function updateEventCount() {-->
+<!--            $.get("/match-InProgress").done(function(fragment) { // get from controller-->
+<!--                $("#matchInProgress1").replaceWith(fragment); // update snippet of page-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -72,20 +72,33 @@
 <!--        proba autorefreshingu-->
 
 <!--        odswiezajacy się komentarz-->
-<!--        <div>-->
+        <div>
 
-<!--            <p th:id="matchCommentary" th:text="${matchCommentary}"/>-->
-<!--        </div>-->
+            <p th:id="matchCommentary" th:text="${matchCommentary}"/>
+        </div>
+<!--        auto refresh przy uzyciu server-sent event-->
+        <div id="result"></div>
+<!--        <script>-->
+<!--            // <script type = "text/javascript">-->
+<!--                function updateEventCount() {-->
 
-<input type="button" onclick="updateEventCount()" value="Start Game">
+<!--            if(typeof(EventSource) !== "undefined") {-->
+<!--                var source = new EventSource("demo_sse.php");-->
+<!--                source.onmessage = function(event) {-->
+<!--                    document.getElementById("result").innerHTML += event.data + "<br>";-->
+<!--                };-->
+<!--            } else {-->
+<!--                document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";-->
+<!--            }}-->
+<!--        </script>-->
+<input type="button" onclick="updateEventCount()"  value="Start Game">
 <!--        <input type="submit" class="btn-primary" style="background-color: #0040ff"-->
 <!--               value="Start Game"/>-->
+
+
     </form>
     <div>
 
-
-        <span id="matchInProgress1" th:text="${matchCommentary}"></span>
-    </div>
 </div>
 </body>
 </html>

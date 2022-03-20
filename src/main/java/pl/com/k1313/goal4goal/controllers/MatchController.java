@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/match")
 public class MatchController {
 
+    int matchMinute = 0;
     private MatchService matchService;
 
     @Autowired
@@ -45,41 +46,43 @@ public class MatchController {
 
     @GetMapping
     public String match(Model m) throws InterruptedException {
+        if (matchMinute < 91) {
+            matchMinute++;
+            //tu utworz Match i go zasejwuj na repo (to do testow tylko, bo0 nazwa hosta "na sile" i
+            // sztuczny opponent
+//            if(match==null) {
+                Match match = this.teamService.createMatch();
 
-        //tu utworz Match i go zasejwuj na repo (to do testow tylko, bo0 nazwa hosta "na sile" i
-        // sztuczny opponent
-        Match match = this.teamService.createMatch();
-
-        //to mozna wykorzystac w przyszlosci kiedy bedzie cala baza danych
-        Match matchReal = this.matchRepository.findAll()
-                .stream().filter(match1 -> match1.isInProgress()).findFirst().get();
+                //to mozna wykorzystac w przyszlosci kiedy bedzie cala baza danych
+                Match matchReal = this.matchRepository.findAll()
+                        .stream().filter(match1 -> match1.isInProgress()).findFirst().get();
 
 //tu naglowek, nazwy druzyn i wynik
-        String hostTeamName = match.getMatchTeams().get(0).getTeamName();
-        String guestTeamName = match.getMatchTeams().get(1).getTeamName();
-        Integer hostTeamScore = match.getHostScore();
-        Integer guestTeamScore = match.getGuestScore();
+            String hostTeamName = match.getMatchTeams().get(0).getTeamName();
+            String guestTeamName = match.getMatchTeams().get(1).getTeamName();
+            Integer hostTeamScore = match.getHostScore();
+            Integer guestTeamScore = match.getGuestScore();
 
 
-        m.addAttribute("hostTeamName", hostTeamName);
-        m.addAttribute("guestTeamName", guestTeamName);
-        m.addAttribute("hostTeamScore", hostTeamScore);
-        m.addAttribute("guestTeamScore", guestTeamScore);
+            m.addAttribute("hostTeamName", hostTeamName);
+            m.addAttribute("guestTeamName", guestTeamName);
+            m.addAttribute("hostTeamScore", hostTeamScore);
+            m.addAttribute("guestTeamScore", guestTeamScore);
 
 //silnik meczowy
-        List<String> matchCommentary = this.matchService.handleMatchEngine(matchReal);
-        m.addAttribute("matchCommentary", matchCommentary);
-
+            List<String> matchCommentary = this.matchService.handleMatchEngine(matchReal);
+            m.addAttribute("matchCommentary", matchCommentary);
+        }
         return "match";
     }
 
-    @RequestMapping(value="/matchIn-Progress", method = RequestMethod.GET)
+    @RequestMapping(value = "/matchIn-Progress", method = RequestMethod.GET)
     public String handleMatch(ModelMap map) throws InterruptedException {
 
         Match match = this.matchRepository.findAll()
                 .stream().filter(Match::isInProgress).findFirst().get();
-        List<String> matchCommentary=this.matchService.handleMatchEngine(match);
-         map.addAttribute("matchCommentary", matchCommentary);
+        List<String> matchCommentary = this.matchService.handleMatchEngine(match);
+        map.addAttribute("matchCommentary", matchCommentary);
 
         return "match :: #matchInProgress1";
     }
@@ -90,5 +93,11 @@ public class MatchController {
 //
 //        // change "myview" to the name of your view
 //        return "match :: #matchInProgress";
+//    }
+
+//    @RequestMapping(value = "/testAutoRefresh", method = RequestMethod.GET)
+//    public String getEvent(Model model){
+//        this.matchService.testAutoRefresh();
+//        return "match";
 //    }
 }
