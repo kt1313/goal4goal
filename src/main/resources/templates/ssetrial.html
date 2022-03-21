@@ -1,30 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--<html lang="en">-->
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>SSE</title>
-    <style>
-        ul {
-            width: 60%;
-            margin-top: 10px;
-            margin: 0 auto;
-            font-family: "Courier New";
-            background-color: #0040ff;
-            height: 300px;
-            overflow: scroll;
-            color: bisque;
-        }
-        h1{
-            text-align: center;
-        }
-        h3{text-align: center;
-        }
-    </style>
+<!--    <style>-->
+<!--        ul {-->
+<!--            width: 60%;-->
+<!--            margin-top: 10px;-->
+<!--            margin: 0 auto;-->
+<!--            font-family: "Courier New";-->
+<!--            background-color: #0040ff;-->
+<!--            height: 300px;-->
+<!--            overflow: scroll;-->
+<!--            color: bisque;-->
+<!--        }-->
+<!--        h1{-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        h3{text-align: center;-->
+<!--        }-->
+<!--    </style>-->
+    <link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
+
 </head>
 <body>
 <h1>SSE example</h1>
 <h3>Events:</h3>
 <ul id="events"></ul>
+<button type="button" th:onclick="showAlert()">Show Alert</button>
+<!--<script th:inline="javascript">-->
+<!--    var nameJs = /*[[${name}]]*/;-->
+
+<!--</script>-->
+<!--<button type="button" th:onclick="showName(nameJs)">Show Name</button>-->
+
 </body>
+<script type="text/javascript" th:src="@{/script.js}"></script>
+<script type="text/javascript" th:src="@{/actions.js}"></script>
+
 <script type="text/javascript" src="C:\Users\Dell\IdeaProjects\goal4goal\src\main\resources\templates\script.js"></script>
+<h2>Carefully Styled Heading</h2>
+<p>
+    This is text on which we want to apply <strong>very special</strong> styling.
+</p>
+<script type="text/javascript" th:src="@{/js/cssandjs/actions.js}"></script>
+<!--<script th:inline="javascript">-->
+<!--    var nameJs = /*[[${name}]]*/;-->
+<!--</script>-->
 </html>
