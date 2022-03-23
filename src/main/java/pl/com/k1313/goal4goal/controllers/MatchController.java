@@ -17,6 +17,7 @@ import pl.com.k1313.goal4goal.domain.player.PlayerRepository;
 import pl.com.k1313.goal4goal.domain.team.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -55,7 +56,7 @@ public class MatchController {
 
                 //to mozna wykorzystac w przyszlosci kiedy bedzie cala baza danych
                 Match matchReal = this.matchRepository.findAll()
-                        .stream().filter(match1 -> match1.isInProgress()).findFirst().get();
+                        .stream().filter(Match::isInProgress).findFirst().get();
 
 //tu naglowek, nazwy druzyn i wynik
             String hostTeamName = match.getMatchTeams().get(0).getTeamName();
@@ -70,18 +71,18 @@ public class MatchController {
             m.addAttribute("guestTeamScore", guestTeamScore);
 
 //silnik meczowy
-            List<String> matchCommentary = this.matchService.handleMatchEngine(matchReal);
+            HashMap<Integer,String> matchCommentary = this.matchService.handleMatchEngine(matchReal);
             m.addAttribute("matchCommentary", matchCommentary);
         }
         return "match";
     }
-
+//co to??? sprawdz
     @RequestMapping(value = "/matchIn-Progress", method = RequestMethod.GET)
     public String handleMatch(ModelMap map) throws InterruptedException {
 
         Match match = this.matchRepository.findAll()
                 .stream().filter(Match::isInProgress).findFirst().get();
-        List<String> matchCommentary = this.matchService.handleMatchEngine(match);
+        HashMap<Integer, String> matchCommentary = this.matchService.handleMatchEngine(match);
         map.addAttribute("matchCommentary", matchCommentary);
 
         return "match :: #matchInProgress1";

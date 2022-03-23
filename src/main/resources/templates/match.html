@@ -73,8 +73,12 @@
 
 <!--        odswiezajacy się komentarz-->
         <div>
-
-            <p th:id="matchCommentary" th:text="${matchCommentary}"/>
+<!--            <tr th:each="player : ${players}">-->
+<!--                <td th:text="${player.firstName}"/>-->
+            <tr th:each="matchCommentary:${matchCommentary}">
+<!--                <td th:utext="${category.nameEn}  + (${#strings.isEmpty(category?.descriptionEn)} ? '' : -->
+<!--                ('<br><br>' + ${category.descriptionEn}))"></td>            -->
+                <td th:utext="('<br><br>'+${matchCommentary})"/>
         </div>
 <!--        auto refresh przy uzyciu server-sent event-->
         <div id="result"></div>

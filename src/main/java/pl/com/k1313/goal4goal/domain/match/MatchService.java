@@ -11,9 +11,7 @@ import pl.com.k1313.goal4goal.domain.team.MatchTeamRepository;
 import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 import pl.com.k1313.goal4goal.domain.team.TeamService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -68,13 +66,13 @@ public class MatchService {
     }
 
     //cały mecz event po evencie z komentarzami
-    public List<String> handleMatchEngine(Match match) throws InterruptedException {
+    public HashMap<Integer, String> handleMatchEngine(Match match) throws InterruptedException {
         List<MatchTeam> matchTeamList = this.matchRepository
                 .findAll().stream()
                 .filter(match1 -> match1.isInProgress())
                 .findFirst().get().getMatchTeams();
-
-        List<String> matchCommentaryList = new ArrayList<>();
+//TUTAJ ZROBIC HashMap  (minutaMeczu, komentarz)
+        HashMap<Integer,String> matchCommentaryList = new HashMap<>();
 
         MatchTeam hostTeam = matchTeamList.get(0);
         MatchTeam guestTeam = matchTeamList.get(1);
@@ -93,11 +91,11 @@ public class MatchService {
         }
         //komentarz o posiadaniu pilki, niech losuje tylko co...75%event
         if (commentaryBallPossesion() > 2) {
-            matchCommentary(teamOnOpportunity, 1, matchCommentaryList);
+            matchCommentary(teamOnOpportunity, 1, matchCommentaryList, matchMinute);
         }
         if (opportunitySucceed()) {
             //komentarz o zawiązaniu akcji
-            matchCommentary(teamOnOpportunity, 2, matchCommentaryList);
+            matchCommentary(teamOnOpportunity, 2, matchCommentaryList, matchMinute);
             //to poniżej jako jedna metoda, bo zastosowanie też do kontrataku
             opportunityEvent(teamOnOpportunity, teamInDefence, hostTeam, guestTeam, matchCommentaryList);
         } else {
@@ -106,7 +104,7 @@ public class MatchService {
             int teamCA = 30;
             if (drawCAChance(teamCA)) {
                 //komentarz o przejęciu piłki i kontrze
-                matchCommentary(teamInDefence, 3, matchCommentaryList);
+                matchCommentary(teamInDefence, 3, matchCommentaryList, matchMinute);
                 //TUTAJ UWAGA: celowo zamiana teamInDefence z teamOnOpportunity, bo teraz
                 //broniący sie atakują
                 opportunityEvent(teamInDefence, teamOnOpportunity, hostTeam, guestTeam, matchCommentaryList);
@@ -117,7 +115,7 @@ public class MatchService {
             }
         }
         String matchResult = "Koniec meczu. Na tablicy widnieje " + match.getHostScore() + " : " + match.getGuestScore();
-        matchCommentaryList.add(matchResult);
+        matchCommentaryList.put(matchMinute, matchResult);
         System.out.println("Koniec. Wynik meczu: " + match.getHostScore() + " : " + match.getGuestScore());
         return matchCommentaryList;
 
@@ -130,35 +128,35 @@ public class MatchService {
     }
 
     //nad tym trzeba popracować, żeby zrzucic na templatkę
-    private void matchCommentary(MatchTeam team, int typeOfCommentary, List<String> matchCommmentaryList) {
+    private void matchCommentary(MatchTeam team, int typeOfCommentary, HashMap<Integer, String> matchCommmentaryList, int matchMinute) {
         switch (typeOfCommentary) {
             case 1:
                 String commentaryBallPossesion1 = matchMinute
                         + "min. Uwijają się jak mrówki i wygrali walkę o piłkę w środku pola piłkarze "
                         + team.getTeamName() + "\r\n";
                 System.out.println(commentaryBallPossesion1);
-                matchCommmentaryList.add(commentaryBallPossesion1);
+                matchCommmentaryList.put(matchMinute,commentaryBallPossesion1);
                 break;
             case 2:
                 String commentaryCreationChance1 = matchMinute
                         + "min. Ruszył teraz na przeciwnika z balem przy nodze grajek zespołu "
                         + team.getTeamName() + "\r\n";
                 System.out.println(commentaryCreationChance1);
-                matchCommmentaryList.add(commentaryCreationChance1);
+                matchCommmentaryList.put(matchMinute, commentaryCreationChance1);
                 break;
             case 3:
                 String commentaryCA1 = matchMinute
                         + "min. Oni są jak stal, nieugięci w obronie. Odbiór i mkną z kontrą jak torpeda zawodnicy "
                         + team.getTeamName() + "\r\n";
                 System.out.println(commentaryCA1);
-                matchCommmentaryList.add(commentaryCA1);
+                matchCommmentaryList.put(matchMinute, commentaryCA1);
                 break;
             case 4:
                 String commentaryGoal1 = matchMinute
                         + "min. Gooooooooooooooooooool!!!! Stadiony świata!!! Bramka dla "
                         + team.getTeamName() + "\r\n";
                 System.out.println(commentaryGoal1);
-                matchCommmentaryList.add(commentaryGoal1);
+                matchCommmentaryList.put(matchMinute, commentaryGoal1);
                 break;
             default:
                 System.out.println("Piękna dziś pogoda, nieprawdaż?");
@@ -168,13 +166,13 @@ public class MatchService {
     //metoda dla calej akcji bramkowej
     private void opportunityEvent(MatchTeam teamOnOpportunity
             , MatchTeam teamInDefence, MatchTeam hostTeam
-            , MatchTeam guestTeam, List<String> matchCommentaryList) {
+            , MatchTeam guestTeam, HashMap<Integer, String> matchCommentaryList) {
         if (attackSucceedOverDefence(teamOnOpportunity, hostTeam, guestTeam)) {
 //                System.out.println("MatchServ, opportunityEvent, aatackSucceedOverDef ");
             int forwarderAttack = getForwarderAttack(teamOnOpportunity, hostTeam, guestTeam);
             if (forwardScoresVsGoalkeeper(teamInDefence.getGoalkeeperSkill(), forwarderAttack)) {
                 goalEvent(teamOnOpportunity);
-                matchCommentary(teamOnOpportunity, 4, matchCommentaryList);
+                matchCommentary(teamOnOpportunity, 4, matchCommentaryList, matchMinute);
                 //i tu odsieżyc wynik na stronie/ po kazdym evencie
                 //i dodac methodMatchCommentary()
             }
