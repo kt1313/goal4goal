@@ -30,6 +30,8 @@ public class MatchService {
     private MatchTeamRepository matchTeamRepository;
     @Autowired
     private MatchRepository matchRepository;
+    @Autowired
+    private MatchService matchService;
 
 
     public MatchTeam createDefaultOppTeam() {
@@ -117,6 +119,7 @@ public class MatchService {
         String matchResult = "Koniec meczu. Na tablicy widnieje " + match.getHostScore() + " : " + match.getGuestScore();
         matchCommentaryList.put(matchMinute, matchResult);
         System.out.println("Koniec. Wynik meczu: " + match.getHostScore() + " : " + match.getGuestScore());
+
         return matchCommentaryList;
 
     }
@@ -316,52 +319,22 @@ public class MatchService {
         } else return false;
     }
 
-//    public String write(){
-//        int i=0;
-//        i++;
-//
-//        if (i == 4) {
-//            res.write('event: bye\ndata: bye-bye\n\n');
-////                    clearInterval(timer);
-//            res.end();
-//            return;
-//        }
-//        return res.write("data: " + i + '\n');
-//    }
-//
-//    public void accept(req, res) {
-//
-//        if (req.url == '/digits') {
-//            onDigits(req, res);
-//            return;
-//        }
-//
-//        fileServer.serve(req, res);
-//    }
-//    public void testAutoRefresh() {
-////         public void onDigits(req, res) {
-////            res.writeHead(200, {
-////                    'Content-Type': 'text/event-stream; charset=utf-8',
-////                    'Cache-Control': 'no-cache'
-////  });
-//
-//
-////            int timer = setInterval(write, 1000);
-////            write();
-//
+    public void readDataForHeader() {
+        //sprawdz bo ponizej jest skopiowane z Team Serviceu
 
-//    }
+        this.matchService.createUserTeam();
+        this.matchService.createDefaultOppTeam();
 
+        Optional<MatchTeam> hostTeamOpt = this.teamService.findAllMatchTeams().stream()
+                .filter(matchTeam1 -> matchTeam1.getTeamName()
+                        .equals("Tres Tigres"))
+                .findFirst();
+        String hostTeamName = hostTeamOpt.get().getTeamName();
 
+        Optional<MatchTeam> guestTeamOpt = this.teamService.findAllMatchTeams()
+                .stream().filter(matchTeam -> matchTeam.getTeamName().equals("Cream Team FC"))
+                .findFirst();
 
+    }
 
-//        if(!module.parent)
-//
-//    {
-//        http.createServer(accept).listen(8080);
-//    } else
-//
-//    {
-//        exports.accept = accept;
-//    }
 }

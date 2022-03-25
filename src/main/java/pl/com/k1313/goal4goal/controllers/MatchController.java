@@ -10,17 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.com.k1313.goal4goal.domain.match.Match;
 import pl.com.k1313.goal4goal.domain.match.MatchRepository;
-import pl.com.k1313.goal4goal.domain.match.MatchScore;
 import pl.com.k1313.goal4goal.domain.match.MatchService;
-import pl.com.k1313.goal4goal.domain.player.Player;
 import pl.com.k1313.goal4goal.domain.player.PlayerRepository;
 import pl.com.k1313.goal4goal.domain.team.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/match")
@@ -28,6 +22,7 @@ public class MatchController {
 
     int matchMinute = 0;
     private MatchService matchService;
+    private MatchService matchService2;
 
     @Autowired
     public MatchController(MatchService matchService) {
@@ -47,16 +42,21 @@ public class MatchController {
 
     @GetMapping
     public String match(Model m) throws InterruptedException {
-        if (matchMinute < 91) {
-            matchMinute++;
+//        if (matchMinute < 91) {
+//            matchMinute++;
             //tu utworz Match i go zasejwuj na repo (to do testow tylko, bo0 nazwa hosta "na sile" i
             // sztuczny opponent
 //            if(match==null) {
-                Match match = this.teamService.createMatch();
 
-                //to mozna wykorzystac w przyszlosci kiedy bedzie cala baza danych
-                Match matchReal = this.matchRepository.findAll()
-                        .stream().filter(Match::isInProgress).findFirst().get();
+
+        //tutaj ma odczytac dane do naglowka
+        this.matchService.readDataForHeader();
+
+            Match match = this.teamService.createMatch();
+
+            //to mozna wykorzystac w przyszlosci kiedy bedzie cala baza danych
+//            Match matchReal = this.matchRepository.findAll()
+//                    .stream().filter(Match::isInProgress).findFirst().get();
 
 //tu naglowek, nazwy druzyn i wynik
             String hostTeamName = match.getMatchTeams().get(0).getTeamName();
@@ -70,35 +70,27 @@ public class MatchController {
             m.addAttribute("hostTeamScore", hostTeamScore);
             m.addAttribute("guestTeamScore", guestTeamScore);
 
-//silnik meczowy
-            HashMap<Integer,String> matchCommentary = this.matchService.handleMatchEngine(matchReal);
-            m.addAttribute("matchCommentary", matchCommentary);
-        }
+////silnik meczowy
+//            HashMap<Integer,String> matchCommentary = this.matchService.handleMatchEngine(matchReal);
+//            m.addAttribute("matchCommentary", matchCommentary);
+//        }
         return "match";
     }
-//co to??? sprawdz
-    @RequestMapping(value = "/matchIn-Progress", method = RequestMethod.GET)
-    public String handleMatch(ModelMap map) throws InterruptedException {
 
-        Match match = this.matchRepository.findAll()
+    //co to??? sprawdz
+//    @RequestMapping(value = "/matchIn-Progress", method = RequestMethod.GET)
+    @PostMapping("/matchInProgress")
+    public String handleMatch(ModelMap map) throws InterruptedException {
+        Match match = this.teamService.createMatch();
+
+        Match matchReal = this.matchRepository.findAll()
                 .stream().filter(Match::isInProgress).findFirst().get();
-        HashMap<Integer, String> matchCommentary = this.matchService.handleMatchEngine(match);
+        HashMap<Integer, String> matchCommentary = this.matchService.handleMatchEngine(matchReal);
         map.addAttribute("matchCommentary", matchCommentary);
 
-        return "match :: #matchInProgress1";
+//        return "match :: #matchInProgress1";
+        return "match";
     }
-//    @RequestMapping(value="/matchInProgress", method= RequestMethod.GET)
-//    public String getEventCount(ModelMap map) {
-//        // TODO: retrieve the new value here so you can add it to model map
-//        map.addAttribute("numDeviceEventsWithAlarm", count);
-//
-//        // change "myview" to the name of your view
-//        return "match :: #matchInProgress";
-//    }
 
-//    @RequestMapping(value = "/testAutoRefresh", method = RequestMethod.GET)
-//    public String getEvent(Model model){
-//        this.matchService.testAutoRefresh();
-//        return "match";
-//    }
+
 }

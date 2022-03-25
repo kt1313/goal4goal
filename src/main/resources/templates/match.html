@@ -50,7 +50,7 @@
 
 <div class="container">
     <br><br>
-    <form method="POST" th:action="@{/match/matchIn-Progress}">
+    <form method="POST" th:action="@{/match/matchInProgress}">
     <div style="border-top-left-radius: 30px; border-bottom-right-radius: 30px; background-color: aliceblue">
         <div>
             <h2 style="text-align: center">Match of the Day</h2>
@@ -73,31 +73,15 @@
 
 <!--        odswiezajacy się komentarz-->
         <div>
-<!--            <tr th:each="player : ${players}">-->
-<!--                <td th:text="${player.firstName}"/>-->
             <tr th:each="matchCommentary:${matchCommentary}">
-<!--                <td th:utext="${category.nameEn}  + (${#strings.isEmpty(category?.descriptionEn)} ? '' : -->
-<!--                ('<br><br>' + ${category.descriptionEn}))"></td>            -->
-                <td th:utext="('<br><br>'+${matchCommentary})"/>
+                <td th:utext="('<br>'+${matchCommentary})"/>
+            <!--a tu funkcja opoznienia w js-->
         </div>
+
 <!--        auto refresh przy uzyciu server-sent event-->
         <div id="result"></div>
-<!--        <script>-->
-<!--            // <script type = "text/javascript">-->
-<!--                function updateEventCount() {-->
 
-<!--            if(typeof(EventSource) !== "undefined") {-->
-<!--                var source = new EventSource("demo_sse.php");-->
-<!--                source.onmessage = function(event) {-->
-<!--                    document.getElementById("result").innerHTML += event.data + "<br>";-->
-<!--                };-->
-<!--            } else {-->
-<!--                document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";-->
-<!--            }}-->
-<!--        </script>-->
-<input type="button" onclick="updateEventCount()"  value="Start Game">
-<!--        <input type="submit" class="btn-primary" style="background-color: #0040ff"-->
-<!--               value="Start Game"/>-->
+        <input type="submit"   value="Start Game">
 
 
     </form>
