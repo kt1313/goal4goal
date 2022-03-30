@@ -12,7 +12,6 @@ import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 import pl.com.k1313.goal4goal.domain.team.TeamService;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class MatchService {
@@ -69,15 +68,15 @@ public class MatchService {
 
     //cały mecz event po evencie z komentarzami
     public HashMap<Integer, String> handleMatchEngine(Match match) throws InterruptedException {
-        List<MatchTeam> matchTeamList = this.matchRepository
+        List<MatchTeam> matchTeamsList = this.matchRepository
                 .findAll().stream()
-                .filter(match1 -> match1.isInProgress())
+                .filter(Match::isInProgress)
                 .findFirst().get().getMatchTeams();
 //TUTAJ ZROBIC HashMap  (minutaMeczu, komentarz)
         HashMap<Integer,String> matchCommentaryList = new HashMap<>();
 
-        MatchTeam hostTeam = matchTeamList.get(0);
-        MatchTeam guestTeam = matchTeamList.get(1);
+        MatchTeam hostTeam = matchTeamsList.get(0);
+        MatchTeam guestTeam = matchTeamsList.get(1);
         MatchTeam teamOnOpportunity;
         MatchTeam teamInDefence;
         matchMinute= 0;
@@ -104,7 +103,7 @@ public class MatchService {
             //jesli uda się kontra to wtedy niech sprawdzi szansę na bramkę(opportunityEvent)
             //wrzucimy sztucznie/tymczasowo  poziom kontrataku
             int teamCA = 30;
-            if (drawCAChance(teamCA)) {
+            if (randomCAChance(teamCA)) {
                 //komentarz o przejęciu piłki i kontrze
                 matchCommentary(teamInDefence, 3, matchCommentaryList, matchMinute);
                 //TUTAJ UWAGA: celowo zamiana teamInDefence z teamOnOpportunity, bo teraz
@@ -310,7 +309,7 @@ public class MatchService {
         this.matchRepository.save(match);
     }
 
-    private boolean drawCAChance(int teamCA) {
+    private boolean randomCAChance(int teamCA) {
         Random random = new Random();
         // musi byc wyliczony poziom kontrataku drużyny
         //zakładamy na potrzeby testu: 30 na 100 max

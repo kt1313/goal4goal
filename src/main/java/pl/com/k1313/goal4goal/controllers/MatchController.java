@@ -77,18 +77,28 @@ public class MatchController {
         return "match";
     }
 
-    //co to??? sprawdz
 //    @RequestMapping(value = "/matchIn-Progress", method = RequestMethod.GET)
     @PostMapping("/matchInProgress")
-    public String handleMatch(ModelMap map) throws InterruptedException {
-        Match match = this.teamService.createMatch();
-
+    public String handleMatch(ModelMap map, Model m) throws InterruptedException {
+//ma pobrac JUŻ utworzony match z druzynami
         Match matchReal = this.matchRepository.findAll()
                 .stream().filter(Match::isInProgress).findFirst().get();
+
+        //ma teraz ROZEGRAC ten mecz
         HashMap<Integer, String> matchCommentary = this.matchService.handleMatchEngine(matchReal);
         map.addAttribute("matchCommentary", matchCommentary);
 
-//        return "match :: #matchInProgress1";
+//tu naglowek, nazwy druzyn i wynik
+        String hostTeamName = matchReal.getMatchTeams().get(0).getTeamName();
+        String guestTeamName = matchReal.getMatchTeams().get(1).getTeamName();
+        Integer hostTeamScore = matchReal.getHostScore();
+        Integer guestTeamScore = matchReal.getGuestScore();
+        m.addAttribute("hostTeamName", hostTeamName);
+        m.addAttribute("guestTeamName", guestTeamName);
+        m.addAttribute("hostTeamScore", hostTeamScore);
+        m.addAttribute("guestTeamScore", guestTeamScore);
+
+//        return "match :: #matchInProgress";
         return "match";
     }
 
