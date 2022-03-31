@@ -7,8 +7,10 @@ import pl.com.k1313.goal4goal.controllers.dto.PlayerContractingDTO;
 import pl.com.k1313.goal4goal.controllers.dto.PlayerUpdateDTO;
 import pl.com.k1313.goal4goal.domain.team.TeamRepository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class PlayerService {
@@ -89,8 +91,40 @@ public class PlayerService {
         return firstsquadplayers;
     }
 
+    //--------------------------------------------------------------------
+    public Player createPlayer() {
+        Player newPlayer = new Player();
+        String firstName = randomFirstName();
+        String lastName = randomLastName();
+        LocalDate birthDate = birthDate;
+        Position position = position;
+        int attacking = randomFrom100();
+        int ballControl = randomFrom100();
+        int passing = randomFrom100();
+        int tackling = randomFrom100();
+        int goalkeeping = randomFrom100();
 
-}
+            return newPlayer;
+        }
+
+        public int randomFrom100 () {
+            Random r = new Random();
+            int result = r.nextInt(100);
+            return result;
+        }
+        public String randomFirstName(){
+        Random r=new Random();
+        List firstNamesList=new ArrayList<>(List.of("Adam", "Obi-Wan", "Frankie", "Janusz");
+        String newFirstName = (String)firstNamesList.get(r.nextInt(4));
+        return newFirstName;
+        }
+    public String randomLastName(){
+        Random r=new Random();
+        List firstNamesList=new ArrayList<>(List.of("Kalekostopski", "Wolny", "Anemik", "Słabostrzał"));
+        String newFirstName = (String)firstNamesList.get(r.nextInt(4));
+        return newFirstName;
+    }
+    }
 
 
 

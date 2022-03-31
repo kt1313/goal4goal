@@ -42,21 +42,11 @@ public class MatchController {
 
     @GetMapping
     public String match(Model m) throws InterruptedException {
-//        if (matchMinute < 91) {
-//            matchMinute++;
-            //tu utworz Match i go zasejwuj na repo (to do testow tylko, bo0 nazwa hosta "na sile" i
-            // sztuczny opponent
-//            if(match==null) {
-
 
         //tutaj ma odczytac dane do naglowka
         this.matchService.readDataForHeader();
 
             Match match = this.teamService.createMatch();
-
-            //to mozna wykorzystac w przyszlosci kiedy bedzie cala baza danych
-//            Match matchReal = this.matchRepository.findAll()
-//                    .stream().filter(Match::isInProgress).findFirst().get();
 
 //tu naglowek, nazwy druzyn i wynik
             String hostTeamName = match.getMatchTeams().get(0).getTeamName();
@@ -70,10 +60,6 @@ public class MatchController {
             m.addAttribute("hostTeamScore", hostTeamScore);
             m.addAttribute("guestTeamScore", guestTeamScore);
 
-////silnik meczowy
-//            HashMap<Integer,String> matchCommentary = this.matchService.handleMatchEngine(matchReal);
-//            m.addAttribute("matchCommentary", matchCommentary);
-//        }
         return "match";
     }
 
@@ -98,7 +84,6 @@ public class MatchController {
         m.addAttribute("hostTeamScore", hostTeamScore);
         m.addAttribute("guestTeamScore", guestTeamScore);
 
-//        return "match :: #matchInProgress";
         return "match";
     }
 
