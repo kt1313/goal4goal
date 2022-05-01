@@ -129,7 +129,6 @@ public class MatchService {
         return commentarySent;
     }
 
-    //nad tym trzeba popracować, żeby zrzucic na templatkę
     private void matchCommentary(MatchTeam team, int typeOfCommentary, HashMap<Integer, String> matchCommmentaryList, int matchMinute) {
         switch (typeOfCommentary) {
             case 1:

@@ -115,6 +115,25 @@ public class Player {
         this.goalkeeping = goalkeeping;
 
     }
+    //ponizej dla PlayerServiceu generowanie randomowego grajka
+    public Player(String firstName,
+                  String lastName, LocalDate birthDate
+            , int attacking
+            , int ballControl
+            , int passing
+            , int tackling
+            , int goalkeeping
+    ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.attacking = attacking;
+        this.ballControl = ballControl;
+        this.passing = passing;
+        this.tackling = tackling;
+        this.goalkeeping = goalkeeping;
+
+    }
 
     public void update(String firstName,
                        String lastName, LocalDate birthDate,
@@ -137,6 +156,8 @@ public class Player {
         this.goalkeeping = goalkeeping;
 
     }
+
+
 
     public void setFirstSquadPlayer(boolean firstSquadPlayer) {
         this.firstSquadPlayer = firstSquadPlayer;
