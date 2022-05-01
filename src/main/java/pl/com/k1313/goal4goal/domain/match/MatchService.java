@@ -279,7 +279,7 @@ public class MatchService {
         Random random = new Random();
         int goalChance = goalkeeperSkill + strikerAttack;
         int goal = random.nextInt(goalChance);
-        if ((goal * 0.5) > goalkeeperSkill) {
+        if ((goal * 0.7) > goalkeeperSkill) {
             return true;
         } else {
             return false;
