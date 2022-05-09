@@ -115,9 +115,20 @@ public class MatchService {
                 matchInProgress = false;
             }
         }
-        String matchResult = "Koniec meczu. Na tablicy widnieje " + match.getHostScore() + " : " + match.getGuestScore();
+        String matchResult = "Koniec meczu. Na tablicy widnieje wynik" + match.getHostScore() + " : " + match.getGuestScore();
         matchCommentaryList.put(matchMinute, matchResult);
         System.out.println("Koniec. Wynik meczu: " + match.getHostScore() + " : " + match.getGuestScore());
+        int hostTeamMid=hostTeam.getMidfield();
+        int hostTeamAtt=hostTeam.getAttack();
+        int hostTeamDef=hostTeam.getDefence();
+        int hostTeamGoalkpr=hostTeam.getGoalkeeperSkill();
+        int guestTeamMid=guestTeam.getMidfield();
+        int guestTeamAtt=guestTeam.getAttack();
+        int guestTeamDef=guestTeam.getDefence();
+        int guestTeamGoalkpr=guestTeam.getGoalkeeperSkill();
+        System.out.println("Stats:  ");
+        System.out.println("HostTeam: Midfield: "+hostTeamMid+" Attack: "+hostTeamAtt+" Def: "+hostTeamDef+" Goalkpr: "+hostTeamGoalkpr);
+        System.out.println("GuestTeam: Midfield: "+guestTeamMid+" Attack: "+guestTeamAtt+" Def: "+guestTeamDef+" Goalkpr: "+guestTeamGoalkpr);
 
         return matchCommentaryList;
 

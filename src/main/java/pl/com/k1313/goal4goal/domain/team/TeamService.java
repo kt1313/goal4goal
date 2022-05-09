@@ -140,12 +140,12 @@ public class TeamService {
                 first11Defence += player.getTackling() * 0.5;
             }
         }
-        List<Integer> formationsValues = new ArrayList<Integer>(List.of(first11Defence
-                , first11Midfield, first11Attack));
+        List<Integer> formationsValues = new ArrayList<Integer>(List.of(first11Attack,first11Midfield,first11Defence
+                 ));
         System.out.println("TeamServ, calculateFirst11FormVal, Wartość formacji: "
-                + " Defensywa: " + formationsValues.get(0)
+                + " Atak: " + formationsValues.get(0)
                 + " Pomoc: " + formationsValues.get(1)
-                + " Atak: " + formationsValues.get(2));
+                + " Obrona: " + formationsValues.get(2));
 
         return formationsValues;
     }
