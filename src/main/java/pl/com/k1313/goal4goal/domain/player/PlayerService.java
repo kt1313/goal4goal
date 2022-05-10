@@ -92,10 +92,15 @@ public class PlayerService {
         }
         return firstsquadplayers;
     }
-
+    //--------------------------------------------------------------------
+    //--------------------------------------------------------------------
+    //--------------------------------------------------------------------
+//PONIZEJ METODY BY UTOWRZYC PLAYERA W AUTO I ZAPISAC GO W REPO
+    //--------------------------------------------------------------------
+    //--------------------------------------------------------------------
     //--------------------------------------------------------------------
     //czy podawac na jakiej pozycji szukmy? wtedy zmienne dla odpowiednich umiejetnosci
-    public Player createPlayer(Position position) {
+    public Player autoCreatePlayer() {
         String firstName = randomFirstName();
         String lastName = randomLastName();
         //wiek zalezny bedzie czy Mlodzik czy nie. ustaw w metodzie randomBirthDate
@@ -120,22 +125,24 @@ public class PlayerService {
 
     public String randomFirstName() {
         Random r = new Random();
-        List firstNamesList = new ArrayList<>(List.of("Adam", "Obi-Wan", "Frankie", "Janusz"));
-        String newFirstName = (String) firstNamesList.get(r.nextInt(4));
+        List firstNamesList = new ArrayList<>(List.of(
+                "Adam", "Obi-Wan", "Frankie", "Janusz", "Joshua", "One-One", "Kuling"));
+        String newFirstName = (String) firstNamesList.get(r.nextInt(7));
         return newFirstName;
     }
 
     public String randomLastName() {
         Random r = new Random();
-        List firstNamesList = new ArrayList<>(List.of("Kalekostopski", "McWolny", "Anemikus", "Ci-Ho-Pek"));
-        String newFirstName = (String) firstNamesList.get(r.nextInt(4));
+        List firstNamesList = new ArrayList<>(List.of(
+                "Kaleka", "McWolny", "Anemikus", "Ci-Ho-Pek", "Omojboszszsz", "Nieten", "Aninietamten"));
+        String newFirstName = (String) firstNamesList.get(r.nextInt(7));
         return newFirstName;
     }
 
     public LocalDate randomBirthDate() {
         //jesli młodzik to dopasowac ponizej o ile mlodszy niż TERAZ
         //nie starszy niz
-        int startDate = 19 * 365;
+        int startDate = 27 * 365;
         //nie młodszy niż
         int endDate = 17 * 365;
         return LocalDate.ofEpochDay(ThreadLocalRandom

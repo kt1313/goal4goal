@@ -2,11 +2,10 @@ package pl.com.k1313.goal4goal.domain.team;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
+import pl.com.k1313.goal4goal.domain.player.Player;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -16,19 +15,21 @@ public class MatchTeam {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private  String teamName;
+    private String teamName;
     private int attack;
     private int midfield;
     private int defence;
 
     private int goalkeeperSkill;
+    @OneToMany
+    private List<Player> matchTeamPlayers;
 
     public MatchTeam() {
     }
 
     public MatchTeam(String teamName, int attack, int midfield, int defence, int goalkeeperSkill) {
 
-        this.teamName=teamName;
+        this.teamName = teamName;
         this.attack = attack;
         this.midfield = midfield;
         this.defence = defence;
@@ -37,14 +38,25 @@ public class MatchTeam {
 
     public MatchTeam(long id, String teamName, int attack, int midfield, int defence, int goalkeeperSkill) {
 
-        this.id=id;
-        this.teamName=teamName;
+        this.id = id;
+        this.teamName = teamName;
         this.attack = attack;
         this.midfield = midfield;
         this.defence = defence;
         this.goalkeeperSkill = goalkeeperSkill;
     }
-    public String getTeamName() {return teamName;}
+
+    public MatchTeam(String teamName) {
+        this.teamName = teamName;
+    }
+    public MatchTeam(String teamName, List<Player> matchTeamPlayers) {
+        this.teamName = teamName;
+        this.matchTeamPlayers=matchTeamPlayers;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
 
     public void setTeamName(String teamName) {
         this.teamName = teamName;
