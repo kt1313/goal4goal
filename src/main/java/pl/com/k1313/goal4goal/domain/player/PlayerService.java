@@ -95,7 +95,7 @@ public class PlayerService {
     //--------------------------------------------------------------------
     //--------------------------------------------------------------------
     //--------------------------------------------------------------------
-//PONIZEJ METODY BY UTOWRZYC PLAYERA W AUTO I ZAPISAC GO W REPO
+//PONIZEJ METODY BY UTOWRZYC PLAYERA W AUTO I ZAPISAC GO W REPO- (? NO WLASNIE??)
     //--------------------------------------------------------------------
     //--------------------------------------------------------------------
     //--------------------------------------------------------------------
@@ -147,6 +147,18 @@ public class PlayerService {
         int endDate = 17 * 365;
         return LocalDate.ofEpochDay(ThreadLocalRandom
                 .current().nextInt(-startDate, endDate));
+    }
+//tworzy goalkeepera - inny rozdzaj zawodnika
+    public Player autoCreateGoalkeeper() {
+       Player newPlayer=autoCreatePlayer();
+       int newGoalkeeping=newPlayer.getGoalkeeping()*2;
+       Player newGoalkeeper=new Player(
+               newPlayer.getFirstName(), newPlayer.getLastName(),
+               newPlayer.getBirthDate(),newPlayer.getAttacking()/2,
+               newPlayer.getBallControl()/2, newPlayer.getPassing()/2,
+               newPlayer.getTackling()/2, newPlayer.getGoalkeeping()*2
+       );
+       return newGoalkeeper;
     }
 }
 

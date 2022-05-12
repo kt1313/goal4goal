@@ -94,6 +94,14 @@ public class MatchTeam {
         this.goalkeeperSkill = goalkeeperSkill;
     }
 
+    public List<Player> getMatchTeamPlayers() {
+        return matchTeamPlayers;
+    }
+
+    public void setMatchTeamPlayers(List<Player> matchTeamPlayers) {
+        this.matchTeamPlayers = matchTeamPlayers;
+    }
+
     @Override
     public String toString() {
         return "MatchTeam{" +
