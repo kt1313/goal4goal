@@ -8,6 +8,7 @@ import pl.com.k1313.goal4goal.domain.player.PlayerService;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OpponentTeamService {
@@ -45,11 +46,36 @@ public class OpponentTeamService {
 
         //teraz ma wybrac First 11
         //najpierw wybiera najlepszego goalkeepera
-        Long goalkeeperID=autoOpponentTeam.getMatchTeamPlayers().stream()
+        Long goalkeeperID = autoOpponentTeam.getMatchTeamPlayers().stream()
                 .max(Comparator.comparing(Player::getGoalkeeping))
                 .get().getId();
         //potem hmmm zakladamy ustawienie 4-4-2, wiec 4 defensorow
-        Long defendorID
+
+        List<Player> sortedListByTackling = autoOpponentTeam.getMatchTeamPlayers().stream()
+                .sorted(Comparator.comparingInt(Player::getTackling)
+                        .reversed())
+                .collect(Collectors.toList());
+        Long defendorOneId = sortedListByTackling.get(0).getId();
+        Long defendorTwoId = sortedListByTackling.get(1).getId();
+        Long defendorThreeId = sortedListByTackling.get(2).getId();
+        Long defendorFourId = sortedListByTackling.get(3).getId();
+
+        sortedListByTackling.forEach(System.out::println);
+
+        // potem 4 pomocnikow . i tu trzeba znalezc 4 gdy suma ich BallControl i Passingu jest max
+        
+        List<Player> sortedListByMidfield = autoOpponentTeam.getMatchTeamPlayers().stream()
+                .sorted(Comparator.comparingInt(Player::getAttacking)
+                        .reversed())
+                .collect(Collectors.toList());
+
+        // potem 2 napastnikow
+        List<Player> sortedListByAttacking = autoOpponentTeam.getMatchTeamPlayers().stream()
+                .sorted(Comparator.comparingInt(Player::getAttacking)
+                        .reversed())
+                .collect(Collectors.toList());
+        Long attackerOneId=sortedListByAttacking.get(0).getId();
+        Long attackerTwoId=sortedListByAttacking.get(1).getId();
     }
 
 }
