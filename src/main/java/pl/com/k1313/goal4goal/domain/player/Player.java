@@ -163,6 +163,10 @@ public class Player {
         this.firstSquadPlayer = firstSquadPlayer;
     }
 
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
     @Override
     public String toString() {
         return "Player{" +
