@@ -40,6 +40,19 @@ public class MatchService {
         return defaultOppTeam;
     }
 
+    //tworzenie autoOppTeamu z zawodnikami
+    public MatchTeam createAutoOpponent() {
+        String opTeamName = this.teamService.autoCreateOpponentTeam().getTeamName();
+        int opTeamAttack = this.teamService.autoCreateOpponentTeam().getAttack();
+        int opTeamMidfield = this.teamService.autoCreateOpponentTeam().getMidfield();
+        int opTeamDefense = this.teamService.autoCreateOpponentTeam().getDefence();
+        int opTeamGoalkeeperSkills = this.teamService.autoCreateOpponentTeam().getGoalkeeperSkill();
+        MatchTeam autoOppTeam = new MatchTeam(opTeamName, opTeamAttack, opTeamMidfield, opTeamDefense, opTeamGoalkeeperSkills);
+
+        System.out.println(autoOppTeam);
+        return autoOppTeam;
+    }
+
     //w przyszłości będzie podawane jako parametr nickname usera
     public MatchTeam createUserTeam() {
 
@@ -73,43 +86,43 @@ public class MatchService {
                 .filter(Match::isInProgress)
                 .findFirst().get().getMatchTeams();
 //TUTAJ ZROBIC HashMap  (minutaMeczu, komentarz)
-        HashMap<Integer,String> matchCommentaryList = new HashMap<>();
+        HashMap<Integer, String> matchCommentaryList = new HashMap<>();
 
         MatchTeam hostTeam = matchTeamsList.get(0);
         MatchTeam guestTeam = matchTeamsList.get(1);
         MatchTeam teamOnOpportunity;
         MatchTeam teamInDefence;
-        matchMinute= 0;
+        matchMinute = 0;
         boolean matchInProgress = true;
         while (matchInProgress) {
             matchMinute++;
             Thread.sleep(100);
-        teamOnOpportunity = ballPossesionCheckOut(hostTeam, guestTeam);
-        if (teamOnOpportunity.equals(hostTeam)) {
-            teamInDefence = guestTeam;
-        } else {
-            teamInDefence = hostTeam;
-        }
-        //komentarz o posiadaniu pilki, niech losuje tylko co...75%event
-        if (commentaryBallPossesion() > 2) {
-            matchCommentary(teamOnOpportunity, 1, matchCommentaryList, matchMinute);
-        }
-        if (opportunitySucceed()) {
-            //komentarz o zawiązaniu akcji
-            matchCommentary(teamOnOpportunity, 2, matchCommentaryList, matchMinute);
-            //to poniżej jako jedna metoda, bo zastosowanie też do kontrataku
-            opportunityEvent(teamOnOpportunity, teamInDefence, hostTeam, guestTeam, matchCommentaryList);
-        } else {
-            //jesli uda się kontra to wtedy niech sprawdzi szansę na bramkę(opportunityEvent)
-            //wrzucimy sztucznie/tymczasowo  poziom kontrataku
-            int teamCA = 30;
-            if (randomCAChance(teamCA)) {
-                //komentarz o przejęciu piłki i kontrze
-                matchCommentary(teamInDefence, 3, matchCommentaryList, matchMinute);
-                //TUTAJ UWAGA: celowo zamiana teamInDefence z teamOnOpportunity, bo teraz
-                //broniący sie atakują
-                opportunityEvent(teamInDefence, teamOnOpportunity, hostTeam, guestTeam, matchCommentaryList);
+            teamOnOpportunity = ballPossesionCheckOut(hostTeam, guestTeam);
+            if (teamOnOpportunity.equals(hostTeam)) {
+                teamInDefence = guestTeam;
+            } else {
+                teamInDefence = hostTeam;
             }
+            //komentarz o posiadaniu pilki, niech losuje tylko co...75%event
+            if (commentaryBallPossesion() > 2) {
+                matchCommentary(teamOnOpportunity, 1, matchCommentaryList, matchMinute);
+            }
+            if (opportunitySucceed()) {
+                //komentarz o zawiązaniu akcji
+                matchCommentary(teamOnOpportunity, 2, matchCommentaryList, matchMinute);
+                //to poniżej jako jedna metoda, bo zastosowanie też do kontrataku
+                opportunityEvent(teamOnOpportunity, teamInDefence, hostTeam, guestTeam, matchCommentaryList);
+            } else {
+                //jesli uda się kontra to wtedy niech sprawdzi szansę na bramkę(opportunityEvent)
+                //wrzucimy sztucznie/tymczasowo  poziom kontrataku
+                int teamCA = 30;
+                if (randomCAChance(teamCA)) {
+                    //komentarz o przejęciu piłki i kontrze
+                    matchCommentary(teamInDefence, 3, matchCommentaryList, matchMinute);
+                    //TUTAJ UWAGA: celowo zamiana teamInDefence z teamOnOpportunity, bo teraz
+                    //broniący sie atakują
+                    opportunityEvent(teamInDefence, teamOnOpportunity, hostTeam, guestTeam, matchCommentaryList);
+                }
             }
             if (matchMinute > 90) {
                 matchInProgress = false;
@@ -118,17 +131,17 @@ public class MatchService {
         String matchResult = "Koniec meczu. Na tablicy widnieje wynik" + match.getHostScore() + " : " + match.getGuestScore();
         matchCommentaryList.put(matchMinute, matchResult);
         System.out.println("Koniec. Wynik meczu: " + match.getHostScore() + " : " + match.getGuestScore());
-        int hostTeamMid=hostTeam.getMidfield();
-        int hostTeamAtt=hostTeam.getAttack();
-        int hostTeamDef=hostTeam.getDefence();
-        int hostTeamGoalkpr=hostTeam.getGoalkeeperSkill();
-        int guestTeamMid=guestTeam.getMidfield();
-        int guestTeamAtt=guestTeam.getAttack();
-        int guestTeamDef=guestTeam.getDefence();
-        int guestTeamGoalkpr=guestTeam.getGoalkeeperSkill();
+        int hostTeamMid = hostTeam.getMidfield();
+        int hostTeamAtt = hostTeam.getAttack();
+        int hostTeamDef = hostTeam.getDefence();
+        int hostTeamGoalkpr = hostTeam.getGoalkeeperSkill();
+        int guestTeamMid = guestTeam.getMidfield();
+        int guestTeamAtt = guestTeam.getAttack();
+        int guestTeamDef = guestTeam.getDefence();
+        int guestTeamGoalkpr = guestTeam.getGoalkeeperSkill();
         System.out.println("Stats:  ");
-        System.out.println("HostTeam: Midfield: "+hostTeamMid+" Attack: "+hostTeamAtt+" Def: "+hostTeamDef+" Goalkpr: "+hostTeamGoalkpr);
-        System.out.println("GuestTeam: Midfield: "+guestTeamMid+" Attack: "+guestTeamAtt+" Def: "+guestTeamDef+" Goalkpr: "+guestTeamGoalkpr);
+        System.out.println("HostTeam: Midfield: " + hostTeamMid + " Attack: " + hostTeamAtt + " Def: " + hostTeamDef + " Goalkpr: " + hostTeamGoalkpr);
+        System.out.println("GuestTeam: Midfield: " + guestTeamMid + " Attack: " + guestTeamAtt + " Def: " + guestTeamDef + " Goalkpr: " + guestTeamGoalkpr);
 
         return matchCommentaryList;
 
@@ -147,7 +160,7 @@ public class MatchService {
                         + "min. Uwijają się jak mrówki i wygrali walkę o piłkę w środku pola piłkarze "
                         + team.getTeamName() + "\r\n";
                 System.out.println(commentaryBallPossesion1);
-                matchCommmentaryList.put(matchMinute,commentaryBallPossesion1);
+                matchCommmentaryList.put(matchMinute, commentaryBallPossesion1);
                 break;
             case 2:
                 String commentaryCreationChance1 = matchMinute

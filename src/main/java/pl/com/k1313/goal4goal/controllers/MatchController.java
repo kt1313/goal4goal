@@ -63,10 +63,10 @@ public class MatchController {
         return "match";
     }
 
-//    @RequestMapping(value = "/matchIn-Progress", method = RequestMethod.GET)
+        //    @RequestMapping(value = "/matchIn-Progress", method = RequestMethod.GET)
     @PostMapping("/matchInProgress")
     public String handleMatch(ModelMap map, Model m) throws InterruptedException {
-//ma pobrac JUŻ utworzony match z druzynami
+        //ma pobrac JUŻ utworzony match z druzynami
         Match matchReal = this.matchRepository.findAll()
                 .stream().filter(Match::isInProgress).findFirst().get();
 
@@ -74,7 +74,7 @@ public class MatchController {
         HashMap<Integer, String> matchCommentary = this.matchService.handleMatchEngine(matchReal);
         map.addAttribute("matchCommentary", matchCommentary);
 
-//tu naglowek, nazwy druzyn i wynik
+        //tu naglowek, nazwy druzyn i wynik
         String hostTeamName = matchReal.getMatchTeams().get(0).getTeamName();
         String guestTeamName = matchReal.getMatchTeams().get(1).getTeamName();
         Integer hostTeamScore = matchReal.getHostScore();
