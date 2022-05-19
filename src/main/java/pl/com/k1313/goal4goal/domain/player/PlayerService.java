@@ -100,6 +100,7 @@ public class PlayerService {
     //--------------------------------------------------------------------
     //--------------------------------------------------------------------
     //czy podawac na jakiej pozycji szukmy? wtedy zmienne dla odpowiednich umiejetnosci
+    //tworzy PLAYERa - Goalkeepera w innej metodzie
     public Player autoCreatePlayer() {
         String firstName = randomFirstName();
         String lastName = randomLastName();
@@ -109,7 +110,7 @@ public class PlayerService {
         int ballControl = randomFrom100();
         int passing = randomFrom100();
         int tackling = randomFrom100();
-        int goalkeeping = randomFrom100();
+        int goalkeeping = randomFrom100()/3;
 
         Player newPlayer = new Player(firstName, lastName, birthDate, attacking, ballControl, passing, tackling, goalkeeping);
 
@@ -156,7 +157,9 @@ public class PlayerService {
                newPlayer.getFirstName(), newPlayer.getLastName(),
                newPlayer.getBirthDate(),newPlayer.getAttacking()/2,
                newPlayer.getBallControl()/2, newPlayer.getPassing()/2,
-               newPlayer.getTackling()/2, newPlayer.getGoalkeeping()*2
+               newPlayer.getTackling()/2,
+               //potem sprawdz bo nie moze byc wiecej niz 100
+               newPlayer.getGoalkeeping()*2
        );
        return newGoalkeeper;
     }

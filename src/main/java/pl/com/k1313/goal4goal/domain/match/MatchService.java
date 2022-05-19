@@ -42,12 +42,20 @@ public class MatchService {
 
     //tworzenie autoOppTeamu z zawodnikami
     public MatchTeam createAutoOpponent() {
-        String opTeamName = this.teamService.autoCreateOpponentTeam().getTeamName();
-        int opTeamAttack = this.teamService.autoCreateOpponentTeam().getAttack();
-        int opTeamMidfield = this.teamService.autoCreateOpponentTeam().getMidfield();
-        int opTeamDefense = this.teamService.autoCreateOpponentTeam().getDefence();
-        int opTeamGoalkeeperSkills = this.teamService.autoCreateOpponentTeam().getGoalkeeperSkill();
-        MatchTeam autoOppTeam = new MatchTeam(opTeamName, opTeamAttack, opTeamMidfield, opTeamDefense, opTeamGoalkeeperSkills);
+
+        //TUTAJ zle - najpierw utworz AutoTeam, a potem tylko odczytuj, a nie tworz za kazdym razem
+        MatchTeam autoOppTeam=this.teamService.autoCreateOpponentTeam();
+        String opTeamName = autoOppTeam.getTeamName();
+        int opTeamAttack=autoOppTeam.getAttack();
+        int opTeamMidfield=autoOppTeam.getMidfield();
+        int opTeamDefense=autoOppTeam.getDefence();
+        int opTeamGoalkeeperSkills=autoOppTeam.getGoalkeeperSkill();
+//        String opTeamName = this.teamService.autoCreateOpponentTeam().getTeamName();
+//        int opTeamAttack = this.teamService.autoCreateOpponentTeam().getAttack();
+//        int opTeamMidfield = this.teamService.autoCreateOpponentTeam().getMidfield();
+//        int opTeamDefense = this.teamService.autoCreateOpponentTeam().getDefence();
+//        int opTeamGoalkeeperSkills = this.teamService.autoCreateOpponentTeam().getGoalkeeperSkill();
+//        MatchTeam autoOppTeam = new MatchTeam(opTeamName, opTeamAttack, opTeamMidfield, opTeamDefense, opTeamGoalkeeperSkills);
 
         System.out.println(autoOppTeam);
         return autoOppTeam;

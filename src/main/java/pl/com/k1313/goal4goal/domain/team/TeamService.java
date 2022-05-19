@@ -137,8 +137,8 @@ public class TeamService {
                 first11Defence += player.getTackling() * 0.5;
             }
         }
-        List<Integer> formationsValues = new ArrayList<Integer>(List.of(first11Attack,first11Midfield,first11Defence
-                 ));
+        List<Integer> formationsValues = new ArrayList<Integer>(List.of(first11Attack, first11Midfield, first11Defence
+        ));
         System.out.println("TeamServ, calculateFirst11FormVal, Wartość formacji: "
                 + " Atak: " + formationsValues.get(0)
                 + " Pomoc: " + formationsValues.get(1)
@@ -151,13 +151,15 @@ public class TeamService {
         return this.teamRepository.findAll();
     }
 
-    public List<MatchTeam> findAllMatchTeams() {return this.matchTeamRepository.findAll();}
+    public List<MatchTeam> findAllMatchTeams() {
+        return this.matchTeamRepository.findAll();
+    }
 
 
     public Match createMatch() {
         Match match;
-        MatchTeam userTeam=this.matchService.createUserTeam();
-        MatchTeam oppTeam=this.matchService.createAutoOpponent();
+        MatchTeam userTeam = this.matchService.createUserTeam();
+        MatchTeam oppTeam = this.matchService.createAutoOpponent();
 
 
 //        Optional<MatchTeam> hostTeamOpt = findAllMatchTeams().stream()
@@ -166,31 +168,34 @@ public class TeamService {
 //                .findFirst();
 //        String hostTeamName = hostTeamOpt.get().getTeamName();
         Optional<MatchTeam> hostTeamOpt = Optional.ofNullable(userTeam);
-        String hostTeamName= userTeam.getTeamName();
+        String hostTeamName = userTeam.getTeamName();
 
 //        Optional<MatchTeam> guestTeamOpt = findAllMatchTeams()
 //                .stream().filter(matchTeam -> matchTeam.getTeamName().equals("Cream Team FC"))
 //                .findFirst();
 //        String guestTeamName = guestTeamOpt.get().getTeamName();
         Optional<MatchTeam> guestTeamOpt = Optional.ofNullable(oppTeam);
-        String guestTeamName= oppTeam.getTeamName();
+        String guestTeamName = oppTeam.getTeamName();
 
 
-        List<MatchTeam> matchTeamList=new ArrayList<>();
+        List<MatchTeam> matchTeamList = new ArrayList<>();
         matchTeamList.add(hostTeamOpt.get());
         matchTeamList.add(guestTeamOpt.get());
 
-        match=new Match(matchTeamList,true);
+        match = new Match(matchTeamList, true);
         this.matchRepository.save(match);
 
         return match;
     }
+
     //wywolujemy metode tworzaca nowego auto przeciwnika
     public MatchTeam autoCreateOpponentTeam() {
         MatchTeam autoOpponentTeam = new MatchTeam();
         autoOpponentTeam.setTeamName("Auto Oppo Cream-Team ");
-        MatchTeam autoOppFirst11=new MatchTeam();
+        MatchTeam autoOppFirst11 = new MatchTeam();
         autoOppFirst11.setTeamName(autoOpponentTeam.getTeamName());
+//        List<Player> list = new ArrayList<Player>();
+//        list=autoOpponentTeam.getMatchTeamPlayers();
 
         //on tworzy swoich zawodnikow(czy ma ich zapisywac w repo???hmmm) i 2 goalkeeperow
         // i przypisac do zespolu
@@ -198,6 +203,8 @@ public class TeamService {
             Player newPlayer = this.playerService.autoCreatePlayer();
             autoOpponentTeam.getMatchTeamPlayers().add(newPlayer);
         }
+        System.out.println(autoOpponentTeam);
+
         for (int i = 0; i < 2; i++) {
             Player newGoalkeeper = this.playerService.autoCreateGoalkeeper();
             autoOpponentTeam.getMatchTeamPlayers().add(newGoalkeeper);
@@ -210,6 +217,7 @@ public class TeamService {
                 .get();
         //ustala mu Position
         first11goalkeeper.setPosition(Position.GK);
+        first11goalkeeper.setFirstSquadPlayer(true);
         //dodaje do First11
         autoOppFirst11.getMatchTeamPlayers().add(first11goalkeeper);
 
@@ -228,6 +236,9 @@ public class TeamService {
         for (Player p :
                 listOfDefendors) {
             autoOppFirst11.getMatchTeamPlayers().add(p);
+            //dodaj do FirstSquad
+            p.setFirstSquadPlayer(true);
+
         }
 
         listOfDefendors.forEach(System.out::println);
@@ -238,7 +249,7 @@ public class TeamService {
                 .sorted(Comparator.comparingInt(p -> p.getBallControl() + p.getPassing()))
                 .collect(Collectors.toList());
         Collections.reverse(listOfMidfieldersPre);
-        List<Player> listOfMidfielders=listOfMidfieldersPre.stream().limit(4).collect(Collectors.toList());
+        List<Player> listOfMidfielders = listOfMidfieldersPre.stream().limit(4).collect(Collectors.toList());
 
         listOfMidfielders.get(0).setPosition(Position.CMA);
         listOfMidfielders.get(1).setPosition(Position.CMD);
@@ -248,6 +259,8 @@ public class TeamService {
         for (Player p :
                 listOfMidfielders) {
             autoOppFirst11.getMatchTeamPlayers().add(p);
+            //dodaj do FirstSquad
+            p.setFirstSquadPlayer(true);
         }
         listOfMidfielders.forEach(System.out::println);
 
@@ -263,9 +276,11 @@ public class TeamService {
         for (Player p :
                 listOfAttackers) {
             autoOppFirst11.getMatchTeamPlayers().add(p);
+            //dodaj do FirstSquad
+            p.setFirstSquadPlayer(true);
         }
         listOfAttackers.forEach(System.out::println);
-
+        System.out.println(autoOppFirst11);
         return autoOppFirst11;
     }
 }

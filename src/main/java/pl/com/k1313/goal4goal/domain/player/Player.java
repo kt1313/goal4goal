@@ -180,7 +180,7 @@ public class Player {
                 ", ballControl=" + ballControl +
                 ", passing=" + passing +
                 ", tackling=" + tackling +
-                ", goalkiping=" + goalkeeping +
+                ", goalkeeping=" + goalkeeping +
                 '}';
     }
 

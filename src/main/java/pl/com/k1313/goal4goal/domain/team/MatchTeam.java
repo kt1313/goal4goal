@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import pl.com.k1313.goal4goal.domain.player.Player;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,7 +23,7 @@ public class MatchTeam {
 
     private int goalkeeperSkill;
     @OneToMany
-    private List<Player> matchTeamPlayers;
+    private List<Player> matchTeamPlayers = new ArrayList<Player>();
 
     public MatchTeam() {
     }
@@ -49,9 +50,10 @@ public class MatchTeam {
     public MatchTeam(String teamName) {
         this.teamName = teamName;
     }
+
     public MatchTeam(String teamName, List<Player> matchTeamPlayers) {
         this.teamName = teamName;
-        this.matchTeamPlayers=matchTeamPlayers;
+        this.matchTeamPlayers = matchTeamPlayers;
     }
 
     public String getTeamName() {
@@ -104,12 +106,10 @@ public class MatchTeam {
 
     @Override
     public String toString() {
-        return "MatchTeam{" +
-                "teamName='" + teamName + '\'' +
-                ", attack=" + attack +
-                ", midfield=" + midfield +
-                ", defence=" + defence +
-                ", goalkeeperSkill=" + goalkeeperSkill +
-                '}';
+        System.out.println("Nowy team: "+this.getTeamName());
+        String players = "Gracze: ";
+        matchTeamPlayers.forEach(System.out::println);
+        System.out.println("Tu popwinien byc koniec, ew. ponizej pojawia sie gracze");
+        return players;
     }
 }
